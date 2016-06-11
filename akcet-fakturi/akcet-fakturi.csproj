@@ -214,6 +214,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\2.jpeg" />
+    <Content Include="images\2.jpg" />
+    <Content Include="images\easybill-gray.jpg" />
+    <Content Include="images\eneco-gray.jpg" />
+    <Content Include="images\lebara-gray.jpeg" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\telfort-gray.jpg" />
+    <Content Include="images\western-gray.jpg" />
+    <Content Include="images\wizz-gray.jpeg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
