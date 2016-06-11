@@ -3,19 +3,41 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <div class="col-md-2">
+            <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
+        </div>
+        <div class="col-md-6"></div>
+
+        <div class="col-md-3">
+            <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-user"></span>
+
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+
+            </button>
+        </div>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-default btn-sm">
+
+                <a href="javascript:document.getElementById('logoutForm').submit()">Изход</a>
+            </button>
+        </div>
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    <div class="col-md-2"><img src="images/logo.png" class="img-responsive" /></div>
+    <div class="col-md-9"></div>
+
+    <div class="col-md-1">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+            <span class="glyphicon glyphicon-user"></span>
+            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </button>
+    </div>
+
 }

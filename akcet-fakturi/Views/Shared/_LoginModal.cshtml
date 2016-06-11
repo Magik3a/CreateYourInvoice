@@ -1,32 +1,46 @@
 ﻿
+@using akcet_fakturi.Models
+@model LoginViewModel
 
 
-
-    <form class="form-horizontal" role="form">
-
-        <div class="form-group">
-            <label for="firstname" class="col-sm-3 control-label">Име</label>
-            <div class="col-sm-9"> <input type="text" class="form-control" id="firstname" placeholder="Борислав"> </div>
+@using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label for="firstname" class="col-sm-3 control-label">Име</label>
+        <div class="col-sm-9">
+            @Html.TextBoxFor(m => m.Email, new {@class = "form-control", placeholder = "Борислав"})
+            @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
         </div>
 
+    </div>
 
 
-        <div class="form-group">
-            <label for="firstname" class="col-sm-3 control-label">Парола</label>
-            <div class="col-sm-9"> <input type="password" class="form-control" id="firstname" placeholder="Въведете паролата, която желаете тук"> </div>
+
+    <div class="form-group">
+        <label for="firstname" class="col-sm-3 control-label">Парола</label>
+        <div class="col-sm-9">
+            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Запомни ме
-                    </label>
-                </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe)
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9"> <button type="submit" class="btn btn-default"> <a href="log-user.html"> Вход </a></button> </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <input type="submit" class="btn btn-default" value="Вход"/>
         </div>
-    </form>
+    </div>
+}
+
+        
+          

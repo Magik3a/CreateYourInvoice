@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>АКСЕТ - онлайн фактуриране</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
+           html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
+           respond.min.js"></script>
+     <![endif]-->
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+<!--HEADER-->
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+
+
+        @Html.Partial("_LoginPartial")
+    </div>
+</div>
+
+
+
+<!--LAYOUT-->
+<!--Top Menu-->
+<div class="container">
+    <div class="row" style="text-align: center; margin-top: 20px; background-color: #02bbf4; padding-top: 20px; padding-bottom: 20px; border-radius: 5px;">
+        <div class="col-md-2"><a href="../../" style="color: #ffffff;">Начало</a>
+        </div>
+        <div class="col-md-2"><a href="#" style="color: #ffffff;">Контакти</a>
+        </div>
+        <div class="col-md-2"><a href="#" style="color: #ffffff;">Фактури</a>
+        </div>
+        <div class="col-md-2"><a href="#" style="color: #ffffff;">Продукти</a>
+        </div>
+        <div class="col-md-2"><a href="#" style="color: #ffffff;">Продукти</a>
+        </div>
+        <div class="col-md-2"><a href="#" style="color: #ffffff;">Продукти</a>
+        </div>
+    </div>
+</div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+        <!--FOOTER-->
+        <footer class="container">
+            <div class="row" style="background-color:#989898; text-align:center; color:#ffffff;">
+                <div class="col-md-4"><a href="#" style="color:#ffffff; padding-top:20px; display:inline-block;">Как работи?</a></div>
+                <div class="col-md-4"><a href="#" style="color:#ffffff; padding-top:20px; display:inline-block;">За нас</a></div>
+                <div class="col-md-4"><a href="#" style="color:#ffffff; padding-top:20px; display:inline-block;">Контакти</a></div>
+            </div>
+        </footer>
+
+
+
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
