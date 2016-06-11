@@ -1,31 +1,132 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<!--LAYOUT-->
+<div class="container" style="background-image:url(images/1.jpg); background-size:cover;margin-top:30px; padding-top:10px; padding-bottom:60px;">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <div class="row">
+
+        <div class="col-md-6" style="margin-top:50px; color:#404040;">
+            <h2>Онлайн фактурирането никога не е било по-лесно!</h2>
+
+            <div class="row">
+                <div class="col-md-12" style="padding-bottom:30px; padding-top:30px;"><h4> <span class="glyphicon glyphicon-ok"> &nbsp; </span>24 часа, 7 дни в седмицата достъп до Вашите фактури</h4></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="padding-bottom:30px;"><h4> <span class="glyphicon glyphicon-ok">  &nbsp; </span>Създай фактурите си сам и спести време</h4></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="padding-bottom:30px;"><h4> <span class="glyphicon glyphicon-ok">  &nbsp; </span>Изпрати фактурите си директно на твоя работодател</h4></div>
+            </div>
+        </div>
+
+        
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+<!--partners logos-->
+
+<div class="container" style="text-align:center;">
+    <div class="row">
+        <div class="col-md-12"><h3 style="margin-bottom:40px; margin-top:20px;">Нашите партньори</h3></div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="images/western-gray.jpg" class="img-responsive" />
+        </div>
+
+        <div class="col-md-2">
+            <img src="images/lebara-gray.jpeg" class="img-responsive" />
+        </div>
+
+        <div class="col-md-2">
+            <img src="images/wizz-gray.jpeg" class="img-responsive" />
+        </div>
+
+        <div class="col-md-2">
+            <img src="images/eneco-gray.jpg" class="img-responsive" />
+        </div>
+
+        <div class="col-md-2">
+            <img src="images/easybill-gray.jpg" class="img-responsive" />
+        </div>
+
+        <div class="col-md-2">
+            <img src="images/telfort-gray.jpg" class="img-responsive" />
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</div>
+
+
+
+
+<!--facebook feed-->
+<div class="container" style="margin-top:30px;">
+    <div class="row">
+
+
+        <div class="col-sm-6">
+            <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fakcet.nl&amp;width=620&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=true&amp;header=true&amp;height=435" scrolling="yes" frameborder="0" style="border:none; overflow:hidden; width:600px; height:460px; background: white;  " allowTransparency="true"></iframe>
+        </div>
+
+
+        <!--request feed-->
+
+        <div class="col-sm-6">
+            <div id="row">
+                <div class="col-md-12">
+                    <h3 style="text-align:center;">Изпрати запитване</h3>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <form class="form-horizontal" role="form" style="margin-top:80px;">
+
+                    <div class="form-group" ">
+                        <label for="firstname" class="col-sm-4 control-label">Име</label>
+                        <div class="col-sm-8"> <input type="text" class="form-control" id="firstname" placeholder="Въведете първото си име"> </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-4 control-label">Фамилия</label>
+                        <div class="col-sm-8"> <input type="password" class="form-control" id="firstname" placeholder="Въведете фамилията си"> </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="col-sm-4 control-label">Телефон</label>
+                        <div class="col-sm-8"> <input type="text" class="form-control" id="phone" placeholder="Въведете телефонен номер"> </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-4 control-label">Email</label>
+                        <div class="col-sm-8"> <input type="email" class="form-control" id="email" placeholder="Въведете актуален email адрес"> </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-4 control-label">Съобщение</label>
+                        <div class="col-sm-8"> <textarea id="email" placeholder="Вашето съобщение тук" class="form-control" rows="3"></textarea> </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8"> <button type="submit" class="btn btn-default">Изпрати</button> </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+
+
+
+
+        </div>
     </div>
 </div>

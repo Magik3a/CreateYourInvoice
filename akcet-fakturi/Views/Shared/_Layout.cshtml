@@ -9,33 +9,55 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+    <div class="container">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-2"><img src="images/logo.png" class="img-responsive" /></div>
+            <div class="col-md-9"></div>
+
+            <div class="col-md-1">
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Вход
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+
+        <!--FOOTER-->
+        <footer class="container">
+            <div class="row" style="background-color:#989898; text-align:center; color:#ffffff;">
+                <div class="col-md-4"><a href="#" style="color:#ffffff; padding-top:20px; display:inline-block;">Как работи?</a></div>
+                <div class="col-md-4"><a href="#" style="color:#ffffff; padding-top:20px; display:inline-block;">За нас</a></div>
+                <div class="col-md-4"><a href="#" style="color:#ffffff; padding-top:20px; display:inline-block;">Контакти</a></div>
+            </div>
         </footer>
+
+
+
+
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Вход</h4>
+                </div>
+                <div class="modal-body">
+                  @Html.Partial("_LoginModal")
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
