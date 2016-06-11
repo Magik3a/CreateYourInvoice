@@ -8,11 +8,20 @@ namespace akcet_fakturi.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
         }
 
-    
+        public ActionResult Invoices()
+        {
+            return View();
+        }
+
+        public ActionResult CreateCompanyAjax()
+        {
+            return Json("success");
+        }
     }
 }

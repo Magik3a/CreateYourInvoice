@@ -26,6 +26,7 @@
 </div>
 
 
+    @Scripts.Render("~/bundles/jquery")
 
 <!--LAYOUT-->
 <!--Top Menu-->
@@ -35,7 +36,8 @@
         </div>
         <div class="col-md-2"><a href="#" style="color: #ffffff;">Контакти</a>
         </div>
-        <div class="col-md-2"><a href="#" style="color: #ffffff;">Фактури</a>
+        <div class="col-md-2">
+        @Html.ActionLink("Фактури", "Invoices", "Home", null , new { style = "color: #ffffff;" })
         </div>
         <div class="col-md-2"><a href="#" style="color: #ffffff;">Продукти</a>
         </div>
@@ -63,10 +65,10 @@
 
     </div>
 
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
-
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
 </body>
 </html>
