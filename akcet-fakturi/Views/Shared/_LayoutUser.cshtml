@@ -50,32 +50,40 @@
         </div>
     </div>
 </div>
-    <!--New Invoice menu-->
-    <div class="container" style="border:1px solid #989898; margin-top:20px; border-radius:5px;">
-        <div class="row" style="text-align:center; background-color:orange; padding-top:10px;padding-bottom:10px; border-radius:5px;">
-            <div class="col-md-2"><a href="#" style="color:#ffffff;">Всички фактури</a></div>
-            <div class="col-md-2"><a href="#" style="color:#ffffff;">Ддс-та</a></div>
-            <div class="col-md-2"><a href="#" style="color: #ffffff;">Фирми</a>
+<!--New Invoice menu-->
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="container" style="border: 1px solid #989898; margin-top: 20px; border-radius: 5px;">
+            <div class="row" style="text-align: center; background-color: orange; padding-top: 10px; padding-bottom: 10px; border-radius: 5px;">
+                <div class="col-md-2"><a href="#" style="color: #ffffff;">Всички фактури</a>
+                </div>
+                <div class="col-md-2"><a href="#" style="color: #ffffff;">Ддс-та</a>
+                </div>
+                <div class="col-md-2"><a href="#" style="color: #ffffff;">Фирми</a>
+                </div>
+
+                <div class="col-md-2">
+                    @Html.ActionLink("Регистрация", "Register", "Account", null, new {style = "color: #ffffff;"})
+                </div>
+
+                <div class="col-md-2"><a href="#" style="color: #ffffff;">Потребители</a>
+                </div>
+                <div class="col-md-2">
+                    @Html.ActionLink("Роли", "ViewAllRoles", "Roles", null, new {style = "color: #ffffff;"})
+                </div>
+
             </div>
 
-            <div class="col-md-2">
-            @Html.ActionLink("Регистрация", "Register","Account", null, new { style = "color: #ffffff;" })
+            <div class="row">
+                <div class="col-md-2">
+                </div>
             </div>
-
-            <div class="col-md-2"><a href="#" style="color: #ffffff;">Потребители</a>
-            </div>
-            <div class="col-md-2">
-                @Html.ActionLink("Роли", "ViewAllRoles", "Roles", null, new { style = "color: #ffffff;" })
-            </div>
-
         </div>
 
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
+
+    }
+
+<div class="container body-content">
         @RenderBody()
         <hr />
 
