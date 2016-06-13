@@ -66,6 +66,16 @@ namespace akcet_fakturi.Models
         public string Number { get; set; }
     }
 
+    public class ChangeNames
+    {
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+    }
     public class VerifyPhoneNumberViewModel
     {
         [Required]

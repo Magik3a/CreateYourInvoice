@@ -58,7 +58,10 @@
             <div class="col-md-2"><a href="#" style="color: #ffffff;">Фирми</a>
             </div>
 
-            <div class="col-md-2"><a href="#" style="color:#ffffff;">Регистрация</a></div>
+            <div class="col-md-2">
+            @Html.ActionLink("Регистрация", "Register","Account", null, new { style = "color: #ffffff;" })
+            </div>
+
             <div class="col-md-2"><a href="#" style="color: #ffffff;">Потребители</a>
             </div>
             <div class="col-md-2"><a href="#" style="color:#ffffff;">Роли</a></div>

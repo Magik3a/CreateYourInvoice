@@ -33,37 +33,53 @@
 
     <!--LAYOUT-->
     <!--Top Menu-->
-<div class="container">
-    <div class="row" style="text-align: center; margin-top: 20px; background-color: #02bbf4; padding-top: 20px; padding-bottom: 20px; border-radius: 5px;">
-        <div class="col-md-2">
-            <a href="../../" style="color: #ffffff;">Начало</a>
-        </div>
-        <div class="col-md-2">
-            <a href="#" style="color: #ffffff;">Контакти</a>
-        </div>
-        <div class="col-md-2">
-            @Html.ActionLink("Фактури", "Invoices", "Home", null, new {style = "color: #ffffff;"})
-        </div>
-        <div class="col-md-2">
-            <a href="#" style="color: #ffffff;">Продукти</a>
-        </div>
-        <div class="col-md-2">
-            <a href="#" style="color: #ffffff;">Продукти</a>
-        </div>
-        <div class="col-md-2">
-            <a href="#" style="color: #ffffff;">Продукти</a>
+    <div class="container">
+        <div class="row" style="text-align: center; margin-top: 20px; background-color: #02bbf4; padding-top: 20px; padding-bottom: 20px; border-radius: 5px;">
+            <div class="col-md-2">
+                <a href="../../" style="color: #ffffff;">Начало</a>
+            </div>
+            <div class="col-md-2">
+                <a href="#" style="color: #ffffff;">Контакти</a>
+            </div>
+            <div class="col-md-2">
+                @Html.ActionLink("Фактури", "Invoices", "Home", null, new { style = "color: #ffffff;" })
+            </div>
+            <div class="col-md-2">
+                <a href="#" style="color: #ffffff;">Продукти</a>
+            </div>
+            <div class="col-md-2">
+                <a href="#" style="color: #ffffff;">Продукти</a>
+            </div>
+            <div class="col-md-2">
+                <a href="#" style="color: #ffffff;">Продукти</a>
+            </div>
         </div>
     </div>
-</div>
+    <!--New Invoice menu-->
+    <div class="container" style="border:1px solid #989898; margin-top:20px; border-radius:5px;">
+        <div class="row" style="text-align:center; background-color:orange; padding-top:10px;padding-bottom:10px; border-radius:5px;">
+            <div class="col-md-2"><a href="#" style="color:#ffffff;">Всички фактури</a></div>
+            <div class="col-md-2"><a href="#" style="color:#ffffff;">Ддс-та</a></div>
+            <div class="col-md-2">
+                <a href="#" style="color: #ffffff;">Фирми</a>
+            </div>
 
-        <div class="row" style="text-align:center; margin-top:20px; background-color:#02bbf4; padding-top:20px;padding-bottom:20px; border-radius:5px;">
-            <div class="col-md-2"><a href="#" style="color:#ffffff;">Начало</a></div>
-            <div class="col-md-2"><a href="#" style="color:#ffffff;">Контакти</a></div>
-            <div class="col-md-2"><a href="#" style="color:#ffffff;">Фактури</a></div>
-            <div class="col-md-2"><a href="#" style="color:#ffffff;">Продукти</a></div>
-            <div class="col-md-2"><a href="#" style="color:#ffffff;">Продукти</a></div>
-            <div class="col-md-2"><a href="#" style="color:#ffffff;">Продукти</a></div>
+            <div class="col-md-2">
+                @Html.ActionLink("Регистрация", "Register", "Account", null, new { style = "color: #ffffff;" })
+            </div>
+
+            <div class="col-md-2">
+                <a href="#" style="color: #ffffff;">Потребители</a>
+            </div>
+            <div class="col-md-2"><a href="#" style="color:#ffffff;">Роли</a></div>
+
         </div>
+
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />

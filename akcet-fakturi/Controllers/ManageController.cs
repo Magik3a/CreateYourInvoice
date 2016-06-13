@@ -32,9 +32,9 @@ namespace akcet_fakturi.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -61,6 +61,7 @@ namespace akcet_fakturi.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.ChangeNamesSuccess ? "Your name has been changed."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -116,18 +117,17 @@ namespace akcet_fakturi.Controllers
             {
                 return View(model);
             }
-            // Generate the token and send it
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (UserManager.SmsService != null)
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            var result = await UserManager.SetPhoneNumberAsync(user.Id, model.Number);
+
+            if (result.Succeeded)
             {
-                var message = new IdentityMessage
-                {
-                    Destination = model.Number,
-                    Body = "Your security code is: " + code
-                };
-                await UserManager.SmsService.SendAsync(message);
+                return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
-            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", "Failed to verify phone");
+            return View(model);
         }
 
         //
@@ -333,7 +333,7 @@ namespace akcet_fakturi.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -377,6 +377,7 @@ namespace akcet_fakturi.Controllers
         {
             AddPhoneSuccess,
             ChangePasswordSuccess,
+            ChangeNamesSuccess,
             SetTwoFactorSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,
@@ -384,6 +385,34 @@ namespace akcet_fakturi.Controllers
             Error
         }
 
-#endregion
+        #endregion
+
+        public ActionResult ChangeNames()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ChangeNames(ChangeNames model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+
+            var result = await UserManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangeNamesSuccess });
+            }
+
+            AddErrors(result);
+            return View();
+        }
     }
 }

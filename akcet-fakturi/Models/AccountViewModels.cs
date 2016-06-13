@@ -86,6 +86,12 @@ namespace akcet_fakturi.Models
 
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
+
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
     }
 
     public class ResetPasswordViewModel
