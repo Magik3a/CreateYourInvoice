@@ -79,6 +79,13 @@ namespace akcet_fakturi.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "Company Name")]
+        public string CompanyName { get; set; }
     }
 
     public class ResetPasswordViewModel

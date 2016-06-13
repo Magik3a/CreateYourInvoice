@@ -1,0 +1,152 @@
+﻿@model BCG_Manage.Models.UserRolesModels
+@{
+    ViewBag.Title = "Manage user roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Manage
+        <small>Roles</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Admin"><i class="fa  fa-home"></i> Home</a></li>
+        <li> Roles</li>
+        <li class="active">Manage</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+    <!-- Default box -->
+    @if (ViewBag.RolesForThisUser != null)
+    {
+        <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-info"></i> Roles for user: @ViewBag.SelectedUser </h4>
+            @foreach (string s in ViewBag.RolesForThisUser)
+            {
+                @s <br />
+            }
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Manage User Roles</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+
+                    <!-- Custom Tabs -->
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class ="active"><a href="#getRolesforUser" data-toggle="tab">Get Roles for a user</a></li>
+                            <li ><a href="#roleAddToUser" data-toggle="tab"> Add user to role</a></li>
+                    
+                            <li><a href="#deleteUserFromRole" data-toggle="tab">Delete A User from a Role</a></li>
+
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <div class="tab-pane active" id="getRolesforUser">
+                                @using (Html.BeginForm("GetRoles", "Roles"))
+                                {
+                                    @Html.AntiForgeryToken()
+
+
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Choose user:", new { @class = "col-md-1 control-label" })
+                                        <div class="col-md-5">
+                                            @Html.DropDownListFor(model => model.SelectedUsers, (IEnumerable<SelectListItem>)ViewBag.Users, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+                                    <input type="submit" value="Get Roles for this User" class="btn btn-info" />
+
+                                }
+
+
+                            </div><!-- /.tab-pane -->
+
+
+                            <div class="tab-pane" id="roleAddToUser">
+
+                                @using (Html.BeginForm("RoleAddToUser", "Roles"))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true)
+
+
+                                    @*Username : @Html.TextBox("UserName")
+                                        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")*@
+
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Choose user:", new { @class = "col-md-1 control-label" })
+                                        <div class="col-md-5">
+                                            @Html.DropDownListFor(model => model.SelectedUsers, (IEnumerable<SelectListItem>)ViewBag.Users, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Choose role:", new { @class = "col-md-1 control-label" })
+                                        <div class="col-md-5">
+                                            @Html.DropDownListFor(model => model.SelectedRoles, (IEnumerable<SelectListItem>)ViewBag.Roles, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+
+                                    <input type="submit" value="Save" class="btn btn-warning" />
+                                }
+
+
+
+                            </div><!-- /.tab-pane -->
+
+                   
+
+                            <div class="tab-pane" id="deleteUserFromRole">
+                                @using (Html.BeginForm("DeleteRoleForUser", "Roles"))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true)
+
+
+
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Choose user:", new { @class = "col-md-1 control-label" })
+                                        <div class="col-md-5">
+                                            @Html.DropDownListFor(model => model.SelectedUsers, (IEnumerable<SelectListItem>)ViewBag.Users, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Choose role:", new { @class = "col-md-1 control-label" })
+                                        <div class="col-md-5">
+                                            @Html.DropDownListFor(model => model.SelectedRoles, (IEnumerable<SelectListItem>)ViewBag.Roles, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+                                    <input type="submit" value="Delete this user from Role" class="btn btn-danger" />
+                                }
+                            </div><!-- /.tab-pane -->
+                        </div><!-- /.tab-content -->
+                    </div><!-- nav-tabs-custom -->
+
+                </div><!-- /.box-body -->
+
+            </div><!-- /.box -->
+        </div>
+
+    </div>
+
+</section><!-- /.content -->

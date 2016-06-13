@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Create roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+
+        @Html.Label("Role name:", new { @class = "col-md-1 control-label" })
+        <div class="col-md-5">
+            @Html.TextBox("RoleName", null, new { @class = "form-control" })
+        </div>
+
+        <input type="submit" value="Save" class="btn btn-info col-md-1" />
+        <div class="col-md-6">
+
+        </div>
+
+    </div>
+
+
+}
