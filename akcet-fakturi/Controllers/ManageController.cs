@@ -62,16 +62,24 @@ namespace akcet_fakturi.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : message == ManageMessageId.ChangeNamesSuccess ? "Your name has been changed."
+                : message == ManageMessageId.ChangeOtherInfoSuccess ? "Your info has been changed."
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                PhoneNumber = user.PhoneNumber??" ",
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                FullName = String.Format("{0} {1}", user.FirstName??" ", user.LastName?? " "),
+                Company = user.CompanyName?? " ",
+                Dds = user.DdsNumber?? "  ",
+                Kwk = user.KwkNumber?? " ",
+                BankAccount = user.BankAcount??" "
             };
             return View(model);
         }
@@ -378,6 +386,7 @@ namespace akcet_fakturi.Controllers
             AddPhoneSuccess,
             ChangePasswordSuccess,
             ChangeNamesSuccess,
+            ChangeOtherInfoSuccess,
             SetTwoFactorSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,
@@ -409,6 +418,36 @@ namespace akcet_fakturi.Controllers
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangeNamesSuccess });
+            }
+
+            AddErrors(result);
+            return View();
+        }
+
+        public ActionResult ChangeOtherInfo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ChangeOtherInfo(ChangeOtherInfoViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            user.CompanyName = model.CompanyName;
+            user.BankAcount = model.BankAccount;
+            user.DdsNumber = model.DdsNumber;
+            user.KwkNumber = model.KwkNumber;
+
+            var result = await UserManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangeOtherInfoSuccess });
             }
 
             AddErrors(result);

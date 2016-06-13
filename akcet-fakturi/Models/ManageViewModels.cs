@@ -9,7 +9,14 @@ namespace akcet_fakturi.Models
     {
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
+
+        public string BankAccount { get; set; }
         public string PhoneNumber { get; set; }
+        public string FullName { get; set; }
+        public string Company { get; set; }
+        public string Dds { get; set; }
+        public string Kwk { get; set; }
+
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
     }
@@ -76,6 +83,23 @@ namespace akcet_fakturi.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
     }
+
+    public class ChangeOtherInfoViewModel
+    {
+        [Display(Name = "Company Name")]
+        public string CompanyName { get; set; }
+        
+        [Display(Name = "Bank Account")]
+        public string BankAccount { get; set; }
+
+        [Display(Name = "KWK Number")]
+        public string KwkNumber { get; set; }
+
+        [Display(Name = "DDS Number")]
+        public string DdsNumber { get; set; }
+        
+    }
+
     public class VerifyPhoneNumberViewModel
     {
         [Required]

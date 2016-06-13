@@ -297,6 +297,7 @@
     <Content Include="Views\Roles\ViewAllRoles.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Manage\ChangeNames.cshtml" />
+    <Content Include="Views\Manage\ChangeOtherInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
