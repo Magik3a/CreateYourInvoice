@@ -1,0 +1,36 @@
+﻿@helper ResultFromTempData(System.Web.Mvc.TempDataDictionary tempData)
+{
+if (tempData["ResultError"] != null)
+{
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+            @tempData["ResultError"]
+        </div>
+}
+else if (tempData["ResultSuccess"] != null)
+{
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4>	<i class="icon fa fa-check"></i> Succes!</h4>
+            @tempData["ResultSuccess"]
+        </div>
+}
+else if (tempData["ResultAlert"] != null)
+{
+        <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+            @tempData["ResultAlert"]
+        </div>
+}
+else if (tempData["ResultInfo"] != null)
+{
+        <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-info"></i> Alert!</h4>
+            @tempData["ResultInfo"]
+        </div>
+}
+
+}

@@ -48,8 +48,12 @@
                 <li role="presentation" class="@ViewBag.Invoices">
                     @Html.ActionLink("Фактури", "Invoices", "Home")
                 </li>
-                <li role="presentation"><a href="#">Продукти</a></li>
-
+                <li role="presentation">
+                    <a href="#">Продукти</a>
+                </li>
+                <li role="presentation" class="@ViewBag.Addresses">
+                    <a href="@Url.Action("Index", "Addresses")">Адреси</a>
+                </li>
                 <li role="presentation" class="@ViewBag.Manage"><a href="@Url.Action("Index", "Manage")">Моят профил</a></li>
             </ul>
         </div>

@@ -1,8 +1,10 @@
-﻿@model akcetDB.Company
+﻿@using akcetDB
+@model akcetDB.Company
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.Companies = "active";
 }
 
 <h2>Edit</h2>
@@ -16,23 +18,22 @@
         <h4>Company</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.CompanyID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdAddress, "IdAddress", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.Label("Адрес", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.DropDownList("IdAddress", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdAddress, "", new { @class = "text-danger" })
             </div>
+
+            <div class="col-md-6 pull-left">
+                <button type="button" class="btn btn-info btn-sg" id="product-new" data-toggle="modal" data-target="#product-modal">
+                    <span class="glyphicon glyphicon-plus"> </span>
+                </button>
+            </div>
         </div>
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -85,22 +86,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateModified, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateModified, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateModified, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -111,7 +96,8 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
+<!-- Modal to add Address-->
+@Html.Partial("InvoicesPartials/_ModalAddressPartial", new Address())
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

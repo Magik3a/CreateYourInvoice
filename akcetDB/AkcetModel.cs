@@ -8,7 +8,7 @@ namespace akcetDB
     public partial class AkcetModel : DbContext
     {
         public AkcetModel()
-            : base("name=AkcetModel")
+            : base("DefaultConnection")
         {
         }
 

@@ -40,5 +40,7 @@ namespace akcet_fakturi.Models
         public System.Data.Entity.DbSet<akcetDB.Company> Companies { get; set; }
 
         public System.Data.Entity.DbSet<akcetDB.Address> Addresses { get; set; }
+
+        public System.Data.Entity.DbSet<akcetDB.Product> Products { get; set; }
     }
 }

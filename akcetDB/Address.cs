@@ -1,4 +1,4 @@
-namespace akcetDB
+﻿namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -19,14 +19,18 @@ namespace akcetDB
 
         [Required]
         [StringLength(500)]
+        [Display(Name = "Име на улица")]
         public string StreetName { get; set; }
 
+        [Display(Name = "Номер на улица")]
         public int StreetNumber { get; set; }
 
+        [Display(Name = "Пощенски код")]
         public int ZipCode { get; set; }
 
         [Required]
         [StringLength(500)]
+        [Display(Name = "Град")]
         public string City { get; set; }
 
         public DateTime? DateCreated { get; set; }

@@ -1,29 +1,34 @@
-﻿@model akcetDB.Company
+﻿@using Microsoft.AspNet.Identity
+@model akcetDB.Company
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.Companies = "active";
 }
 
 <h2>Създай</h2>
+  <!-- Helper for info boxes after manipulating data -->
+@ResultHelper.ResultFromTempData(TempData)
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Компания</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    
+        @Html.HiddenFor(m => m.UserId, new { value = User.Identity.GetUserId()})
+        <input type="hidden" value="@User.Identity.GetUserId()" id="UserId" />
+
         <div class="form-group">
             @Html.Label("Адрес", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-              
-                    @Html.DropDownList("IdAddress", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.IdAddress, "", new { @class = "text-danger" })
-             
+
+                @Html.DropDownList("IdAddress", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdAddress, "", new { @class = "text-danger" })
+
 
 
             </div>
@@ -98,31 +103,8 @@
     @Html.ActionLink("Обратно към създадени компании", "Index")
 </div>
 
-<!-- Modal to add Product-->
-<div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Въвеждане на нов продукт</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" style="width:70%; margin-left:15%;">
-
-                    <div class="form-group">
-                        <label for="quantity">Име на продукт</label>
-                        <input type="text" class="form-control" id="quantity" />
-                    </div>
-
-                </form> <br>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-                <button type="button" class="btn btn-primary">Запази</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Modal to add Address-->
+@Html.Partial("InvoicesPartials/_ModalAddressPartial")
 
 
 @section Scripts {

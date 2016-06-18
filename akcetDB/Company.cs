@@ -48,8 +48,10 @@
         [Display(Name = "Работя в нея")]
         public bool IsPrimary { get; set; }
 
+        [Display(Name = "Създадена на")]
         public DateTime? DateCreated { get; set; }
 
+        [Display(Name = "Редактирана на")]
         public DateTime? DateModified { get; set; }
 
         public virtual Address Address { get; set; }

@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.Companies = "active";
 }
 
 <h2>Details</h2>
@@ -19,14 +20,7 @@
             @Html.DisplayFor(model => model.Address.StreetName)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-
+      
         <dt>
             @Html.DisplayNameFor(model => model.CompanyName)
         </dt>
