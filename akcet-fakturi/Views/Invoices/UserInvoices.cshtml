@@ -1,0 +1,62 @@
+﻿@model IEnumerable<akcetDB.Fakturi>
+
+@{
+    ViewBag.Title = "UserInvoices";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.InvoicesAllUser = "active";
+}
+
+<h2>Създадени фактури</h2>
+
+<p>
+    @Html.ActionLink("Създай нова", "Invoices", "Home", null, new { @class = "btn btn-info"})
+</p>
+<table class="table">
+    <tr>
+     
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateModified)
+        </td>
+    
+    </tr>
+}
+
+</table>

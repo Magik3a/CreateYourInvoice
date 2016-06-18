@@ -22,6 +22,12 @@ namespace akcet_fakturi.Controllers
             return View(fakturis.ToList());
         }
 
+        public ActionResult UserInvoices()
+        {
+            var fakturis = db.Fakturis.Include(f => f.Company);
+            return View(fakturis.ToList());
+        }
+
         // GET: Invoices/Details/5
         public ActionResult Details(int? id)
         {

@@ -39,15 +39,19 @@
 
         <div class="row" style="margin-top:40px; background-color:#F8F8F8; border-radius:5px; padding-top:10px; padding-bottom: 10px;">
             <ul class="nav nav-pills nav-justified">
-                <li role="presentation">
-                    <a href="@Url.Action("Index", "Home")">Начало</a>
+                @*<li role="presentation">
+                        <a href="@Url.Action("Index", "Home")">Начало</a>
+                    </li>*@
+                <li role="presentation" class="@ViewBag.Invoices">
+                    @Html.ActionLink("Създай Фактура", "Invoices", "Home")
+                </li>
+                <li role="presentation" class="@ViewBag.InvoicesAllUser">
+                    @Html.ActionLink("Всички Фактури", "UserInvoices", "Invoices")
                 </li>
                 <li role="presentation" class="@ViewBag.Companies">
                     <a href="@Url.Action("Index", "Companies")">Компании</a>
                 </li>
-                <li role="presentation" class="@ViewBag.Invoices">
-                    @Html.ActionLink("Фактури", "Invoices", "Home")
-                </li>
+
                 <li role="presentation" class="@ViewBag.Products">
                     <a href="@Url.Action("Index", "Products")">Продукти</a>
                 </li>
@@ -69,7 +73,7 @@
             <div class="row" style=" border-radius:5px; padding-top:10px; padding-bottom: 10px;">
                 <ul class="nav nav-pills nav-justified">
                     <li role="presentation" class="@ViewBag.InvoicesAll">
-                        <a href="@Url.Action("Index", "Invoices")">Всички фактури</a>
+                        <a href="@Url.Action("Index", "Invoices")">Всички издадени фактури</a>
                     </li>
                     <li role="presentation" class="@ViewBag.Dds">
                         <a href="@Url.Action("Index", "DDs")">Ддс-та</a>
