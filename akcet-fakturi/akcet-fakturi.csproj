@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AllCompaniesController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\DDsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -322,6 +323,11 @@
     <Content Include="Views\DDs\Details.cshtml" />
     <Content Include="Views\DDs\Edit.cshtml" />
     <Content Include="Views\DDs\Index.cshtml" />
+    <Content Include="Views\AllCompanies\Create.cshtml" />
+    <Content Include="Views\AllCompanies\Delete.cshtml" />
+    <Content Include="Views\AllCompanies\Details.cshtml" />
+    <Content Include="Views\AllCompanies\Edit.cshtml" />
+    <Content Include="Views\AllCompanies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
