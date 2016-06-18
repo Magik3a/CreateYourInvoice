@@ -68,8 +68,8 @@
 
             <div class="row" style=" border-radius:5px; padding-top:10px; padding-bottom: 10px;">
                 <ul class="nav nav-pills nav-justified">
-                    <li role="presentation" class="@ViewBag.SecondMenuActive">
-                        <a href="#">Всички фактури</a>
+                    <li role="presentation" class="@ViewBag.InvoicesAll">
+                        <a href="@Url.Action("Index", "Invoices")">Всички фактури</a>
                     </li>
                     <li role="presentation" class="@ViewBag.Dds">
                         <a href="@Url.Action("Index", "DDs")">Ддс-та</a>

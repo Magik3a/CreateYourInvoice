@@ -1,4 +1,4 @@
-namespace akcetDB
+﻿namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -21,21 +21,29 @@ namespace akcetDB
         public int CompanyID { get; set; }
 
         public int ProductInvoiceID { get; set; }
-
+        
+        [Display(Name = "Дата на фактурата")]
         public DateTime InvoiceDate { get; set; }
 
+
+        [Display(Name = "Крайна дата")]
         public DateTime InvoiceEndDate { get; set; }
 
         [Required]
+        [Display(Name = "Проект")]
         public string Project { get; set; }
 
+        [Display(Name = "Крайна цена")]
         public int TotalPrice { get; set; }
 
+        [Display(Name = "Дата на създаване")]
         public DateTime? DateCreated { get; set; }
 
+        [Display(Name = "Дата на промяна")]
         public DateTime? DateModified { get; set; }
 
         [StringLength(500)]
+        [Display(Name = "Потребител")]
         public string UserName { get; set; }
 
         public virtual Company Company { get; set; }

@@ -1,0 +1,92 @@
+﻿@model akcetDB.Fakturi
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.InvoicesAll = "active";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Fakturi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductInvoiceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductInvoiceID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

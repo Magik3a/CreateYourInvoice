@@ -19,9 +19,10 @@ namespace akcet_fakturi.Controllers
 
         public ActionResult Invoices()
         {
+            var userId = User.Identity.GetUserId();
             ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName");
-
-            ViewBag.Companies = new SelectList(db.Companies, "CompanyID", "CompanyName");
+  
+            ViewBag.Companies = new SelectList(db.Companies.Where(m => m.UserId == userId), "CompanyID", "CompanyName");
             return View();
         }
 
