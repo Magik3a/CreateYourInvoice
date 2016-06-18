@@ -107,14 +107,29 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="col-md-4">
-                <a href="#" class="btn btn-info">Как работи?</a>
-            </div>                 
-            <div class="col-md-4"> 
-                <a href="#" class="btn btn-info">За нас</a>
-            </div>                 
-            <div class="col-md-4"> 
-                <a href="#" class="btn btn-info">Контакти</a>
+     
+
+
+            <div class="row" style="margin-top:40px; background-color:#F8F8F8; border-radius:5px; padding-top:10px;">
+                <ul class="nav nav-pills nav-justified">
+                    <li role="presentation">
+                        <p>
+                            Designed by <a href="#" title="Petya Petkova">Petya Petkova</a> 
+                            <br />
+                            Programmed by 
+                            <a href="http://s2kdesign.com" title="www.s2kdesign.com">Svetlin Krastanov</a>
+                        </p>
+                    </li>
+                    <li role="presentation" class="@ViewBag.HowItsMade">
+                        <a href="#">Как работи?</a>
+                    </li>
+                    <li role="presentation" class="@ViewBag.ForUs">
+                        <a href="#">За нас</a>
+                    </li>
+                    <li role="presentation" class="@ViewBag.Contacts">
+                        <a href="#">Контакти</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </footer>
