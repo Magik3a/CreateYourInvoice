@@ -21,7 +21,7 @@ namespace akcet_fakturi.Controllers
         {
             var userId = User.Identity.GetUserId();
             ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName");
-  
+            ViewBag.Dds = new SelectList(db.DDs, "DdsID", "Value");
             ViewBag.Companies = new SelectList(db.Companies.Where(m => m.UserId == userId), "CompanyID", "CompanyName");
             return View();
         }
