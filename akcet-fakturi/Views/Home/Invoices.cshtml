@@ -2,7 +2,11 @@
 @{
     ViewBag.Title = "Invoices";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.Invoices = "active";
 }
+
+
+
 <!--New Invoice menu-->
 <div>
 
@@ -10,32 +14,21 @@
     <div class="container">
         <ul class="nav nav-tabs" role="tablist" style="margin-top:30px;">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Нова фактура</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Въвеждане на продукт</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Преглед</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Запази</a></li>
         </ul>
-
         <!-- Tab panes -->
         <div class="tab-content" style="margin-top:10px;">
             <div role="tabpanel" class="tab-pane active" id="home">
-
-
-                <div class="row">
-                    <div class="col-md-4">Компания</div>
-                    <div class="col-md-4">Дати</div>
-                    <div class="col-md-4">Детайли</div>
-                </div>
-
                 <div class="row">
                     <form class="form-horizontal">
                         <div class="row">
-
-
                             <div class="col-md-3">
                                 <div class="form-group">
-
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">Alabama</option>
+                                    <label for="company-name">Име на фирма</label>
+                                    <select class="form-control select2" style="width: 100%;" id="company-name">
+                                        <option selected="selected">Компания ООД</option>
                                         <option>Alaska</option>
                                         <option>California</option>
                                         <option>Delaware</option>
@@ -48,138 +41,41 @@
                             </div>
 
                             <div class="col-md-1">
-
-                                <button type="button" class="btn btn-info btn-sg" data-toggle="modal" data-target="#myModal">
-                                    <span class="glyphicon glyphicon-plus">
-                                            </span>
-                                </button>
+                                <label for="new-company">Нова</label>
+                                <button type="button" class="btn btn-info btn-sg" data-toggle="modal" data-target="#myModal" id="new-company"> <span class="glyphicon glyphicon-plus" </span></button>
                             </div>
 
 
 
-                            <div class="col-md-4">
+                            <div class="col-md-2">
 
 
                                 <div class="box-body">
                                     <!-- Date range -->
                                     <div class="form-group">
-
+                                        <label for="dates">Дата на издаване</label>
                                         <div class="input-group">
-                                            <div class="input-group-addon">
+                                            <div class="input-group-addon" id="dates">
                                                 <i class="glyphicon glyphicon-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-left" id="reservation">
+                                            <input type="text" class="form-control pull-right" id="reservation">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
-                                    <!-- /.form group -->
-
-
                                 </div>
                             </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
-
-
-
-
-
-                        <!--third row-->
-                        <div class="row">
-
-                            <div class="col-md-10">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="product">Продукт</label>
-                                        <input type="text" class="form-control" id="product" />
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="quantity">Количество</label>
-                                        <input type="text" class="form-control" id="quantity" />
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <label for="quantity">Мерна единица</label>
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Брой
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li>
-                                                <a href="#"></a>
-                                            </li>
-                                            <li><a href="#">Брой</a></li>
-                                            <li><a href="#">Кг</a></li>
-
-                                            <li><a href="#">Литри</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="quantity">Цена</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <div class="dropdown">
-                                        <label for="quantity">ДДС</label>
-                                        <br/>
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            21%
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li>
-                                                <a href="#"></a>
-                                            </li>
-                                            <li><a href="#">6%</a></li>
-                                            <li><a href="#">0</a></li>
-                                            <li><a href="#">без ДДС</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="quantity">Крайна цена</label>
-                                        <input type="text" class="form-control" id="price" />
-                                    </div>
-                                </div>
-
-                            </div>
-
 
                             <div class="col-md-2">
-
-                                <div class="col-md-4 col-md-offset-1">
-                                    <br>
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-ok"></span></button>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="period">Дата на падеж</label>
+                                    <input type="text" class="form-control" id="period" />
                                 </div>
-
-                                <div class="col-md-4 col-md-offset-1">
-                                    <br>
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-trash"></span></button>
-                                    </div>
+                            </div>
+                            <!-- /.form group -->
+                            <div class="col-md-3" style="margin-left:0px;">
+                                <div class="form-group">
+                                    <label for="period">Период</label>
+                                    <input type="text" class="form-control" id="period" />
                                 </div>
                             </div>
                         </div>
@@ -189,7 +85,110 @@
             </div>
 
 
-            <div role="tabpanel" class="tab-pane" id="profile">kjfhrjcd</div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <div class="row">
+
+                    <div class="col-md-10">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="product-select">Продукт</label>
+                                <select class="form-control select2" style="width: 100%;" id="product-select">
+                                    <option selected="selected">Продукт</option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+
+                        <div class="col-md-1">
+                            <label for="product-new">Нов</label>
+                            <button type="button" class="btn btn-info btn-sg" id="product-new" data-toggle="modal" data-target="#product-modal">
+                                 <span class="glyphicon glyphicon-plus"> </span>
+                            </button>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="project">Проект</label>
+                                <input type="text" class="form-control" id="project" />
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="quantity">Количество</label>
+                                <input type="text" class="form-control" id="quantity" />
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label for="quantity">Цена</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="dropdown">
+                                <label for="quantity">ДДС</label>
+                                </br>
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    21%
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li>
+                                        <a href="#"></a>
+                                    </li>
+                                    <li><a href="#">6%</a></li>
+                                    <li><a href="#">0</a></li>
+                                    <li><a href="#">BTW Verlegd</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="quantity">Крайна цена</label>
+                                <input type="text" class="form-control" id="price" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-2">
+
+                        <div class="col-md-4 col-md-offset-1">
+
+                            <div class="form-group">
+                                <label for="save">Запази</label>
+                                <button type="button" class="btn btn-success btn-sm" id="save"> <span class="glyphicon glyphicon-ok"></span></button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-md-offset-1">
+
+                            <div class="form-group">
+                                <label for="delete">Изтрий</label>
+                                <button type="button" class="btn btn-danger btn-sm" id="delete"> <span class="glyphicon glyphicon-trash"></span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    </form>
+                </div>
+
+
+            </div>
 
 
             <div role="tabpanel" class="tab-pane" id="messages">kjdwdbchijec</div>
@@ -202,78 +201,124 @@
 
 
 
-
+    <div class="tab-content" style="float:right">
+        <div class="tab-pane active" id="tab1">
+            <a class="btn btn-primary btnNext">Next</a>
+        </div>
+        <div class="tab-pane" id="tab2">
+            <a class="btn btn-primary btnNext">Next</a>
+            <a class="btn btn-primary btnPrevious">Previous</a>
+        </div>
+        <div class="tab-pane" id="tab3">
+            <a class="btn btn-primary btnPrevious">Previous</a>
+        </div>
+    </div>
 
 
 </div>
 
 
-<!-- Modal -->
+<!-- Modal to add Company-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Добавяне на фирма</h4>
+                <h4 class="modal-title" id="myModalLabel">Добавяне на нова фирма</h4>
             </div>
             <div class="modal-body">
-
                 @using (Ajax.BeginForm("CreateCompanyAjax", "Home", null,
-                    new AjaxOptions
-                    {
-                        OnComplete = "OnAjaxRequestComplete",
-                        HttpMethod = "POST"
-                    }, new {@class = "form-horizontal", id = "form-company"}))
-                {
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="exampleInputEmail">Email address</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
+                                new AjaxOptions
+                                {
+                                    OnComplete = "OnAjaxRequestComplete",
+                                    HttpMethod = "POST"
+                                }, new {@class = "form-horizontal", id = "form-company", style = "width: 70%; margin-left: 15%;" }))
+                            {
+                        <div class="form-group">
+                            <label for="company-name">Име на фирма</label>
+                            <input type="text" class="form-control" id="company-name" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="exampleInputEmail">Email address</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="exampleInputEmail">Email address</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="exampleInputEmail">Email address</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
-                        </div>
-                    </div>
-                }
 
-
-
+                        <div class="form-group">
+                            <label for="address-company">Адрес</label>
+                            <input type="text" class="form-control" id="address-company" />
+                        </div>
+                        <div class="form-group">
+                            <label for="tel-company">Телефон</label>
+                            <input type="text" class="form-control" id="tel-company" />
+                        </div>
+                        <div class="form-group">
+                            <label for="dss-company">ДДС номер</label>
+                            <input type="text" class="form-control" id="dss-company" />
+                        </div>
+                        <div class="form-group">
+                            <label for="kwk-company">KWK номер</label>
+                            <input type="text" class="form-control" id="kwk-company" />
+                        </div>
+                            }
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="submitButton">Запази</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+                <button type="button" class="btn btn-primary">Запази</button>
             </div>
         </div>
     </div>
 </div>
 
+
+
+<!-- Modal to add Product-->
+<div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Въвеждане на нов продукт</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" style="width:70%; margin-left:15%;">
+
+                    <div class="form-group">
+                        <label for="quantity">Име на продукт</label>
+                        <input type="text" class="form-control" id="quantity" />
+                    </div>
+
+                </form> <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+                <button type="button" class="btn btn-primary">Запази</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 <script src="~/Scripts/select2.full.min.js"></script>
 <script src="~/Scripts/daterangepicker.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements
         $(".select2").select2();
         //Date range picker
-        $('#reservation').daterangepicker();
+        $('#reservation').datepicker();
         //Date range picker with time picker
     });
+
+    $('.btnNext').click(function () {
+        $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    });
+
+    $('.btnPrevious').click(function () {
+        $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+    });
+
+
     $("#submitButton")
-        .click(function(event) {
+        .click(function (event) {
             event.preventDefault();
             $("#form-company").submit();
         });

@@ -1,4 +1,4 @@
-namespace akcetDB
+﻿namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -24,22 +24,28 @@ namespace akcetDB
 
         [Required]
         [StringLength(500)]
+        [Display(Name = "Име на компания")]
         public string CompanyName { get; set; }
 
         [Required]
         [StringLength(500)]
+        [Display(Name = "МОЛ")]
         public string CompanyMol { get; set; }
 
         [Required]
         [StringLength(500)]
+        [Display(Name = "БУЛСТАТ")]
         public string CompanyBulsatat { get; set; }
 
         [StringLength(500)]
+        [Display(Name = "Описание")]
         public string CompanyDescription { get; set; }
 
         [StringLength(500)]
+        [Display(Name = "Телефон")]
         public string CompanyPhone { get; set; }
 
+        [Display(Name = "Работя в нея")]
         public bool IsPrimary { get; set; }
 
         public DateTime? DateCreated { get; set; }

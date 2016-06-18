@@ -1,0 +1,99 @@
+﻿@model akcetDB.Company
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Company</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.StreetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.StreetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyMol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyMol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyBulsatat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyBulsatat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPrimary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPrimary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -36,5 +36,9 @@ namespace akcet_fakturi.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<akcetDB.Company> Companies { get; set; }
+
+        public System.Data.Entity.DbSet<akcetDB.Address> Addresses { get; set; }
     }
 }

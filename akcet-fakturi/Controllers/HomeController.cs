@@ -16,6 +16,7 @@ namespace akcet_fakturi.Controllers
 
         public ActionResult Invoices()
         {
+          var some =  User.IsInRole("user");
             return View();
         }
 

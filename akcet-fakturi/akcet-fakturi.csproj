@@ -197,15 +197,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606110854037_InitialCreate.cs" />
-    <Compile Include="Migrations\201606110854037_InitialCreate.Designer.cs">
-      <DependentUpon>201606110854037_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201606181339547_Initial.cs" />
+    <Compile Include="Migrations\201606181339547_Initial.Designer.cs">
+      <DependentUpon>201606181339547_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -298,6 +299,11 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Manage\ChangeNames.cshtml" />
     <Content Include="Views\Manage\ChangeOtherInfo.cshtml" />
+    <Content Include="Views\Companies\Create.cshtml" />
+    <Content Include="Views\Companies\Delete.cshtml" />
+    <Content Include="Views\Companies\Details.cshtml" />
+    <Content Include="Views\Companies\Edit.cshtml" />
+    <Content Include="Views\Companies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -320,8 +326,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606110854037_InitialCreate.resx">
-      <DependentUpon>201606110854037_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606181339547_Initial.resx">
+      <DependentUpon>201606181339547_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

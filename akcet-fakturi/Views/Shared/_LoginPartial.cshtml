@@ -8,18 +8,15 @@
         <div class="col-md-2">
             <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
         </div>
-        <div class="col-md-6"></div>
 
-        <div class="col-md-3">
-            <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-user"></span>
-
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-
-
-            </button>
+        <div class="col-md-3 pull-right">
+       
+            <a href="@Url.Action("Invoices", "Home")" class="btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-user"></span>  
+                Hello @User.Identity.GetUserName()!
+            </a>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 pull-right">
             <button type="button" class="btn btn-default btn-sm">
 
                 <a href="javascript:document.getElementById('logoutForm').submit()">Изход</a>
