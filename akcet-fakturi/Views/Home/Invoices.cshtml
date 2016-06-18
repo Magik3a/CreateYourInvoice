@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <!-- /.form group -->
-                            <div class="col-md-3" style="margin-left:0px;">
+                            <div class="col-md-4" style="margin-left:0px;">
                                 <div class="form-group">
                                     <label for="period">Период</label>
                                     <input type="text" class="form-control" id="period" />
@@ -184,7 +184,6 @@
                         </div>
                     </div>
 
-                    </form>
                 </div>
 
 
@@ -201,7 +200,7 @@
 
 
 
-    <div class="tab-content" style="float:right">
+    <div class="tab-content">
         <div class="tab-pane active" id="tab1">
             <a class="btn btn-primary btnNext">Next</a>
         </div>
@@ -217,54 +216,12 @@
 
 </div>
 
+<!-- Modal to add Address-->
+@Html.Partial("InvoicesPartials/_ModalCompaniePartial")
 
-<!-- Modal to add Company-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Добавяне на нова фирма</h4>
-            </div>
-            <div class="modal-body">
-                @using (Ajax.BeginForm("CreateCompanyAjax", "Home", null,
-                                new AjaxOptions
-                                {
-                                    OnComplete = "OnAjaxRequestComplete",
-                                    HttpMethod = "POST"
-                                }, new {@class = "form-horizontal", id = "form-company", style = "width: 70%; margin-left: 15%;" }))
-                            {
-                        <div class="form-group">
-                            <label for="company-name">Име на фирма</label>
-                            <input type="text" class="form-control" id="company-name" />
-                        </div>
 
-                        <div class="form-group">
-                            <label for="address-company">Адрес</label>
-                            <input type="text" class="form-control" id="address-company" />
-                        </div>
-                        <div class="form-group">
-                            <label for="tel-company">Телефон</label>
-                            <input type="text" class="form-control" id="tel-company" />
-                        </div>
-                        <div class="form-group">
-                            <label for="dss-company">ДДС номер</label>
-                            <input type="text" class="form-control" id="dss-company" />
-                        </div>
-                        <div class="form-group">
-                            <label for="kwk-company">KWK номер</label>
-                            <input type="text" class="form-control" id="kwk-company" />
-                        </div>
-                            }
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-                <button type="button" class="btn btn-primary">Запази</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!-- Modal to add Address-->
+@Html.Partial("InvoicesPartials/_ModalAddressPartial")
 
 
 <!-- Modal to add Product-->

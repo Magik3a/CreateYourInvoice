@@ -1,6 +1,6 @@
 ﻿@model akcetDB.Address
 <!-- Modal to add Product-->
-<div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="address-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,15 +13,13 @@
                 @using (Ajax.BeginForm("CreateAddressAjax", "Home", null,
                                     new AjaxOptions
                                     {
-                                        OnComplete = "OnAjaxRequestComplete",
+                                        OnSuccess = "getresult",
                                         HttpMethod = "POST"
                                     }, new { @class = "form-horizontal", id = "form-address" }))
                 {
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
-                        <h4>Address</h4>
-                        <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
                             @Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -63,7 +61,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-                <button type="button" class="btn btn-primary" id="submitAddress">Запази</button>
+                <button type="button" class="btn btn-primary" id="submitAddress" data-dismiss="modal">Запази</button>
             </div>
         </div>
     </div>
@@ -75,9 +73,12 @@
         $("#form-address").submit();
     });
 
-    function OnAjaxRequestComplete(request, status) {
-        console.log(status);
-        location.reload();
+    function getresult(data) {
+        console.log(data);
+
+        var mySelect = $('#IdAddress');
+        mySelect.append(
+            $('<option></option>').val(data.id).html(data.value));
     };
 </script>
 

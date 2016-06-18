@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using akcetDB;
+using akcet_fakturi.Models;
 
 namespace akcet_fakturi.Controllers
 {
     public class HomeController : Controller
     {
-
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
             return View();
@@ -17,7 +18,7 @@ namespace akcet_fakturi.Controllers
 
         public ActionResult Invoices()
         {
-          var some =  User.IsInRole("user");
+            ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName");
             return View();
         }
 
@@ -49,11 +50,12 @@ namespace akcet_fakturi.Controllers
                 context.Addresses.Add(address);
 
                 context.SaveChanges();
+                
                 TempData["ResultSuccess"] = "Успешно добавихте адрес!";
 
-            }
+                return Json(new {id = address.IdAddress, value = address.StreetName});
 
-            return Json(true);
+            }
         }
     }
 }
