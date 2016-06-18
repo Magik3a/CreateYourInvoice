@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Models;
+using Microsoft.AspNet.Identity;
 
 namespace akcet_fakturi.Controllers
 {
@@ -22,9 +23,32 @@ namespace akcet_fakturi.Controllers
             return View();
         }
 
-        public ActionResult CreateCompanyAjax()
+        public ActionResult CreateCompanyAjax([Bind(Exclude = "UserId", Include = "CompanyID,UserId,IdAddress,CompanyName,CompanyMol,CompanyBulsatat,CompanyDescription,CompanyPhone,IsPrimary,DateCreated,DateModified")] Company company)
         {
-            return Json("success");
+
+            ModelState.Remove("UserId");
+
+            if (!Request.IsAjaxRequest())
+            {
+                return Json(false);
+            }
+            if (!ModelState.IsValid)
+            {
+                return Json(false);
+            }
+
+            using (var context = new AkcetModel())
+            {
+                company.DateCreated = DateTime.Now;
+                company.DateModified = DateTime.Now;
+                company.UserId = User.Identity.GetUserId();
+
+                db.Companies.Add(company);
+                db.SaveChanges();
+
+
+                return Json(new { id = company.CompanyID, value = company.CompanyName });
+            }
         }
 
         public  JsonResult CreateAddressAjax(Address modelAddress)

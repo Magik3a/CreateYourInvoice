@@ -97,19 +97,42 @@
         @RenderBody()
         <hr />
 
-        <!--FOOTER-->
-        <footer class="container">
-            <div class="row" style="background-color:#989898; text-align:center; color:#ffffff;">
-                <div class="col-md-4"><a href="#" style="color:#ffffff; padding-top:20px; display:inline-block;">Как работи?</a></div>
-                <div class="col-md-4"><a href="#" style="color:#ffffff; padding-top:20px; display:inline-block;">За нас</a></div>
-                <div class="col-md-4"><a href="#" style="color:#ffffff; padding-top:20px; display:inline-block;">Контакти</a></div>
-            </div>
-        </footer>
+
 
 
 
     </div>
+    <!--FOOTER-->
 
+
+    <footer class="footer">
+        <div class="container">
+
+
+
+            <div class="row" style="margin-top:40px; background-color:#F8F8F8; border-radius:5px; padding-top:10px;">
+                <ul class="nav nav-pills nav-justified">
+                    <li role="presentation">
+                        <p>
+                            Designed by <a href="#" title="Petya Petkova">Petya Petkova</a>
+                            <br />
+                            Programmed by
+                            <a href="http://s2kdesign.com" title="www.s2kdesign.com" target="_blank">Svetlin Krastanov</a>
+                        </p>
+                    </li>
+                    <li role="presentation" class="@ViewBag.HowItsMade">
+                        <a href="#">Как работи?</a>
+                    </li>
+                    <li role="presentation" class="@ViewBag.ForUs">
+                        <a href="#">За нас</a>
+                    </li>
+                    <li role="presentation" class="@ViewBag.Contacts">
+                        <a href="#">Контакти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
     @Scripts.Render("~/bundles/bootstrap")
