@@ -83,14 +83,16 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DdsID,Value,DateCreated,DateModified,UserName")] DD dD)
+        public ActionResult Edit([Bind(Exclude = "DateCreated", Include = "DdsID,Value,DateModified,UserName")] DD dD)
         {
+    
             if (ModelState.IsValid)
             {
-                dD.DateModified = DateTime.Now;
-                dD.UserName = User.Identity.Name;
-
-                db.Entry(dD).State = EntityState.Modified;
+                var dds = db.DDs.Find(dD.DdsID);
+           
+                dds.DateModified = DateTime.Now;
+                dds.UserName = User.Identity.Name;
+                dds.Value = dD.Value;
                 db.SaveChanges();
                 TempData["ResultSuccess"] = "Успешно редактирахте стойност!";
                 return RedirectToAction("Index");
