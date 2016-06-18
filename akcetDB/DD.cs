@@ -1,4 +1,4 @@
-namespace akcetDB
+﻿namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -17,14 +17,17 @@ namespace akcetDB
 
         [Key]
         public int DdsID { get; set; }
-
+        [Display(Name = "Стойност")]
         public int Value { get; set; }
 
+        [Display(Name = "Дата на създаване")]
         public DateTime? DateCreated { get; set; }
 
+        [Display(Name = "дата на промяна")]
         public DateTime? DateModified { get; set; }
 
         [StringLength(500)]
+        [Display(Name = "Потребител")]
         public string UserName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

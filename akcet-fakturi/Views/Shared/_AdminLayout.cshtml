@@ -48,8 +48,8 @@
                 <li role="presentation" class="@ViewBag.Invoices">
                     @Html.ActionLink("Фактури", "Invoices", "Home")
                 </li>
-                <li role="presentation">
-                    <a href="#">Продукти</a>
+                <li role="presentation" class="@ViewBag.Products">
+                    <a href="@Url.Action("Index", "Products")">Продукти</a>
                 </li>
                 <li role="presentation" class="@ViewBag.Addresses">
                     <a href="@Url.Action("Index", "Addresses")">Адреси</a>
@@ -71,8 +71,8 @@
                     <li role="presentation" class="@ViewBag.SecondMenuActive">
                         <a href="#">Всички фактури</a>
                     </li>
-                    <li role="presentation" class="@ViewBag.SecondMenuActive">
-                        <a href="#">Ддс-та</a>
+                    <li role="presentation" class="@ViewBag.Dds">
+                        <a href="@Url.Action("Index", "DDs")">Ддс-та</a>
                     </li>
                     <li role="presentation" class="@ViewBag.SecondMenuActive">
                         <a href="#">Фирми</a>

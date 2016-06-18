@@ -8,123 +8,110 @@ using System.Web;
 using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Models;
-using Microsoft.AspNet.Identity;
 
 namespace akcet_fakturi.Controllers
 {
-    public class CompaniesController : Controller
+    public class DDsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Companies
+        // GET: DDs
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
-            var companies = db.Companies.Include(c => c.Address).Where(m => m.UserId == userId);
-            return View(companies.ToList());
+            return View(db.DDs.ToList());
         }
 
-        // GET: Companies/Details/5
+        // GET: DDs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            DD dD = db.DDs.Find(id);
+            if (dD == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(dD);
         }
 
-        // GET: Companies/Create
+        // GET: DDs/Create
         public ActionResult Create()
         {
-            ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName");
             return View();
         }
 
-        // POST: Companies/Create
+        // POST: DDs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Exclude = "UserId", Include = "CompanyID,UserId,IdAddress,CompanyName,CompanyMol,CompanyBulsatat,CompanyDescription,CompanyPhone,IsPrimary,DateCreated,DateModified")] Company company)
+        public ActionResult Create([Bind(Include = "DdsID,Value,DateCreated,DateModified,UserName")] DD dD)
         {
-            ModelState.Remove("UserId");
-
             if (ModelState.IsValid)
             {
-                company.DateCreated = DateTime.Now;
-                company.DateModified = DateTime.Now;
-                company.UserId = User.Identity.GetUserId();
-
-                db.Companies.Add(company);
+                db.DDs.Add(dD);
                 db.SaveChanges();
-                TempData["ResultSuccess"] = "Успешно добавихте компания!";
                 return RedirectToAction("Index");
             }
-            TempData["ResultError"] = "Грешка в добавяне на компания!";
-            return RedirectToAction("Index");
+
+            return View(dD);
         }
 
-        // GET: Companies/Edit/5
+        // GET: DDs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            DD dD = db.DDs.Find(id);
+            if (dD == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName", company.IdAddress);
-            return View(company);
+            return View(dD);
         }
 
-        // POST: Companies/Edit/5
+        // POST: DDs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyID,UserId,IdAddress,CompanyName,CompanyMol,CompanyBulsatat,CompanyDescription,CompanyPhone,IsPrimary,DateCreated,DateModified")] Company company)
+        public ActionResult Edit([Bind(Include = "DdsID,Value,DateCreated,DateModified,UserName")] DD dD)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(company).State = EntityState.Modified;
+                db.Entry(dD).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName", company.IdAddress);
-            return View(company);
+            return View(dD);
         }
 
-        // GET: Companies/Delete/5
+        // GET: DDs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            DD dD = db.DDs.Find(id);
+            if (dD == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(dD);
         }
 
-        // POST: Companies/Delete/5
+        // POST: DDs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Company company = db.Companies.Find(id);
-            db.Companies.Remove(company);
+            DD dD = db.DDs.Find(id);
+            db.DDs.Remove(dD);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
