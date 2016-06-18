@@ -44,5 +44,6 @@ namespace akcet_fakturi.Models
         public System.Data.Entity.DbSet<akcetDB.Product> Products { get; set; }
 
         public System.Data.Entity.DbSet<akcetDB.DD> DDs { get; set; }
+        
     }
 }
