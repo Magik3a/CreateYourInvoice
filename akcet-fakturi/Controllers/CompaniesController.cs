@@ -95,10 +95,15 @@ namespace akcet_fakturi.Controllers
         {
             if (ModelState.IsValid)
             {
+                company.DateModified = DateTime.Now;
+                
                 db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
+
+                TempData["ResultSuccess"] = "Успешно редактирахте компания!";
                 return RedirectToAction("Index");
             }
+
             ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName", company.IdAddress);
             return View(company);
         }
@@ -126,6 +131,7 @@ namespace akcet_fakturi.Controllers
             Company company = db.Companies.Find(id);
             db.Companies.Remove(company);
             db.SaveChanges();
+            TempData["ResultSuccess"] = "Успешно изтрихте компания!";
             return RedirectToAction("Index");
         }
 

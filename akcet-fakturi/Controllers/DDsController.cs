@@ -51,11 +51,15 @@ namespace akcet_fakturi.Controllers
         {
             if (ModelState.IsValid)
             {
+                dD.DateCreated = DateTime.Now;
+                dD.DateModified = DateTime.Now;
+                dD.UserName = User.Identity.Name;
                 db.DDs.Add(dD);
                 db.SaveChanges();
+                TempData["ResultSuccess"] = "Успешно добавихте нова стойност!";
                 return RedirectToAction("Index");
-            }
 
+            }
             return View(dD);
         }
 
@@ -83,8 +87,12 @@ namespace akcet_fakturi.Controllers
         {
             if (ModelState.IsValid)
             {
+                dD.DateModified = DateTime.Now;
+                dD.UserName = User.Identity.Name;
+
                 db.Entry(dD).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["ResultSuccess"] = "Успешно редактирахте стойност!";
                 return RedirectToAction("Index");
             }
             return View(dD);
@@ -113,6 +121,7 @@ namespace akcet_fakturi.Controllers
             DD dD = db.DDs.Find(id);
             db.DDs.Remove(dD);
             db.SaveChanges();
+            TempData["ResultSuccess"] = "Успешно изтрихте стойност!";
             return RedirectToAction("Index");
         }
 
