@@ -5,7 +5,11 @@
     ViewBag.Invoices = "active";
 }
 
-
+<style>
+    /*.disabled{
+    pointer-events: none;
+}*/
+</style>
 
 <!--New Invoice menu-->
 <div>
@@ -29,7 +33,7 @@
 
 
             <!-- tab to Review result-->
-            @Html.Partial("InvoicesPartials/_TabProductsPartial")
+            @Html.Partial("InvoicesPartials/_TabReviewPartial")
 
             <!-- tab to save result-->
             @Html.Partial("InvoicesPartials/_TabSavePartial")
@@ -70,18 +74,19 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 <script src="~/Scripts/select2.full.min.js"></script>
-<script src="~/Scripts/daterangepicker.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements
         $(".select2").select2();
         //Date range picker
-        $('#reservation').datepicker();
+        var datepicker = $('#reservation');
+        datepicker.datepicker();
         //Date range picker with time picker
     });
 
     $('.btnNext').click(function () {
+        $('.nav-tabs > .active').addClass('disabled');
         $('.nav-tabs > .active').next('li').find('a').trigger('click');
     });
 
