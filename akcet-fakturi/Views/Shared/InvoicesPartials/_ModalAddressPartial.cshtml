@@ -77,8 +77,11 @@
         console.log(data);
 
         var mySelect = $('#IdAddress');
-        mySelect.append(
-            $('<option></option>').val(data.id).html(data.value));
+        mySelect.append($('<option></option>').val(data.id).html(data.value).attr('selected', 'selected'));
+        mySelect.trigger("change");
+
+        //mySelect.append(
+        //    $('<option></option>').val(data.id).html(data.value));
     };
 </script>
 

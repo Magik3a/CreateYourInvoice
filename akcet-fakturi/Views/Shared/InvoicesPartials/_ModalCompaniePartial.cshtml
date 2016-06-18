@@ -109,9 +109,9 @@
     function getresultCompany(data) {
         console.log(data);
 
-        var mySelect = $('#company-name');
-        mySelect.append(
-            $('<option></option>').val(data.id).html(data.value));
+        var mySelect = $('#Companies');
+        mySelect.append($('<option></option>').val(data.id).html(data.value).attr('selected', 'selected'));
+        mySelect.trigger("change");
     };
 </script>
 

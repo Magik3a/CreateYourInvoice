@@ -20,6 +20,8 @@ namespace akcet_fakturi.Controllers
         public ActionResult Invoices()
         {
             ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName");
+
+            ViewBag.Companies = new SelectList(db.Companies, "CompanyID", "CompanyName");
             return View();
         }
 
@@ -36,7 +38,11 @@ namespace akcet_fakturi.Controllers
             {
                 return Json(false);
             }
-
+            if (company.IdAddress == 0)
+            {
+                TempData["ResultError"] = "Не сте избрали адрес на фирмата!";
+                return Json(false);
+            }
             using (var context = new AkcetModel())
             {
                 company.DateCreated = DateTime.Now;

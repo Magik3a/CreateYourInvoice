@@ -1,19 +1,15 @@
-﻿<div role="tabpanel" class="tab-pane active" id="home">
+﻿
+
+<div role="tabpanel" class="tab-pane active" id="home">
     <div class="row">
         <form class="form-horizontal">
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="company-name">Име на фирма</label>
-                        <select class="form-control select2" style="width: 100%;" id="company-name">
-                            <option selected="selected">Компания ООД</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
+                    
+
+                        @Html.DropDownList("Companies", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
                     </div>
                     <!-- /.form-group -->
                 </div>
