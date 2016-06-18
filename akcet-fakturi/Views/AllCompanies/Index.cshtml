@@ -1,4 +1,6 @@
-﻿@model IEnumerable<akcetDB.Company>
+﻿@using akcet_fakturi.Models
+@using Microsoft.AspNet.Identity
+@model IEnumerable<akcetDB.Company>
 
 @{
     ViewBag.Title = "Index";
@@ -6,7 +8,7 @@
     ViewBag.AllCompanies = "active";
 }
 
-<h2>Компании</h2>
+<h2>Всички Компании</h2>
 <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 <p>
@@ -31,7 +33,7 @@
             @Html.DisplayNameFor(model => model.CompanyPhone)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsPrimary)
+          Email
         </th>
 
         <th></th>
@@ -57,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.CompanyPhone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsPrimary)
+                 @GetUserNameById(item.UserId)
             </td>
 
             <td>
@@ -69,3 +71,12 @@
     }
 
 </table>
+@functions
+{
+    private ApplicationDbContext db = new ApplicationDbContext();
+    private string GetUserNameById(string UserId)
+    {
+        var user = db.Users.Find(UserId);
+        return user.Email;
+    }
+}
