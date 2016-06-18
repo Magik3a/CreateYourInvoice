@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Models;
+using Microsoft.AspNet.Identity;
 
 namespace akcet_fakturi.Controllers
 {
@@ -47,12 +48,18 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,UserId,ProductName,DateCreated,DateModified")] Product product)
+        public ActionResult Create([Bind(Exclude = "UserId", Include = "ProductID,UserId,ProductName,DateCreated,DateModified")] Product product)
         {
+            ModelState.Remove("UserId");
             if (ModelState.IsValid)
             {
+                product.DateCreated = DateTime.Now;
+                product.DateModified = DateTime.Now;
+                product.UserId = User.Identity.GetUserId();
+
                 db.Products.Add(product);
                 db.SaveChanges();
+                TempData["ResultSuccess"] = "Успешно добавихте продукт!";
                 return RedirectToAction("Index");
             }
 
@@ -81,10 +88,14 @@ namespace akcet_fakturi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductID,UserId,ProductName,DateCreated,DateModified")] Product product)
         {
+            ModelState.Remove("UserId");
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+                var dds = db.Products.Find(product.ProductID);
+
+                dds.DateModified = DateTime.Now;
                 db.SaveChanges();
+                TempData["ResultSuccess"] = "Успешно редактирахте продукт!";
                 return RedirectToAction("Index");
             }
             return View(product);

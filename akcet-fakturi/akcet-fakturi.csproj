@@ -335,6 +335,11 @@
     <Content Include="Views\AppUsers\Edit.cshtml" />
     <Content Include="Views\AppUsers\Index.cshtml" />
     <Content Include="Views\Shared\InvoicesPartials\_ModalCompaniePartial.cshtml" />
+    <Content Include="Views\Shared\InvoicesPartials\_TabCompanyPartial.cshtml" />
+    <Content Include="Views\Shared\InvoicesPartials\_TabProductsPartial.cshtml" />
+    <Content Include="Views\Shared\InvoicesPartials\_TabReviewPartial.cshtml" />
+    <Content Include="Views\Shared\InvoicesPartials\_TabSavePartial.cshtml" />
+    <Content Include="Views\Shared\InvoicesPartials\_ModalProductPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

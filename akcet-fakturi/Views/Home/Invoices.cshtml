@@ -19,181 +19,20 @@
             <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Запази</a></li>
         </ul>
         <!-- Tab panes -->
-        <div class="tab-content" style="margin-top:10px;">
-            <div role="tabpanel" class="tab-pane active" id="home">
-                <div class="row">
-                    <form class="form-horizontal">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="company-name">Име на фирма</label>
-                                    <select class="form-control select2" style="width: 100%;" id="company-name">
-                                        <option selected="selected">Компания ООД</option>
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
-                                    </select>
-                                </div>
-                                <!-- /.form-group -->
-                            </div>
+        <div class="tab-content" style="margin-top: 10px;">
 
-                            <div class="col-md-1">
-                                <label for="new-company">Нова</label>
-                                <button type="button" class="btn btn-info btn-sg" data-toggle="modal" data-target="#myModal" id="new-company"> <span class="glyphicon glyphicon-plus" </span></button>
-                            </div>
+            <!-- tab to add Company-->
+            @Html.Partial("InvoicesPartials/_TabCompanyPartial")
+
+            <!-- tab to add Products-->
+            @Html.Partial("InvoicesPartials/_TabProductsPartial")
 
 
+            <!-- tab to Review result-->
+            @Html.Partial("InvoicesPartials/_TabProductsPartial")
 
-                            <div class="col-md-2">
-
-
-                                <div class="box-body">
-                                    <!-- Date range -->
-                                    <div class="form-group">
-                                        <label for="dates">Дата на издаване</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon" id="dates">
-                                                <i class="glyphicon glyphicon-calendar"></i>
-                                            </div>
-                                            <input type="text" class="form-control pull-right" id="reservation">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="period">Дата на падеж</label>
-                                    <input type="text" class="form-control" id="period" />
-                                </div>
-                            </div>
-                            <!-- /.form group -->
-                            <div class="col-md-4" style="margin-left:0px;">
-                                <div class="form-group">
-                                    <label for="period">Период</label>
-                                    <input type="text" class="form-control" id="period" />
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-
-
-            <div role="tabpanel" class="tab-pane" id="profile">
-                <div class="row">
-
-                    <div class="col-md-10">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="product-select">Продукт</label>
-                                <select class="form-control select2" style="width: 100%;" id="product-select">
-                                    <option selected="selected">Продукт</option>
-                                    <option>Alaska</option>
-                                    <option>California</option>
-                                    <option>Delaware</option>
-                                    <option>Tennessee</option>
-                                    <option>Texas</option>
-                                    <option>Washington</option>
-                                </select>
-                            </div>
-                            <!-- /.form-group -->
-                        </div>
-
-                        <div class="col-md-1">
-                            <label for="product-new">Нов</label>
-                            <button type="button" class="btn btn-info btn-sg" id="product-new" data-toggle="modal" data-target="#product-modal">
-                                 <span class="glyphicon glyphicon-plus"> </span>
-                            </button>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="project">Проект</label>
-                                <input type="text" class="form-control" id="project" />
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="quantity">Количество</label>
-                                <input type="text" class="form-control" id="quantity" />
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label for="quantity">Цена</label>
-                                <input type="text" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="dropdown">
-                                <label for="quantity">ДДС</label>
-                                </br>
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    21%
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li>
-                                        <a href="#"></a>
-                                    </li>
-                                    <li><a href="#">6%</a></li>
-                                    <li><a href="#">0</a></li>
-                                    <li><a href="#">BTW Verlegd</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="quantity">Крайна цена</label>
-                                <input type="text" class="form-control" id="price" />
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-md-2">
-
-                        <div class="col-md-4 col-md-offset-1">
-
-                            <div class="form-group">
-                                <label for="save">Запази</label>
-                                <button type="button" class="btn btn-success btn-sm" id="save"> <span class="glyphicon glyphicon-ok"></span></button>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-md-offset-1">
-
-                            <div class="form-group">
-                                <label for="delete">Изтрий</label>
-                                <button type="button" class="btn btn-danger btn-sm" id="delete"> <span class="glyphicon glyphicon-trash"></span></button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <div role="tabpanel" class="tab-pane" id="messages">kjdwdbchijec</div>
-
-
-            <div role="tabpanel" class="tab-pane" id="settings">kDBCNOWJSPOKAIPHYUTH</div>
+            <!-- tab to save result-->
+            @Html.Partial("InvoicesPartials/_TabSavePartial")
         </div>
 
     </div>
@@ -225,30 +64,7 @@
 
 
 <!-- Modal to add Product-->
-<div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Въвеждане на нов продукт</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" style="width:70%; margin-left:15%;">
-
-                    <div class="form-group">
-                        <label for="quantity">Име на продукт</label>
-                        <input type="text" class="form-control" id="quantity" />
-                    </div>
-
-                </form> <br>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-                <button type="button" class="btn btn-primary">Запази</button>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("InvoicesPartials/_ModalProductPartial")
 
 
 

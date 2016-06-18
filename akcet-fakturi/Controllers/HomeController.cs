@@ -81,5 +81,34 @@ namespace akcet_fakturi.Controllers
 
             }
         }
+
+        public JsonResult CreateProductAjax(Product modelProduct)
+        {
+            ModelState.Remove("UserId");
+
+            if (!Request.IsAjaxRequest())
+            {
+                TempData["ResultError"] = "Грешка в добавяне на адрес!";
+                return Json(false);
+            }
+            if (!ModelState.IsValid)
+            {
+                TempData["ResultError"] = "Грешка в добавяне на адрес!";
+                return Json(false);
+            }
+
+            using (var context = new AkcetModel())
+            {
+                modelProduct.DateCreated = DateTime.Now;
+                modelProduct.DateModified = DateTime.Now;
+                modelProduct.UserId = User.Identity.GetUserId();
+
+                db.Products.Add(modelProduct);
+                db.SaveChanges();
+
+
+                return Json(new { id = modelProduct.ProductID, value = modelProduct.ProductName });
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@
                 @using (Ajax.BeginForm("CreateCompanyAjax", "Home", null,
                         new AjaxOptions
                         {
-                            OnSuccess = "getresult",
+                            OnSuccess = "getresultCompany",
                             HttpMethod = "POST"
                         }, new { @class = "form-horizontal", id = "form-company"}))
                 {
@@ -106,7 +106,7 @@
         $("#form-company").submit();
     });
 
-    function getresult(data) {
+    function getresultCompany(data) {
         console.log(data);
 
         var mySelect = $('#company-name');
