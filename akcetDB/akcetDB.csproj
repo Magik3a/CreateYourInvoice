@@ -56,8 +56,10 @@
     <Compile Include="Company.cs" />
     <Compile Include="DD.cs" />
     <Compile Include="Fakturi.cs" />
+    <Compile Include="FakturiTemp.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductInvoice.cs" />
+    <Compile Include="ProductInvoiceTemp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

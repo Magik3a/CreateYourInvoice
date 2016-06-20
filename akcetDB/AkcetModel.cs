@@ -18,9 +18,17 @@ namespace akcetDB
         public virtual DbSet<Fakturi> Fakturis { get; set; }
         public virtual DbSet<ProductInvoice> ProductInvoices { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<FakturiTemp> FakturiTemps { get; set; }
+        public virtual DbSet<ProductInvoiceTemp> ProductInvoiceTemps { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<FakturiTemp>()
+             .HasMany(e => e.ProductInvoiceTemps)
+             .WithRequired(e => e.FakturiTemp)
+             .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Address>()
                 .HasMany(e => e.Companies)
                 .WithRequired(e => e.Address)

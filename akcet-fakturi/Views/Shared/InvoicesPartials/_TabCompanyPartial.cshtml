@@ -1,63 +1,86 @@
-﻿
+﻿@model akcetDB.FakturiTemp
 
 <div role="tabpanel" class="tab-pane active" id="home">
     <div class="row">
-        <form class="form-horizontal">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="company-name">Име на фирма</label>
+
+        @using (Ajax.BeginForm("CreateInvoiceAjax", "Home", null,
+                new AjaxOptions
+                {
+                    OnSuccess = "getresultInvoice",
+                    HttpMethod = "POST"
+                }, new { @class = "form-horizontal", id = "form-invoice" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="col-md-3">
+                <div class="form-group">
+                        @Html.LabelFor(model => model.CompanyID, "CompanyID", htmlAttributes: new { @class = "control-label col-md-2" })
                     
-
-                        @Html.DropDownList("Companies", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
+                            @Html.DropDownList("Companies", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%", })
+                            @Html.ValidationMessageFor(model => model.CompanyID, "", new { @class = "text-danger" })
+                      
                     </div>
-                    <!-- /.form-group -->
-                </div>
+                <!-- /.form-group -->
+            </div>
 
-                <div class="col-md-1">
-                    <label for="new-company">Нова</label>
-                    <button type="button" class="btn btn-info btn-sg" data-toggle="modal" data-target="#myModal" id="new-company"> <span class="glyphicon glyphicon-plus" </span></button>
-                </div>
+            <div class="col-md-1">
+                <label for="new-company">Нова</label>
+                <button type="button" class="btn btn-info btn-sg" data-toggle="modal" data-target="#myModal" id="new-company"> <span class="glyphicon glyphicon-plus"> </span></button>
+            </div>
 
-
-
-                <div class="col-md-2">
+            <div class="col-md-2">
 
 
-                    <div class="box-body">
-                        <!-- Date range -->
-                        <div class="form-group">
-                            <label for="dates">Дата на издаване</label>
-                            <div class="input-group">
-                                <div class="input-group-addon" id="dates">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </div>
-                                <input type="text" class="form-control pull-right" id="reservation">
+                <div class="box-body">
+                    <!-- Date range -->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.InvoiceDate, htmlAttributes: new { @for="dates"})
+                        <div class="input-group">
+                            <div class="input-group-addon" id="dates">
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
-                            <!-- /.input group -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="period">Дата на падеж</label>
-                        <input type="text" class="form-control" id="period"/>
-                    </div>
-                </div>
-                <!-- /.form group -->
-                <div class="col-md-4" style="margin-left: 0px;">
-                    <div class="form-group">
-                        <label for="period">Период</label>
-                        <input type="text" class="form-control" id="period"/>
+                                @Html.EditorFor(model => model.InvoiceDate,  new { htmlAttributes = new { @class = "form-control", id = "reservation", @value=DateTime.Now.ToString("dd.MM.yyyy") } })
+                                @Html.ValidationMessageFor(model => model.InvoiceDate, "", new { @class = "text-danger" })
+                            </div>
+                        <!-- /.input group -->
                     </div>
                 </div>
             </div>
-        </form>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.InvoiceEndDate, htmlAttributes: new { @for = "period" })
+                    @Html.EditorFor(model => model.InvoiceEndDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InvoiceEndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- /.form group -->
+            <div class="col-md-4" style="margin-left: 0px;">
+                <div class="form-group">
+                    <label for="period">Период</label>
+                    <input type="text" class="form-control" id="period"/>
+                </div>
+            </div>
+        }
+
     </div>
 
     <div class="row text-center" style="margin-top: 50px">
-        <a class="btn btn-success btn-lg btnNext">Продължи с добавяне на продукти</a>
+        <a class="btn btn-success btn-lg btnNext" id="submitInvoice">Продължи с добавяне на продукти</a>
 
     </div>
 </div>
+
+<script>
+    $("#submitInvoice")
+    .click(function (event) {
+        event.preventDefault();
+        $("#form-invoice").submit();
+    });
+
+    function getresultInvoice(data) {
+        console.log(data);
+
+    };
+</script>
+

@@ -1,88 +1,88 @@
-﻿
-<div role="tabpanel" class="tab-pane" id="profile">
-    <div class="row">
+﻿@model akcetDB.ProductInvoiceTemp
 
-        <div class="col-md-10">
+
+        @using (Ajax.BeginForm("SaveProductAjax", "Home", null,
+            new AjaxOptions
+            {
+                OnSuccess = "getresultProduct",
+                HttpMethod = "POST"
+            }, new {@class = "form-horizontal", id = "form-product"}))
+        {
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="product-select">Продукт</label>
+                        @Html.DropDownList("Products", null, htmlAttributes: new {@class = "form-control  select2", style = "width: 100%"})
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+
+                <div class="col-md-1">
+                    <label for="product-new">Нов</label>
+                    <button type="button" class="btn btn-info btn-sg" id="product-new" data-toggle="modal" data-target="#product-modal">
+                        <span class="glyphicon glyphicon-plus"> </span>
+                    </button>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="project">Проект</label>
+                        <input type="text" class="form-control" id="project"/>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="quantity">Количество</label>
+                        <input type="text" class="form-control" id="quantity"/>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label for="quantity">Цена</label>
+                        <input type="text" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="dropdown">
+                        <label for="quantity">ДДС (%)</label>
+
+                        @Html.DropDownList("Dds", null, htmlAttributes: new {@class = "form-control", style = "width: 100%"})
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="quantity">Крайна цена</label>
+                        <input type="text" class="form-control" id="price"/>
+                    </div>
+                </div>
+
+            </div>
+
+
             <div class="col-md-2">
-                <div class="form-group">
-                    <label for="product-select">Продукт</label>
-                   @Html.DropDownList("Products", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
-                </div>
-                <!-- /.form-group -->
-            </div>
 
-            <div class="col-md-1">
-                <label for="product-new">Нов</label>
-                <button type="button" class="btn btn-info btn-sg" id="product-new" data-toggle="modal" data-target="#product-modal">
-                    <span class="glyphicon glyphicon-plus"> </span>
-                </button>
-            </div>
+                <div class="col-md-4 col-md-offset-1">
 
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="project">Проект</label>
-                    <input type="text" class="form-control" id="project" />
+                    <div class="form-group">
+                        <label for="save">Запази</label>
+                        <button type="button" class="btn btn-success btn-sm" id="saveProduct"> <span class="glyphicon glyphicon-ok"></span></button>
+                    </div>
                 </div>
 
-            </div>
+                <div class="col-md-4 col-md-offset-1">
 
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="quantity">Количество</label>
-                    <input type="text" class="form-control" id="quantity" />
+                    <div class="form-group">
+                        <label for="delete">Изтрий</label>
+                        <button type="button" class="btn btn-danger btn-sm" id="delete"> <span class="glyphicon glyphicon-trash"></span></button>
+                    </div>
                 </div>
             </div>
-
-
-
-            <div class="col-md-1">
-                <div class="form-group">
-                    <label for="quantity">Цена</label>
-                    <input type="text" class="form-control" />
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="dropdown">
-                    <label for="quantity">ДДС (%)</label>
-
-                    @Html.DropDownList("Dds", null, htmlAttributes: new { @class = "form-control", style = "width: 100%" })
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="quantity">Крайна цена</label>
-                    <input type="text" class="form-control" id="price" />
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="col-md-2">
-
-            <div class="col-md-4 col-md-offset-1">
-
-                <div class="form-group">
-                    <label for="save">Запази</label>
-                    <button type="button" class="btn btn-success btn-sm" id="save"> <span class="glyphicon glyphicon-ok"></span></button>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-md-offset-1">
-
-                <div class="form-group">
-                    <label for="delete">Изтрий</label>
-                    <button type="button" class="btn btn-danger btn-sm" id="delete"> <span class="glyphicon glyphicon-trash"></span></button>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="row  text-center" style="margin-top: 50px">
-        <a class="btn btn-success btn-lg btnNext">Продължи с преглед на фактурата</a>
-
-    </div>
-
-</div>
+        }
+  

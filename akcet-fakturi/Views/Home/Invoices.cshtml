@@ -1,4 +1,5 @@
-﻿
+﻿@using akcetDB
+
 @{
     ViewBag.Title = "Invoices";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
@@ -16,7 +17,7 @@
 
     <!-- Nav tabs -->
     <div class="container">
-        <ul class="nav nav-tabs" role="tablist" style="margin-top:30px;">
+        <ul class="nav nav-tabs" role="tablist" style="margin-top:30px;" id="nav-tabs-invoices">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Нова фактура</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Въвеждане на продукт</a></li>
             <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Преглед</a></li>
@@ -26,10 +27,21 @@
         <div class="tab-content" style="margin-top: 10px;">
 
             <!-- tab to add Company-->
-            @Html.Partial("InvoicesPartials/_TabCompanyPartial")
+            @Html.Partial("InvoicesPartials/_TabCompanyPartial", new FakturiTemp())
 
             <!-- tab to add Products-->
-            @Html.Partial("InvoicesPartials/_TabProductsPartial")
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <div class="row products" id="rowProducts" >
+                    @Html.Partial("InvoicesPartials/_TabProductsPartial")
+                </div>
+
+                <div class="row  text-center" style="margin-top: 50px">
+                    <a class="btn btn-success btn-lg btnNext">Продължи с преглед на фактурата</a>
+
+                </div>
+
+            </div>
+
 
 
             <!-- tab to Review result-->
@@ -83,7 +95,6 @@
         $('.nav-tabs > .active').prev('li').find('a').trigger('click');
     });
 
-
     $("#submitButton")
         .click(function (event) {
             event.preventDefault();
@@ -94,4 +105,26 @@
         console.log("Complete");
     };
 
+
+    $("#saveProduct")
+ .click(function (event) {
+     event.preventDefault();
+     $("#form-product").submit();
+
+     //var something = $(this).parent().find(".form-control");
+     //console.log(something);
+     $(".form-control").prop('disabled', true);
+            var newProduct = $.get("../Home/NewProduct");
+     console.log(newProduct);
+     $("#rowProducts").load(newProduct);
+     $(this).remove();
+        });
+
+    function getresultProduct(data) {
+        console.log(data);
+
+    };
+</script>
+<script>
+ 
 </script>

@@ -119,5 +119,24 @@ namespace akcet_fakturi.Controllers
                 return Json(new { id = modelProduct.ProductID, value = modelProduct.ProductName });
             }
         }
+
+        public JsonResult CreateInvoiceAjax(FakturiTemp Invoice)
+        {
+
+            return Json(true);
+        }
+
+        public ActionResult SaveProductAjax()
+        {
+            return Json(true);
+        }
+
+        public ActionResult NewProduct()
+        {
+            var userId = User.Identity.GetUserId();
+            ViewBag.Dds = new SelectList(db.DDs, "DdsID", "Value");
+            ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId), "ProductID", "ProductName");
+            return PartialView("~/Views/Shared/InvoicesPartials/_TabProductsPartial.cshtml", new ProductInvoiceTemp());
+        }
     }
 }
