@@ -44,6 +44,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Kendo.Mvc, Version=2015.2.624.440, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Kendo.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Kendo.Mvc.resources">
+      <HintPath>bin\bg-BG\Kendo.Mvc.resources.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -238,6 +245,23 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\daterangepicker-bs3.css" />
+    <Content Include="Content\kendo\Bootstrap\editor.png" />
+    <Content Include="Content\kendo\Bootstrap\imagebrowser.png" />
+    <Content Include="Content\kendo\Bootstrap\indeterminate.gif" />
+    <Content Include="Content\kendo\Bootstrap\loading-image.gif" />
+    <Content Include="Content\kendo\Bootstrap\loading.gif" />
+    <Content Include="Content\kendo\Bootstrap\loading_2x.gif" />
+    <Content Include="Content\kendo\Bootstrap\markers.png" />
+    <Content Include="Content\kendo\Bootstrap\markers_2x.png" />
+    <Content Include="Content\kendo\Bootstrap\slider-h.gif" />
+    <Content Include="Content\kendo\Bootstrap\slider-v.gif" />
+    <Content Include="Content\kendo\Bootstrap\sprite.png" />
+    <Content Include="Content\kendo\Bootstrap\sprite_2x.png" />
+    <Content Include="Content\kendo\Bootstrap\sprite_kpi.png" />
+    <Content Include="Content\kendo\Bootstrap\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\fonts\DejaVu\LICENSE.txt" />
+    <Content Include="Content\kendo\kendo.bootstrap.css" />
+    <Content Include="Content\kendo\kendo.common-bootstrap.css" />
     <Content Include="Content\select2.css" />
     <Content Include="Content\select2.min.css" />
     <Content Include="favicon.ico" />
@@ -259,6 +283,22 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Code\ResultHelper.cshtml" />
+    <Content Include="Content\kendo\fonts\DejaVu\dejavu.less" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSans-Bold.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSans-ExtraLight.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSans-Oblique.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSans.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSansMono-Bold.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSansMono-BoldOblique.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSansMono-Oblique.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSansMono.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSerif-Bold.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSerif-BoldItalic.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSerif-Italic.ttf" />
+    <Content Include="Content\kendo\fonts\DejaVu\DejaVuSerif.ttf" />
+    <Content Include="Content\kendo\images\kendoui.ttf" />
+    <Content Include="Content\kendo\images\kendoui.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datepicker-bg.js" />
     <Content Include="Scripts\daterangepicker.js" />
@@ -271,6 +311,36 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo\cultures\kendo.culture.nl-BE.js" />
+    <Content Include="Scripts\kendo\kendo.all.js" />
+    <Content Include="Scripts\kendo\kendo.aspnetmvc.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.bg-BG.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.cs-CZ.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.da-DK.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.de-CH.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.de-DE.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.en-US.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.es-ES.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.fr-CH.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.fr-FR.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.he-IL.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.it-CH.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.it-IT.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.ja-JP.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.nb-NO.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.nl-NL.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.pl-PL.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.pt-BR.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.pt-PT.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.ro-RO.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.ru-RU.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.sk-SK.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.sv-SE.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.tr-TR.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.uk-UA.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.zh-CN.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.zh-HK.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.zh-TW.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

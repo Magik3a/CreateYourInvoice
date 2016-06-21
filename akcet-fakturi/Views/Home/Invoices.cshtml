@@ -76,6 +76,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 <script src="~/Scripts/select2.full.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script src="~/Scripts/datepicker-bg.js"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements
@@ -115,8 +117,10 @@
      //console.log(something);
      $(".form-control").prop('disabled', true);
             var newProduct = $.get("../Home/NewProduct");
-     console.log(newProduct);
-     $("#rowProducts").load(newProduct);
+            console.log(newProduct.responseText);
+     // $("#rowProducts").load("@Url.Action("NewProduct", "Home")");
+
+     $("#rowProducts").html = newProduct.responseText;
      $(this).remove();
         });
 
@@ -125,6 +129,4 @@
 
     };
 </script>
-<script>
- 
-</script>
+

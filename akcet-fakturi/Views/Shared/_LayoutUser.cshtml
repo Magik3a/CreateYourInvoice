@@ -17,6 +17,11 @@
     <link href="~/Content/select2.css" rel="stylesheet" />
     <link href="~/Content/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
+    @Styles.Render("~/Content/Css/kendo/kendoCss")
+
+
 </head>
 <body>
 
@@ -31,7 +36,8 @@
 
 
     @Scripts.Render("~/bundles/jquery")
-
+    @Scripts.Render("~/Scripts/kendoJS")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/kendo-ui-core/2014.1.416/js/cultures/kendo.culture.bg-BG.min.js"></script>
     <!--LAYOUT-->
     <!--Top Menu-->
     <div class="container">
@@ -138,10 +144,12 @@
         </div>
     </footer>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-
-    <script src="~/Scripts/datepicker-bg.js"></script>
+    
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
+
+
+   
 </body>
 </html>

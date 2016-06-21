@@ -1,9 +1,11 @@
-﻿@model IEnumerable<akcetDB.Company>
+﻿@using Kendo.Mvc.UI
+@model IEnumerable<akcetDB.Company>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
     ViewBag.Companies = "active";
+    
 }
 
 <h2>Компании</h2>
@@ -12,59 +14,13 @@
 <p>
     @Html.ActionLink("Създай нова компания", "Create")
 </p>
-<table class="table">
-    <tr>
-      
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyMol)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyBulsatat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyPhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsPrimary)
-        </th>
-    
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-     
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyMol)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyBulsatat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyPhone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsPrimary)
-        </td>
-      
-        <td>
-            @Html.ActionLink("Редактирай", "Edit", new { id=item.CompanyID }) |
-            @Html.ActionLink("Детайли", "Details", new { id=item.CompanyID }) |
-            @Html.ActionLink("Изтрии", "Delete", new { id=item.CompanyID })
-        </td>
-    </tr>
-}
-
-</table>
+@(Html.Kendo().Grid(Model).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>
+{
+    columns.Bound(m => m.CompanyName);
+    columns.Bound(m => m.CompanyMol);
+    columns.Bound(m => m.CompanyBulsatat);
+    columns.Bound(m => m.CompanyDescription);
+    columns.Bound(m => m.CompanyPhone);
+})
+    )
