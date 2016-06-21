@@ -57,6 +57,7 @@
     <Compile Include="DD.cs" />
     <Compile Include="Fakturi.cs" />
     <Compile Include="FakturiTemp.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductInvoice.cs" />
     <Compile Include="ProductInvoiceTemp.cs" />

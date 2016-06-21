@@ -299,6 +299,7 @@
     <Content Include="Content\kendo\fonts\DejaVu\DejaVuSerif.ttf" />
     <Content Include="Content\kendo\images\kendoui.ttf" />
     <Content Include="Content\kendo\images\kendoui.woff" />
+    <None Include="Properties\PublishProfiles\svetlin.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datepicker-bg.js" />
     <Content Include="Scripts\daterangepicker.js" />
@@ -431,6 +432,7 @@
     <Content Include="Views\Invoices\Edit.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
     <Content Include="Views\Invoices\UserInvoices.cshtml" />
+    <Content Include="Views\Shared\_LoginHeaderTopPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

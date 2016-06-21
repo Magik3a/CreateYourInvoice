@@ -17,8 +17,9 @@
 
         [Key]
         public int DdsID { get; set; }
+
         [Display(Name = "Стойност")]
-        public int Value { get; set; }
+        public string Value { get; set; }
 
         [Display(Name = "Дата на създаване")]
         public DateTime? DateCreated { get; set; }
