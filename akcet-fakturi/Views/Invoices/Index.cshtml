@@ -1,4 +1,5 @@
-﻿@model IEnumerable<akcetDB.Fakturi>
+﻿@using Kendo.Mvc.UI
+@model IEnumerable<akcetDB.Fakturi>
 
 @{
     ViewBag.Title = "Index";
@@ -11,63 +12,21 @@
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<table class="table">
-    <tr>
 
-        <th>
-            @Html.DisplayNameFor(model => model.InvoiceDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InvoiceEndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Project)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th></th>
-    </tr>
+@(Html.Kendo().Grid(Model).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>
+{
+    columns.Bound(m => m.InvoiceDate);
+    columns.Bound(m => m.InvoiceEndDate);
+    columns.Bound(m => m.Project);
+    columns.Bound(m => m.TotalPrice);
+    columns.Bound(m => m.DateCreated);
+    columns.Bound(m => m.DateModified);
+    columns.Bound(m => m.UserName);
 
-@foreach (var item in Model) {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.InvoiceDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InvoiceEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Project)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateModified)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.InvoiceID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.InvoiceID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceID })
-        </td>
-    </tr>
-}
-
-</table>
+    columns.Template(@<text>
+        @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID })
+    </text>).Title("Функции");
+}).NoRecords("Все още няма запазени фактури.")
+)
