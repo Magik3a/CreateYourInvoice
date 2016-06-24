@@ -7,9 +7,9 @@
 }
 
 <style>
-    /*.disabled{
-    pointer-events: none;
-}*/
+        /*.disabled{
+        pointer-events: none;
+    }*/
 </style>
 
 <!--New Invoice menu-->
@@ -19,9 +19,9 @@
     <div class="container">
         <ul class="nav nav-tabs" role="tablist" style="margin-top:30px;" id="nav-tabs-invoices">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Нова фактура</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Въвеждане на продукт</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Преглед</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Запази</a></li>
+            <li role="presentation" style="display: none"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Въвеждане на продукт</a></li>
+            <li role="presentation" style="display: none"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Преглед</a></li>
+            <li role="presentation" style="display: none"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Запази</a></li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content" style="margin-top: 10px;">
@@ -31,7 +31,7 @@
 
             <!-- tab to add Products-->
             <div role="tabpanel" class="tab-pane" id="profile">
-                <div class="row products" id="rowProducts" >
+                <div class="row products" id="rowProducts">
                     @Html.Partial("InvoicesPartials/_TabProductsPartial")
                 </div>
 
@@ -55,7 +55,7 @@
 
 
 
-  
+
 
 
 </div>
@@ -89,8 +89,11 @@
     });
 
     $('.btnNext').click(function () {
+        $("#form-invoice").find(".form-control").prop('disabled', true);
         $('.nav-tabs > .active').addClass('disabled');
         $('.nav-tabs > .active').next('li').find('a').trigger('click');
+        $('.nav-tabs > .active').removeAttr("style");
+
     });
 
     $('.btnPrevious').click(function () {
@@ -108,25 +111,26 @@
     };
 
 
-    $("#saveProduct")
- .click(function (event) {
-     event.preventDefault();
-     $("#form-product").submit();
+    function btnSubmitProductclick(event) {
+        event.preventDefault();
+        $("#form-product").submit();
 
-     //var something = $(this).parent().find(".form-control");
-     //console.log(something);
-     $(".form-control").prop('disabled', true);
-            var newProduct = $.get("../Home/NewProduct");
-            console.log(newProduct.responseText);
-     // $("#rowProducts").load("@Url.Action("NewProduct", "Home")");
-
-     $("#rowProducts").html = newProduct.responseText;
-     $(this).remove();
-        });
+        //var something = $(this).parent().find(".form-control");
+        //console.log(something);
+        //$(".form-control").prop('disabled', true);
+    };
 
     function getresultProduct(data) {
-        console.log(data);
+        $("#form-product").removeAttr("id");
+        var beforeForm = $("#form-product").prev();
+        beforeForm.find(".form-control").prop('disabled', true);
+        beforeForm.find(".deleteProduct").append("<label for='delete'>Изтрий</label><button type='button' class='btn btn-danger btn-sm btnDelete'> <span class='glyphicon glyphicon-trash'></span></button>");
+      
 
     };
-</script>
 
+    function removeSaveProductButton() {
+        $(".newProductName").remove();
+        $(".saveProduct").remove();
+    }
+</script>

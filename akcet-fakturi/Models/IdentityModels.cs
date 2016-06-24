@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -15,6 +16,8 @@ namespace akcet_fakturi.Models
         public string KwkNumber { get; set; }
         public string DdsNumber { get; set; }
         public string CompanyName { get; set; }
+        public string Address { get; set; }
+        public DateTime DateCreated { get; set; }
 
     public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

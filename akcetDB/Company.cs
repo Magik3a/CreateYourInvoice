@@ -34,15 +34,15 @@
 
         [Required]
         [StringLength(500)]
-        [Display(Name = "БУЛСТАТ")]
-        public string CompanyBulsatat { get; set; }
+        [Display(Name = "ДДС Номер")]
+        public string DdsNumber { get; set; }
 
         [StringLength(500)]
         [Display(Name = "Описание")]
         public string CompanyDescription { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Телефон")]
+        [Display(Name = "Имейл")]
         public string CompanyPhone { get; set; }
 
         [Display(Name = "Работя в нея")]

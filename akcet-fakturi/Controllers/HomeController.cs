@@ -31,9 +31,10 @@ namespace akcet_fakturi.Controllers
 
         public ActionResult Invoices()
         {
+            ViewBag.formNumber = 1;
             var userId = User.Identity.GetUserId();
             ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName");
-            ViewBag.Dds = new SelectList(db.DDs, "DdsID", "Value");
+            ViewBag.Dds = new SelectList(db.DDs, "DdsID", "DdsName");
             ViewBag.Companies = new SelectList(db.Companies.Where(m => m.UserId == userId), "CompanyID", "CompanyName");
 
             ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId), "ProductID", "ProductName");
@@ -140,15 +141,12 @@ namespace akcet_fakturi.Controllers
 
         public ActionResult SaveProductAjax()
         {
-            return Json(true);
-        }
-
-        public ActionResult NewProduct()
-        {
-            var userId = User.Identity.GetUserId();
-            ViewBag.Dds = new SelectList(db.DDs, "DdsID", "Value");
+            ViewBag.ProductId = 2;
+           var userId = User.Identity.GetUserId();
+            ViewBag.Dds = new SelectList(db.DDs, "DdsID", "DdsName");
             ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId), "ProductID", "ProductName");
             return PartialView("~/Views/Shared/InvoicesPartials/_TabProductsPartial.cshtml", new ProductInvoiceTemp());
         }
+        
     }
 }

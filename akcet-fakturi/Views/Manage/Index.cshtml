@@ -13,7 +13,24 @@
     <hr />
 
     <table class="table table-hover table-striped">
-      
+        <tr>
+            <td>
+                User Name:
+            </td>
+            <td>@Model.UserName</td>
+            <td>
+                [ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Address:
+            </td>
+            <td>@Model.Address</td>
+            <td>
+                [ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]
+            </td>
+        </tr>
             <tr>
                 <td>
                     Full Name:

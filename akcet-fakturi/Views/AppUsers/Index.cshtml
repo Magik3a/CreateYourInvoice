@@ -8,29 +8,30 @@
 }
 
 <h2>Потребители</h2>
-
+<!-- Helper for info boxes after manipulating data -->
+@ResultHelper.ResultFromTempData(TempData)
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
 
-@(Html.Kendo().Grid(Model).Name("DDs").Sortable().Filterable().Pageable().Columns(columns =>
+@(Html.Kendo().Grid(Model).Name("User").Sortable().Filterable().Pageable().Columns(columns =>
 {
-columns.Bound(m => m.FirstName);
-columns.Bound(m => m.LastName);
+
+columns.Bound(m => m.UserName).Title("Потребителско име");
+
+columns.Bound(m => m.CompanyName);
+columns.Bound(m => m.PhoneNumber);
+columns.Bound(m => m.Address);
 columns.Bound(m => m.BankAcount);
 columns.Bound(m => m.KwkNumber);
 columns.Bound(m => m.DdsNumber);
-columns.Bound(m => m.CompanyName);
-columns.Bound(m => m.Email);
-columns.Bound(m => m.PhoneNumber);
 
 
-
-    @*columns.Template(@<text>
-        @Html.ActionLink("Edit", "Edit", new { id = item.DdsID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.DdsID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.DdsID })
-    </text>).Title("Функции");*@
+columns.Template(@<text>
+                         @Html.ActionLink("Детайли", "Details", new { id = item.Id }) |
+                         @Html.ActionLink("Редактирай", "Edit", new {id = item.Id}) |
+                         @Html.ActionLink("Изтрий", "Delete", new {id = item.Id})
+                      </text>).Title("Функции");
 })
 )
 

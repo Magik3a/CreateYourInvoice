@@ -18,7 +18,7 @@
 
 @(Html.Kendo().Grid(Model).Name("DDs").Sortable().Filterable().Pageable().Columns(columns =>
   {
-      columns.Bound(m => m.Name);
+      columns.Bound(m => m.DdsName);
     columns.Bound(m => m.Value);
     columns.Bound(m => m.DateCreated);
     columns.Bound(m => m.DateModified);

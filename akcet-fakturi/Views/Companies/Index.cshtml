@@ -20,8 +20,7 @@
 {
     columns.Bound(m => m.CompanyName);
     columns.Bound(m => m.CompanyMol);
-    columns.Bound(m => m.CompanyBulsatat);
-    columns.Bound(m => m.CompanyDescription);
+    columns.Bound(m => m.DdsNumber);
     columns.Bound(m => m.CompanyPhone);
     columns.Template(@<text>
                          @Html.ActionLink("Edit", "Edit", new { id = item.CompanyID }) |

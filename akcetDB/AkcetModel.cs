@@ -11,7 +11,7 @@ namespace akcetDB
             : base("DefaultConnection")
         {
         }
-
+        
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<DD> DDS { get; set; }

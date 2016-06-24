@@ -89,7 +89,7 @@ namespace akcet_fakturi.Controllers
             if (ModelState.IsValid)
             {
                 var dds = db.DDs.Find(dD.DdsID);
-                dds.Name = dD.Name;
+                dds.DdsName = dD.DdsName;
                 dds.DateModified = DateTime.Now;
                 dds.UserName = User.Identity.Name;
                 dds.Value = dD.Value;

@@ -13,9 +13,9 @@
               @using (Ajax.BeginForm("CreateProductAjax", "Home", null,
                                   new AjaxOptions
                                   {
-                                      OnSuccess = "getresultProduct",
+                                      OnSuccess = "getresultProductName",
                                       HttpMethod = "POST"
-                                  }, new { @class = "form-horizontal", id = "form-product" }))
+                                  }, new { @class = "form-horizontal", id = "form-productName" }))
               {
                     @Html.AntiForgeryToken()
 
@@ -46,15 +46,15 @@
     $("#submitProduct")
         .click(function(event) {
             event.preventDefault();
-            $("#form-product").submit();
+            $("#form-productName").submit();
         });
 
-    function getresultProduct(data) {
+    function getresultProductName(data) {
         console.log(data);
 
-        var mySelect = $('#product-select');
-        mySelect.append(
-            $('<option></option>').val(data.id).html(data.value));
+        var mySelect = $('#form-product #Products');
+        mySelect.append($('<option></option>').val(data.id).html(data.value).attr('selected', 'selected'));
+        mySelect.trigger("change");
     };
 </script>
 

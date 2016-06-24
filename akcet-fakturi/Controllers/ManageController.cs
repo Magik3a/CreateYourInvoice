@@ -79,7 +79,9 @@ namespace akcet_fakturi.Controllers
                 Company = user.CompanyName?? " ",
                 Dds = user.DdsNumber?? "  ",
                 Kwk = user.KwkNumber?? " ",
-                BankAccount = user.BankAcount??" "
+                BankAccount = user.BankAcount??" ",
+                UserName = user.UserName,
+                Address = user.Address
             };
             return View(model);
         }
@@ -426,7 +428,18 @@ namespace akcet_fakturi.Controllers
 
         public ActionResult ChangeOtherInfo()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var user =  UserManager.FindById(User.Identity.GetUserId());
+
+            var model = new ChangeOtherInfoViewModel()
+            {
+                DdsNumber = user.DdsNumber ?? "  ",
+                KwkNumber = user.KwkNumber ?? " ",
+                BankAccount = user.BankAcount ?? " ",
+                Address = user.Address
+            };
+            return View(model);
+            
         }
 
         [HttpPost]
@@ -438,7 +451,7 @@ namespace akcet_fakturi.Controllers
             }
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-
+            user.Address = model.Address;
             user.CompanyName = model.CompanyName;
             user.BankAcount = model.BankAccount;
             user.DdsNumber = model.DdsNumber;

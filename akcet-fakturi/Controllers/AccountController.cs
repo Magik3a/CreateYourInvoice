@@ -76,7 +76,7 @@ namespace akcet_fakturi.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -150,15 +150,18 @@ namespace akcet_fakturi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            ModelState.Remove("Email");
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser {
-                    UserName = model.Email,
-                    Email = model.Email,
+                    UserName = model.UserNickName,
+                    Email = model.Email??model.UserNickName + "@fakturi.nl",
                     PhoneNumber = model.PhoneNumber,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    CompanyName = model.CompanyName
+                    CompanyName = model.CompanyName,
+                    Address = model.Address,
+                    DateCreated = DateTime.Now
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -172,6 +175,7 @@ namespace akcet_fakturi.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     result = await UserManager.AddToRoleAsync(user.Id, "User");
+                    
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index", "Home");

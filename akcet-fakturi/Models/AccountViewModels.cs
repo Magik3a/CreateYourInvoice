@@ -49,49 +49,52 @@ namespace akcet_fakturi.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Потребителско име")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запомни ме?")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Потребителско име")]
+        public string UserNickName { get; set; }
+
+        [Display(Name = "Имейл")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Потвърди парола")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
-        [Phone]
-        [Display(Name = "Phone Number")]
+        
+        [Display(Name = "Телефон")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "Company Name")]
+        [Display(Name = "Име на компания")]
         public string CompanyName { get; set; }
 
-        [Display(Name = "First Name")]
+        [Display(Name = "Първо име")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last Name")]
+        [Display(Name = "Фамилно име")]
         public string LastName { get; set; }
+
+        [Display(Name = "Адрес")]
+        public string Address { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -109,6 +109,8 @@ namespace akcet_fakturi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+
+            TempData["ResultSuccess"] = "Успешно изтрихте потребител!";
             ApplicationUser applicationUser = db.Users.Find(id);
             db.Users.Remove(applicationUser);
             db.SaveChanges();

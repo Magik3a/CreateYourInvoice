@@ -19,7 +19,7 @@
         public int DdsID { get; set; }
 
         [Display(Name = "Име")]
-        public string Name { get; set; }
+        public string DdsName { get; set; }
 
 
         [Display(Name = "Стойност")]
