@@ -28,7 +28,7 @@ namespace akcet_fakturi.Controllers
             TempData["MessageIsSent"] = "Съобщението е изпратено успешно.";
             return View(Model);
         }
-
+        [Authorize]
         public ActionResult Invoices()
         {
             ViewBag.formNumber = 1;

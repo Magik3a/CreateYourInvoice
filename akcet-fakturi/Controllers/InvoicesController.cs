@@ -11,6 +11,7 @@ using akcet_fakturi.Models;
 
 namespace akcet_fakturi.Controllers
 {
+    [Authorize]
     public class InvoicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

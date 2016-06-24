@@ -11,6 +11,7 @@ using akcet_fakturi.Models;
 
 namespace akcet_fakturi.Controllers
 {
+    [Authorize]
     public class DDsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

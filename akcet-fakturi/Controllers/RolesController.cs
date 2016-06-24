@@ -11,6 +11,7 @@ using System.Diagnostics;
 
 namespace akcet_fakturi.Controllers
 {
+    [Authorize]
     public class RolesController : Controller
     {
         private ApplicationDbContext context = new ApplicationDbContext();

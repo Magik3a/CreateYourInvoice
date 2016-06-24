@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace akcet_fakturi.Controllers
 {
+    [Authorize]
     public class CompaniesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
