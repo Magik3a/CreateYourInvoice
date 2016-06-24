@@ -14,7 +14,19 @@ namespace akcet_fakturi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
+
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(ContactFormModel Model)
+        {
+
+            if(!ModelState.IsValid)
+                return View(Model);
+
+            TempData["MessageIsSent"] = "Съобщението е изпратено успешно.";
+            return View(Model);
         }
 
         public ActionResult Invoices()

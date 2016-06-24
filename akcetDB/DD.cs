@@ -18,6 +18,10 @@
         [Key]
         public int DdsID { get; set; }
 
+        [Display(Name = "Име")]
+        public string Name { get; set; }
+
+
         [Display(Name = "Стойност")]
         public string Value { get; set; }
 

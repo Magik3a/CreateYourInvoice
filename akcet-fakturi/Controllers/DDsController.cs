@@ -47,7 +47,7 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DdsID,Value,DateCreated,DateModified,UserName")] DD dD)
+        public ActionResult Create([Bind(Include = "DdsID,Name,Value,DateCreated,DateModified,UserName")] DD dD)
         {
             if (ModelState.IsValid)
             {
@@ -83,13 +83,13 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Exclude = "DateCreated", Include = "DdsID,Value,DateModified,UserName")] DD dD)
+        public ActionResult Edit([Bind(Exclude = "DateCreated", Include = "DdsID,Name,Value,DateModified,UserName")] DD dD)
         {
     
             if (ModelState.IsValid)
             {
                 var dds = db.DDs.Find(dD.DdsID);
-           
+                dds.Name = dD.Name;
                 dds.DateModified = DateTime.Now;
                 dds.UserName = User.Identity.Name;
                 dds.Value = dD.Value;
