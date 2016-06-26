@@ -8,110 +8,119 @@ using System.Web;
 using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Models;
+using Microsoft.AspNet.Identity;
 
-namespace akcet_fakturi.Views
+namespace akcet_fakturi.Controllers
 {
-    public class AddressesController : Controller
+    public class ProjectsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Addresses
+        // GET: Projects
         public ActionResult Index()
         {
-            return View(db.Addresses.ToList());
+            return View(db.Projects.ToList());
         }
 
-        // GET: Addresses/Details/5
+        // GET: Projects/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = db.Addresses.Find(id);
-            if (address == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(address);
+            return View(project);
         }
 
-        // GET: Addresses/Create
+        // GET: Projects/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Addresses/Create
+        // POST: Projects/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdAddress,StreetName,StreetNumber,ZipCode,City,DateCreated,DateModified,UserName")] Address address)
+        public ActionResult Create([Bind(Include = "ProjectID,UserID,ProjectName,DateCreated,DateModified,UserName")] Project project)
         {
+            ModelState.Remove("UserID");
             if (ModelState.IsValid)
             {
-                db.Addresses.Add(address);
+                project.DateCreated = DateTime.Now;
+                project.DateModified = DateTime.Now;
+                project.UserID = User.Identity.GetUserId();
+                project.UserName = User.Identity.Name;
+                db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(address);
+            return View(project);
         }
 
-        // GET: Addresses/Edit/5
+        // GET: Projects/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = db.Addresses.Find(id);
-            if (address == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(address);
+            return View(project);
         }
 
-        // POST: Addresses/Edit/5
+        // POST: Projects/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdAddress,StreetName,StreetNumber,ZipCode,City,DateCreated,DateModified,UserName")] Address address)
+        public ActionResult Edit([Bind(Include = "ProjectID,UserID,ProjectName,DateCreated,DateModified,UserName")] Project project)
         {
+            ModelState.Remove("UserID");
             if (ModelState.IsValid)
             {
-                db.Entry(address).State = EntityState.Modified;
+                var table = db.Projects.Find(project.ProjectID);
+                table.DateModified = DateTime.Now;
+                table.UserName = User.Identity.Name;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(address);
+            return View(project);
         }
 
-        // GET: Addresses/Delete/5
+        // GET: Projects/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = db.Addresses.Find(id);
-            if (address == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(address);
+            return View(project);
         }
 
-        // POST: Addresses/Delete/5
+        // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Address address = db.Addresses.Find(id);
-            db.Addresses.Remove(address);
+            Project project = db.Projects.Find(id);
+            db.Projects.Remove(project);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

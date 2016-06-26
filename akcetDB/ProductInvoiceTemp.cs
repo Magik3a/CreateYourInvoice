@@ -18,10 +18,14 @@ namespace akcetDB
 
         public int? DdsID { get; set; }
 
+        public int ProjectID { get; set; }
+
         public int? ProductPrice { get; set; }
 
         public int? Quanity { get; set; }
 
         public virtual FakturiTemp FakturiTemp { get; set; }
+
+        public virtual Project Project { get; set; }
     }
 }

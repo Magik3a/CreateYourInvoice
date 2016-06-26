@@ -44,6 +44,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Glimpse.AspNet, Version=1.9.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.AspNet.1.9.2\lib\net45\Glimpse.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Kendo.Mvc, Version=2015.2.624.440, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Kendo.Mvc.dll</HintPath>
@@ -233,23 +245,33 @@
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606181339547_Initial.cs" />
-    <Compile Include="Migrations\201606181339547_Initial.Designer.cs">
+    <Compile Include="Migrations\201606261312025_201606261311398_AutomaticMigration.cs" />
+    <Compile Include="Migrations\201606261312025_201606261311398_AutomaticMigration.Designer.cs">
+      <DependentUpon>201606261312025_201606261311398_AutomaticMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606261349302_NewMigration.cs" />
+    <Compile Include="Migrations\201606261349302_NewMigration.Designer.cs">
+      <DependentUpon>201606261349302_NewMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Migrations\201606181339547_Initial.cs" />
+    <Compile Include="Models\Migrations\201606181339547_Initial.Designer.cs">
       <DependentUpon>201606181339547_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606240829371_201606240828298_AutomaticMigration.cs" />
-    <Compile Include="Migrations\201606240829371_201606240828298_AutomaticMigration.Designer.cs">
+    <Compile Include="Models\Migrations\201606240829371_201606240828298_AutomaticMigration.cs" />
+    <Compile Include="Models\Migrations\201606240829371_201606240828298_AutomaticMigration.Designer.cs">
       <DependentUpon>201606240829371_201606240828298_AutomaticMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606241140499_201606241139131_AutomaticMigration.cs" />
-    <Compile Include="Migrations\201606241140499_201606241139131_AutomaticMigration.Designer.cs">
+    <Compile Include="Models\Migrations\201606241140499_201606241139131_AutomaticMigration.cs" />
+    <Compile Include="Models\Migrations\201606241140499_201606241139131_AutomaticMigration.Designer.cs">
       <DependentUpon>201606241140499_201606241139131_AutomaticMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactFormModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -258,12 +280,13 @@
     <Compile Include="Models\UserRolesModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Views\AddressesController.cs" />
+    <Compile Include="Controllers\AddressesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\daterangepicker-bs3.css" />
+    <Content Include="Content\formValidation.min.css" />
     <Content Include="Content\kendo\Bootstrap\editor.png" />
     <Content Include="Content\kendo\Bootstrap\imagebrowser.png" />
     <Content Include="Content\kendo\Bootstrap\indeterminate.gif" />
@@ -280,7 +303,54 @@
     <Content Include="Content\kendo\Bootstrap\sprite_kpi_2x.png" />
     <Content Include="Content\kendo\fonts\DejaVu\LICENSE.txt" />
     <Content Include="Content\kendo\kendo.bootstrap.css" />
+    <Content Include="Content\kendo\kendo.bootstrap.min.css" />
     <Content Include="Content\kendo\kendo.common-bootstrap.css" />
+    <Content Include="Content\kendo\kendo.common.min.css" />
+    <Content Include="Content\kendo\kendo.metroblack.min.css" />
+    <Content Include="Content\kendo\kendo.office365.min.css" />
+    <Content Include="Content\kendo\kendo.silver.min.css" />
+    <Content Include="Content\kendo\MetroBlack\editor.png" />
+    <Content Include="Content\kendo\MetroBlack\imagebrowser.png" />
+    <Content Include="Content\kendo\MetroBlack\indeterminate.gif" />
+    <Content Include="Content\kendo\MetroBlack\loading-image.gif" />
+    <Content Include="Content\kendo\MetroBlack\loading.gif" />
+    <Content Include="Content\kendo\MetroBlack\loading_2x.gif" />
+    <Content Include="Content\kendo\MetroBlack\markers.png" />
+    <Content Include="Content\kendo\MetroBlack\markers_2x.png" />
+    <Content Include="Content\kendo\MetroBlack\slider-h.gif" />
+    <Content Include="Content\kendo\MetroBlack\slider-v.gif" />
+    <Content Include="Content\kendo\MetroBlack\sprite.png" />
+    <Content Include="Content\kendo\MetroBlack\sprite_2x.png" />
+    <Content Include="Content\kendo\MetroBlack\sprite_kpi.png" />
+    <Content Include="Content\kendo\MetroBlack\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\Office365\editor.png" />
+    <Content Include="Content\kendo\Office365\imagebrowser.png" />
+    <Content Include="Content\kendo\Office365\indeterminate.gif" />
+    <Content Include="Content\kendo\Office365\loading-image.gif" />
+    <Content Include="Content\kendo\Office365\loading.gif" />
+    <Content Include="Content\kendo\Office365\loading_2x.gif" />
+    <Content Include="Content\kendo\Office365\markers.png" />
+    <Content Include="Content\kendo\Office365\markers_2x.png" />
+    <Content Include="Content\kendo\Office365\slider-h.gif" />
+    <Content Include="Content\kendo\Office365\slider-v.gif" />
+    <Content Include="Content\kendo\Office365\sprite.png" />
+    <Content Include="Content\kendo\Office365\sprite_2x.png" />
+    <Content Include="Content\kendo\Office365\sprite_kpi.png" />
+    <Content Include="Content\kendo\Office365\sprite_kpi_2x.png" />
+    <Content Include="Content\kendo\Silver\editor.png" />
+    <Content Include="Content\kendo\Silver\imagebrowser.png" />
+    <Content Include="Content\kendo\Silver\indeterminate.gif" />
+    <Content Include="Content\kendo\Silver\loading-image.gif" />
+    <Content Include="Content\kendo\Silver\loading.gif" />
+    <Content Include="Content\kendo\Silver\loading_2x.gif" />
+    <Content Include="Content\kendo\Silver\markers.png" />
+    <Content Include="Content\kendo\Silver\markers_2x.png" />
+    <Content Include="Content\kendo\Silver\slider-h.gif" />
+    <Content Include="Content\kendo\Silver\slider-v.gif" />
+    <Content Include="Content\kendo\Silver\sprite.png" />
+    <Content Include="Content\kendo\Silver\sprite_2x.png" />
+    <Content Include="Content\kendo\Silver\sprite_kpi.png" />
+    <Content Include="Content\kendo\Silver\sprite_kpi_2x.png" />
     <Content Include="Content\select2.css" />
     <Content Include="Content\select2.min.css" />
     <Content Include="favicon.ico" />
@@ -322,6 +392,8 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datepicker-bg.js" />
     <Content Include="Scripts\daterangepicker.js" />
+    <Content Include="Scripts\formValidation.min.js" />
+    <Content Include="Scripts\frameworkBootstrapValidation.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -331,6 +403,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo.core.min.js" />
+    <Content Include="Scripts\kendo.data.min.js" />
+    <Content Include="Scripts\kendo.ui.core.min.js" />
+    <Content Include="Scripts\kendo\cultures\kendo.culture.bg-BG.min.js" />
     <Content Include="Scripts\kendo\cultures\kendo.culture.nl-BE.js" />
     <Content Include="Scripts\kendo\kendo.all.js" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.js" />
@@ -453,6 +529,12 @@
     <Content Include="Views\Invoices\UserInvoices.cshtml" />
     <Content Include="Views\Shared\_LoginHeaderTopPartial.cshtml" />
     <Content Include="Views\AddInvoice\Index.cshtml" />
+    <Content Include="Views\Shared\InvoicesPartials\_ModalProjectPartial.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -473,13 +555,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606181339547_Initial.resx">
+    <EmbeddedResource Include="Migrations\201606261312025_201606261311398_AutomaticMigration.resx">
+      <DependentUpon>201606261312025_201606261311398_AutomaticMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606261349302_NewMigration.resx">
+      <DependentUpon>201606261349302_NewMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Migrations\201606181339547_Initial.resx">
       <DependentUpon>201606181339547_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606240829371_201606240828298_AutomaticMigration.resx">
+    <EmbeddedResource Include="Models\Migrations\201606240829371_201606240828298_AutomaticMigration.resx">
       <DependentUpon>201606240829371_201606240828298_AutomaticMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606241140499_201606241139131_AutomaticMigration.resx">
+    <EmbeddedResource Include="Models\Migrations\201606241140499_201606241139131_AutomaticMigration.resx">
       <DependentUpon>201606241140499_201606241139131_AutomaticMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

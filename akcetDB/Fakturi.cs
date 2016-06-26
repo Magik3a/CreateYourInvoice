@@ -18,21 +18,21 @@
         [Key]
         public int InvoiceID { get; set; }
 
+        [StringLength(128)]
+        public string UserID { get; set; }
+
         public int CompanyID { get; set; }
 
-        public int ProductInvoiceID { get; set; }
-        
         [Display(Name = "Дата на издаване")]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime InvoiceDate { get; set; }
-
 
         [Display(Name = "Крайна дата")]
         public DateTime InvoiceEndDate { get; set; }
 
         [Required]
-        [Display(Name = "Проект")]
-        public string Project { get; set; }
+        [StringLength(500)]
+        public string Period { get; set; }
 
         [Display(Name = "Крайна цена")]
         public int TotalPrice { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -10,13 +11,28 @@ namespace akcet_fakturi.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        [Display(Name = "Име")]
         public string FirstName { get; set; }
+
+        [Display(Name = "Фамилно име")]
         public string LastName { get; set; }
+
+        [Display(Name = "Банкова сметка")]
         public string BankAcount { get; set; }
+
+        [Display(Name = "КВК номер")]
         public string KwkNumber { get; set; }
+
+        [Display(Name = "ДДС номер")]
         public string DdsNumber { get; set; }
+
+        [Display(Name = "Компания")]
         public string CompanyName { get; set; }
+
+        [Display(Name = "Адрес")]
         public string Address { get; set; }
+
+        [Display(Name = "Регистриран на")]
         public DateTime DateCreated { get; set; }
 
     public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -48,5 +64,7 @@ namespace akcet_fakturi.Models
 
         public System.Data.Entity.DbSet<akcetDB.DD> DDs { get; set; }
         public System.Data.Entity.DbSet<akcetDB.Fakturi> Fakturis { get; set; }
+
+        public System.Data.Entity.DbSet<akcetDB.Project> Projects { get; set; }
     }
 }

@@ -26,13 +26,11 @@
         [StringLength(500)]
         [Display(Name = "Име на компания")]
         public string CompanyName { get; set; }
-
-        [Required]
+        
         [StringLength(500)]
         [Display(Name = "МОЛ")]
         public string CompanyMol { get; set; }
-
-        [Required]
+        
         [StringLength(500)]
         [Display(Name = "ДДС Номер")]
         public string DdsNumber { get; set; }

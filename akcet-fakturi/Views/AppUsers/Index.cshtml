@@ -20,12 +20,11 @@
 columns.Bound(m => m.UserName).Title("Потребителско име");
 
 columns.Bound(m => m.CompanyName);
-columns.Bound(m => m.PhoneNumber);
 columns.Bound(m => m.Address);
 columns.Bound(m => m.BankAcount);
 columns.Bound(m => m.KwkNumber);
 columns.Bound(m => m.DdsNumber);
-
+columns.Bound(m => m.DateCreated);
 
 columns.Template(@<text>
                          @Html.ActionLink("Детайли", "Details", new { id = item.Id }) |

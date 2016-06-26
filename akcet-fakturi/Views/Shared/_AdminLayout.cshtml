@@ -20,7 +20,7 @@
 
 
     @Styles.Render("~/Content/Css/kendo/kendoCss")
-
+    <link href="~/Content/formValidation.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -57,7 +57,9 @@
                 <li role="presentation" class="@ViewBag.Companies">
                     <a href="@Url.Action("Index", "Companies")">Компании</a>
                 </li>
-
+                <li role="presentation" class="@ViewBag.Companies">
+                    <a href="@Url.Action("Index", "Projects")">Проекти</a>
+                </li>
                 <li role="presentation" class="@ViewBag.Products">
                     <a href="@Url.Action("Index", "Products")">Продукти</a>
                 </li>

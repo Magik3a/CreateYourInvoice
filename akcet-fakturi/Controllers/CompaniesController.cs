@@ -52,7 +52,7 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Exclude = "UserId", Include = "CompanyID,UserId,IdAddress,CompanyName,CompanyMol,CompanyBulsatat,CompanyDescription,CompanyPhone,IsPrimary,DateCreated,DateModified")] Company company)
+        public ActionResult Create([Bind(Exclude = "UserId", Include = "CompanyID,UserId,IdAddress,CompanyName,CompanyMol,DdsNumber,CompanyDescription,CompanyPhone,IsPrimary,DateCreated,DateModified")] Company company)
         {
             ModelState.Remove("UserId");
 
@@ -92,7 +92,7 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyID,UserId,IdAddress,CompanyName,CompanyMol,CompanyBulsatat,CompanyDescription,CompanyPhone,IsPrimary,DateCreated,DateModified")] Company company)
+        public ActionResult Edit([Bind(Include = "CompanyID,UserId,IdAddress,CompanyName,CompanyMol,DdsNumber,CompanyDescription,CompanyPhone,IsPrimary,DateCreated,DateModified")] Company company)
         {
             if (ModelState.IsValid)
             {

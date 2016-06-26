@@ -17,14 +17,20 @@ namespace akcetDB
 
         public int DdsID { get; set; }
 
+        public int ProjectID { get; set; }
+
         public int ProductPrice { get; set; }
 
         public int Quantity { get; set; }
+
+        public int TotalPrice { get; set; }
 
         public virtual DD DD { get; set; }
 
         public virtual Fakturi Fakturi { get; set; }
 
         public virtual Product Product { get; set; }
+
+        public virtual Project Project { get; set; }
     }
 }

@@ -32,11 +32,11 @@
             <!-- tab to add Products-->
             <div role="tabpanel" class="tab-pane" id="profile">
                 <div class="row products" id="rowProducts">
-                    @Html.Partial("InvoicesPartials/_TabProductsPartial")
+                    @Html.Partial("InvoicesPartials/_TabProductsPartial", new ProductInvoiceTemp())
                 </div>
 
                 <div class="row  text-center" style="margin-top: 50px">
-                    <a class="btn btn-success btn-lg btnNext">Продължи с преглед на фактурата</a>
+                    <a class="btn btn-success btn-lg btnNext" onclick="ClickReviewNext()">Продължи с преглед на фактурата</a>
 
                 </div>
 
@@ -71,6 +71,10 @@
 <!-- Modal to add Product-->
 @Html.Partial("InvoicesPartials/_ModalProductPartial")
 
+<!-- Modal to add Project-->
+@Html.Partial("InvoicesPartials/_ModalProjectPartial")
+
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
@@ -78,27 +82,32 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <script src="~/Scripts/datepicker-bg.js"></script>
+
+<script src="~/Scripts/formValidation.min.js"></script>
+<script src="~/Scripts/frameworkBootstrapValidation.js"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements
         $(".select2").select2();
         //Date range picker
         var datepicker = $('#reservation');
-        datepicker.datepicker();
+        datepicker.datepicker({
+            onSelect: function (date) {
+                var nextDayDate = new Date();
+                nextDayDate = moment(date, "DD.MM.YYYY").add(14, 'days').format("DD.MM.YYYY");
+              //  nextDayDate.setDate(date + 14);
+                $("#InvoiceEndDate").val(nextDayDate);
+               // console.log(date);
+            }
+        });
         //Date range picker with time picker
     });
 
-    $('.btnNext').click(function () {
-        $("#form-invoice").find(".form-control").prop('disabled', true);
-        $('.nav-tabs > .active').addClass('disabled');
-        $('.nav-tabs > .active').next('li').find('a').trigger('click');
-        $('.nav-tabs > .active').removeAttr("style");
 
-    });
 
-    $('.btnPrevious').click(function () {
-        $('.nav-tabs > .active').prev('li').find('a').trigger('click');
-    });
+    //$('.btnPrevious').click(function () {
+    //    $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+    //});
 
     $("#submitButton")
         .click(function (event) {
@@ -111,26 +120,11 @@
     };
 
 
-    function btnSubmitProductclick(event) {
-        event.preventDefault();
-        $("#form-product").submit();
-
-        //var something = $(this).parent().find(".form-control");
-        //console.log(something);
-        //$(".form-control").prop('disabled', true);
-    };
-
-    function getresultProduct(data) {
-        $("#form-product").removeAttr("id");
-        var beforeForm = $("#form-product").prev();
-        beforeForm.find(".form-control").prop('disabled', true);
-        beforeForm.find(".deleteProduct").append("<label for='delete'>Изтрий</label><button type='button' class='btn btn-danger btn-sm btnDelete'> <span class='glyphicon glyphicon-trash'></span></button>");
-      
+    function ClickReviewNext() {
+      //  $("#form-invoice").find(".form-control").prop('disabled', true);
+        $('.nav-tabs > .active').addClass('disabled');
+        $('.nav-tabs > .active').next('li').find('a').trigger('click');
+        $('.nav-tabs > .active').removeAttr("style");
 
     };
-
-    function removeSaveProductButton() {
-        $(".newProductName").remove();
-        $(".saveProduct").remove();
-    }
 </script>

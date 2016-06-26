@@ -1,0 +1,27 @@
+﻿@using Kendo.Mvc.UI
+@model IEnumerable<akcetDB.Project>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Проекти</h2>
+  <!-- Helper for info boxes after manipulating data -->
+@ResultHelper.ResultFromTempData(TempData)
+<p>
+    @Html.ActionLink("Създай нов", "Create")
+</p>
+
+@(Html.Kendo().Grid(Model).Name("Projects").Sortable().Filterable().Pageable().Columns(columns =>
+{
+    columns.Bound(m => m.ProjectName);
+    columns.Bound(m => m.DateCreated);
+    columns.Bound(m => m.DateModified);
+    columns.Template(@<text>
+        @Html.ActionLink("Редактирай", "Edit", new { id = item.ProjectID }) |
+        @Html.ActionLink("Детайли", "Details", new { id = item.ProjectID }) |
+        @Html.ActionLink("Изтрии", "Delete", new { id = item.ProjectID })
+    </text>).Title("Функции");
+})
+)

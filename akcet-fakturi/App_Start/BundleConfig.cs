@@ -29,13 +29,16 @@ namespace akcet_fakturi
 
             // Bundle for Kendo UI script
             bundles.Add(new ScriptBundle("~/Scripts/kendoJS").Include(
+           
                 "~/Scripts/kendo/kendo.all.js",
-                "~/Scripts/kendo/kendo.aspnetmvc.js"));
+                "~/Scripts/kendo/kendo.aspnetmvc.js",
+                      "~/Scripts/kendo/cultures/kendo.culture.bg-BG.min.js"));
 
             // Bundle for Kendo UI css
             bundles.Add(new StyleBundle("~/Content/Css/kendo/kendoCss").Include(
                 "~/Content/kendo/kendo.common-bootstrap.css",
-                "~/Content/kendo/kendo.bootstrap.css"));
+                       "~/Content/kendo/kendo.silver.min.css"
+                ));
         }
     }
 }

@@ -20,17 +20,13 @@
 
         public int? CompanyID { get; set; }
 
-        public int? ProductInvoiceID { get; set; }
-
         [Display(Name = "Дата на издаване")]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? InvoiceDate { get; set; }
+        public string InvoiceDate { get; set; }
 
         [Display(Name = "Дата на падеж")]
-        public DateTime? InvoiceEndDate { get; set; }
-        
-        [Display(Name = "Проект")]
-        public string Project { get; set; }
+        public string InvoiceEndDate { get; set; }
+
+        public int? TotalPrice { get; set; }
 
         public DateTime? DateCreated { get; set; }
 
@@ -38,6 +34,12 @@
 
         [StringLength(500)]
         public string UserName { get; set; }
+
+        [Display(Name = "Период")]
+        public string Period { get; set; }
+
+        [StringLength(128)]
+        public string UserId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductInvoiceTemp> ProductInvoiceTemps { get; set; }

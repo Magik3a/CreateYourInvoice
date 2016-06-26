@@ -57,15 +57,25 @@
     <Compile Include="DD.cs" />
     <Compile Include="Fakturi.cs" />
     <Compile Include="FakturiTemp.cs" />
+    <Compile Include="Migrations\201606261340057_201606261339461_AutomaticMigration.cs" />
+    <Compile Include="Migrations\201606261340057_201606261339461_AutomaticMigration.Designer.cs">
+      <DependentUpon>201606261340057_201606261339461_AutomaticMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductInvoice.cs" />
     <Compile Include="ProductInvoiceTemp.cs" />
+    <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201606261340057_201606261339461_AutomaticMigration.resx">
+      <DependentUpon>201606261340057_201606261339461_AutomaticMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
