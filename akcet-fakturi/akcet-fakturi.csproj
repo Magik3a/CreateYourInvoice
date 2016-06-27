@@ -243,6 +243,7 @@
     <Compile Include="Controllers\AddInvoiceController.cs" />
     <Compile Include="Controllers\AllCompaniesController.cs" />
     <Compile Include="Controllers\AppUsersController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\DDsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -266,6 +267,10 @@
     <Compile Include="Migrations\201606261647267_201606261646140_AutomaticMigration.cs" />
     <Compile Include="Migrations\201606261647267_201606261646140_AutomaticMigration.Designer.cs">
       <DependentUpon>201606261647267_201606261646140_AutomaticMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606271333405_201606271333099_AutomaticMigration.cs" />
+    <Compile Include="Migrations\201606271333405_201606271333099_AutomaticMigration.Designer.cs">
+      <DependentUpon>201606271333405_201606271333099_AutomaticMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Migrations\201606181339547_Initial.cs" />
     <Compile Include="Models\Migrations\201606181339547_Initial.Designer.cs">
@@ -555,6 +560,7 @@
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
     <Folder Include="Areas\InvoiceTemplates\Views\Shared\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -579,6 +585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606261647267_201606261646140_AutomaticMigration.resx">
       <DependentUpon>201606261647267_201606261646140_AutomaticMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606271333405_201606271333099_AutomaticMigration.resx">
+      <DependentUpon>201606271333405_201606271333099_AutomaticMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Migrations\201606181339547_Initial.resx">
       <DependentUpon>201606181339547_Initial.cs</DependentUpon>

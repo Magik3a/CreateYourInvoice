@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.Projects = "active";
 }
 
 <h2>Details</h2>
@@ -11,13 +12,7 @@
     <h4>Project</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserID)
-        </dd>
+  
 
         <dt>
             @Html.DisplayNameFor(model => model.ProjectName)
@@ -43,13 +38,6 @@
             @Html.DisplayFor(model => model.DateModified)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
 
     </dl>
 </div>

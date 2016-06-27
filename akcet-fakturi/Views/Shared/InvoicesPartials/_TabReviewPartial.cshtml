@@ -5,7 +5,22 @@
     <div id="reviewInvoice"></div>
 
     <div class="row  text-center" style="margin-top: 50px">
-        <a class="btn btn-success btn-lg btnNext">Запази и принтирай въведената фактура</a>
-
+        @*<a class="" id="saveInvoiceConfirmed">Запази и принтирай въведената фактура</a>*@
+        @Ajax.ActionLink("Запази и принтирай въведената фактура", "SaveInvoiceConfirmed", "Home",new { value=true} ,new AjaxOptions(), new {@class = "btn btn-success btn-lg btnNext" })
     </div>
 </div>
+<script>
+    $('#saveInvoiceConfirmed').click(function() {
+        var model = @Html.Raw(Json.Encode(Model));
+        $.ajax({
+            url: "@Url.Action("SaveInvoiceConfirmed", "Home")",
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(model),
+            success: function(result) {
+
+            }
+        });
+        return false;
+    });
+</script>

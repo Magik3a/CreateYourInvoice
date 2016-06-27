@@ -35,7 +35,7 @@
         public string Period { get; set; }
 
         [Display(Name = "Крайна цена")]
-        public int TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
         [Display(Name = "Дата на създаване")]
         public DateTime? DateCreated { get; set; }
@@ -46,6 +46,12 @@
         [StringLength(500)]
         [Display(Name = "Потребител")]
         public string UserName { get; set; }
+
+        [Display(Name = "Номер на фактура")]
+        public string FakturaNumber { get; set; }
+
+        [Display(Name = "Съдържание")]
+        public string FakturaHtml { get; set; }
 
         public virtual Company Company { get; set; }
 

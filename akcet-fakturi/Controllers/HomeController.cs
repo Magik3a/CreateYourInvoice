@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using akcetDB;
+using akcet_fakturi.Areas.InvoiceTemplates.Models;
 using akcet_fakturi.Models;
 using Microsoft.AspNet.Identity;
+using WebGrease.Css.Extensions;
 
 namespace akcet_fakturi.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private AkcetModel db = new AkcetModel();
         public ActionResult Index()
@@ -244,7 +246,7 @@ namespace akcet_fakturi.Controllers
 
         public string RenderViewToString(string templateName, object model)
         {
-            templateName = "~/Areas/InvoiceTemplates/Views/Email/" + templateName + ".cshtml";
+            templateName = "~/Areas/InvoiceTemplates/Views/InvoiceTemplate/" + templateName + ".cshtml";
             // var controller = new EmailController();
 
             ViewData.Model = model;
@@ -266,6 +268,57 @@ namespace akcet_fakturi.Controllers
                 TempData["ResultErrors"] = "There was a problem with rendering template for email!";
                 return "Error in register form! Email with the problem was send to aministrator.";
             }
+        }
+
+        public JsonResult SaveInvoiceConfirmed(bool value)
+        {
+            var userId = User.Identity.GetUserId();
+            var model = GetInvoiceTempModel(userId);
+
+            using (var context = db)
+            {
+                var counter = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
+                counter.CounterValue ++;
+                context.Counters.Add(counter);
+
+                var faktura = new Fakturi();
+                faktura.CompanyID = model.CompanyID;
+                faktura.InvoiceDate = DateTime.Parse(model.InvoiceDate);
+                faktura.InvoiceEndDate = DateTime.Parse(model.InvoiceEndDate);
+
+                faktura.TotalPrice = model.TotalWithDDS;
+                // TODO Fix TotalPrice
+
+                faktura.Period = model.Period;
+                faktura.FakturaNumber = model.InvoiceNumber;
+                faktura.FakturaHtml = RenderViewToString("Index", model);
+                faktura.UserID = userId;
+                faktura.UserName = User.Identity.Name;
+                faktura.DateCreated = DateTime.Now;
+                faktura.DateModified = DateTime.Now;
+
+                context.Fakturis.Add(faktura);
+
+                var products = new List<ProductInvoice>();
+                foreach (var productTemp in model.ProductsListTemp)
+                {
+                    products.Add(new ProductInvoice()
+                    {
+                        InvoiceID = faktura.InvoiceID,
+                        DdsID = productTemp.DdsID??0,
+                        ProductID = productTemp.ProductID??0,
+                        ProjectID = productTemp.ProjectID,
+                        Quantity = productTemp.Quanity??0
+
+                        //TODO: Fix Product Total
+                    });
+                }
+
+                products.ForEach(s => context.ProductInvoices.Add(s));
+
+                context.SaveChanges();
+            }
+            return Json(value, JsonRequestBehavior.AllowGet);
         }
     }
 }

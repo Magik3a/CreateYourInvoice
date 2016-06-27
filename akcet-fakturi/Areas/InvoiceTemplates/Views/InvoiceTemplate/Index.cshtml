@@ -174,7 +174,7 @@
 
     <span id="second">
                 <p>@Model.InvoiceDate</p>
-                <p>@String.Format("{0}-{1}", DateTime.Now.Year, Model.InvoiceNumber)</p>
+                <p>@Model.InvoiceNumber</p>
                 <p>@Model.InvoiceEndDate</p>
                 <br />
                 <p>@Model.Period</p>
@@ -220,7 +220,7 @@
 
             <td>@Product.ProductPrice</td>
             <td>
-                @DDSname(Product.DdsID ?? 1)
+                @DDSname(Product.DdsID ?? 0)
             </td>
 
             <td>
@@ -319,7 +319,7 @@
             <td></td>
             <td>
                 @{
-                    decimal subTotal = Decimal.One;
+                    decimal subTotal = Decimal.Zero;
                     decimal btwBegdrad = Decimal.Zero;
                     decimal totalPerDiscount = Decimal.Zero;
 
