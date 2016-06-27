@@ -21,7 +21,7 @@ namespace akcetDB
         public virtual DbSet<ProductInvoiceTemp> ProductInvoiceTemps { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
-
+        public virtual DbSet<Counter> Counters { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Address>()

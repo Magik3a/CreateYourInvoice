@@ -54,6 +54,7 @@
     <Compile Include="Address.cs" />
     <Compile Include="AkcetModel.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="Counter.cs" />
     <Compile Include="DD.cs" />
     <Compile Include="Fakturi.cs" />
     <Compile Include="FakturiTemp.cs" />

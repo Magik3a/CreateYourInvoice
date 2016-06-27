@@ -137,11 +137,11 @@
             var pricePerProduct = beforeForm.find(".price").val();
             var dds = beforeForm.find(".dds").val();
             console.log("p: " + pricePerProduct + "q: " + quantity + "dds: " +dds);
-            var price = (quantity * pricePerProduct * (dds / 100)) + (quantity * pricePerProduct);
-
+         //   var price = (quantity * pricePerProduct * (dds / 100)) + (quantity * pricePerProduct);
+            var price = quantity * pricePerProduct;
             totalPriceInput.val(price);
             //   $("#form-product").removeAttr("id");
-            var arr = deleteButton.split('/');
+            var arr = deleteButton.split('/'); 
             beforeForm.attr("id", arr[3]);
 
         } else {

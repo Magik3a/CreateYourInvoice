@@ -19,14 +19,12 @@
 
         [Required]
         [StringLength(500)]
-        [Display(Name = "Име на улица")]
+        [Display(Name = "Адрес")]
         public string StreetName { get; set; }
 
-        [Display(Name = "Номер на улица")]
-        public int StreetNumber { get; set; }
 
         [Display(Name = "Пощенски код")]
-        public int ZipCode { get; set; }
+        public string ZipCode { get; set; }
 
         [Required]
         [StringLength(500)]

@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
     ViewBag.Invoices = "active";
 }
-
+<style>
+    #reviewInvoice {
+        background: url(../../images/ajax-loader.gif) center center no-repeat;
+    }
+</style>
 <style>
         /*.disabled{
         pointer-events: none;
@@ -121,7 +125,8 @@
 
 
     function ClickReviewNext() {
-      //  $("#form-invoice").find(".form-control").prop('disabled', true);
+        //  $("#form-invoice").find(".form-control").prop('disabled', true);
+        $("#reviewInvoice").append("    <iframe style='width: 100%; height: 1200px' src='@Url.Action("Index", "InvoiceTemplate", new {Area = "InvoiceTemplates" })'></iframe>");
         $('.nav-tabs > .active').addClass('disabled');
         $('.nav-tabs > .active').next('li').find('a').trigger('click');
         $('.nav-tabs > .active').removeAttr("style");

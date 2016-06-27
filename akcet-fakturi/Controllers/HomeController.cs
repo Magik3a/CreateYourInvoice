@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -144,8 +145,8 @@ namespace akcet_fakturi.Controllers
             if (String.IsNullOrWhiteSpace(Fakturi.InvoiceEndDate))
                 return Json(false);
 
-            if (String.IsNullOrWhiteSpace(Fakturi.Period))
-                return Json(false);
+            //if (String.IsNullOrWhiteSpace(Fakturi.Period))
+            //    return Json(false);
 
             Fakturi.CompanyID = Int32.Parse(Companies);
 
@@ -178,7 +179,7 @@ namespace akcet_fakturi.Controllers
             ViewBag.IsInsertedProduct = true;
 
 
-            var firstOrDefault = db.FakturiTemps.Where(s => s.UserId == userId).OrderBy(x=>x.DateCreated).FirstOrDefault();
+            var firstOrDefault = db.FakturiTemps.Where(s => s.UserId == userId).OrderByDescending(x=>x.DateCreated).FirstOrDefault();
             if (firstOrDefault != null)
             {
                 var orDefault = db.DDS.FirstOrDefault(s => s.Value == Dds);
@@ -238,6 +239,32 @@ namespace akcet_fakturi.Controllers
 
 
                 return Json(new { id = modelProject.ProjectID, value = modelProject.ProjectName });
+            }
+        }
+
+        public string RenderViewToString(string templateName, object model)
+        {
+            templateName = "~/Areas/InvoiceTemplates/Views/Email/" + templateName + ".cshtml";
+            // var controller = new EmailController();
+
+            ViewData.Model = model;
+
+            try
+            {
+                using (StringWriter sw = new StringWriter())
+                {
+                    ViewEngineResult viewResult = ViewEngines.Engines.FindView(ControllerContext, templateName, null);
+                    ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                    viewResult.View.Render(viewContext, sw);
+                    viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+
+                    return sw.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ResultErrors"] = "There was a problem with rendering template for email!";
+                return "Error in register form! Email with the problem was send to aministrator.";
             }
         }
     }
