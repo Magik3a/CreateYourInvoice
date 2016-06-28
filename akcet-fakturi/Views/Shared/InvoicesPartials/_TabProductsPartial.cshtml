@@ -50,7 +50,7 @@
             <div class="form-group">
                 <label for="quantity">Количество</label>
                 @*<input type="text" class="form-control" id="quantity"/>*@
-                @Html.EditorFor(model => model.Quanity, new { htmlAttributes = new { @class = "form-control quanity" } })
+                @Html.TextBoxFor(model => model.Quanity,  new { @class = "form-control quanity", placeholder= "0.00" } )
             </div>
         </div>
 
@@ -60,7 +60,7 @@
             <div class="form-group">
                 <label for="quantity" class="pull-right">Цена</label>
                 @*<input type="text" class="form-control"/>*@
-                @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control price" } })
+                @Html.TextBoxFor(model => model.ProductPrice,  new { @class = "form-control price", placeholder = "0.00" } )
             </div>
         </div>
 

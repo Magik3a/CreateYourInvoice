@@ -15,18 +15,23 @@
 
 @(Html.Kendo().Grid(Model).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>
 {
-    columns.Bound(m => m.InvoiceDate);
-    columns.Bound(m => m.InvoiceEndDate);
- 
-    columns.Bound(m => m.TotalPrice);
-    columns.Bound(m => m.DateCreated);
-    columns.Bound(m => m.DateModified);
-    columns.Bound(m => m.UserName);
+columns.Bound(m => m.FakturaNumber);
+columns.Bound(m => m.Company.CompanyName);
+columns.Bound(m => m.ProductInvoices.Count).Title("Продукти");
 
-    columns.Template(@<text>
-        @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }) |
+columns.Bound(m => m.TotalPrice);
+
+columns.Bound(m => m.InvoiceDate);
+columns.Bound(m => m.Period);
+
+
+columns.Bound(m => m.UserName);
+
+columns.Template(@<text>
+                         @*@Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }) |
         @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID })
+        @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID })*@
+<button class="btn btn-info btn-sg">Отвори</button>
     </text>).Title("Функции");
 }).NoRecords("Все още няма запазени фактури.")
 )

@@ -29,9 +29,9 @@
 
         [Display(Name = "Крайна дата")]
         public DateTime InvoiceEndDate { get; set; }
-
-        [Required]
+        
         [StringLength(500)]
+        [Display(Name = "Период")]
         public string Period { get; set; }
 
         [Display(Name = "Крайна цена")]

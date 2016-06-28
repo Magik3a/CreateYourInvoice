@@ -40,14 +40,17 @@ namespace akcet_fakturi.Areas.InvoiceTemplates.Models
 
 
         [Display(Name = "Общо без ддс")]
+        [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true)]
         public Decimal TotalWithoutDDS { get; set; }
 
 
         [Display(Name = "Общо с ддс")]
+        [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true)]
         public Decimal TotalWithDDS { get; set; }
 
 
         [Display(Name = "Общо ддс")]
+        [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true)]
         public Decimal TotalDDS { get; set; }
 
         //ддс

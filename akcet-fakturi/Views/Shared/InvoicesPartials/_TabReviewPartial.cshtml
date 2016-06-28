@@ -1,26 +1,52 @@
 ﻿
-
+<style>
+    #saved-faktura {
+        border: 1px solid black;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        margin-top: 25px;
+    }
+</style>
 <div role="tabpanel" class="tab-pane" id="messages">
-
+    <div class="alert alert-success alert-dismissable" id="alert-box-invoice">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4>	<i class="icon fa fa-check"></i> Моля изчакайте!</h4>
+        Фактурата се запазва.
+    </div>
     <div id="reviewInvoice"></div>
 
     <div class="row  text-center" style="margin-top: 50px">
         @*<a class="" id="saveInvoiceConfirmed">Запази и принтирай въведената фактура</a>*@
-        @Ajax.ActionLink("Запази и принтирай въведената фактура", "SaveInvoiceConfirmed", "Home",new { value=true} ,new AjaxOptions(), new {@class = "btn btn-success btn-lg btnNext" })
+        @Ajax.ActionLink("Запази и принтирай въведената фактура", "SaveInvoiceConfirmed", "Home", new { value = true },
+            new AjaxOptions()
+            {
+                UpdateTargetId = "saved-faktura",
+                InsertionMode = InsertionMode.InsertAfter,
+                OnSuccess = "SuccessInsertingInvoice",
+                OnBegin = "BeginInsertingInvoice"
+            }
+            , new { @class = "btn btn-success btn-lg btnNext" })
     </div>
 </div>
 <script>
-    $('#saveInvoiceConfirmed').click(function() {
-        var model = @Html.Raw(Json.Encode(Model));
-        $.ajax({
-            url: "@Url.Action("SaveInvoiceConfirmed", "Home")",
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(model),
-            success: function(result) {
-
-            }
-        });
-        return false;
+    $(document).ready(function () {
+        $("#alert-box-invoice").hide();
     });
+    function SuccessInsertingInvoice() {
+        $('.nav-tabs > .active').addClass('disabled');
+        $('.nav-tabs > .active').next('li').find('a').trigger('click');
+        $('.nav-tabs > .active').removeAttr("style");
+        $("#nav-tabs-invoices").remove();
+    };
+
+    function BeginInsertingInvoice() {
+        $('html, body').animate({ scrollTop: 0 }, 500);
+        $("#alert-box-invoice").alert();
+        $("#alert-box-invoice")
+            .fadeTo(2000, 500)
+            .slideUp(500,
+                function () {
+                    $("#alert-box-invoice").alert('close');
+                });
+    }
 </script>

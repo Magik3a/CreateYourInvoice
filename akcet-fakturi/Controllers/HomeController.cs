@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using akcetDB;
@@ -169,12 +171,16 @@ namespace akcet_fakturi.Controllers
             return Json(Fakturi);
         }
 
-        public ActionResult SaveProductAjax(string Products,string Dds, string Projects, ProductInvoiceTemp modelProductInvoiceTemp)
+        public ActionResult SaveProductAjax(string Products,string Dds, string Projects, string ProductPrice, string Quanity)
         {
             if(String.IsNullOrWhiteSpace(Products))
                 return Json(false);
-            
-           var userId = User.Identity.GetUserId();
+            if(String.IsNullOrWhiteSpace(ProductPrice))
+                return Json(false);
+            if (String.IsNullOrWhiteSpace(Quanity))
+                return Json(false);
+
+            var userId = User.Identity.GetUserId();
             ViewBag.Dds = new SelectList(db.DDS, "Value", "DdsName");
             ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId), "ProductID", "ProductName");
             ViewBag.Projects = new SelectList(db.Projects.Where(m => m.UserID == userId), "ProjectID", "ProjectName");
@@ -193,8 +199,8 @@ namespace akcet_fakturi.Controllers
                         DdsID = orDefault.DdsID,
                         ProjectID = Int32.Parse(Projects),
                         ProductID = Int32.Parse(Products),
-                        ProductPrice = modelProductInvoiceTemp.ProductPrice,
-                        Quanity = modelProductInvoiceTemp.Quanity
+                        ProductPrice = Decimal.Parse(ProductPrice, CultureInfo.InvariantCulture),
+                        Quanity = Decimal.Parse(Quanity, CultureInfo.InvariantCulture)
                     };
                     using (var context = new AkcetModel())
                     {
@@ -275,11 +281,11 @@ namespace akcet_fakturi.Controllers
             var userId = User.Identity.GetUserId();
             var model = GetInvoiceTempModel(userId);
 
-            using (var context = db)
-            {
+          
                 var counter = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
                 counter.CounterValue ++;
-                context.Counters.Add(counter);
+                db.Counters.Add(counter);
+            //    db.SaveChanges();
 
                 var faktura = new Fakturi();
                 faktura.CompanyID = model.CompanyID;
@@ -289,7 +295,7 @@ namespace akcet_fakturi.Controllers
                 faktura.TotalPrice = model.TotalWithDDS;
                 // TODO Fix TotalPrice
 
-                faktura.Period = model.Period;
+                faktura.Period = model.Period??" ";
                 faktura.FakturaNumber = model.InvoiceNumber;
                 faktura.FakturaHtml = RenderViewToString("Index", model);
                 faktura.UserID = userId;
@@ -297,7 +303,8 @@ namespace akcet_fakturi.Controllers
                 faktura.DateCreated = DateTime.Now;
                 faktura.DateModified = DateTime.Now;
 
-                context.Fakturis.Add(faktura);
+                db.Fakturis.Add(faktura);
+              //  db.SaveChanges();
 
                 var products = new List<ProductInvoice>();
                 foreach (var productTemp in model.ProductsListTemp)
@@ -305,20 +312,20 @@ namespace akcet_fakturi.Controllers
                     products.Add(new ProductInvoice()
                     {
                         InvoiceID = faktura.InvoiceID,
-                        DdsID = productTemp.DdsID??0,
-                        ProductID = productTemp.ProductID??0,
+                        DdsID = productTemp.DdsID,
+                        ProductID = productTemp.ProductID,
                         ProjectID = productTemp.ProjectID,
-                        Quantity = productTemp.Quanity??0
-
+                        Quantity = productTemp.Quanity,
+                        TotalPrice = productTemp.ProductTotalPrice
                         //TODO: Fix Product Total
                     });
                 }
 
-                products.ForEach(s => context.ProductInvoices.Add(s));
+                products.ForEach(s => db.ProductInvoices.Add(s));
 
-                context.SaveChanges();
-            }
-            return Json(value, JsonRequestBehavior.AllowGet);
+                db.SaveChanges();
+
+            return Json( faktura.FakturaHtml, JsonRequestBehavior.AllowGet);
         }
     }
 }

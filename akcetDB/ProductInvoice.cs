@@ -19,11 +19,11 @@ namespace akcetDB
 
         public int ProjectID { get; set; }
 
-        public int ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
 
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
-        public int TotalPrice { get; set; }
+        public decimal? TotalPrice { get; set; }
 
         public virtual DD DD { get; set; }
 

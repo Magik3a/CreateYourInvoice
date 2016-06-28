@@ -43,7 +43,7 @@
                             <div class="input-group-addon" id="dates">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
-                                @Html.EditorFor(model => model.InvoiceDate,  new { htmlAttributes = new { @class = "form-control", id = "reservation", @value=DateTime.Now.ToString("dd.MM.yyyy") } })
+                                @Html.EditorFor(model => model.InvoiceDate,  new { htmlAttributes = new { @class = "form-control", id = "reservation", value="01.01.2014" } })
                                 @Html.ValidationMessageFor(model => model.InvoiceDate, "", new { @class = "text-danger" })
                             </div>
                         <!-- /.input group -->
@@ -61,7 +61,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Period, htmlAttributes: new { @for = "period" })
-                    @Html.EditorFor(model => model.Period, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Period, new { htmlAttributes = new { @class = "form-control"} })
                 </div>
             </div>
         }
@@ -73,7 +73,7 @@
 
     </div>
 
-    <div id="reviewInvoice"><iframe style='width: 100%; height: 1200px' src='@Url.Action("Index", "InvoiceTemplate", new {Area = "InvoiceTemplates" })'></iframe></div>
+    @*<div id="reviewInvoice"><iframe style='width: 100%; height: 1200px' src='@Url.Action("Index", "InvoiceTemplate", new {Area = "InvoiceTemplates" })'></iframe></div>*@
 
 </div>
 

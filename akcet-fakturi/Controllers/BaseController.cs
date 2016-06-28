@@ -32,15 +32,14 @@ namespace akcet_fakturi.Controllers
             if (firstOrDefault != null)
                 model.InvoiceNumber = String.Format("{0}-{1:D6}", DateTime.Now.Year, firstOrDefault.CounterValue);
 
-            var productsListTemp = new List<ProductInvoiceTemp>();
+            //var productsListTemp = new List<ProductInvoiceTemp>();
 
-            productsListTemp =
-                db.ProductInvoiceTemps.Where(p => p.InvoiceIDTemp == tblFakturiTemps.InvoiceIDTemp).ToList();
+           // var productsListTemp = db.ProductInvoiceTemps.Where(p => p.InvoiceIDTemp == tblFakturiTemps.InvoiceIDTemp).ToList();
 
             var ddsList = new List<DD>();
             ddsList = db.DDS.ToList();
             model.ListDds = ddsList;
-            model.ProductsListTemp = productsListTemp;
+            model.ProductsListTemp = db.ProductInvoiceTemps.Where(p => p.InvoiceIDTemp == tblFakturiTemps.InvoiceIDTemp).ToList();
 
 
             var user = dbUser.Users.FirstOrDefault(m => m.UserName == User.Identity.Name);
@@ -57,25 +56,28 @@ namespace akcet_fakturi.Controllers
             model.CompanyAddress = company.Address.StreetName;
             model.CompanyDDSNumber = company.DdsNumber;
 
-            var total = 0;
-            total = model.ProductsListTemp.Sum(prize => Int32.Parse(prize.ProductPrice.ToString()) * Int32.Parse(prize.Quanity.ToString()));
+            model.Period = tblFakturiTemps.Period;
+            var total = Decimal.Zero;
+            total = model.ProductsListTemp.Sum(prize => (prize.ProductPrice * prize.Quanity));
             model.TotalWithoutDDS = total;
-            decimal total2 = Decimal.Zero;
-          //  model.ProductsListTemp.ForEach(p => total2 += Decimal.Parse(((p.ProductPrice??0 * p.Quanity??0) * (GetValueDDS(p.DdsID) / 100) ).ToString()));
+
+            //  model.ProductsListTemp.ForEach(p => total2 += Decimal.Parse(((p.ProductPrice??0 * p.Quanity??0) * (GetValueDDS(p.DdsID) / 100) ).ToString()));
 
             foreach (var product  in model.ProductsListTemp)
             {
-                var totalPriceProduct = Decimal.Parse(((product.ProductPrice??0 * product.Quanity??0) * (GetValueDDS(product.DdsID) / 100)).ToString());
-                
+                var ddsValue = GetValueDDS(product.DdsID);
+                product.ProductTotalPrice = ((product.ProductPrice*product.Quanity)*(ddsValue/100));
+                model.TotalWithDDS += product.ProductTotalPrice + (product.ProductPrice * product.Quanity);
+                model.TotalDDS += product.ProductTotalPrice;
             }
 
             return model;
         }
 
 
-        private int GetValueDDS(int? ddsId)
+        private decimal GetValueDDS(int? ddsId)
         {
-            var ddsValue = Int32.Parse(db.DDS.FirstOrDefault(m => m.DdsID == ddsId).Value);
+            var ddsValue = Decimal.Parse(db.DDS.FirstOrDefault(m => m.DdsID == ddsId).Value);
             return ddsValue;
         }
 

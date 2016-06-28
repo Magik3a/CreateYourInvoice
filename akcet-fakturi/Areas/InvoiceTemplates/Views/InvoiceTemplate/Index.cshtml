@@ -212,7 +212,7 @@
 
 
         <tr>
-            <td>@ProductName(Product.ProductID ?? 1)</td>
+            <td>@ProductName(Product.ProductID)</td>
             <td>@ProjectName(Product.ProjectID)</td>
             <td>
                 @Product.Quanity
@@ -220,19 +220,19 @@
 
             <td>@Product.ProductPrice</td>
             <td>
-                @DDSname(Product.DdsID ?? 0)
+                @DDSname(Product.DdsID)
             </td>
 
             <td>
                 @{
                     var totalProduct = Decimal.Parse(String.Format("{0}", Product.ProductPrice*Product.Quanity));
                 }
-                @totalProduct
+                @($"{totalProduct:F2}")
             </td>
         </tr>
 
 
-        Model.TotalDDS += Decimal.Parse(String.Format("{0}", totalProduct*(GetValueDDS(Product.DdsID))))/100;
+   //     Model.TotalDDS += Decimal.Parse(String.Format("{0}", totalProduct*(GetValueDDS(Product.DdsID))))/100;
 
 
     }
@@ -243,7 +243,7 @@
         <td></td>
         <td>Totaal ex BTW</td>
         <td></td>
-        <td>@Model.TotalWithoutDDS</td>
+        <td>@($"{Model.TotalWithoutDDS:F2}")</td>
     </tr>
 
     <tr>
@@ -252,7 +252,7 @@
         <td></td>
         <td>Totaal BTW</td>
         <td></td>
-        <td>@Model.TotalDDS </td>
+        <td>@($"{Model.TotalDDS:F2}") </td>
     </tr>
 
     <tr class="total">
@@ -262,9 +262,9 @@
         <td>Totaal factuur bedrag (EUR)</td>
         <td></td>
         <td>
-            @{ Model.TotalWithDDS = Model.TotalWithoutDDS + Model.TotalDDS; }
 
-            @Model.TotalWithDDS
+
+            @($"{Model.TotalWithDDS:F2}")
         </td>
     </tr>
 
@@ -333,11 +333,15 @@
                         }
                     }
                 }
-                @subTotal
+                @($"{subTotal:F2}")
             </td>
 
-            <td>@btwBegdrad</td>
-            <td>@totalPerDiscount</td>
+            <td>
+                @($"{btwBegdrad:F2}")
+        </td>
+            <td>
+                @($"{totalPerDiscount:F2}")
+        </td>
         </tr>
     }
 

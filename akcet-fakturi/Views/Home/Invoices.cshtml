@@ -31,7 +31,7 @@
         <div class="tab-content" style="margin-top: 10px;">
 
             <!-- tab to add Company-->
-            @Html.Partial("InvoicesPartials/_TabCompanyPartial", new FakturiTemp())
+            @Html.Partial("InvoicesPartials/_TabCompanyPartial", new FakturiTemp() {InvoiceDate = DateTime.Now.ToString("dd.MM.yyyy"), InvoiceEndDate = DateTime.Now.AddDays(14).ToString("dd.MM.yyyy")})
 
             <!-- tab to add Products-->
             <div role="tabpanel" class="tab-pane" id="profile">
@@ -96,12 +96,14 @@
         //Date range picker
         var datepicker = $('#reservation');
         datepicker.datepicker({
+            defaultDate: '01.01.2014',
             onSelect: function (date) {
                 var nextDayDate = new Date();
                 nextDayDate = moment(date, "DD.MM.YYYY").add(14, 'days').format("DD.MM.YYYY");
               //  nextDayDate.setDate(date + 14);
                 $("#InvoiceEndDate").val(nextDayDate);
-               // console.log(date);
+                // console.log(date);
+             
             }
         });
         //Date range picker with time picker
@@ -132,4 +134,5 @@
         $('.nav-tabs > .active').removeAttr("style");
 
     };
+
 </script>

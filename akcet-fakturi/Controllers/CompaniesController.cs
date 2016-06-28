@@ -92,13 +92,17 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyID,UserId,IdAddress,CompanyName,CompanyMol,DdsNumber,CompanyDescription,CompanyPhone,IsPrimary,DateCreated,DateModified")] Company company)
+        public ActionResult Edit(Company company)
         {
+            ModelState.Remove("UserId");
+
             if (ModelState.IsValid)
             {
-                company.DateModified = DateTime.Now;
+                var tbl = db.Companies.Find(company.CompanyID);
                 
-                db.Entry(company).State = EntityState.Modified;
+                company.DateModified = DateTime.Now;
+                tbl = company;
+               // db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
 
                 TempData["ResultSuccess"] = "Успешно редактирахте компания!";

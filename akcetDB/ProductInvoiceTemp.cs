@@ -14,15 +14,18 @@ namespace akcetDB
 
         public int InvoiceIDTemp { get; set; }
 
-        public int? ProductID { get; set; }
+        public int ProductID { get; set; }
 
-        public int? DdsID { get; set; }
+        public int DdsID { get; set; }
 
         public int ProjectID { get; set; }
+        
+        public decimal ProductPrice { get; set; }
+       
+        public decimal Quanity { get; set; }
 
-        public int? ProductPrice { get; set; }
+        public decimal ProductTotalPrice { get; set; }
 
-        public int? Quanity { get; set; }
 
         public virtual FakturiTemp FakturiTemp { get; set; }
 
