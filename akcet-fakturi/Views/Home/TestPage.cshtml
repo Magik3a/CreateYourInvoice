@@ -1,4 +1,10 @@
 ﻿
+@{
+    ViewBag.Title = "TestPage";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
 
 <div role="tabpanel" class="tab-pane" id="settings">
     <div class="row text-center">
@@ -22,7 +28,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <input type="submit" value="Изпрати" class="btn btn-success btn-lg pull-left" />
+                    <input type="submit" value="Изпрати" class="btn btn-success btn-lg pull-left"/>
                 </div>
 
 
@@ -30,10 +36,12 @@
 
         </div>
     </div>
-
-    <div id="saved-faktura">
-
+    <div id="saved-faktura2">
+        @*<iframe style='width: 100%; height: 1200px' src='@Url.Action("Index", "InvoiceTemplate", new {Area = "InvoiceTemplates"})'></iframe>*@
+        @Html.Raw(ViewBag.Html)
     </div>
+
+    <div id="editor"></div>
 </div>
 <script src="~/Scripts/jquery.browser.min.js"></script>
 <script src="~/Scripts/jquery.printElement.min.js"></script>
@@ -51,11 +59,11 @@
 
     $('#print-button')
         .click(function() {
-            $("#saved-faktura").printElement({ printMode: 'popup' });
+            $("#saved-faktura2").printElement({ printMode: 'popup' });
         });
 
     $('#pdf-button').click(function () {
-        var html = $("#saved-faktura").html();
+        var html = $("#saved-faktura2").html();
         doc.fromHTML(html, 15, 15, {
             'width': 170,
             'elementHandlers': specialElementHandlers

@@ -9,6 +9,11 @@ using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Areas.InvoiceTemplates.Models;
 using akcet_fakturi.Models;
+using HtmlAgilityPack;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+using Kendo.Mvc.Extensions;
 using Microsoft.AspNet.Identity;
 using WebGrease.Css.Extensions;
 
@@ -23,11 +28,23 @@ namespace akcet_fakturi.Controllers
             return View();
         }
 
+        #region Testing
+
+        public ActionResult TestPage()
+        {
+            var userId = User.Identity.GetUserId();
+
+            ViewBag.Html = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault().FakturaHtml;
+
+            return View();
+        }
+        #endregion
+
         [HttpPost]
         public ActionResult Index(ContactFormModel Model)
         {
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View(Model);
 
             TempData["MessageIsSent"] = "Съобщението е изпратено успешно.";
@@ -78,7 +95,7 @@ namespace akcet_fakturi.Controllers
             }
         }
 
-        public  JsonResult CreateAddressAjax(Address modelAddress)
+        public JsonResult CreateAddressAjax(Address modelAddress)
         {
             if (!Request.IsAjaxRequest())
             {
@@ -101,10 +118,10 @@ namespace akcet_fakturi.Controllers
                 context.Addresses.Add(address);
 
                 context.SaveChanges();
-                
+
                 TempData["ResultSuccess"] = "Успешно добавихте адрес!";
 
-                return Json(new {id = address.IdAddress, value = address.StreetName});
+                return Json(new { id = address.IdAddress, value = address.StreetName });
 
             }
         }
@@ -143,14 +160,11 @@ namespace akcet_fakturi.Controllers
             if (Companies == "0")
                 return Json(false);
 
-            if(String.IsNullOrWhiteSpace(Fakturi.InvoiceDate))
+            if (String.IsNullOrWhiteSpace(Fakturi.InvoiceDate))
                 return Json(false);
 
             if (String.IsNullOrWhiteSpace(Fakturi.InvoiceEndDate))
                 return Json(false);
-
-            //if (String.IsNullOrWhiteSpace(Fakturi.Period))
-            //    return Json(false);
 
             Fakturi.CompanyID = Int32.Parse(Companies);
 
@@ -171,14 +185,17 @@ namespace akcet_fakturi.Controllers
             return Json(Fakturi);
         }
 
-        public ActionResult SaveProductAjax(string Products,string Dds, string Projects, string ProductPrice, string Quanity)
+        public ActionResult SaveProductAjax(string Products, string Dds, string Projects, string ProductPrice, string Quanity)
         {
-            if(String.IsNullOrWhiteSpace(Products))
+            if (String.IsNullOrWhiteSpace(Products))
                 return Json(false);
-            if(String.IsNullOrWhiteSpace(ProductPrice))
+            if (String.IsNullOrWhiteSpace(ProductPrice))
                 return Json(false);
             if (String.IsNullOrWhiteSpace(Quanity))
                 return Json(false);
+
+            //TODO: If ProductPrice has ',' do something
+            //TODO: If Quantity has ',' do something
 
             var userId = User.Identity.GetUserId();
             ViewBag.Dds = new SelectList(db.DDS, "Value", "DdsName");
@@ -187,7 +204,7 @@ namespace akcet_fakturi.Controllers
             ViewBag.IsInsertedProduct = true;
 
 
-            var firstOrDefault = db.FakturiTemps.Where(s => s.UserId == userId).OrderByDescending(x=>x.DateCreated).FirstOrDefault();
+            var firstOrDefault = db.FakturiTemps.Where(s => s.UserId == userId).OrderByDescending(x => x.DateCreated).FirstOrDefault();
             if (firstOrDefault != null)
             {
                 var orDefault = db.DDS.FirstOrDefault(s => s.Value == Dds);
@@ -253,7 +270,8 @@ namespace akcet_fakturi.Controllers
         public string RenderViewToString(string templateName, object model)
         {
             templateName = "~/Areas/InvoiceTemplates/Views/InvoiceTemplate/" + templateName + ".cshtml";
-            // var controller = new EmailController();
+
+            //TODO: Make enumeration for variable templateName. 
 
             ViewData.Model = model;
 
@@ -271,6 +289,7 @@ namespace akcet_fakturi.Controllers
             }
             catch (Exception ex)
             {
+                SendExceptionToAdmin(ex);
                 TempData["ResultErrors"] = "There was a problem with rendering template for email!";
                 return "Error in register form! Email with the problem was send to aministrator.";
             }
@@ -278,14 +297,13 @@ namespace akcet_fakturi.Controllers
 
         public JsonResult SaveInvoiceConfirmed(bool value)
         {
-            var userId = User.Identity.GetUserId();
-            var model = GetInvoiceTempModel(userId);
-
-          
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                var model = GetInvoiceTempModel(userId);
                 var counter = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
-                counter.CounterValue ++;
+                counter.CounterValue++;
                 db.Counters.Add(counter);
-            //    db.SaveChanges();
 
                 var faktura = new Fakturi();
                 faktura.CompanyID = model.CompanyID;
@@ -293,18 +311,14 @@ namespace akcet_fakturi.Controllers
                 faktura.InvoiceEndDate = DateTime.Parse(model.InvoiceEndDate);
 
                 faktura.TotalPrice = model.TotalWithDDS;
-                // TODO Fix TotalPrice
-
-                faktura.Period = model.Period??" ";
+                faktura.Period = model.Period ?? " ";
                 faktura.FakturaNumber = model.InvoiceNumber;
                 faktura.FakturaHtml = RenderViewToString("Index", model);
                 faktura.UserID = userId;
                 faktura.UserName = User.Identity.Name;
                 faktura.DateCreated = DateTime.Now;
                 faktura.DateModified = DateTime.Now;
-
                 db.Fakturis.Add(faktura);
-              //  db.SaveChanges();
 
                 var products = new List<ProductInvoice>();
                 foreach (var productTemp in model.ProductsListTemp)
@@ -317,15 +331,74 @@ namespace akcet_fakturi.Controllers
                         ProjectID = productTemp.ProjectID,
                         Quantity = productTemp.Quanity,
                         TotalPrice = productTemp.ProductTotalPrice
-                        //TODO: Fix Product Total
                     });
                 }
-
                 products.ForEach(s => db.ProductInvoices.Add(s));
-
                 db.SaveChanges();
+                return Json(faktura.FakturaHtml, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                SendExceptionToAdmin(ex);
+                return Json(false, JsonRequestBehavior.AllowGet);
 
-            return Json( faktura.FakturaHtml, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
+        public ActionResult SendIvoiceToEmail()
+        {
+            //TODO: Send invoice html as email
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DownloadInvoice(int? idInvoice)
+        {
+            //TODO: Generate PDF from invoice HTML 
+
+            var invoiceId = idInvoice ?? 0;
+            var html = "";
+            var userId = User.Identity.GetUserId();
+            if (invoiceId == 0)
+            {
+                html = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault().FakturaHtml;
+            }
+            html = html.Replace("\r\n", string.Empty);
+            MemoryStream msOutput = new MemoryStream();
+            TextReader reader = new StringReader(html);
+            try
+            {
+                Document document = new Document(PageSize.A4, 30, 30, 30, 30);
+                
+                PdfWriter writer = PdfWriter.GetInstance(document, msOutput);
+                var worker = new HTMLWorker(document);
+                document.Open();
+                worker.StartDocument();
+                worker.Parse(reader);
+                  worker.EndDocument();
+
+                worker.Close();
+                document.Close();
+
+                Response.Buffer = false;
+                Response.Clear();
+                Response.ClearContent();
+                Response.ClearHeaders();
+                //Set the appropriate ContentType.
+                Response.ContentType = "Application/pdf";
+                //Write the file content directly to the HTTP content output stream.
+                Response.BinaryWrite(msOutput.ToArray());
+                Response.Flush();
+                Response.End();
+                return File(msOutput, "application/pdf", DateTime.Now.ToString(CultureInfo.InvariantCulture));
+
+            }
+            catch (Exception ex)
+            {
+                SendExceptionToAdmin(ex);
+                return Json(false);
+            }
         }
     }
 }

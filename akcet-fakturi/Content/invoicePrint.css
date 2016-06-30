@@ -1,0 +1,112 @@
+﻿
+body {
+    font-family: Verdana;
+    background-color: white;
+}
+
+
+div#wrapper {
+    width: 80%;
+    margin-left: 10%;
+}
+
+div#clear {
+    clear: both;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+
+div#user-company h1 {
+    color: #989898;
+    font-weight: bolder;
+    padding: 0px auto;
+    margin: 0px auto;
+}
+
+
+/*company data*/
+div#company-data {
+    margin-top: 60px;
+    float: right;
+}
+
+/*invoice info*/
+div#invoice-info span {
+    display: inline-block;
+    float: left;
+}
+
+.pinki {
+    background-color: #FFCC66;
+    padding: 10px 50px;
+}
+
+.pink {
+    background-color: #FF9966;
+    padding: 10px 50px;
+}
+
+#first {
+    width: 20%;
+}
+
+#second {
+    width: 20%;
+}
+
+#third {
+    width: 60%;
+    float: right;
+}
+
+    #third table {
+        float: right;
+    }
+
+/*INVOICE BODY*/
+#invoice-body {
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #000000;
+}
+
+.th {
+    background-color: #FF9966;
+}
+
+tr.spaceUnder > td {
+    padding-bottom: 5em;
+}
+
+.total {
+    background-color: #99CCFF;
+}
+
+table#total {
+    border: 1px solid #000000;
+    width: 100%;
+    margin-top: 20px;
+}
+
+    table#total tr td {
+        text-align: right;
+    }
+
+.orange {
+    background-color: #FFFFCC;
+}
+
+table#total-price {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #000000;
+}

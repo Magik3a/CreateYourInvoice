@@ -1,170 +1,45 @@
-﻿@using System.Web.UI.WebControls.Expressions
-@using akcetDB
-@using Kendo.Mvc.UI
-@model akcet_fakturi.Areas.InvoiceTemplates.Models.InvoiceTemplateModels
-@{
-    ViewBag.Title = "Invoices";
-    Layout = null;
-    ViewBag.Invoices = "active";
-}
-
-
-
-<!DOCTYPE html>
-<html>
-
-
-
+﻿<html>
 <head>
-    <style>
-        body {
-            font-family: Verdana;
-            background-color: white;
-        }
-
-
-        div#wrapper {
-            width: 80%;
-            margin-left: 10%;
-        }
-
-        div#clear {
-            clear: both;
-        }
-
-        p {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        table {
-            border-collapse: collapse;
-        }
-
-
-        div#user-company h1 {
-            color: #989898;
-            font-weight: bolder;
-            padding: 0px auto;
-            margin: 0px auto;
-        }
-
-
-        /*company data*/
-        div#company-data {
-            margin-top: 60px;
-            float: right;
-        }
-
-        /*invoice info*/
-        div#invoice-info span {
-            display: inline-block;
-            float: left;
-        }
-
-        .pinki {
-            background-color: #FFCC66;
-            padding: 10px 50px;
-        }
-
-        .pink {
-            background-color: #FF9966;
-            padding: 10px 50px;
-        }
-
-        #first {
-            width: 20%;
-        }
-
-        #second {
-            width: 20%;
-        }
-
-        #third {
-            width: 60%;
-            float: right;
-        }
-
-        #third table {
-            float: right;
-        }
-
-        /*INVOICE BODY*/
-        #invoice-body {
-            width: 100%;
-            margin-top: 20px;
-            border: 1px solid #000000;
-        }
-
-        .th {
-            background-color: #FF9966;
-        }
-
-        tr.spaceUnder > td {
-            padding-bottom: 5em;
-        }
-
-        .total {
-            background-color: #99CCFF;
-        }
-
-        table#total {
-            border: 1px solid #000000;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        table#total tr td {
-            text-align: right;
-            ;
-        }
-
-        .orange {
-            background-color: #FFFFCC;
-        }
-
-        table#total-price {
-            width: 100%;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #000000;
-        }
-    </style>
+    @using System.Web.UI.WebControls.Expressions
+    @using akcetDB
+    @using Kendo.Mvc.UI
+    @model akcet_fakturi.Areas.InvoiceTemplates.Models.InvoiceTemplateModels
+    @{
+        ViewBag.Title = "Invoices";
+        Layout = null;
+        ViewBag.Invoices = "active";
+    }
+    <link href="~/Content/invoicePrint.css" rel="stylesheet" />
+   
 </head>
-
-
-
 <body>
-<div id="wrapper">
+    <div id="wrapper">
 
-<!--USER's company-->
-<div id="user-company">
-    <h1>@Model.UserCompanyName</h1><br/>
-    <span>@Model.UserAddress</span>
-    <br/><br/>
-    <span>Telefoon: @Model.UserPhone</span><br/>
-    <span>Benkrekening: @Model.UserBankAccount</span><br/>
-    <span>KvK-nummer: @Model.UserBulstat</span><br/>
-    <span>BTW-nummer: @Model.UserDDsNumber</span>
+        <!--USER's company-->
+        <div id="user-company">
+            <h1>@Model.UserCompanyName</h1><br />
+            <span>@Model.UserAddress</span>
+            <br /><br />
+            <span>Telefoon: @Model.UserPhone</span><br />
+            <span>Benkrekening: @Model.UserBankAccount</span><br />
+            <span>KvK-nummer: @Model.UserBulstat</span><br />
+            <span>BTW-nummer: @Model.UserDDsNumber</span>
+        </div>
 
+        <!--COMPANY data-->
+        <div id="company-data">
+            <span>@Model.CompanyName</span><br />
+            <span> @Model.CompanyAddress</span><br />
 
+        </div>
 
-</div>
+        <div id="clear"></div>
 
-<!--COMPANY data-->
-<div id="company-data">
-    <span>@Model.CompanyName</span><br/>
-    <span> @Model.CompanyAddress</span><br/>
+        <h1>FACTUUR</h1>
 
-</div>
-
-<div id="clear"></div>
-
-<h1>FACTUUR</h1>
-
-<!--invoice info-->
-<div id="invoice-info">
-    <span id="first">
+        <!--invoice info-->
+        <div id="invoice-info">
+            <span id="first">
                 <p>Factuurdatum:</p>
                 <p>Factuurnummer:</p>
                 <p>Vervaldatum:</p>
@@ -172,7 +47,7 @@
                 <p>Periode:</p>
             </span>
 
-    <span id="second">
+            <span id="second">
                 <p>@Model.InvoiceDate</p>
                 <p>@Model.InvoiceNumber</p>
                 <p>@Model.InvoiceEndDate</p>
@@ -180,7 +55,7 @@
                 <p>@Model.Period</p>
             </span>
 
-    <span id="third">
+            <span id="third">
                 <table border="1px solid black">
                     <tr>
                         <td class="pinki">Um BTW-nummer</td>
@@ -190,180 +65,168 @@
                     </tr>
                 </table>
             </span>
-</div>
+        </div>
 
-<div id="clear"></div>
+        <div id="clear"></div>
 
-<!--BODY na faktura-->
-<table id="invoice-body">
-    <tr class="th">
-        <td>Omschrijving</td>
-        <td>Project</td>
-        <td>Aantal</td>
-        <td>Prijs ex BTW</td>
-        <td>BTW</td>
-        <td>Bedrag ex BTW</td>
-    </tr>
-
-
-    @foreach (var Product in Model.ProductsListTemp)
-    {
+        <!--BODY na faktura-->
+        <table id="invoice-body">
+            <tr class="th">
+                <td>Omschrijving</td>
+                <td>Project</td>
+                <td>Aantal</td>
+                <td>Prijs ex BTW</td>
+                <td>BTW</td>
+                <td>Bedrag ex BTW</td>
+            </tr>
 
 
-
-        <tr>
-            <td>@ProductName(Product.ProductID)</td>
-            <td>@ProjectName(Product.ProjectID)</td>
-            <td>
-                @Product.Quanity
-            </td>
-
-            <td>@Product.ProductPrice</td>
-            <td>
-                @DDSname(Product.DdsID)
-            </td>
-
-            <td>
-                @{
-                    var totalProduct = Decimal.Parse(String.Format("{0}", Product.ProductPrice*Product.Quanity));
-                }
-                @($"{totalProduct:F2}")
-            </td>
-        </tr>
+            @foreach (var Product in Model.ProductsListTemp)
+            {
 
 
-   //     Model.TotalDDS += Decimal.Parse(String.Format("{0}", totalProduct*(GetValueDDS(Product.DdsID))))/100;
 
+                <tr>
+                    <td>@ProductName(Product.ProductID)</td>
+                    <td>@ProjectName(Product.ProjectID)</td>
+                    <td>
+                        @Product.Quanity
+                    </td>
 
-    }
+                    <td>@Product.ProductPrice</td>
+                    <td>
+                        @DDSname(Product.DdsID)
+                    </td>
 
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Totaal ex BTW</td>
-        <td></td>
-        <td>@($"{Model.TotalWithoutDDS:F2}")</td>
-    </tr>
-
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Totaal BTW</td>
-        <td></td>
-        <td>@($"{Model.TotalDDS:F2}") </td>
-    </tr>
-
-    <tr class="total">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Totaal factuur bedrag (EUR)</td>
-        <td></td>
-        <td>
-
-
-            @($"{Model.TotalWithDDS:F2}")
-        </td>
-    </tr>
-
-</table>
-
-
-<!--signitures-->
-<table id="total">
-
-    <tr>
-
-        <td>Voorbetaling:</td>
-
-    </tr>
-
-    <tr class="orange">
-
-        <td>Nog te betalen:</td>
-
-    </tr>
-</table>
-
-<table id="total-price">
-    <tr class="pinki">
-        <td>BTW Details</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-
-    </tr>
-
-
-    <tr class="pink">
-        <td>BTW %</td>
-        <td></td>
-        <td>Subtotaal</td>
-        <td>BTW Bedrag</td>
-        <td>Bruto Bedlag</td>
-    </tr>
-
-    @{
-        Model.ListDds.OrderByDescending(s => s.Value).ThenBy(c => c.DdsName);
-        //  var subTotal = new Dictionary<string, string>();
-
-    }
-    @foreach (var dds in Model.ListDds)
-    {
-
-        <tr>
-            <td>@dds.DdsName</td>
-            <td></td>
-            <td>
-                @{
-                    decimal subTotal = Decimal.Zero;
-                    decimal btwBegdrad = Decimal.Zero;
-                    decimal totalPerDiscount = Decimal.Zero;
-
-                    foreach (var product in Model.ProductsListTemp)
-                    {
-                        if (product.DdsID == dds.DdsID)
-                        {
-                            subTotal += Decimal.Parse(String.Format("{0}", product.ProductPrice*product.Quanity));
-                            btwBegdrad = Decimal.Parse(String.Format("{0}", subTotal*(GetValueDDS(product.DdsID))))/100;
-                            totalPerDiscount = subTotal + btwBegdrad;
+                    <td>
+                        @{
+                            var totalProduct = Decimal.Parse(String.Format("{0}", Product.ProductPrice * Product.Quanity));
                         }
-                    }
-                }
-                @($"{subTotal:F2}")
-            </td>
-
-            <td>
-                @($"{btwBegdrad:F2}")
-        </td>
-            <td>
-                @($"{totalPerDiscount:F2}")
-        </td>
-        </tr>
-    }
-
-</table>
+                        @($"{totalProduct:F2}")
+                    </td>
+                </tr>
 
 
-<p>
-    Wij verzoeken u vriendelijk de factuur binnen 14 dagen over te maken naar ons bankrekeningnummer IBAN NL86INGB0006461388
-</p>
-
-<!--3-->
-
-</div>
+                                //     Model.TotalDDS += Decimal.Parse(String.Format("{0}", totalProduct*(GetValueDDS(Product.DdsID))))/100;
 
 
+                            }
 
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Totaal ex BTW</td>
+                <td></td>
+                <td>@($"{Model.TotalWithoutDDS:F2}")</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Totaal BTW</td>
+                <td></td>
+                <td>@($"{Model.TotalDDS:F2}") </td>
+            </tr>
+
+            <tr class="total">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Totaal factuur bedrag (EUR)</td>
+                <td></td>
+                <td>
+
+
+                    @($"{Model.TotalWithDDS:F2}")
+                </td>
+            </tr>
+
+        </table>
+
+
+        <!--signitures-->
+        <table id="total">
+
+            <tr>
+
+                <td>Voorbetaling:</td>
+
+            </tr>
+
+            <tr class="orange">
+
+                <td>Nog te betalen:</td>
+
+            </tr>
+        </table>
+
+        <table id="total-price">
+            <tr class="pinki">
+                <td>BTW Details</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+
+            <tr class="pink">
+                <td>BTW %</td>
+                <td></td>
+                <td>Subtotaal</td>
+                <td>BTW Bedrag</td>
+                <td>Bruto Bedlag</td>
+            </tr>
+
+            @{
+                Model.ListDds.OrderByDescending(s => s.Value).ThenBy(c => c.DdsName);
+                //  var subTotal = new Dictionary<string, string>();
+
+            }
+            @foreach (var dds in Model.ListDds)
+            {
+
+                <tr>
+                    <td>@dds.DdsName</td>
+                    <td></td>
+                    <td>
+                        @{
+                            decimal subTotal = Decimal.Zero;
+                            decimal btwBegdrad = Decimal.Zero;
+                            decimal totalPerDiscount = Decimal.Zero;
+
+                            foreach (var product in Model.ProductsListTemp)
+                            {
+                                if (product.DdsID == dds.DdsID)
+                                {
+                                    subTotal += Decimal.Parse(String.Format("{0}", product.ProductPrice * product.Quanity));
+                                    btwBegdrad = Decimal.Parse(String.Format("{0}", subTotal * (GetValueDDS(product.DdsID)))) / 100;
+                                    totalPerDiscount = subTotal + btwBegdrad;
+                                }
+                            }
+                        }
+                        @($"{subTotal:F2}")
+                    </td>
+
+                    <td>
+                        @($"{btwBegdrad:F2}")
+                    </td>
+                    <td>
+                        @($"{totalPerDiscount:F2}")
+                    </td>
+                </tr>
+                            }
+
+        </table>
+        <p>
+            Wij verzoeken u vriendelijk de factuur binnen 14 dagen over te maken naar ons bankrekeningnummer IBAN NL86INGB0006461388
+        </p>
+    </div>
 </body>
-
-
 </html>
-
-
 @functions{
     private AkcetModel db = new AkcetModel();
     public string ProductName(int productId)
