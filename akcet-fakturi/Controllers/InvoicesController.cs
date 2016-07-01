@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Models;
+using Microsoft.AspNet.Identity;
 
 namespace akcet_fakturi.Controllers
 {
@@ -25,7 +26,9 @@ namespace akcet_fakturi.Controllers
 
         public ActionResult UserInvoices()
         {
-            var fakturis = db.Fakturis.Include(f => f.Company);
+
+            var userId = User.Identity.GetUserId();
+            var fakturis = db.Fakturis.Include(f => f.Company).Where(f => f.UserID == userId);
             return View(fakturis.ToList());
         }
 
@@ -126,6 +129,14 @@ namespace akcet_fakturi.Controllers
             db.Fakturis.Remove(fakturi);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult GetInvoice(int IdInvoice)
+        {
+            
+            var html = db.Fakturis.Find(IdInvoice).FakturaHtml;
+            
+            return Json(html);
         }
 
         protected override void Dispose(bool disposing)

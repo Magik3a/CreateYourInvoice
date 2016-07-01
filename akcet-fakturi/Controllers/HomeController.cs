@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using akcetDB;
 using akcet_fakturi.Areas.InvoiceTemplates.Models;
 using akcet_fakturi.Models;
@@ -55,7 +56,7 @@ namespace akcet_fakturi.Controllers
         {
             ViewBag.formNumber = 1;
             var userId = User.Identity.GetUserId();
-            ViewBag.IdAddress = new SelectList(db.Addresses, "IdAddress", "StreetName");
+            ViewBag.IdAddress = new SelectList(db.Addresses.Where(a => a.UserName == User.Identity.Name), "IdAddress", "StreetName");
             ViewBag.Dds = new SelectList(db.DDS, "Value", "DdsName");
             ViewBag.Companies = new SelectList(db.Companies.Where(m => m.UserId == userId), "CompanyID", "CompanyName");
             ViewBag.Projects = new SelectList(db.Projects.Where(m => m.UserID == userId), "ProjectID", "ProjectName");
@@ -115,6 +116,8 @@ namespace akcet_fakturi.Controllers
                 address.DateCreated = DateTime.Now;
                 address.DateModified = DateTime.Now;
                 address.UserName = User.Identity.Name;
+                address.UserID = User.Identity.GetUserId();
+
                 context.Addresses.Add(address);
 
                 context.SaveChanges();
@@ -204,6 +207,7 @@ namespace akcet_fakturi.Controllers
             ViewBag.IsInsertedProduct = true;
 
 
+            var model = new ProductInvoiceTemp();
             var firstOrDefault = db.FakturiTemps.Where(s => s.UserId == userId).OrderByDescending(x => x.DateCreated).FirstOrDefault();
             if (firstOrDefault != null)
             {
@@ -224,16 +228,25 @@ namespace akcet_fakturi.Controllers
                         db.ProductInvoiceTemps.Add(tbl);
                         db.SaveChanges();
                     }
+
+                    model.ProductInvoiceID = tbl.ProductInvoiceID;
                 }
             }
-            var model = new ProductInvoiceTemp();
 
-            model.ProductInvoiceID = Int32.Parse(Products);
+            //  model.ProductInvoiceID = Int32.Parse(Products);
             return PartialView("~/Views/Shared/InvoicesPartials/_TabProductsPartial.cshtml", model);
         }
 
         public ActionResult DeleteProductInvoiceTemp(int id)
         {
+            //var userId = User.Identity.GetUserId();
+            //var invoiceId = db.FakturiTemps.Where(s => s.UserId == userId).OrderByDescending(x => x.DateCreated).FirstOrDefault().InvoiceIDTemp;
+
+            var product = db.ProductInvoiceTemps.Find(id);
+
+            db.ProductInvoiceTemps.Remove(product);
+            db.SaveChanges();
+
             return Json(id, JsonRequestBehavior.AllowGet);
         }
 
@@ -301,9 +314,20 @@ namespace akcet_fakturi.Controllers
             {
                 var userId = User.Identity.GetUserId();
                 var model = GetInvoiceTempModel(userId);
-                var counter = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
-                counter.CounterValue++;
-                db.Counters.Add(counter);
+
+                // TODO: Set Counter for each user for every year 
+
+                var tempCounter =
+                    db.Counters.Where(c => c.UserID == userId && c.Year == DateTime.Now.Year.ToString())
+                        .FirstOrDefault();
+                tempCounter.CounterValue++;
+
+
+                //var counter = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
+                //counter.CounterValue++;
+                //db.Counters.Add(counter);
+                // TODO: Set Counter for each user for every year 
+
 
                 var faktura = new Fakturi();
                 faktura.CompanyID = model.CompanyID;
@@ -347,10 +371,36 @@ namespace akcet_fakturi.Controllers
         }
 
 
-        public ActionResult SendIvoiceToEmail()
+        public ActionResult SendIvoiceToEmail(string EmailReciever)
         {
-            //TODO: Send invoice html as email
-            return Json(true, JsonRequestBehavior.AllowGet);
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(EmailReciever);
+                if (addr.Address != EmailReciever)
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                var userID = User.Identity.GetUserId();
+                var html =
+                    db.Fakturis.OrderByDescending(o => o.DateCreated)
+                        .Where(s => s.UserID == userID)
+                        .FirstOrDefault()
+                        .FakturaHtml;
+
+
+                var model = new akcet_fakturi.Areas.EmailTemplates.Models.InvoiceTemplate();
+
+                model.html = html;
+
+                var emailBody = RenderEmailViewToString("InvoiceEmailTemplate", model);
+                //    emailBody = emailBody.Replace("\r\n", "");
+                if (!SendEmail(EmailReciever, "Нова фактура", emailBody))
+                    return Json(false, JsonRequestBehavior.AllowGet);
+
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult DownloadInvoice(int? idInvoice)
@@ -370,13 +420,13 @@ namespace akcet_fakturi.Controllers
             try
             {
                 Document document = new Document(PageSize.A4, 30, 30, 30, 30);
-                
+
                 PdfWriter writer = PdfWriter.GetInstance(document, msOutput);
                 var worker = new HTMLWorker(document);
                 document.Open();
                 worker.StartDocument();
                 worker.Parse(reader);
-                  worker.EndDocument();
+                worker.EndDocument();
 
                 worker.Close();
                 document.Close();

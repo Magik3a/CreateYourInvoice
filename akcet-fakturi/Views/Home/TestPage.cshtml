@@ -7,6 +7,11 @@
 
 
 <div role="tabpanel" class="tab-pane" id="settings">
+    <div class="alert alert-success alert-dismissable" id="alert-box-invoice">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4>	<i class="icon fa fa-check"></i> Моля изчакайте!</h4>
+        Фактурата се запазва.
+    </div>
     <div class="row text-center">
         <div class="col-md-3">
             @*<a href="@Url.Action("DownloadInvoice", "Home")" class="btn btn-success btn-lg" target="_blank">Свали в .pdf</a>*@
@@ -20,11 +25,11 @@
             {
                 OnBegin = "BeginSendingEmail",
                 OnSuccess = "SuccessSendingEmail"
-            }))
+            }, new {id = "formEmail"}))
             {
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <input style="height: 3.2em;" type="text" class="form-control" id="email-reciever" name="email-reciever" placeholder="Изпрати до имейл">
+                        <input style="height: 3.2em;" type="text" class="form-control" id="EmailReciever" name="EmailReciever" placeholder="Изпрати до имейл">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -51,6 +56,29 @@
     //TODO: Print using Jquery or pluging (recomend plugin)
     var doc = new jsPDF();
 
+    $(document).ready(function () {
+        $("#alert-box-invoice").hide();
+    });
+    function SuccessSendingEmail(data) {
+        console.log(data);
+        if (data) {
+            $("#formEmail").hide(500);
+        } else {
+            alert("Грешка при изпращане! Моля проверете въведения имейл и натиснете изпращане.");
+        }
+    };
+
+    function BeginSendingEmail() {
+        $('html, body').animate({ scrollTop: 0 }, 500);
+        $("#alert-box-invoice").alert();
+        $("#alert-box-invoice")
+            .fadeTo(2000, 500)
+            .slideUp(500,
+                function () {
+                    $("#alert-box-invoice").alert('close');
+                });
+        
+    };
     var specialElementHandlers = {
         '#editor': function (element, renderer) {
             return true;

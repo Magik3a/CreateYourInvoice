@@ -32,6 +32,14 @@ namespace akcet_fakturi.Models
         [Display(Name = "Адрес")]
         public string Address { get; set; }
 
+        [Display(Name = "Пощенски код")]
+        public string ZipCode { get; set; }
+        
+        [StringLength(500)]
+        [Display(Name = "Град")]
+        public string City { get; set; }
+
+
         [Display(Name = "Регистриран на")]
         public DateTime DateCreated { get; set; }
 

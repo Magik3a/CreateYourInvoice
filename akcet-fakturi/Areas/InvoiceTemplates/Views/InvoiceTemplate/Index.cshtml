@@ -21,7 +21,7 @@
             <span>@Model.UserAddress</span>
             <br /><br />
             <span>Telefoon: @Model.UserPhone</span><br />
-            <span>Benkrekening: @Model.UserBankAccount</span><br />
+            <span>Bankrekening: @Model.UserBankAccount</span><br />
             <span>KvK-nummer: @Model.UserBulstat</span><br />
             <span>BTW-nummer: @Model.UserDDsNumber</span>
         </div>
@@ -146,21 +146,7 @@
         </table>
 
 
-        <!--signitures-->
-        <table id="total">
-
-            <tr>
-
-                <td>Voorbetaling:</td>
-
-            </tr>
-
-            <tr class="orange">
-
-                <td>Nog te betalen:</td>
-
-            </tr>
-        </table>
+  
 
         <table id="total-price">
             <tr class="pinki">
@@ -208,14 +194,23 @@
                                 }
                             }
                         }
-                        @($"{subTotal:F2}")
+                        @if (subTotal != 0)
+                        {
+                            @($"{subTotal:F2}")
+                        }
                     </td>
 
                     <td>
-                        @($"{btwBegdrad:F2}")
+                        @if (btwBegdrad != 0)
+                        {
+                            @($"{btwBegdrad:F2}")
+                        }
                     </td>
                     <td>
-                        @($"{totalPerDiscount:F2}")
+                        @if (totalPerDiscount != 0)
+                        {
+                            @($"{totalPerDiscount:F2}")
+                        }
                     </td>
                 </tr>
                             }

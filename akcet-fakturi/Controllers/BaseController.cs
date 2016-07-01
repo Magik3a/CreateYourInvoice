@@ -35,9 +35,31 @@ namespace akcet_fakturi.Controllers
                 model.InvoiceEndDate = tblFakturiTemps.InvoiceEndDate;
                 model.InvoiceDate = tblFakturiTemps.InvoiceDate;
             }
-            var firstOrDefault = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
-            if (firstOrDefault != null)
+
+            if (db.Counters.Any(c => c.Year == DateTime.Now.Year.ToString()) && db.Counters.Any(c => c.UserID == userId))
+            {
+                var firstOrDefault = db.Counters.OrderByDescending(s => s.CounterValue)
+                    .FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString() && c.UserID == userId);
                 model.InvoiceNumber = String.Format("{0}-{1:D6}", DateTime.Now.Year, firstOrDefault.CounterValue);
+
+            }
+            else
+            {
+                var tempCounter = new Counter();
+                tempCounter.CounterValue = 1;
+                tempCounter.UserID = userId;
+                tempCounter.Year = DateTime.Now.Year.ToString();
+                db.Counters.Add(tempCounter);
+                db.SaveChanges();
+                model.InvoiceNumber = String.Format("{0}-{1:D6}", DateTime.Now.Year, 1);
+            }
+
+            
+
+
+           // var firstOrDefault = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
+          //  if (firstOrDefault != null)
+            //    model.InvoiceNumber = String.Format("{0}-{1:D6}", DateTime.Now.Year, firstOrDefault.CounterValue);
 
             //var productsListTemp = new List<ProductInvoiceTemp>();
 
@@ -60,7 +82,7 @@ namespace akcet_fakturi.Controllers
             var company = db.Companies.FirstOrDefault(c => c.CompanyID == tblFakturiTemps.CompanyID);
             model.CompanyID = tblFakturiTemps.CompanyID ?? 0;
             model.CompanyName = company.CompanyName;
-            model.CompanyAddress = company.Address.StreetName;
+            model.CompanyAddress = String.Format("{0}, {1}, {2}",company.Address.StreetName, company.Address.ZipCode, company.Address.City);
             model.CompanyDDSNumber = company.DdsNumber;
 
             model.Period = tblFakturiTemps.Period;
@@ -86,6 +108,33 @@ namespace akcet_fakturi.Controllers
         {
             var ddsValue = Decimal.Parse(db.DDS.FirstOrDefault(m => m.DdsID == ddsId).Value);
             return ddsValue;
+        }
+
+        [ChildActionOnly]
+        public string RenderEmailViewToString(string templateName, object model)
+        {
+            templateName = "~/Areas/EmailTemplates/Views/Template/" + templateName + ".cshtml";
+            // var controller = new EmailController();
+
+            ViewData.Model = model;
+
+            try
+            {
+                using (StringWriter sw = new StringWriter())
+                {
+                    ViewEngineResult viewResult = ViewEngines.Engines.FindView(ControllerContext, templateName, null);
+                    ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                    viewResult.View.Render(viewContext, sw);
+                    viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+
+                    return sw.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ResultErrors"] = "There was a problem with rendering template for email!";
+                return "Error in register form! Email with the problem was send to aministrator.";
+            }
         }
 
         [ChildActionOnly]
@@ -143,12 +192,12 @@ namespace akcet_fakturi.Controllers
 
                 // step 6: close the document and the worker
                 worker.EndDocument();
-             //   worker.Close();
-              //  document.Close();
+                //   worker.Close();
+                //  document.Close();
             }
             catch (Exception ex)
             {
-               SendExceptionToAdmin(ex);
+                SendExceptionToAdmin(ex);
             }
             return msOutput;
         }
@@ -213,15 +262,24 @@ namespace akcet_fakturi.Controllers
         }
 
         [ChildActionOnly]
-        public void SendEmail(string reciever, string subject, string body)
+        public Boolean SendEmail(string reciever, string subject, string body)
         {
-            SmtpClient SmtpServer = new SmtpClient();
-            MailMessage mail = new MailMessage();
-            mail.To.Add(reciever);
-            mail.Subject = subject;
-            mail.Body = body;
-            mail.IsBodyHtml = true;
-            SmtpServer.Send(mail);
+            try
+            {
+                SmtpClient SmtpServer = new SmtpClient();
+                MailMessage mail = new MailMessage();
+                mail.To.Add(reciever);
+                mail.Subject = subject;
+                mail.Body = body;
+                mail.IsBodyHtml = true;
+                SmtpServer.Send(mail);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
 

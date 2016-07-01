@@ -13,7 +13,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>*@
 
-@(Html.Kendo().Grid(Model).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>
+@(Html.Kendo().Grid(Model.OrderByDescending(s => s.DateCreated)).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>
 {
 columns.Bound(m => m.FakturaNumber);
 columns.Bound(m => m.Company.CompanyName);
@@ -31,7 +31,59 @@ columns.Template(@<text>
                          @*@Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }) |
         @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID })*@
-<button class="btn btn-info btn-sg">Отвори</button>
+<button class="btn btn-info btn-sg btnForModal"      data-toggle="modal" data-target=".bs-example-modal-lg" data-idinvoice="@item.InvoiceID">Отвори</button>
     </text>).Title("Функции");
 }).NoRecords("Все още няма запазени фактури.")
-)
+      )
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" style="width: 90%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel"></h4>
+
+            </div>
+            <div class="modal-body" id="modal-body-ajax">
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success btn-lg" id="print-button">Принтирай</button>
+                <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Затвори</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.browser.min.js"></script>
+<script src="~/Scripts/jquery.printElement.min.js"></script>
+
+@section Scripts {
+    <script>
+        var idStatic, idLang, idStaticText;
+
+        $('#print-button')
+            .click(function () {
+                $("#modal-body-ajax").printElement({ printMode: 'popup' });
+            });
+        $(".btnForModal").click(function () {
+            idInvoice = $(this).data("idinvoice");
+
+            $.ajax({
+                url: '/Invoices/GetInvoice',
+                type: 'POST',
+                dataType: 'json',
+                data: { IdInvoice: idInvoice },
+                success: function (data) {
+                  //  console.log(data);
+                    $("#modal-body-ajax").html(data);
+
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        });
+    </script>
+}

@@ -17,6 +17,9 @@
         [Key]
         public int IdAddress { get; set; }
 
+        [StringLength(128)]
+        public string UserID { get; set; }
+
         [Required]
         [StringLength(500)]
         [Display(Name = "Адрес")]

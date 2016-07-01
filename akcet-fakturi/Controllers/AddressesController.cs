@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Models;
+using Microsoft.AspNet.Identity;
 
 namespace akcet_fakturi.Views
 {
@@ -19,7 +20,8 @@ namespace akcet_fakturi.Views
         // GET: Addresses
         public ActionResult Index()
         {
-            return View(db.Addresses.ToList());
+           
+            return View(db.Addresses.Where(a => a.UserName == User.Identity.Name));
         }
 
         // GET: Addresses/Details/5
