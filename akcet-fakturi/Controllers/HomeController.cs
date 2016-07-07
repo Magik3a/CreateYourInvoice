@@ -56,8 +56,13 @@ namespace akcet_fakturi.Controllers
         {
             ViewBag.formNumber = 1;
             var userId = User.Identity.GetUserId();
+            string error = "";
+
+            if(!CheckUserDetails(userId, out error))
+                TempData["ResultError"] = error;
+
             ViewBag.IdAddress = new SelectList(db.Addresses.Where(a => a.UserName == User.Identity.Name), "IdAddress", "StreetName");
-            ViewBag.Dds = new SelectList(db.DDS, "Value", "DdsName");
+            ViewBag.Dds = new SelectList(db.DDS, "DdsId", "DdsName");
             ViewBag.Companies = new SelectList(db.Companies.Where(m => m.UserId == userId), "CompanyID", "CompanyName");
             ViewBag.Projects = new SelectList(db.Projects.Where(m => m.UserID == userId), "ProjectID", "ProjectName");
             ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId), "ProductID", "ProductName");
@@ -201,7 +206,7 @@ namespace akcet_fakturi.Controllers
             //TODO: If Quantity has ',' do something
 
             var userId = User.Identity.GetUserId();
-            ViewBag.Dds = new SelectList(db.DDS, "Value", "DdsName");
+            ViewBag.Dds = new SelectList(db.DDS, "DdsId", "DdsName");
             ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId), "ProductID", "ProductName");
             ViewBag.Projects = new SelectList(db.Projects.Where(m => m.UserID == userId), "ProjectID", "ProjectName");
             ViewBag.IsInsertedProduct = true;
@@ -211,13 +216,13 @@ namespace akcet_fakturi.Controllers
             var firstOrDefault = db.FakturiTemps.Where(s => s.UserId == userId).OrderByDescending(x => x.DateCreated).FirstOrDefault();
             if (firstOrDefault != null)
             {
-                var orDefault = db.DDS.FirstOrDefault(s => s.Value == Dds);
-                if (orDefault != null)
-                {
+               // var orDefault = db.DDS.FirstOrDefault(s => s.Value == Dds);
+               // if (orDefault != null)
+             //   {
                     var tbl = new ProductInvoiceTemp()
                     {
                         InvoiceIDTemp = firstOrDefault.InvoiceIDTemp,
-                        DdsID = orDefault.DdsID,
+                        DdsID = Int32.Parse(Dds),
                         ProjectID = Int32.Parse(Projects),
                         ProductID = Int32.Parse(Products),
                         ProductPrice = Decimal.Parse(ProductPrice, CultureInfo.InvariantCulture),
@@ -230,7 +235,7 @@ namespace akcet_fakturi.Controllers
                     }
 
                     model.ProductInvoiceID = tbl.ProductInvoiceID;
-                }
+             //   }
             }
 
             //  model.ProductInvoiceID = Int32.Parse(Products);

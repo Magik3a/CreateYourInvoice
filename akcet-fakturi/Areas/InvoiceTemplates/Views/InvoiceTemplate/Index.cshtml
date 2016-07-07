@@ -14,8 +14,6 @@
 </head>
 <body>
     <div id="wrapper">
-
-        <!--USER's company-->
         <div id="user-company">
             <h1>@Model.UserCompanyName</h1><br />
             <span>@Model.UserAddress</span>
@@ -26,7 +24,6 @@
             <span>BTW-nummer: @Model.UserDDsNumber</span>
         </div>
 
-        <!--COMPANY data-->
         <div id="company-data">
             <span>@Model.CompanyName</span><br />
             <span> @Model.CompanyAddress</span><br />
@@ -37,7 +34,6 @@
 
         <h1>FACTUUR</h1>
 
-        <!--invoice info-->
         <div id="invoice-info">
             <span id="first">
                 <p>Factuurdatum:</p>
@@ -56,7 +52,7 @@
             </span>
 
             <span id="third">
-                <table border="1px solid black">
+                <table style="border: 1px solid black">
                     <tr>
                         <td class="pinki">Um BTW-nummer</td>
                     </tr>
@@ -69,7 +65,6 @@
 
         <div id="clear"></div>
 
-        <!--BODY na faktura-->
         <table id="invoice-body">
             <tr class="th">
                 <td>Omschrijving</td>
@@ -83,9 +78,6 @@
 
             @foreach (var Product in Model.ProductsListTemp)
             {
-
-
-
                 <tr>
                     <td>@ProductName(Product.ProductID)</td>
                     <td>@ProjectName(Product.ProjectID)</td>
@@ -105,13 +97,7 @@
                         @($"{totalProduct:F2}")
                     </td>
                 </tr>
-
-
-                                //     Model.TotalDDS += Decimal.Parse(String.Format("{0}", totalProduct*(GetValueDDS(Product.DdsID))))/100;
-
-
                             }
-
             <tr>
                 <td></td>
                 <td></td>
@@ -120,7 +106,6 @@
                 <td></td>
                 <td>@($"{Model.TotalWithoutDDS:F2}")</td>
             </tr>
-
             <tr>
                 <td></td>
                 <td></td>
@@ -129,7 +114,6 @@
                 <td></td>
                 <td>@($"{Model.TotalDDS:F2}") </td>
             </tr>
-
             <tr class="total">
                 <td></td>
                 <td></td>
@@ -137,16 +121,10 @@
                 <td>Totaal factuur bedrag (EUR)</td>
                 <td></td>
                 <td>
-
-
                     @($"{Model.TotalWithDDS:F2}")
                 </td>
             </tr>
-
         </table>
-
-
-  
 
         <table id="total-price">
             <tr class="pinki">
@@ -166,15 +144,12 @@
                 <td>BTW Bedrag</td>
                 <td>Bruto Bedlag</td>
             </tr>
-
             @{
                 Model.ListDds.OrderByDescending(s => s.Value).ThenBy(c => c.DdsName);
-                //  var subTotal = new Dictionary<string, string>();
-
+    
             }
             @foreach (var dds in Model.ListDds)
             {
-
                 <tr>
                     <td>@dds.DdsName</td>
                     <td></td>
@@ -207,7 +182,7 @@
                         }
                     </td>
                     <td>
-                        @if (totalPerDiscount != 0)
+                        @if (totalPerDiscount != 0 && !dds.IsNullValue)
                         {
                             @($"{totalPerDiscount:F2}")
                         }

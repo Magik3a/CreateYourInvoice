@@ -81,7 +81,9 @@ namespace akcet_fakturi.Controllers
                 Kwk = user.KwkNumber?? " ",
                 BankAccount = user.BankAcount??" ",
                 UserName = user.UserName,
-                Address = user.Address
+                Address = user.Address ??"",
+                ZipCode = user.ZipCode ?? " ",
+                City = user.City ?? " "
             };
             return View(model);
         }
@@ -433,10 +435,13 @@ namespace akcet_fakturi.Controllers
 
             var model = new ChangeOtherInfoViewModel()
             {
+                CompanyName = user.CompanyName ?? "",
                 DdsNumber = user.DdsNumber ?? "  ",
                 KwkNumber = user.KwkNumber ?? " ",
                 BankAccount = user.BankAcount ?? " ",
-                Address = user.Address
+                Address = user.Address ?? " ",
+                ZipCode = user.ZipCode ?? " ",
+                City = user.City ?? " "
             };
             return View(model);
             
@@ -452,11 +457,13 @@ namespace akcet_fakturi.Controllers
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             user.Address = model.Address;
+            user.City = model.City;
+            user.ZipCode = model.ZipCode;
             user.CompanyName = model.CompanyName;
             user.BankAcount = model.BankAccount;
             user.DdsNumber = model.DdsNumber;
             user.KwkNumber = model.KwkNumber;
-
+            
             var result = await UserManager.UpdateAsync(user);
             if (result.Succeeded)
             {

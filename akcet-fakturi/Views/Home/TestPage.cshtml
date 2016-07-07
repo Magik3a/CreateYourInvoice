@@ -42,7 +42,6 @@
         </div>
     </div>
     <div id="saved-faktura2">
-        @*<iframe style='width: 100%; height: 1200px' src='@Url.Action("Index", "InvoiceTemplate", new {Area = "InvoiceTemplates"})'></iframe>*@
         @Html.Raw(ViewBag.Html)
     </div>
 
@@ -54,7 +53,6 @@
 
 <script>
     //TODO: Print using Jquery or pluging (recomend plugin)
-    var doc = new jsPDF();
 
     $(document).ready(function () {
         $("#alert-box-invoice").hide();
@@ -91,12 +89,20 @@
         });
 
     $('#pdf-button').click(function () {
-        var html = $("#saved-faktura2").html();
-        doc.fromHTML(html, 15, 15, {
-            'width': 170,
-            'elementHandlers': specialElementHandlers
-        });
-        doc.save('sample-file.pdf');
+        var doc = new jsPDF();
+
+        var html = $("#wrapper").html();
+        console.log(html);
+        //doc.fromHTML(html, 15, 15, {
+        //    'width': 170,
+        //    'elementHandlers': specialElementHandlers
+        //});
+        //doc.save('sample-file.pdf');
+
+
+        doc.fromHTML($('#invoice-info').get(0), 10, 10, { 'width': 180 });
+        doc.autoPrint();
+        doc.output("dataurlnewwindow");
     });
 </script>
 

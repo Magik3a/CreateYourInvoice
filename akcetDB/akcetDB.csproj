@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201606271705211_201606271704526_AutomaticMigration.Designer.cs">
       <DependentUpon>201606271705211_201606271704526_AutomaticMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607011217248_201607011216565_AutomaticMigration.cs" />
+    <Compile Include="Migrations\201607011217248_201607011216565_AutomaticMigration.Designer.cs">
+      <DependentUpon>201607011217248_201607011216565_AutomaticMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductInvoice.cs" />
@@ -83,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606271705211_201606271704526_AutomaticMigration.resx">
       <DependentUpon>201606271705211_201606271704526_AutomaticMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607011217248_201607011216565_AutomaticMigration.resx">
+      <DependentUpon>201607011217248_201607011216565_AutomaticMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

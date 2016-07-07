@@ -23,6 +23,37 @@ namespace akcet_fakturi.Controllers
         private AkcetModel db = new AkcetModel();
         private ApplicationDbContext dbUser = new ApplicationDbContext();
 
+        public bool CheckUserDetails(string UserId, out string Error)
+        {
+            Error = " ";
+
+            var user = dbUser.Users.Find(UserId);
+
+            if (String.IsNullOrWhiteSpace(user.City))
+                Error = "Не сте въвели град в профила ви.";
+
+            if (String.IsNullOrWhiteSpace(user.Address))
+                Error = "Не сте въвели адрес в профила ви.";
+
+            if (String.IsNullOrWhiteSpace(user.ZipCode))
+                Error = "Не сте въвели пощенски код в профила ви.";
+
+            if (String.IsNullOrWhiteSpace(user.CompanyName))
+                Error = "Не сте въвели име на компания в профила ви.";
+
+            if (String.IsNullOrWhiteSpace(user.BankAcount))
+                Error = "Не сте въвели банкова сметка в профила ви.";
+
+            if (String.IsNullOrWhiteSpace(user.DdsNumber))
+                Error = "Не сте въвели ддс номер в профила ви.";
+
+            if (String.IsNullOrWhiteSpace(user.KwkNumber))
+                Error = "Не сте въвели квк номер в профила ви.";
+
+            return (string.IsNullOrWhiteSpace(Error));
+        }
+
+
         [ChildActionOnly]
         [OutputCache(Duration = 2 * 60)]
         public InvoiceTemplateModels GetInvoiceTempModel(string userId)
@@ -106,8 +137,11 @@ namespace akcet_fakturi.Controllers
 
         private decimal GetValueDDS(int? ddsId)
         {
-            var ddsValue = Decimal.Parse(db.DDS.FirstOrDefault(m => m.DdsID == ddsId).Value);
-            return ddsValue;
+            var dds = db.DDS.FirstOrDefault(m => m.DdsID == ddsId);
+            if (dds.IsNullValue)
+                return decimal.Zero;
+            else
+             return Decimal.Parse(dds.Value);
         }
 
         [ChildActionOnly]

@@ -23,6 +23,7 @@
     columns.Bound(m => m.DateCreated);
     columns.Bound(m => m.DateModified);
     columns.Bound(m => m.UserName);
+      columns.Bound(m => m.IsNullValue);
 
     columns.Template(@<text>
         @Html.ActionLink("Редактирай", "Edit", new { id = item.DdsID }) |

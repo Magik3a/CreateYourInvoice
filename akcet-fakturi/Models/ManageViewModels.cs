@@ -17,6 +17,8 @@ namespace akcet_fakturi.Models
         public string Dds { get; set; }
         public string Kwk { get; set; }
         public string Address { get; set; }
+        public string ZipCode { get; set; }
+        public string City { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
     }
@@ -88,6 +90,12 @@ namespace akcet_fakturi.Models
     {
         [Display(Name = "Address")]
         public string Address { get; set; }
+        
+        [Display(Name = "Пощенски код")]
+        public string ZipCode { get; set; }
+        
+        [Display(Name = "Град")]
+        public string City { get; set; }
 
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }

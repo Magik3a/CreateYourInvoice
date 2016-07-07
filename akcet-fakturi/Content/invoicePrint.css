@@ -5,11 +5,14 @@ body {
 }
 
 
-div#wrapper {
+/*div#wrapper {
     width: 80%;
     margin-left: 10%;
-}
+}*/
 
+div#wrapper {
+     font-size: 0.9em;
+}
 div#clear {
     clear: both;
 }
@@ -34,8 +37,7 @@ div#user-company h1 {
 
 /*company data*/
 div#company-data {
-    margin-top: 60px;
-    float: right;
+  text-align: right;
 }
 
 /*invoice info*/

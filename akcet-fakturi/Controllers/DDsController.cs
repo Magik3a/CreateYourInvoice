@@ -48,7 +48,7 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DdsID,DdsName,Value,DateCreated,DateModified,UserName")] DD dD)
+        public ActionResult Create([Bind(Include = "DdsID,DdsName,Value,IsNullValue,DateCreated,DateModified,UserName")] DD dD)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Exclude = "DateCreated", Include = "DdsID,DdsName,Value,DateModified,UserName")] DD dD)
+        public ActionResult Edit([Bind(Exclude = "DateCreated", Include = "DdsID,DdsName,Value,IsNullValue,DateModified,UserName")] DD dD)
         {
     
             if (ModelState.IsValid)
@@ -94,6 +94,7 @@ namespace akcet_fakturi.Controllers
                 dds.DateModified = DateTime.Now;
                 dds.UserName = User.Identity.Name;
                 dds.Value = dD.Value;
+                dds.IsNullValue = dD.IsNullValue;
                 db.SaveChanges();
                 TempData["ResultSuccess"] = "Успешно редактирахте стойност!";
                 return RedirectToAction("Index");

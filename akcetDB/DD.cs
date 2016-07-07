@@ -25,6 +25,9 @@
         [Display(Name = "Стойност")]
         public string Value { get; set; }
 
+        [Display(Name = "Нулева стойност?")]
+        public bool IsNullValue { get; set; }
+
         [Display(Name = "Дата на създаване")]
         public DateTime? DateCreated { get; set; }
 
