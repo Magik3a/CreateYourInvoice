@@ -63,9 +63,9 @@ namespace akcet_fakturi.Controllers
 
             ViewBag.IdAddress = new SelectList(db.Addresses.Where(a => a.UserName == User.Identity.Name), "IdAddress", "StreetName");
             ViewBag.Dds = new SelectList(db.DDS, "DdsId", "DdsName");
-            ViewBag.Companies = new SelectList(db.Companies.Where(m => m.UserId == userId), "CompanyID", "CompanyName");
-            ViewBag.Projects = new SelectList(db.Projects.Where(m => m.UserID == userId), "ProjectID", "ProjectName");
-            ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId), "ProductID", "ProductName");
+            ViewBag.Companies = new SelectList(db.Companies.Where(m => m.UserId == userId && m.IsDeleted == false), "CompanyID", "CompanyName");
+            ViewBag.Projects = new SelectList(db.Projects.Where(m => m.UserID == userId && m.IsDeleted == false), "ProjectID", "ProjectName");
+            ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId && p.IsDeleted == false), "ProductID", "ProductName");
             return View();
         }
 
@@ -92,7 +92,7 @@ namespace akcet_fakturi.Controllers
                 company.DateCreated = DateTime.Now;
                 company.DateModified = DateTime.Now;
                 company.UserId = User.Identity.GetUserId();
-
+                company.IsDeleted = false;
                 db.Companies.Add(company);
                 db.SaveChanges();
 
@@ -154,7 +154,7 @@ namespace akcet_fakturi.Controllers
                 modelProduct.DateCreated = DateTime.Now;
                 modelProduct.DateModified = DateTime.Now;
                 modelProduct.UserId = User.Identity.GetUserId();
-
+                modelProduct.IsDeleted = false;
                 db.Products.Add(modelProduct);
                 db.SaveChanges();
 
@@ -207,8 +207,8 @@ namespace akcet_fakturi.Controllers
 
             var userId = User.Identity.GetUserId();
             ViewBag.Dds = new SelectList(db.DDS, "DdsId", "DdsName");
-            ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId), "ProductID", "ProductName");
-            ViewBag.Projects = new SelectList(db.Projects.Where(m => m.UserID == userId), "ProjectID", "ProjectName");
+            ViewBag.Products = new SelectList(db.Products.Where(p => p.UserId == userId && p.IsDeleted == false), "ProductID", "ProductName");
+            ViewBag.Projects = new SelectList(db.Projects.Where(m => m.UserID == userId && m.IsDeleted == false), "ProjectID", "ProjectName");
             ViewBag.IsInsertedProduct = true;
 
 
@@ -276,7 +276,7 @@ namespace akcet_fakturi.Controllers
                 modelProject.DateModified = DateTime.Now;
                 modelProject.UserID = User.Identity.GetUserId();
                 modelProject.UserName = User.Identity.Name;
-
+                modelProject.IsDeleted = false;
                 db.Projects.Add(modelProject);
                 db.SaveChanges();
 
@@ -380,27 +380,21 @@ namespace akcet_fakturi.Controllers
         {
             try
             {
-                var addr = new System.Net.Mail.MailAddress(EmailReciever);
-                if (addr.Address != EmailReciever)
-                    return Json(false, JsonRequestBehavior.AllowGet);
-                var userID = User.Identity.GetUserId();
-                var html =
-                    db.Fakturis.OrderByDescending(o => o.DateCreated)
-                        .Where(s => s.UserID == userID)
-                        .FirstOrDefault()
-                        .FakturaHtml;
+                string strEmailResult = "<img src=\"www.fakturi.nl/images/logo.png\">";
 
 
-                var model = new akcet_fakturi.Areas.EmailTemplates.Models.InvoiceTemplate();
+                var strResult = "";
+                var userId = User.Identity.GetUserId();
 
-                model.html = html;
+                strResult = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault().FakturaHtml;
 
-                var emailBody = RenderEmailViewToString("InvoiceEmailTemplate", model);
-                //    emailBody = emailBody.Replace("\r\n", "");
-                if (!SendEmail(EmailReciever, "Нова фактура", emailBody))
-                    return Json(false, JsonRequestBehavior.AllowGet);
+                strResult = strResult.Replace("\r\n", string.Empty);
+                byte[] bytes = GeneratePDF(strResult);
 
+                SendEmail(EmailReciever, "Invoice", strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
+                
                 return Json(true, JsonRequestBehavior.AllowGet);
+
             }
             catch
             {
@@ -410,31 +404,13 @@ namespace akcet_fakturi.Controllers
 
         public ActionResult DownloadInvoice(int? idInvoice)
         {
-            //TODO: Generate PDF from invoice HTML 
-
-            var invoiceId = idInvoice ?? 0;
-            var html = "";
-            var userId = User.Identity.GetUserId();
-            if (invoiceId == 0)
-            {
-                html = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault().FakturaHtml;
-            }
-            html = html.Replace("\r\n", string.Empty);
-            MemoryStream msOutput = new MemoryStream();
-            TextReader reader = new StringReader(html);
             try
             {
-                Document document = new Document(PageSize.A4, 30, 30, 30, 30);
+                var userId = User.Identity.GetUserId();
 
-                PdfWriter writer = PdfWriter.GetInstance(document, msOutput);
-                var worker = new HTMLWorker(document);
-                document.Open();
-                worker.StartDocument();
-                worker.Parse(reader);
-                worker.EndDocument();
+                var strResult = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault().FakturaHtml;
 
-                worker.Close();
-                document.Close();
+                byte[] bytes = GeneratePDF(strResult);
 
                 Response.Buffer = false;
                 Response.Clear();
@@ -443,10 +419,10 @@ namespace akcet_fakturi.Controllers
                 //Set the appropriate ContentType.
                 Response.ContentType = "Application/pdf";
                 //Write the file content directly to the HTTP content output stream.
-                Response.BinaryWrite(msOutput.ToArray());
+                Response.BinaryWrite(bytes);
                 Response.Flush();
                 Response.End();
-                return File(msOutput, "application/pdf", DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                return File(bytes, "application/pdf", DateTime.Now.ToString(CultureInfo.InvariantCulture));
 
             }
             catch (Exception ex)

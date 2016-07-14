@@ -26,6 +26,7 @@ namespace akcet_fakturi.Areas.InvoiceTemplates.Models
 
         [Display(Name = "Адрес")]
         public string UserAddress { get; set; }
+        
 
         public int CompanyID { get; set; }
 

@@ -35,6 +35,7 @@
         <h1>FACTUUR</h1>
 
         <div id="invoice-info">
+
             <span id="first">
                 <p>Factuurdatum:</p>
                 <p>Factuurnummer:</p>
@@ -98,11 +99,14 @@
                     </td>
                 </tr>
                             }
-            <tr>
+          
+        </table>
+        <table class="totals">
+              <tr>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Totaal ex BTW</td>
+                <td>Totaal ex BTW: </td>
                 <td></td>
                 <td>@($"{Model.TotalWithoutDDS:F2}")</td>
             </tr>
@@ -110,7 +114,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Totaal BTW</td>
+                <td>Totaal BTW: </td>
                 <td></td>
                 <td>@($"{Model.TotalDDS:F2}") </td>
             </tr>
@@ -118,14 +122,13 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Totaal factuur bedrag (EUR)</td>
+                <td>Totaal factuur bedrag (EUR): </td>
                 <td></td>
                 <td>
                     @($"{Model.TotalWithDDS:F2}")
                 </td>
             </tr>
         </table>
-
         <table id="total-price">
             <tr class="pinki">
                 <td>BTW Details</td>
@@ -176,7 +179,7 @@
                     </td>
 
                     <td>
-                        @if (btwBegdrad != 0)
+                        @if (btwBegdrad != 0 && !dds.IsNullValue)
                         {
                             @($"{btwBegdrad:F2}")
                         }
@@ -186,13 +189,17 @@
                         {
                             @($"{totalPerDiscount:F2}")
                         }
+                        else if(totalPerDiscount != 0)
+                        {
+                          @($"{subTotal:F2}")
+                        }
                     </td>
                 </tr>
                             }
 
         </table>
         <p>
-            Wij verzoeken u vriendelijk de factuur binnen 14 dagen over te maken naar ons bankrekeningnummer IBAN NL86INGB0006461388
+            Wij verzoeken u vriendelijk de factuur binnen 14 dagen over te maken naar ons bankrekeningnummer IBAN @Model.UserBankAccount
         </p>
     </div>
 </body>

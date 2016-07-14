@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "akcet-fakturi", "akcet-fakt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "akcetDB", "akcetDB\akcetDB.csproj", "{21CB195B-19EE-4006-84C5-FE92EB88D29A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{6B537C08-5536-4F06-BB20-BC557CBD9278}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{21CB195B-19EE-4006-84C5-FE92EB88D29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21CB195B-19EE-4006-84C5-FE92EB88D29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21CB195B-19EE-4006-84C5-FE92EB88D29A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B537C08-5536-4F06-BB20-BC557CBD9278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B537C08-5536-4F06-BB20-BC557CBD9278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B537C08-5536-4F06-BB20-BC557CBD9278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B537C08-5536-4F06-BB20-BC557CBD9278}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

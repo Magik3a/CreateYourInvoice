@@ -52,6 +52,8 @@
         [Display(Name = "Редактирана на")]
         public DateTime? DateModified { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual Address Address { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

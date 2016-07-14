@@ -19,7 +19,11 @@ namespace akcet_fakturi.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-            return View(db.Projects.ToList());
+            var model = new List<Project>();
+            var userId = User.Identity.GetUserId();
+
+            model = db.Projects.Where(p => p.UserID == userId && p.IsDeleted == false).ToList();
+            return View(model);
         }
 
         // GET: Projects/Details/5
@@ -91,6 +95,8 @@ namespace akcet_fakturi.Controllers
             if (ModelState.IsValid)
             {
                 var table = db.Projects.Find(project.ProjectID);
+
+                table.ProjectName = project.ProjectName;
                 table.DateModified = DateTime.Now;
                 table.UserName = User.Identity.Name;
                 db.SaveChanges();
@@ -120,7 +126,8 @@ namespace akcet_fakturi.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Project project = db.Projects.Find(id);
-            db.Projects.Remove(project);
+
+            project.IsDeleted = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

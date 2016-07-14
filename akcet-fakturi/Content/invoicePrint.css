@@ -34,6 +34,12 @@ div#user-company h1 {
     margin: 0px auto;
 }
 
+.totals{
+    text-align: right;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
 
 /*company data*/
 div#company-data {

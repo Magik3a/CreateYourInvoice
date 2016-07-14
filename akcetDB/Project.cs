@@ -27,6 +27,7 @@ namespace akcetDB
 
         public DateTime? DateModified { get; set; }
 
+        public bool IsDeleted { get; set; }
         [StringLength(500)]
         public string UserName { get; set; }
 

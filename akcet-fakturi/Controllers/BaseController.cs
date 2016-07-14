@@ -14,6 +14,7 @@ using HtmlAgilityPack;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
+using Microsoft.AspNet.Identity;
 
 namespace akcet_fakturi.Controllers
 {
@@ -71,7 +72,7 @@ namespace akcet_fakturi.Controllers
             {
                 var firstOrDefault = db.Counters.OrderByDescending(s => s.CounterValue)
                     .FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString() && c.UserID == userId);
-                model.InvoiceNumber = String.Format("{0}-{1:D6}", DateTime.Now.Year, firstOrDefault.CounterValue);
+                model.InvoiceNumber = String.Format("{0}-{1:D3}", DateTime.Now.Year, firstOrDefault.CounterValue);
 
             }
             else
@@ -82,14 +83,14 @@ namespace akcet_fakturi.Controllers
                 tempCounter.Year = DateTime.Now.Year.ToString();
                 db.Counters.Add(tempCounter);
                 db.SaveChanges();
-                model.InvoiceNumber = String.Format("{0}-{1:D6}", DateTime.Now.Year, 1);
+                model.InvoiceNumber = String.Format("{0}-{1:D3}", DateTime.Now.Year, 1);
             }
 
-            
 
 
-           // var firstOrDefault = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
-          //  if (firstOrDefault != null)
+
+            // var firstOrDefault = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
+            //  if (firstOrDefault != null)
             //    model.InvoiceNumber = String.Format("{0}-{1:D6}", DateTime.Now.Year, firstOrDefault.CounterValue);
 
             //var productsListTemp = new List<ProductInvoiceTemp>();
@@ -103,7 +104,7 @@ namespace akcet_fakturi.Controllers
 
 
             var user = dbUser.Users.FirstOrDefault(m => m.UserName == User.Identity.Name);
-            model.UserAddress = user.Address;
+            model.UserAddress = String.Format("{0}, {1}, {2}", user.Address, user.ZipCode, user.City);
             model.UserBankAccount = user.BankAcount;
             model.UserBulstat = user.KwkNumber;
             model.UserCompanyName = user.CompanyName;
@@ -113,7 +114,7 @@ namespace akcet_fakturi.Controllers
             var company = db.Companies.FirstOrDefault(c => c.CompanyID == tblFakturiTemps.CompanyID);
             model.CompanyID = tblFakturiTemps.CompanyID ?? 0;
             model.CompanyName = company.CompanyName;
-            model.CompanyAddress = String.Format("{0}, {1}, {2}",company.Address.StreetName, company.Address.ZipCode, company.Address.City);
+            model.CompanyAddress = String.Format("{0}, {1}, {2}", company.Address.StreetName, company.Address.ZipCode, company.Address.City);
             model.CompanyDDSNumber = company.DdsNumber;
 
             model.Period = tblFakturiTemps.Period;
@@ -141,7 +142,7 @@ namespace akcet_fakturi.Controllers
             if (dds.IsNullValue)
                 return decimal.Zero;
             else
-             return Decimal.Parse(dds.Value);
+                return Decimal.Parse(dds.Value);
         }
 
         [ChildActionOnly]
@@ -293,6 +294,98 @@ namespace akcet_fakturi.Controllers
                     }
                 }
             }
+        }
+
+        public byte[] GeneratePDF(string html)
+        {
+            #region Generate PDF
+            Byte[] bytes;
+            var ms = new MemoryStream();
+            //Create an iTextSharp Document wich is an abstraction of a PDF but **NOT** a PDF
+            var doc = new Document();
+            var writer = PdfWriter.GetInstance(doc, ms);
+            doc.Open();
+            doc.NewPage();
+            var hDocument = new HtmlDocument()
+            {
+                OptionWriteEmptyNodes = true,
+                OptionAutoCloseOnEnd = true
+            };
+            hDocument.LoadHtml(html);
+            var closedTags = hDocument.DocumentNode.WriteTo();
+            var example_html = closedTags;
+            var example_css = System.IO.File.ReadAllText(Server.MapPath("~/Content/invoicePrint.css"));
+            var msCss = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(example_css));
+            var msHtml = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(example_html));
+            string fontPath = Server.MapPath("~/fonts/arialuni.ttf");
+            iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, msHtml, msCss, Encoding.UTF8, new UnicodeFontFactory(fontPath));
+            doc.Close();
+            bytes = ms.ToArray();
+
+            //var testFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.pdf");
+            //  System.IO.File.WriteAllBytes(testFile, bytes);
+            #endregion
+
+            return bytes;
+        }
+
+        public bool SendInvoiceToMail(string EmailReciever)
+        {
+
+            string strEmailResult = "Body of the email";
+
+
+            var strResult = "";
+            var userId = User.Identity.GetUserId();
+
+            strResult = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault().FakturaHtml;
+
+            strResult = strResult.Replace("\r\n", string.Empty);
+            byte[] bytes =  GeneratePDF(strResult);
+            
+            SendEmail(EmailReciever, "Invoice", strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
+
+            return true;
+        }
+
+        public class UnicodeFontFactory : FontFactoryImp, IUnicodeFontFactory
+        {
+
+            private readonly BaseFont _baseFont;
+
+            public UnicodeFontFactory(string FontPath)
+            {
+                _baseFont = BaseFont.CreateFont(FontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
+            }
+
+            public override Font GetFont(string fontname, string encoding, bool embedded, float size, int style, BaseColor color,
+              bool cached)
+            {
+                return new Font(_baseFont, size, style, color);
+            }
+        }
+
+        public Boolean SendEmail(string reciever, string subject, string body, byte[] FileByte, string NameAtachemnt)
+        {
+            try
+            {
+                SmtpClient SmtpServer = new SmtpClient();
+                MailMessage mail = new MailMessage();
+                mail.To.Add(reciever);
+                mail.Subject = subject;
+                mail.Body = body;
+                Attachment file = new Attachment(new MemoryStream(FileByte), NameAtachemnt);
+                mail.Attachments.Add(file);
+                mail.IsBodyHtml = true;
+                SmtpServer.Send(mail);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
         [ChildActionOnly]

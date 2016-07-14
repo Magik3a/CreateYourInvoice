@@ -21,7 +21,7 @@ namespace akcet_fakturi.Controllers
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
-            var companies = db.Companies.Include(c => c.Address).Where(m => m.UserId == userId);
+            var companies = db.Companies.Include(c => c.Address).Where(m => m.UserId == userId && m.IsDeleted == false);
             return View(companies.ToList());
         }
 
@@ -92,16 +92,21 @@ namespace akcet_fakturi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Company company)
+        public ActionResult Edit(int? id, Company company, string IdAddress)
         {
             ModelState.Remove("UserId");
 
             if (ModelState.IsValid)
             {
-                var tbl = db.Companies.Find(company.CompanyID);
+                var tbl = db.Companies.Find(id);
                 
-                company.DateModified = DateTime.Now;
-                tbl = company;
+                tbl.DateModified = DateTime.Now;
+                tbl.CompanyName = company.CompanyName;
+                tbl.CompanyMol = company.CompanyMol;
+                tbl.DdsNumber = company.DdsNumber;
+                int idAddress = Convert.ToInt32(IdAddress);
+                tbl.Address = db.Addresses.Where(a => a.IdAddress == idAddress).FirstOrDefault();
+                tbl.CompanyPhone = company.CompanyPhone;
                // db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -134,7 +139,7 @@ namespace akcet_fakturi.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Company company = db.Companies.Find(id);
-            db.Companies.Remove(company);
+            company.IsDeleted = true;
             db.SaveChanges();
             TempData["ResultSuccess"] = "Успешно изтрихте компания!";
             return RedirectToAction("Index");

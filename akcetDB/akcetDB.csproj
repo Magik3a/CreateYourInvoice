@@ -70,6 +70,14 @@
     <Compile Include="Migrations\201607011217248_201607011216565_AutomaticMigration.Designer.cs">
       <DependentUpon>201607011217248_201607011216565_AutomaticMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607140640327_201607140639498_AutomaticMigration.cs" />
+    <Compile Include="Migrations\201607140640327_201607140639498_AutomaticMigration.Designer.cs">
+      <DependentUpon>201607140640327_201607140639498_AutomaticMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607140644067_201607140643470_AutomaticMigration.cs" />
+    <Compile Include="Migrations\201607140644067_201607140643470_AutomaticMigration.Designer.cs">
+      <DependentUpon>201607140644067_201607140643470_AutomaticMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductInvoice.cs" />
@@ -90,6 +98,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607011217248_201607011216565_AutomaticMigration.resx">
       <DependentUpon>201607011217248_201607011216565_AutomaticMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607140640327_201607140639498_AutomaticMigration.resx">
+      <DependentUpon>201607140640327_201607140639498_AutomaticMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607140644067_201607140643470_AutomaticMigration.resx">
+      <DependentUpon>201607140644067_201607140643470_AutomaticMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

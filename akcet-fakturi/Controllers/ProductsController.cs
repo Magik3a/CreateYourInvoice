@@ -20,7 +20,11 @@ namespace akcet_fakturi.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var model = new List<Product>();
+            var userId = User.Identity.GetUserId();
+            model = db.Products.Where(p => p.UserId == userId && p.IsDeleted == false).ToList();
+
+            return View(model);
         }
 
         // GET: Products/Details/5
@@ -92,9 +96,11 @@ namespace akcet_fakturi.Controllers
             ModelState.Remove("UserId");
             if (ModelState.IsValid)
             {
-                var dds = db.Products.Find(product.ProductID);
+                var productDb = db.Products.Find(product.ProductID);
 
-                dds.DateModified = DateTime.Now;
+                productDb.DateModified = DateTime.Now;
+                productDb.ProductName = product.ProductName;
+                
                 db.SaveChanges();
                 TempData["ResultSuccess"] = "Успешно редактирахте продукт!";
                 return RedirectToAction("Index");
@@ -123,7 +129,7 @@ namespace akcet_fakturi.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            product.IsDeleted = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

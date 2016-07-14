@@ -64,6 +64,10 @@
       <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.9.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.9\lib\itextsharp.xmlworker.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Kendo.Mvc, Version=2015.2.624.440, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Kendo.Mvc.dll</HintPath>
@@ -258,6 +262,7 @@
     <Compile Include="Controllers\DDsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\IUnicodeFontFactory.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -285,6 +290,10 @@
     <Compile Include="Migrations\201606300812189_201606300811573_AutomaticMigration.cs" />
     <Compile Include="Migrations\201606300812189_201606300811573_AutomaticMigration.Designer.cs">
       <DependentUpon>201606300812189_201606300811573_AutomaticMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607140655274_201607140655073_AutomaticMigration.cs" />
+    <Compile Include="Migrations\201607140655274_201607140655073_AutomaticMigration.Designer.cs">
+      <DependentUpon>201607140655274_201607140655073_AutomaticMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Migrations\201606181339547_Initial.cs" />
     <Compile Include="Models\Migrations\201606181339547_Initial.Designer.cs">
@@ -421,6 +430,7 @@
     <Content Include="Areas\InvoiceTemplates\Views\web.config" />
     <Content Include="Areas\InvoiceTemplates\Views\InvoiceTemplate\Index.cshtml" />
     <Content Include="Areas\EmailTemplates\Views\Template\InvoiceEmailTemplate.cshtml" />
+    <Content Include="fonts\ARIALUNI.TTF" />
     <None Include="Properties\PublishProfiles\svetlin.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datepicker-bg.js" />
@@ -610,6 +620,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606300812189_201606300811573_AutomaticMigration.resx">
       <DependentUpon>201606300812189_201606300811573_AutomaticMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607140655274_201607140655073_AutomaticMigration.resx">
+      <DependentUpon>201607140655274_201607140655073_AutomaticMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Migrations\201606181339547_Initial.resx">
       <DependentUpon>201606181339547_Initial.cs</DependentUpon>

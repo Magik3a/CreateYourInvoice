@@ -27,6 +27,7 @@
         [Display(Name = "Дата на създаване")]
         public DateTime? DateCreated { get; set; }
 
+        public bool IsDeleted { get; set; }
 
         [Display(Name = "Дата на промяна")]
         public DateTime DateModified { get; set; }
