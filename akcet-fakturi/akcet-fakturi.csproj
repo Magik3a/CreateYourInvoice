@@ -604,6 +604,10 @@
       <Project>{21cb195b-19ee-4006-84c5-fe92eb88d29a}</Project>
       <Name>akcetDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\Tools.csproj">
+      <Project>{6b537c08-5536-4f06-bb20-bc557cbd9278}</Project>
+      <Name>Tools</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606261312025_201606261311398_AutomaticMigration.resx">

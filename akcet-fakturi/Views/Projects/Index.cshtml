@@ -11,7 +11,7 @@
   <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 <p>
-    @Html.ActionLink("Създай нов", "Create")
+    @Html.ActionLink("Създай нов", "Create", null, new {@class="btn btn-success btnCreateNew" })
 </p>
 
 @(Html.Kendo().Grid(Model).Name("Projects").Sortable().Filterable().Pageable().Columns(columns =>

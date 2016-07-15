@@ -16,7 +16,7 @@ namespace akcet_fakturi.Controllers
     public class InvoicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        private AkcetModel dbAkcet = new AkcetModel();
         // GET: Invoices
         public ActionResult Index()
         {
@@ -125,9 +125,17 @@ namespace akcet_fakturi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Fakturi fakturi = db.Fakturis.Find(id);
-            db.Fakturis.Remove(fakturi);
-            db.SaveChanges();
+            Fakturi fakturi = dbAkcet.Fakturis.Find(id);
+
+            foreach(var product in dbAkcet.ProductInvoices.Where(p => p.InvoiceID == id))
+            {
+                dbAkcet.ProductInvoices.Remove(product);
+            }
+            var counter = Int32.Parse(fakturi.FakturaNumber.Split('-')[1]) + 1;
+            var counterTbl = dbAkcet.Counters.Where(c => c.CounterValue == counter && c.UserID == fakturi.UserID).FirstOrDefault();
+           // TODO: When invoice is deleted counter is still in max value
+            dbAkcet.Fakturis.Remove(fakturi);
+            dbAkcet.SaveChanges();
             return RedirectToAction("Index");
         }
 

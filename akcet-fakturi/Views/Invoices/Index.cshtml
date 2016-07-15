@@ -15,7 +15,7 @@
 
 @(Html.Kendo().Grid(Model.OrderByDescending(s => s.DateCreated)).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>
 {
-columns.Bound(m => m.FakturaNumber);
+columns.Bound(m => m.FakturaNumber).Title("Номер");
 columns.Bound(m => m.Company.CompanyName);
 columns.Bound(m => m.ProductInvoices.Count).Title("Продукти");
 
@@ -29,9 +29,10 @@ columns.Bound(m => m.UserName);
 
 columns.Template(@<text>
                          @*@Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID })*@
-<button class="btn btn-info btn-sg btnForModal"      data-toggle="modal" data-target=".bs-example-modal-lg" data-idinvoice="@item.InvoiceID">Отвори</button>
+        @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }) |*@
+<button class="btn btn-info btnForModal col-md-6"      data-toggle="modal" data-target=".bs-example-modal-lg" data-idinvoice="@item.InvoiceID">Отвори</button>
+
+        @Html.ActionLink("Изтрии", "Delete", new { id = item.InvoiceID }, new { @class ="btn btn-danger col-md-6" })
     </text>).Title("Функции");
 }).NoRecords("Все още няма запазени фактури.")
       )

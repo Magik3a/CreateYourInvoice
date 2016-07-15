@@ -13,7 +13,7 @@
   <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 <p>
-    @Html.ActionLink("Създай нова компания", "Create")
+    @Html.ActionLink("Създай нова компания", "Create", null, new {@class="btn btn-success btnCreateNew" })
 </p>
 
 @(Html.Kendo().Grid(Model).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>
@@ -23,9 +23,9 @@
     columns.Bound(m => m.DdsNumber);
     columns.Bound(m => m.CompanyPhone);
     columns.Template(@<text>
-                         @Html.ActionLink("Edit", "Edit", new { id = item.CompanyID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.CompanyID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CompanyID })
+                         @Html.ActionLink("Редактирай", "Edit", new { id = item.CompanyID }) |
+                        @Html.ActionLink("Детайли", "Details", new { id = item.CompanyID }) |
+                        @Html.ActionLink("Изтрий", "Delete", new { id = item.CompanyID })
                       </text>).Title("Функции");
 })
 )

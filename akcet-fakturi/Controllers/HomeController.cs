@@ -17,6 +17,7 @@ using iTextSharp.text.pdf;
 using Kendo.Mvc.Extensions;
 using Microsoft.AspNet.Identity;
 using WebGrease.Css.Extensions;
+using Tools;
 
 namespace akcet_fakturi.Controllers
 {
@@ -307,7 +308,7 @@ namespace akcet_fakturi.Controllers
             }
             catch (Exception ex)
             {
-                SendExceptionToAdmin(ex);
+                EmailFunctions.SendExceptionToAdmin(ex);
                 TempData["ResultErrors"] = "There was a problem with rendering template for email!";
                 return "Error in register form! Email with the problem was send to aministrator.";
             }
@@ -368,7 +369,7 @@ namespace akcet_fakturi.Controllers
             }
             catch (Exception ex)
             {
-                SendExceptionToAdmin(ex);
+                EmailFunctions.SendExceptionToAdmin(ex);
                 return Json(false, JsonRequestBehavior.AllowGet);
 
             }
@@ -391,7 +392,7 @@ namespace akcet_fakturi.Controllers
                 strResult = strResult.Replace("\r\n", string.Empty);
                 byte[] bytes = GeneratePDF(strResult);
 
-                SendEmail(EmailReciever, "Invoice", strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
+                EmailFunctions.SendEmail(EmailReciever, "Invoice", strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
                 
                 return Json(true, JsonRequestBehavior.AllowGet);
 
@@ -427,7 +428,7 @@ namespace akcet_fakturi.Controllers
             }
             catch (Exception ex)
             {
-                SendExceptionToAdmin(ex);
+                EmailFunctions.SendExceptionToAdmin(ex);
                 return Json(false);
             }
         }

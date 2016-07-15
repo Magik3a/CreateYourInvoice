@@ -10,7 +10,7 @@
 <h2>Създадени фактури</h2>
 
 <p>
-    @Html.ActionLink("Създай нова", "Invoices", "Home", null, new {@class = "btn btn-info"})
+    @Html.ActionLink("Създай нова", "Invoices", "Home",  null, new {@class="btn btn-success btnCreateNew" })
 </p>
 
 @(Html.Kendo().Grid(Model.OrderByDescending(s => s.DateCreated)).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>

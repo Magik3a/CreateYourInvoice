@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using akcet_fakturi.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using Tools;
 
 namespace akcet_fakturi.Controllers
 {
@@ -184,6 +185,7 @@ namespace akcet_fakturi.Controllers
                 }
                 catch (Exception ex)
                 {
+                    EmailFunctions.SendExceptionToAdmin(ex);
                     TempData["ResultError"] = "Error in adding role!";
                     return RedirectToAction("ManageUserRoles");
                 }
@@ -219,7 +221,7 @@ namespace akcet_fakturi.Controllers
                 }
                 catch (Exception ex)
                 {
-                   // SendExceptionToAdmin(ex.ToString());
+                    EmailFunctions.SendExceptionToAdmin(ex);
                 }
 
 
