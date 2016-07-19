@@ -10,7 +10,7 @@
         ViewBag.Invoices = "active";
     }
     <link href="~/Content/invoicePrint.css" rel="stylesheet" />
-   
+
 </head>
 <body>
     <div id="wrapper">
@@ -35,33 +35,57 @@
         <h1>FACTUUR</h1>
 
         <div id="invoice-info">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 15%"> 
+                        Factuurdatum:
+                    </td>
+                    <td width="45%">
+                        @Model.InvoiceDate
+                    </td>
+                      <td rowspan="5" style="text-align: right">
+                            <table style="border: 1px solid black;     display: inline-block;">
+                            <tr>
+                                <td class="pinki">Um BTW-nummer</td>
+                            </tr>
+                            <tr>
+                                <td class="pink">@Model.CompanyDDSNumber</td>
+                            </tr>
+                        </table>
+                      </td>
+                </tr>
+                <tr>
+                    <td>
+                        Factuurnummer:
+                    </td>
+                    <td>
+                        @Model.InvoiceNumber
+                    </td>
+                      <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        Vervaldatum:
+                    </td>
+                    <td>
+                        @Model.InvoiceEndDate
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        Periode:
+                    </td>
+                    <td>
+                        @Model.Period
+                    </td>
+                  
+                </tr>
 
-            <span id="first">
-                <p>Factuurdatum:</p>
-                <p>Factuurnummer:</p>
-                <p>Vervaldatum:</p>
-                <br />
-                <p>Periode:</p>
-            </span>
-
-            <span id="second">
-                <p>@Model.InvoiceDate</p>
-                <p>@Model.InvoiceNumber</p>
-                <p>@Model.InvoiceEndDate</p>
-                <br />
-                <p>@Model.Period</p>
-            </span>
-
-            <span id="third">
-                <table style="border: 1px solid black">
-                    <tr>
-                        <td class="pinki">Um BTW-nummer</td>
-                    </tr>
-                    <tr>
-                        <td class="pink">@Model.CompanyDDSNumber</td>
-                    </tr>
-                </table>
-            </span>
+            </table>
+            
+                      
+                
         </div>
 
         <div id="clear"></div>
@@ -99,10 +123,10 @@
                     </td>
                 </tr>
                             }
-          
+
         </table>
         <table class="totals">
-              <tr>
+            <tr>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -149,7 +173,7 @@
             </tr>
             @{
                 Model.ListDds.OrderByDescending(s => s.Value).ThenBy(c => c.DdsName);
-    
+
             }
             @foreach (var dds in Model.ListDds)
             {
@@ -189,9 +213,9 @@
                         {
                             @($"{totalPerDiscount:F2}")
                         }
-                        else if(totalPerDiscount != 0)
+                        else if (totalPerDiscount != 0)
                         {
-                          @($"{subTotal:F2}")
+                            @($"{subTotal:F2}")
                         }
                     </td>
                 </tr>

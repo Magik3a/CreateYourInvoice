@@ -18,6 +18,8 @@ using Kendo.Mvc.Extensions;
 using Microsoft.AspNet.Identity;
 using WebGrease.Css.Extensions;
 using Tools;
+using System.Text;
+using System.Configuration;
 
 namespace akcet_fakturi.Controllers
 {
@@ -49,9 +51,32 @@ namespace akcet_fakturi.Controllers
             if (!ModelState.IsValid)
                 return View(Model);
 
+            var messageBody = new StringBuilder();
+
+            messageBody.AppendLine("######################################## <br /> <br />");
+            messageBody.AppendLine("Ново съобщение от: " + Model.FirstName + " " + Model.LastName);
+            messageBody.AppendLine("<br /> <br />");
+            messageBody.AppendLine("######################################## <br /> <br />");
+            messageBody.AppendLine("Телефон: " + Model.Phone);
+            messageBody.AppendLine("<br /> <br />");
+            messageBody.AppendLine("######################################## <br /> <br />");
+            messageBody.AppendLine("Имейл: " + Model.Email);
+            messageBody.AppendLine("<br /> <br />");
+            messageBody.AppendLine("######################################## <br /> <br />");
+            messageBody.AppendLine("Съобщение: " + Model.Message);
+            messageBody.AppendLine("<br /> <br />");
+            messageBody.AppendLine("######################################## <br /> <br />");
+            EmailFunctions.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "Ново запитване от сайта fakturi.nl", messageBody.ToString());
             TempData["MessageIsSent"] = "Съобщението е изпратено успешно.";
             return View(Model);
         }
+
+
+        public ActionResult AdminIndex()
+        {
+            return View();
+        }
+        #region AddInvoice
         [Authorize]
         public ActionResult Invoices()
         {
@@ -432,5 +457,8 @@ namespace akcet_fakturi.Controllers
                 return Json(false);
             }
         }
+
+        #endregion
+
     }
 }
