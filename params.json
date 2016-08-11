@@ -1,0 +1,6 @@
+{
+  "name": "Create Your Invoice",
+  "tagline": "System for creating and managing invoices with admin functionalities ",
+  "body": "# Little Info\r\nSystem for creating and managing invoices with admin functionalities. Users can register, create companies with addresses, create products and then put prize for each product and then print the whole thing. Admins can create VAT , delete users and check printed invoices. \r\n\r\n# Packages\r\n- Entity Framework\r\n- Kendo UI \r\n- jQuery Print Element\r\n- Select2 The jQuery replacement for select boxes\r\n\r\n# Contributors\r\n- @PetyaWebDesign\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
