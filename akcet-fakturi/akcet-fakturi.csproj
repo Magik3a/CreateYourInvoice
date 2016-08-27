@@ -70,10 +70,11 @@
     </Reference>
     <Reference Include="Kendo.Mvc, Version=2015.2.624.440, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Kendo.Mvc.dll</HintPath>
+      <HintPath>Libraries\Kendo.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Kendo.Mvc.resources">
-      <HintPath>bin\bg-BG\Kendo.Mvc.resources.dll</HintPath>
+    <Reference Include="Kendo.Mvc.resources, Version=2015.2.624.440, Culture=bg-BG, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Kendo.Mvc.resources.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -405,6 +406,8 @@
     <Content Include="images\telfort-gray.jpg" />
     <Content Include="images\western-gray.jpg" />
     <Content Include="images\wizz-gray.jpeg" />
+    <Content Include="Libraries\Kendo.Mvc.dll" />
+    <Content Include="Libraries\Kendo.Mvc.resources.dll" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
