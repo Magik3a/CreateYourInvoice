@@ -26,6 +26,22 @@ namespace akcet_fakturi.Controllers
         private AkcetModel db = new AkcetModel();
         private AppDbContext dbUser = new AppDbContext();
 
+        public List<string> FetchWeeks(int year)
+        {
+            List<string> weeks = new List<string>();
+            DateTime startDate = new DateTime(year, 1, 1);
+            startDate = startDate.AddDays(1 - (int)startDate.DayOfWeek);
+            DateTime endDate = startDate.AddDays(6);
+            while (startDate.Year < 1 + year)
+            {
+                weeks.Add(string.Format("От {0:dd/MM/yyyy} До {1:dd/MM/yyyy}", startDate, endDate));
+                startDate = startDate.AddDays(7);
+                endDate = endDate.AddDays(7);
+            }
+            return weeks;
+        }
+
+
         public bool CheckUserDetails(string UserId, out string Error)
         {
             Error = " ";

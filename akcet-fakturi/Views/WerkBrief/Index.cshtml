@@ -15,8 +15,8 @@
     <!-- Nav tabs -->
     <div class="container">
         <ul class="nav nav-tabs" role="tablist" style="margin-top:30px;" id="nav-tabs-invoices">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Нова фактура</a></li>
-            <li role="presentation" style="display: none"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Въвеждане на продукт</a></li>
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Нов Werkbrief</a></li>
+            <li role="presentation" style="display: none"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Въвеждане</a></li>
             <li role="presentation" style="display: none"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Преглед</a></li>
             <li role="presentation" style="display: none"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Запази</a></li>
         </ul>
@@ -29,11 +29,11 @@
             <!-- tab to add Products-->
             <div role="tabpanel" class="tab-pane" id="profile">
                 <div class="row products" id="rowProducts">
-                    @Html.Partial("InvoicesPartials/_TabProductsPartial", new ProductInvoiceTemp())
+                    @Html.Partial("WerkbriefsPartials/_TabWerkbriefsPartial", new ProductInvoiceTemp())
                 </div>
 
                 <div class="row  text-center" style="margin-top: 50px">
-                    <a class="btn btn-success btn-lg btnNext" onclick="ClickReviewNext()">Продължи с преглед на фактурата</a>
+                    <a class="btn btn-success btn-lg btnNext" onclick="ClickReviewNext()">Продължи с преглед</a>
 
                 </div>
 

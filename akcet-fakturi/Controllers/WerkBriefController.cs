@@ -20,6 +20,20 @@ namespace akcet_fakturi.Controllers
             if (!CheckUserDetails(userId, out error))
                 TempData["ResultError"] = error;
 
+            ViewBag.DaysOFWeek = new List<string>
+            {
+                "Ma",
+                "Di",
+                 "Wo",
+                "Do",
+                 "Fr",
+                "Za",
+                "Zo"
+            };
+
+            var weeks = FetchWeeks(DateTime.Now.Year);
+            ViewBag.Weeks = new SelectList(weeks);
+
             ViewBag.IdAddress = new SelectList(db.Addresses.Where(a => a.UserName == User.Identity.Name), "IdAddress", "StreetName");
             ViewBag.Dds = new SelectList(db.DDs, "DdsId", "DdsName");
             ViewBag.Companies = new SelectList(db.Companies.Where(m => m.UserId == userId && m.IsDeleted == false), "CompanyID", "CompanyName");

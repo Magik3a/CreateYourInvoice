@@ -1,1 +1,161 @@
 ﻿
+@model akcetDB.ProductInvoiceTemp
+
+
+@using (Ajax.BeginForm("SaveWerkbriefAjax", "WerkBrief", null,
+                                                                                    new AjaxOptions
+                                                                                    {
+                                                                                        OnBegin = "removeSaveProductButton",
+                                                                                        UpdateTargetId = "rowProducts",
+                                                                                        OnSuccess = "getresultProduct",
+                                                                                        InsertionMode = InsertionMode.InsertAfter,
+                                                                                        HttpMethod = "POST"
+                                                                                    }, new { @class = "form-horizontal", id = "form-product" }))
+{
+    <div class="col-md-10">
+        @****  Product   ****@
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="product-select">Седмица</label>
+                @Html.DropDownList("Weeks", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
+            </div>
+            <!-- /.form-group -->
+        </div>
+
+
+        @****  Product   ****@
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="product-select">Описание</label>
+                @Html.DropDownList("Products", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
+            </div>
+            <!-- /.form-group -->
+        </div>
+
+        @**** Button Product New  ****@
+        <div class="col-md-1 ">
+            <div class="newProductName">
+                <label for="product-new">Нов</label>
+                <button type="button" class="btn btn-info btn-sg" id="product-new" data-toggle="modal" data-target="#product-modal">
+                    <span class="glyphicon glyphicon-plus"> </span>
+                </button>
+            </div>
+        </div>
+
+
+        @**** Project ****@
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="project">Проект</label>
+                @Html.DropDownList("Projects", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
+
+            </div>
+
+        </div>
+
+        @**** Button Project New  ****@
+        <div class="col-md-1 ">
+            <div class="newProductName">
+                <label for="project-new">Нов</label>
+                <button type="button" class="btn btn-info btn-sg" id="project-new" data-toggle="modal" data-target="#project-modal">
+                    <span class="glyphicon glyphicon-plus"> </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-4 no-padding">
+            <div class="container">
+                <div class="row seven-cols">
+                    @foreach (var day in (List<string>)ViewBag.DaysOFWeek)
+                    {
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label for="quantity">@day</label>
+                                <input type="text" class="form-control day" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-2">
+
+        <div class="col-md-4 col-md-offset-1">
+
+            <div class="form-group saveProduct">
+                <label for="save">Запази</label>
+                <button type="button" class="btn btn-success btn-sm" onclick="btnSubmitProductclick(event)"> <span class="glyphicon glyphicon-ok"></span></button>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-md-offset-1">
+
+            <div class="form-group deleteProduct" style="display: none">
+
+                <label for='delete'>Изтрий</label>
+                @Ajax.ActionLink(" ", "DeleteProductInvoiceTemp", "Home", new { id = Model.ProductInvoiceID }, new AjaxOptions { OnSuccess = "DeleteRowProduct" }, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
+
+            </div>
+        </div>
+    </div>
+}
+<script>
+    function btnSubmitProductclick(event) {
+        event.preventDefault();
+        $("#form-product").submit();
+
+
+        //var something = $(this).parent().find(".form-control");
+        //console.log(something);
+        //$(".form-control").prop('disabled', true);
+    };
+
+    function removeSaveProductButton() {
+        $(".newProductName").remove();
+        $(".saveProduct").remove();
+
+    }
+    function getresultProduct(data) {
+        if (data) {
+            $(".select2").select2();
+            var beforeForm = $("#form-product");
+            beforeForm.find(".form-control").prop('disabled', true);
+
+            var deleteButton = $(data).find(".deleteProduct a").attr("href");
+            console.log(deleteButton);
+
+            beforeForm.find(".deleteProduct a").attr("href", deleteButton);
+            beforeForm.find(".deleteProduct").removeAttr("style");
+
+            var totalPriceInput = beforeForm.find(".total-price");
+
+            var quantity = beforeForm.find(".quanity").val();
+            var pricePerProduct = beforeForm.find(".price").val();
+            var dds = beforeForm.find(".dds").val();
+            console.log("p: " + pricePerProduct + "q: " + quantity + "dds: " + dds);
+            //   var price = (quantity * pricePerProduct * (dds / 100)) + (quantity * pricePerProduct);
+            var price = quantity * pricePerProduct;
+            totalPriceInput.val(price);
+            //   $("#form-product").removeAttr("id");
+            var arr = deleteButton.split('/');
+            beforeForm.attr("id", arr[3]);
+
+        } else {
+            $("#alert-box").alert();
+            $("#alert-box")
+                .fadeTo(2000, 500)
+                .slideUp(500,
+                    function () {
+                        $("#alert-box").alert('close');
+                    });
+        }
+    };
+
+    function DeleteRowProduct(data) {
+        $("#" + data).remove();
+        console.log("row is deleted");
+    };
+</script>

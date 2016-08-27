@@ -14,7 +14,7 @@
     <div class="col-md-10">
         <div class="col-md-2">
             <div class="form-group">
-                <label for="product-select">Продукт</label>
+                <label for="product-select">Описание</label>
                 @Html.DropDownList("Products", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
             </div>
             <!-- /.form-group -->
@@ -97,7 +97,7 @@
             <div class="form-group deleteProduct" style="display: none">
             
                     <label for='delete'>Изтрий</label>
-                    @Ajax.ActionLink("Изтрий", "DeleteProductInvoiceTemp", "Home",  new { id = Model.ProductInvoiceID },new AjaxOptions{ OnSuccess = "DeleteRowProduct"}, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-trash" })
+                    @Ajax.ActionLink(" ", "DeleteProductInvoiceTemp", "Home",  new { id = Model.ProductInvoiceID },new AjaxOptions{ OnSuccess = "DeleteRowProduct"}, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
                 
             </div>
         </div>
