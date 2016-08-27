@@ -32,6 +32,28 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*Image Links to the HomePage*/
+.image-link{
+   height:170px;
+   width:100%;
+}
+
+.links-button{
+    position:relative;
+    top:-40px;
+    left:45px;
+    opacity:0.8;
+}
+
+.text-links{
+    position:relative;
+    top:-30px;
+    text-align:center;
+    font-size:18px;
+    color:#000000;
+}
+
 @media (min-width: 768px){
   .seven-cols .col-md-1,
   .seven-cols .col-sm-1,

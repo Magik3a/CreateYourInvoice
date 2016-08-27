@@ -3,14 +3,14 @@
 
 
 @using (Ajax.BeginForm("SaveWerkbriefAjax", "WerkBrief", null,
-                                                                                    new AjaxOptions
-                                                                                    {
-                                                                                        OnBegin = "removeSaveProductButton",
-                                                                                        UpdateTargetId = "rowProducts",
-                                                                                        OnSuccess = "getresultProduct",
-                                                                                        InsertionMode = InsertionMode.InsertAfter,
-                                                                                        HttpMethod = "POST"
-                                                                                    }, new { @class = "form-horizontal", id = "form-product" }))
+                                                                                                            new AjaxOptions
+                                                                                                            {
+                                                                                                                OnBegin = "removeSaveProductButton",
+                                                                                                                UpdateTargetId = "rowProducts",
+                                                                                                                OnSuccess = "getresultProduct",
+                                                                                                                InsertionMode = InsertionMode.InsertAfter,
+                                                                                                                HttpMethod = "POST"
+                                                                                                            }, new { @class = "form-horizontal", id = "form-product" }))
 {
     <div class="col-md-10">
         @****  Product   ****@
@@ -82,7 +82,12 @@
 
 
     <div class="col-md-2">
-
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="quantity">Общо</label>
+                <input type="text" class="form-control total-price" disabled>
+            </div>
+        </div>
         <div class="col-md-4 col-md-offset-1">
 
             <div class="form-group saveProduct">
@@ -91,7 +96,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 col-md-offset-1">
+        <div class="col-md-3">
 
             <div class="form-group deleteProduct" style="display: none">
 
