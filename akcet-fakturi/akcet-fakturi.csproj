@@ -257,6 +257,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddInvoiceController.cs" />
     <Compile Include="Controllers\AllCompaniesController.cs" />
+    <Compile Include="Controllers\AllWerkbriefsController.cs" />
     <Compile Include="Controllers\AppUsersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
@@ -268,6 +269,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\WerkBriefController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -553,6 +555,8 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\Home\AdminIndex.cshtml" />
+    <Content Include="Views\WerkBrief\Index.cshtml" />
+    <Content Include="Views\AllWerkbriefs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -51,6 +51,9 @@
                 <li role="presentation" class="@ViewBag.Invoices">
                     @Html.ActionLink("Създай Фактура", "Invoices", "Home")
                 </li>
+                <li role="presentation" class="@ViewBag.Werkbrief">
+                    @Html.ActionLink("Създай Werkbrief", "Index", "WerkBrief")
+                </li>
                 <li role="presentation" class="@ViewBag.InvoicesAllUser">
                     @Html.ActionLink("Всички Фактури", "UserInvoices", "Invoices")
                 </li>
@@ -82,6 +85,9 @@
                 <ul class="nav nav-pills nav-justified">
                     <li role="presentation" class="@ViewBag.InvoicesAll">
                         <a href="@Url.Action("Index", "Invoices")">Всички издадени фактури</a>
+                    </li>
+                    <li role="presentation" class="@ViewBag.AllWerkbriefs">
+                        <a href="@Url.Action("Index", "AllWerkbriefs")">Всички Werkbriefs</a>
                     </li>
                     <li role="presentation" class="@ViewBag.Dds">
                         <a href="@Url.Action("Index", "DDs")">Ддс-та</a>
