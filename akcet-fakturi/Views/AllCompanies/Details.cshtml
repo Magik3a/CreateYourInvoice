@@ -103,7 +103,7 @@
 </p>
 @functions
 {
-    private ApplicationDbContext db = new ApplicationDbContext();
+    private AppDbContext db = new AppDbContext();
     private string GetUserNameById(string UserId)
     {
         var user = db.Users.Find(UserId);

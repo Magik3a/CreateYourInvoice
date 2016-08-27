@@ -16,13 +16,15 @@ using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using Microsoft.AspNet.Identity;
 using Tools;
+using Data;
+
 namespace akcet_fakturi.Controllers
 {
     public class BaseController : Controller
     {
 
         private AkcetModel db = new AkcetModel();
-        private ApplicationDbContext dbUser = new ApplicationDbContext();
+        private AppDbContext dbUser = new AppDbContext();
 
         public bool CheckUserDetails(string UserId, out string Error)
         {

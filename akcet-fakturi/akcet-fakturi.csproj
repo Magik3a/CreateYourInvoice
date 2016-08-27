@@ -272,43 +272,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606261312025_201606261311398_AutomaticMigration.cs" />
-    <Compile Include="Migrations\201606261312025_201606261311398_AutomaticMigration.Designer.cs">
-      <DependentUpon>201606261312025_201606261311398_AutomaticMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606261349302_NewMigration.cs" />
-    <Compile Include="Migrations\201606261349302_NewMigration.Designer.cs">
-      <DependentUpon>201606261349302_NewMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606261647267_201606261646140_AutomaticMigration.cs" />
-    <Compile Include="Migrations\201606261647267_201606261646140_AutomaticMigration.Designer.cs">
-      <DependentUpon>201606261647267_201606261646140_AutomaticMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606271333405_201606271333099_AutomaticMigration.cs" />
-    <Compile Include="Migrations\201606271333405_201606271333099_AutomaticMigration.Designer.cs">
-      <DependentUpon>201606271333405_201606271333099_AutomaticMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606300812189_201606300811573_AutomaticMigration.cs" />
-    <Compile Include="Migrations\201606300812189_201606300811573_AutomaticMigration.Designer.cs">
-      <DependentUpon>201606300812189_201606300811573_AutomaticMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607140655274_201607140655073_AutomaticMigration.cs" />
-    <Compile Include="Migrations\201607140655274_201607140655073_AutomaticMigration.Designer.cs">
-      <DependentUpon>201607140655274_201607140655073_AutomaticMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Migrations\201606181339547_Initial.cs" />
-    <Compile Include="Models\Migrations\201606181339547_Initial.Designer.cs">
-      <DependentUpon>201606181339547_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Migrations\201606240829371_201606240828298_AutomaticMigration.cs" />
-    <Compile Include="Models\Migrations\201606240829371_201606240828298_AutomaticMigration.Designer.cs">
-      <DependentUpon>201606240829371_201606240828298_AutomaticMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Migrations\201606241140499_201606241139131_AutomaticMigration.cs" />
-    <Compile Include="Models\Migrations\201606241140499_201606241139131_AutomaticMigration.Designer.cs">
-      <DependentUpon>201606241140499_201606241139131_AutomaticMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactFormModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -608,39 +571,14 @@
       <Project>{21cb195b-19ee-4006-84c5-fe92eb88d29a}</Project>
       <Name>akcetDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{D81CE851-26E2-4094-B997-6A97CBBD186C}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\Tools.csproj">
       <Project>{6b537c08-5536-4f06-bb20-bc557cbd9278}</Project>
       <Name>Tools</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606261312025_201606261311398_AutomaticMigration.resx">
-      <DependentUpon>201606261312025_201606261311398_AutomaticMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606261349302_NewMigration.resx">
-      <DependentUpon>201606261349302_NewMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606261647267_201606261646140_AutomaticMigration.resx">
-      <DependentUpon>201606261647267_201606261646140_AutomaticMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606271333405_201606271333099_AutomaticMigration.resx">
-      <DependentUpon>201606271333405_201606271333099_AutomaticMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606300812189_201606300811573_AutomaticMigration.resx">
-      <DependentUpon>201606300812189_201606300811573_AutomaticMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607140655274_201607140655073_AutomaticMigration.resx">
-      <DependentUpon>201607140655274_201607140655073_AutomaticMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Models\Migrations\201606181339547_Initial.resx">
-      <DependentUpon>201606181339547_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Models\Migrations\201606240829371_201606240828298_AutomaticMigration.resx">
-      <DependentUpon>201606240829371_201606240828298_AutomaticMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Models\Migrations\201606241140499_201606241139131_AutomaticMigration.resx">
-      <DependentUpon>201606241140499_201606241139131_AutomaticMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

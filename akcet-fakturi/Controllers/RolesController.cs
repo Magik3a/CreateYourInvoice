@@ -9,13 +9,15 @@ using akcet_fakturi.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using Tools;
+using Data;
+using akcetDB;
 
 namespace akcet_fakturi.Controllers
 {
     [Authorize]
     public class RolesController : Controller
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
+        private AppDbContext context = new AppDbContext();
 
         // GET: /Roles/ViewAllRoles
         [HttpGet]
@@ -166,7 +168,7 @@ namespace akcet_fakturi.Controllers
                 {
                     ApplicationUser user = context.Users.Where(u => u.UserName.Equals(model.SelectedUsers, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
-                    var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                    var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new AppDbContext()));
                     var idResult = um.AddToRole(user.Id, model.SelectedRoles);
 
                     ViewBag.Users = context.Users.OrderBy(u => u.UserName).ToList().Select(uu => new SelectListItem { Value = uu.Email, Text = uu.FirstName + " " + uu.LastName }).ToList();
@@ -210,7 +212,7 @@ namespace akcet_fakturi.Controllers
 
                     //   ViewBag.RolesForThisUser = account.UserManager.GetRoles(user.Id);
 
-                    var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                    var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new AppDbContext()));
                     ViewBag.RolesForThisUser = um.GetRoles(user.Id);
 
                     ViewBag.Users = context.Users.OrderBy(u => u.UserName).ToList().Select(uu => new SelectListItem { Value = uu.Email, Text = uu.FirstName + " " + uu.LastName }).ToList();
@@ -240,7 +242,7 @@ namespace akcet_fakturi.Controllers
             if (ModelState.IsValid)
             {
                 ApplicationUser user = context.Users.Where(u => u.UserName.Equals(model.SelectedUsers, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-                var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new AppDbContext()));
 
 
                 if (um.IsInRole(user.Id, model.SelectedRoles))

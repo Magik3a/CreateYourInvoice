@@ -7,13 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using akcet_fakturi.Models;
+using Data;
+using akcetDB;
 
 namespace akcet_fakturi.Controllers
 {
     [Authorize]
     public class AppUsersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private AppDbContext db = new AppDbContext();
 
         // GET: AppUsers
         public ActionResult Index()

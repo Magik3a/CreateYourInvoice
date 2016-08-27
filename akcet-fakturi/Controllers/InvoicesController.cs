@@ -9,13 +9,14 @@ using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Models;
 using Microsoft.AspNet.Identity;
+using Data;
 
 namespace akcet_fakturi.Controllers
 {
     [Authorize]
     public class InvoicesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private AppDbContext db = new AppDbContext();
         private AkcetModel dbAkcet = new AkcetModel();
         // GET: Invoices
         public ActionResult Index()

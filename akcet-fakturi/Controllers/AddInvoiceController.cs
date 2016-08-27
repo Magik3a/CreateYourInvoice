@@ -8,13 +8,14 @@ using akcet_fakturi.Models;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Microsoft.AspNet.Identity;
+using Data;
 
 namespace akcet_fakturi.Controllers
 {
     [Authorize]
     public class AddInvoiceController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private AppDbContext db = new AppDbContext();
 
         // GET: AddInvoice
         public ActionResult Index()

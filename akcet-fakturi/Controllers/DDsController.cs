@@ -8,13 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Models;
+using Data;
 
 namespace akcet_fakturi.Controllers
 {
     [Authorize]
     public class DDsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private AppDbContext db = new AppDbContext();
 
         // GET: DDs
         public ActionResult Index()

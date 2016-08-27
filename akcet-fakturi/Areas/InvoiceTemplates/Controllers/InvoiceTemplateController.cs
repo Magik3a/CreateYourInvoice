@@ -8,6 +8,7 @@ using akcet_fakturi.Areas.InvoiceTemplates.Models;
 using akcet_fakturi.Controllers;
 using akcet_fakturi.Models;
 using Microsoft.AspNet.Identity;
+using Data;
 
 namespace akcet_fakturi.Areas.InvoiceTemplates.Controllers
 {
@@ -15,7 +16,7 @@ namespace akcet_fakturi.Areas.InvoiceTemplates.Controllers
     {
 
         private AkcetModel db = new AkcetModel();
-        private ApplicationDbContext dbUser = new ApplicationDbContext();
+        private AppDbContext dbUser = new AppDbContext();
         // GET: InvoiceTemplates/InvoiceTemplate
        // [OutputCache(Duration = 60)]
         public ActionResult Index()

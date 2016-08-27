@@ -9,12 +9,13 @@ using System.Web.Mvc;
 using akcetDB;
 using akcet_fakturi.Models;
 using Microsoft.AspNet.Identity;
+using Data;
 
 namespace akcet_fakturi.Controllers
 {
     public class ProjectsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private AppDbContext db = new AppDbContext();
 
         // GET: Projects
         public ActionResult Index()
