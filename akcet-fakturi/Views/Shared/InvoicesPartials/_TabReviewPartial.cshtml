@@ -17,7 +17,7 @@
 
     <div class="row  text-center" style="margin-top: 50px">
         @*<a class="" id="saveInvoiceConfirmed">Запази и принтирай въведената фактура</a>*@
-        @Ajax.ActionLink("Запази и принтирай въведената фактура", "SaveInvoiceConfirmed", "Home", new { value = true },
+        @Ajax.ActionLink("Принтирай", "SaveInvoiceConfirmed", "Home", new { value = true },
             new AjaxOptions()
             {
                 UpdateTargetId = "saved-faktura",

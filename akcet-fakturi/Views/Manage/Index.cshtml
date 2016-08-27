@@ -24,6 +24,41 @@
         </tr>
         <tr>
             <td>
+                Password:
+            </td>
+            <td></td>
+            <td>
+                [
+                @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+                }
+                else
+                {
+                @Html.ActionLink("Create", "SetPassword")
+                }
+                ]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Full Name:
+            </td>
+            <td>@Model.FullName</td>
+            <td>
+                [ @Html.ActionLink("Change name", "ChangeNames", "Manage") ]
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Company:
+            </td>
+            <td>@Model.Company</td>
+            <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
+        </tr>
+        <tr>
+            <td>
                 Address:
             </td>
             <td>@Model.Address</td>
@@ -51,53 +86,28 @@
                 [ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]
             </td>
         </tr>
+
         <tr>
-                <td>
-                    Full Name:
-                </td>
-                <td>@Model.FullName</td>
-                <td>
-                    [ @Html.ActionLink("Change name", "ChangeNames", "Manage") ]
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Phone Number:
-                </td>
-                <td>@Model.PhoneNumber</td>
-                <td>[ @Html.ActionLink("Change phone number", "AddPhoneNumber", "Manage") ]</td>
-            </tr>
-            <tr>
-                <td>
-                    Password:
-                </td>
-                <td></td>
-                <td>
-                    [
-                    @if (Model.HasPassword)
-            {
-                        @Html.ActionLink("Change your password", "ChangePassword")
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Create", "SetPassword")
-                    }
-                    ]
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Company:
-                </td>
-                <td>@Model.Company</td>
-                <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
-            </tr>
-        <tr>
+            <td>
+                Phone Number:
+            </td>
+            <td>@Model.PhoneNumber</td>
+            <td>[ @Html.ActionLink("Change phone number", "AddPhoneNumber", "Manage") ]</td>
+        </tr>
+
         <tr>
             <td>
                 Bank Account:
             </td>
             <td>@Model.BankAccount</td>
+            <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
+        </tr>
+
+        <tr>
+            <td>
+                KWK:
+            </td>
+            <td>@Model.Kwk</td>
             <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
         </tr>
         <tr>
@@ -107,14 +117,7 @@
             <td>@Model.Dds</td>
             <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
         </tr>
-        <tr>
-            <td>
-                KWK:
-            </td>
-            <td>@Model.Kwk</td>
-            <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
-        </tr>
     </table>
 
- 
+
 </div>
