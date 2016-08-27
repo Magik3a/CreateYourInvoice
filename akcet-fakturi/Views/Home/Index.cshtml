@@ -24,20 +24,41 @@
             </div>
         </div>
 
+        <!--Links to AKCET.NL-->
+        <div class="col-md-6">
 
-<div class="col-md-6">
-<div class="row">
- <div class="col-md-6">Link one</div>
-    <div class="col-md-6">Link two</div>
-</div>
+            <div class="row">
+                <div class="col-md-6">
+<img src="../../images/Accounting.jpg"/>
+                    <button type="button" class="btn" style="background-color:#FF8C00;">
+                        <a href="http://akcet.nl/accounting-form-bg.html" target="_blank" style="color:#ffffff; text-decoration:none;"> Направи запитване</a>
+                    </button>
+                </div>
 
-    <div class="row">
-        <div class="col-md-6">Link three</div>
-        <div class="col-md-6">Link four</div>
-    </div>
-</div>
+                <div class="col-md-6">
+                    <button type="button" class="btn" style="background-color:#FF8C00;">
+                        <a href="http://akcet.nl/car-insurance-bg.html" target="_blank" style="color:#ffffff; text-decoration:none;"> Направи запитване</a>
+                    </button>
+                </div>
+            </div>
 
-        
+
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn" style="background-color:#FF8C00;">
+                        <a href="http://akcet.nl/health-insurance-form-bg.html" target="_blank" style="color:#ffffff; text-decoration:none;"> Направи запитване</a>
+                    </button>
+                </div>
+
+                <div class="col-md-6">
+                    <button type="button" class="btn" style="background-color:#FF8C00;">
+                        <a href="http://akcet.nl/tickets-bg.html" target="_blank" style="color:#ffffff; text-decoration:none;"> Направи запитване</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 
@@ -68,74 +89,75 @@
             @if (TempData["MessageIsSent"] == null)
             {
 
-                <div class="row">
-                    @using (Html.BeginForm("Index", "Home", null, FormMethod.Post, new {@class = "form-horizontal", style = "margin-top:50px;"}))
-                    {
-                        @Html.AntiForgeryToken()
+            <div class="row">
+                @using (Html.BeginForm("Index", "Home", null, FormMethod.Post, new {@class = "form-horizontal", style = "margin-top:50px;"}))
+                {
+                @Html.AntiForgeryToken()
 
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.FirstName, new {@class = "col-sm-4 control-label", @for = "firstname"})
-                            <div class="col-sm-8">
-                                @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control", id = "firstname", placeholder = "Въведете първото си име"}})
-                                @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.LastName, new {@class = "col-sm-4 control-label", @for = "lastName"})
-                            <div class="col-sm-8">
-                                @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {@class = "form-control", id = "lastName", placeholder = "Въведете фамилията си"}})
-                                @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Phone, new {@class = "col-sm-4 control-label", @for = "phone"})
-                            <div class="col-sm-8">
-                                @Html.EditorFor(model => model.Phone, new {htmlAttributes = new {@class = "form-control", id = "phone", placeholder = "Въведете телефонен номер"}})
-                                @Html.ValidationMessageFor(model => model.Phone, "", new {@class = "text-danger"})
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Email, new {@class = "col-sm-4 control-label", @for = "email"})
-                            <div class="col-sm-8">
-                                @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control", id = "email", placeholder = "Въведете актуален email адрес"}})
-                                @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Message, new {@class = "col-sm-4 control-label", @for = "message"})
-                            <div class="col-sm-8">
-                                @Html.EditorFor(model => model.Message, new {htmlAttributes = new {@class = "form-control", id = "message", placeholder = "Вашето съобщение тук", rows = 5}})
-                                @Html.ValidationMessageFor(model => model.Message, "", new {@class = "text-danger"})
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-group">
-                                <div class="col-sm-offset-4 col-sm-8"> <button type="submit" class="btn btn-default">Изпрати</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    }
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstName, new {@class = "col-sm-4 control-label", @for = "firstname"})
+                    <div class="col-sm-8">
+                        @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control", id = "firstname", placeholder = "Въведете първото си име"}})
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
+                    </div>
                 </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LastName, new {@class = "col-sm-4 control-label", @for = "lastName"})
+                    <div class="col-sm-8">
+                        @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {@class = "form-control", id = "lastName", placeholder = "Въведете фамилията си"}})
+                        @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Phone, new {@class = "col-sm-4 control-label", @for = "phone"})
+                    <div class="col-sm-8">
+                        @Html.EditorFor(model => model.Phone, new {htmlAttributes = new {@class = "form-control", id = "phone", placeholder = "Въведете телефонен номер"}})
+                        @Html.ValidationMessageFor(model => model.Phone, "", new {@class = "text-danger"})
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new {@class = "col-sm-4 control-label", @for = "email"})
+                    <div class="col-sm-8">
+                        @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control", id = "email", placeholder = "Въведете актуален email адрес"}})
+                        @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Message, new {@class = "col-sm-4 control-label", @for = "message"})
+                    <div class="col-sm-8">
+                        @Html.EditorFor(model => model.Message, new {htmlAttributes = new {@class = "form-control", id = "message", placeholder = "Вашето съобщение тук", rows = 5}})
+                        @Html.ValidationMessageFor(model => model.Message, "", new {@class = "text-danger"})
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <button type="submit" class="btn btn-default">Изпрати</button>
+                        </div>
+                    </div>
+                </div>
+
+                }
+            </div>
 
             }
             else
             {
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4>	<i class="icon fa fa-check"></i> Succes!</h4>
-                    @TempData["MessageIsSent"].ToString()
-                </div>
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4>	<i class="icon fa fa-check"></i> Succes!</h4>
+                @TempData["MessageIsSent"].ToString()
+            </div>
             }
 
         </div>
