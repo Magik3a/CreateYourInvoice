@@ -557,6 +557,7 @@
     <Content Include="Views\Home\AdminIndex.cshtml" />
     <Content Include="Views\WerkBrief\Index.cshtml" />
     <Content Include="Views\AllWerkbriefs\Index.cshtml" />
+    <Content Include="Views\Shared\WerkbriefsPartials\_TabWerkbriefsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -564,7 +565,6 @@
     <Folder Include="Areas\InvoiceTemplates\Views\Shared\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Shared\WerkbriefsPartials\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
