@@ -32,5 +32,13 @@ namespace Data
         public System.Data.Entity.DbSet<akcetDB.Fakturi> Fakturis { get; set; }
 
         public System.Data.Entity.DbSet<akcetDB.Project> Projects { get; set; }
+
+        public System.Data.Entity.DbSet<akcetDB.FakturiTemp> FakturiTemp { get; set; }
+
+        public System.Data.Entity.DbSet<akcetDB.ProductInvoice> ProductInvoices { get; set; }
+        public System.Data.Entity.DbSet<akcetDB.ProductInvoiceTemp> ProductInvoicesTemp { get; set; }
+
+
+
     }
 }

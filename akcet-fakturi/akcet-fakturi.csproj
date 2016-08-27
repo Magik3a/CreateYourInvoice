@@ -274,7 +274,6 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactFormModel.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InvoicesViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserRolesModels.cs" />
