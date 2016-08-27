@@ -564,6 +564,7 @@
     <Folder Include="Areas\InvoiceTemplates\Views\Shared\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Shared\WerkbriefsPartials\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
