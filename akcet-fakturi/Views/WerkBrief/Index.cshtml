@@ -1,9 +1,131 @@
-﻿
+﻿@using akcetDB
+
 @{
     ViewBag.Title = "Index";
         ViewBag.Werkbrief = "active";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>Index</h2>
+  <!-- Helper for info boxes after manipulating data -->
+@ResultHelper.ResultFromTempData(TempData)
 
+<!--New Invoice menu-->
+<div>
+
+    <!-- Nav tabs -->
+    <div class="container">
+        <ul class="nav nav-tabs" role="tablist" style="margin-top:30px;" id="nav-tabs-invoices">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Нова фактура</a></li>
+            <li role="presentation" style="display: none"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Въвеждане на продукт</a></li>
+            <li role="presentation" style="display: none"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Преглед</a></li>
+            <li role="presentation" style="display: none"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Запази</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content" style="margin-top: 10px;">
+
+            <!-- tab to add Company-->
+            @Html.Partial("InvoicesPartials/_TabCompanyPartial", new FakturiTemp() {InvoiceDate = DateTime.Now.ToString("dd.MM.yyyy"), InvoiceEndDate = DateTime.Now.AddDays(14).ToString("dd.MM.yyyy")})
+
+            <!-- tab to add Products-->
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <div class="row products" id="rowProducts">
+                    @Html.Partial("InvoicesPartials/_TabProductsPartial", new ProductInvoiceTemp())
+                </div>
+
+                <div class="row  text-center" style="margin-top: 50px">
+                    <a class="btn btn-success btn-lg btnNext" onclick="ClickReviewNext()">Продължи с преглед на фактурата</a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- tab to Review result-->
+            @Html.Partial("InvoicesPartials/_TabReviewPartial")
+
+            <!-- tab to save result-->
+            @Html.Partial("InvoicesPartials/_TabSavePartial")
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>
+
+<!-- Modal to add Address-->
+@Html.Partial("InvoicesPartials/_ModalCompaniePartial")
+
+
+<!-- Modal to add Address-->
+@Html.Partial("InvoicesPartials/_ModalAddressPartial")
+
+
+<!-- Modal to add Product-->
+@Html.Partial("InvoicesPartials/_ModalProductPartial")
+
+<!-- Modal to add Project-->
+@Html.Partial("InvoicesPartials/_ModalProjectPartial")
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="~/Scripts/select2.full.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script src="~/Scripts/datepicker-bg.js"></script>
+
+<script src="~/Scripts/formValidation.min.js"></script>
+<script src="~/Scripts/frameworkBootstrapValidation.js"></script>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+        //Date range picker
+        var datepicker = $('#reservation');
+        datepicker.datepicker({
+            defaultDate: '01.01.2014',
+            onSelect: function (date) {
+                var nextDayDate = new Date();
+                nextDayDate = moment(date, "DD.MM.YYYY").add(14, 'days').format("DD.MM.YYYY");
+              //  nextDayDate.setDate(date + 14);
+                $("#InvoiceEndDate").val(nextDayDate);
+                // console.log(date);
+             
+            }
+        });
+        //Date range picker with time picker
+    });
+
+
+
+    //$('.btnPrevious').click(function () {
+    //    $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+    //});
+
+    $("#submitButton")
+        .click(function (event) {
+            event.preventDefault();
+            $("#form-company").submit();
+        });
+
+    function OnAjaxRequestComplete(request, status) {
+        console.log("Complete");
+    };
+
+
+    function ClickReviewNext() {
+        //  $("#form-invoice").find(".form-control").prop('disabled', true);
+        $("#reviewInvoice").append("    <iframe style='width: 100%; height: 1200px' src='@Url.Action("Index", "InvoiceTemplate", new {Area = "InvoiceTemplates" })'></iframe>");
+        $('.nav-tabs > .active').addClass('disabled');
+        $('.nav-tabs > .active').next('li').find('a').trigger('click');
+        $('.nav-tabs > .active').removeAttr("style");
+
+    };
+
+</script>
