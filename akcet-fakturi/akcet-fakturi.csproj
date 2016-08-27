@@ -360,9 +360,13 @@
     <Content Include="images\1.jpg" />
     <Content Include="images\2.jpeg" />
     <Content Include="images\2.jpg" />
+    <Content Include="images\Accounting.jpg" />
+    <Content Include="images\Airlines.jpg" />
     <Content Include="images\ajax-loader.gif" />
+    <Content Include="images\car.jpg" />
     <Content Include="images\easybill-gray.jpg" />
     <Content Include="images\eneco-gray.jpg" />
+    <Content Include="images\health.jpg" />
     <Content Include="images\lebara-gray.jpeg" />
     <Content Include="images\logo.png" />
     <Content Include="images\telfort-gray.jpg" />
