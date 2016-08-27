@@ -13,28 +13,32 @@
 
 <div class="row" style="background-color::#FFE4B5;">
 
+    <div class="col-md-3">
+        <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
+    </div>
+
 <div class="col-md-3 pull-right">
 
-    <a href="@Url.Action(" Invoices", "Home" )" class="btn btn-info btn-sm">
+    <a href="@Url.Action("Invoices", "Home" )" class="btn btn-info btn-sm">
         <span class="glyphicon glyphicon-user"></span>
         Hello @User.Identity.GetUserName()!
     </a>
 </div>
 
-<div class="col-md-1 pull-right">
-    <button type="button" class="btn btn-sm" style="background-color:#FF8C00;">
-        <a href="javascript:document.getElementById('logoutForm').submit()">Изход</a>
+<div class="col-md-2 pull-right">
+    <button type="button" class="btn btn-sm" style="background-color:#FF8C00; color:#ffffff;">
+        <a href="javascript:document.getElementById('logoutForm').submit()" style="color:#ffffff; text-decoration:none; padding-left:20px; padding-right:20px; font-weight:bold;">Изход</a>
     </button>
 </div>
 </div>
 
 
-<!--logo-->
+<!--logo
 <div class="row style="width:100%;">
 <div class="col-md-3">
     <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
 </div>
-</div>
+</div> -->
 
 
     }
@@ -46,7 +50,7 @@ else
 
 
 
-    using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal col-md-12 k-justifyCenter", role = "form" }))
+    using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal  k-justifyCenter", role = "form" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -55,7 +59,7 @@ else
 <div class="row" style="background-color:#FFE4B5; width:100%; padding-top:5px; padding-bottom:5px; margin-top:-10px;">
 <div class="col-md-4" style="padding:0px;">
     <label for="firstname" class="control-label col-md-2">Име</label>
-    <div class="col-md-10 no-padding">
+    <div class="col-md-10">
         @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Име" })
         @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
     </div>
@@ -63,7 +67,7 @@ else
 
 
 
-<div class="col-md-4 no-padding" >
+<div class="col-md-4" >
     <label for="firstname" class="col-sm-3 control-label">Парола</label>
     <div class="col-sm-9">
         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
@@ -71,7 +75,7 @@ else
     </div>
 </div>
 
-<div class="col-md-2 no-padding">
+<div class="col-md-2">
     <div class="checkbox">
         @Html.CheckBoxFor(m => m.RememberMe, new {@class="", id="rememberMe"})
         <label for="rememberMe">Запомни ме</label>
@@ -79,7 +83,7 @@ else
 
 </div>
 
-<div class="col-md-2 no-padding">
+<div class="col-md-2">
 
     <input type="submit" class="btn" style="background-color:#FF8C00; padding-left:35px; padding-right:35px; color:#ffffff; font-weight:bold;" value="Вход" />
 </div>
