@@ -1,23 +1,24 @@
 ﻿
-@model akcetDB.ProductInvoiceTemp
+@model akcetDB.WerkbriefHoursTemp
 
 
 @using (Ajax.BeginForm("SaveWerkbriefAjax", "WerkBrief", null,
-                                                                                                            new AjaxOptions
-                                                                                                            {
-                                                                                                                OnBegin = "removeSaveProductButton",
-                                                                                                                UpdateTargetId = "rowProducts",
-                                                                                                                OnSuccess = "getresultProduct",
-                                                                                                                InsertionMode = InsertionMode.InsertAfter,
-                                                                                                                HttpMethod = "POST"
-                                                                                                            }, new { @class = "form-horizontal", id = "form-product" }))
+                                                new AjaxOptions
+                                                {
+                                                    OnBegin = "removeSaveProductButton",
+                                                    UpdateTargetId = "rowProducts",
+                                                    OnSuccess = "getresultProduct",
+                                                    InsertionMode = InsertionMode.InsertAfter,
+                                                    HttpMethod = "POST"
+                                                }, new { @class = "form-horizontal", id = "form-product" }))
 {
     <div class="col-md-10">
         @****  Product   ****@
         <div class="col-md-2">
             <div class="form-group">
-                <label for="product-select">Седмица</label>
-                @Html.DropDownList("Weeks", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
+                @Html.LabelFor(m => m.Week)
+                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control", id = "product-select", value = "Week" } })
+                @Html.ValidationMessageFor(model => model.Week, "", new { @class = "text-danger" })
             </div>
             <!-- /.form-group -->
         </div>
@@ -66,15 +67,49 @@
         <div class="col-md-4 no-padding">
             <div class="container">
                 <div class="row seven-cols">
-                    @foreach (var day in (List<string>)ViewBag.DaysOFWeek)
-                    {
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label for="quantity">@day</label>
-                                <input type="text" class="form-control day" />
-                            </div>
+
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Monday)
+                            <input type="text" class="form-control day" />
                         </div>
-                    }
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Thursday)
+                            <input type="text" class="form-control day" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Wednesday)
+                            <input type="text" class="form-control day" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Thursday)
+                            <input type="text" class="form-control day" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Friday)
+                            <input type="text" class="form-control day" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Saturday)
+                            <input type="text" class="form-control day" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Sunday)
+                            <input type="text" class="form-control day" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,7 +136,7 @@
             <div class="form-group deleteProduct" style="display: none">
 
                 <label for='delete'>Изтрий</label>
-                @Ajax.ActionLink(" ", "DeleteProductInvoiceTemp", "Home", new { id = Model.ProductInvoiceID }, new AjaxOptions { OnSuccess = "DeleteRowProduct" }, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
+                @Ajax.ActionLink(" ", "DeleteProductInvoiceTemp", "WerkBrief", new { id = Model.WerkbriefHoursIDTemp }, new AjaxOptions { OnSuccess = "DeleteRowProduct" }, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
 
             </div>
         </div>
