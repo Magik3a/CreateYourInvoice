@@ -87,7 +87,7 @@ namespace akcet_fakturi.Controllers
             Model.ProjectID = Int32.Parse(Projects);
             db.WerkbriefHoursTemps.Add(Model);
             db.SaveChanges();
-            return PartialView("~/Views/Shared/WerkbriefsPartials/_TabWerkbriefsPartial.cshtml", model);
+            return PartialView("~/Views/Shared/WerkbriefsPartials/_TabWerkbriefsPartial.cshtml", Model);
         }
 
 
@@ -211,12 +211,12 @@ namespace akcet_fakturi.Controllers
         public ActionResult DeleteWerkbriefHoursTempTemp(int id)
         {
             //var userId = User.Identity.GetUserId();
-            //var invoiceId = db.FakturiTemps.Where(s => s.UserId == userId).OrderByDescending(x => x.DateCreated).FirstOrDefault().InvoiceIDTemp;
+            //var invoiceId = db.WerkbriefTemps.Where(s => s.UserId == userId).OrderByDescending(x => x.DateCreated).FirstOrDefault().WerkbriefIDTemp;
 
-            //var product = db.WerkbriefHoursTemps.Find(id);
+            var product = db.WerkbriefHoursTemps.Find(id);
 
-            //db.WerkbriefHoursTemps.Remove(product);
-            //db.SaveChanges();
+            db.WerkbriefHoursTemps.Remove(product);
+            db.SaveChanges();
 
             return Json(id, JsonRequestBehavior.AllowGet);
         }

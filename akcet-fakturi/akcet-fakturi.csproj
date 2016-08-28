@@ -564,11 +564,12 @@
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\Home\AdminIndex.cshtml" />
     <Content Include="Views\WerkBrief\Index.cshtml" />
-    <Content Include="Views\AllWerkbriefs\Index.cshtml" />
+    <Content Include="Views\AllWerkbriefs\AllWerkbriefs.cshtml" />
     <Content Include="Views\Shared\WerkbriefsPartials\_TabWerkbriefsPartial.cshtml" />
     <Content Include="Views\Shared\WerkbriefsPartials\_TabCompanyPartial.cshtml" />
     <Content Include="Views\Shared\WerkbriefsPartials\_TabReviewPartial.cshtml" />
     <Content Include="Views\Shared\WerkbriefsPartials\_TabSavePartial.cshtml" />
+    <Content Include="Views\AllWerkbriefs\AllUserWerkbriefs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,7 @@
         public int WerkbriefIDTemp { get; set; }
 
         [Required]
-        [Display(Name = "Week")]
+        [Display(Name = "Week nr.")]
         public string Week { get; set; }
 
         public int ProductID { get; set; }

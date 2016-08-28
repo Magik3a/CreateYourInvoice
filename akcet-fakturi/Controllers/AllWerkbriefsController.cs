@@ -9,9 +9,16 @@ namespace akcet_fakturi.Controllers
     public class AllWerkbriefsController : Controller
     {
         // GET: AllWerkbriefs
-        public ActionResult Index()
+        public ActionResult AllWerkbriefs()
         {
             return View();
         }
+
+        public ActionResult AllUserWerkbriefs()
+        {
+            return View();
+        }
+
+
     }
 }
