@@ -3,14 +3,14 @@
 
 
 @using (Ajax.BeginForm("SaveWerkbriefAjax", "WerkBrief", null,
-                                                                                                            new AjaxOptions
-                                                                                                            {
-                                                                                                                OnBegin = "removeSaveProductButton",
-                                                                                                                UpdateTargetId = "rowProducts",
-                                                                                                                OnSuccess = "getresultProduct",
-                                                                                                                InsertionMode = InsertionMode.InsertAfter,
-                                                                                                                HttpMethod = "POST"
-                                                                                                            }, new { @class = "form-horizontal", id = "form-product" }))
+new AjaxOptions
+{
+    OnBegin = "removeSaveProductButton",
+    UpdateTargetId = "rowProducts",
+    OnSuccess = "getresultProduct",
+    InsertionMode = InsertionMode.InsertAfter,
+    HttpMethod = "POST"
+}, new { @class = "form-horizontal", id = "form-product" }))
 {
     <div class="col-md-10">
         @****  Product   ****@

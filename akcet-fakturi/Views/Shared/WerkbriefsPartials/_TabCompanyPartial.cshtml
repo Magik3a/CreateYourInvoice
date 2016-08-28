@@ -1,0 +1,115 @@
+﻿@model akcetDB.WerkbriefTemp
+<div class="alert alert-danger alert-dismissable" id="alert-box">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+   <h5>Грешка при запазване. </h5>
+</div>
+<div role="tabpanel" class="tab-pane active" id="home">
+    <div class="row">
+
+        @using (Ajax.BeginForm("CreateWerkbriefAjax", "WerkBrief", null,
+                new AjaxOptions
+                {
+                    OnSuccess = "getresultInvoice",
+                    HttpMethod = "POST"
+                }, new { @class = "form-horizontal", id = "form-invoice" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="col-md-3">
+                <div class="form-group">
+                        @Html.Label("Компания", htmlAttributes: new { @class = "control-label col-md-2" })
+                    
+                            @Html.DropDownList("Companies", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%", })
+                            @Html.ValidationMessageFor(model => model.CompanyID, "", new { @class = "text-danger" })
+                      
+                    </div>
+                <!-- /.form-group -->
+            </div>
+
+            <div class="col-md-1">
+                <label for="new-company">Нова</label>
+                <button type="button" class="btn btn-info btn-sg" data-toggle="modal" data-target="#myModal" id="new-company"> <span class="glyphicon glyphicon-plus"> </span></button>
+            </div>
+
+            <div class="col-md-2">
+
+
+                <div class="box-body">
+                    <!-- Date range -->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WerkbriefDate, htmlAttributes: new { @for="dates"})
+                        <div class="input-group">
+                            <div class="input-group-addon" id="dates">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
+                                @Html.EditorFor(model => model.WerkbriefDate,  new { htmlAttributes = new { @class = "form-control", id = "reservation", value="01.01.2014" } })
+                                @Html.ValidationMessageFor(model => model.WerkbriefDate, "", new { @class = "text-danger" })
+                            </div>
+                        <!-- /.input group -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.WerkbriefEndDate, htmlAttributes: new { @for = "InvoiceDate" })
+                    @Html.EditorFor(model => model.WerkbriefEndDate, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <!-- /.form group -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Period, htmlAttributes: new { @for = "period" })
+                    @Html.EditorFor(model => model.Period, new { htmlAttributes = new { @class = "form-control"} })
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div class="row text-center" style="margin-top: 50px">
+        <a class="btn btn-success btn-lg btnNext" id="submitInvoice">Продължи</a>
+
+    </div>
+
+    @*<div id="reviewInvoice"><iframe style='width: 100%; height: 1200px' src='@Url.Action("Index", "InvoiceTemplate", new {Area = "InvoiceTemplates" })'></iframe></div>*@
+
+</div>
+
+<script>
+    
+   function ClickNext() {
+        $("#form-invoice").find(".form-control").prop('disabled', true);
+        $('.nav-tabs > .active').addClass('disabled');
+        $('.nav-tabs > .active').next('li').find('a').trigger('click');
+        $('.nav-tabs > .active').removeAttr("style");
+
+    };
+
+    $(document).ready(function () {
+        $("#alert-box").hide();
+    });
+
+    $("#submitInvoice")
+        .click(function (event) {
+            event.preventDefault();
+            $("#form-invoice").submit();
+        });
+
+    function getresultInvoice(data) {
+        if (data) {
+            ClickNext();
+            console.log(data);
+        } else {
+            $("#alert-box").alert();
+            $("#alert-box")
+                .fadeTo(2000, 500)
+                .slideUp(500,
+                    function() {
+                        $("#alert-box").alert('close');
+                    });
+        }
+    };
+</script>
+

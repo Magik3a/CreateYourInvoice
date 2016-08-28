@@ -24,7 +24,7 @@
         <div class="tab-content" style="margin-top: 10px;">
 
             <!-- tab to add Company-->
-            @Html.Partial("InvoicesPartials/_TabCompanyPartial", new FakturiTemp() {InvoiceDate = DateTime.Now.ToString("dd.MM.yyyy"), InvoiceEndDate = DateTime.Now.AddDays(14).ToString("dd.MM.yyyy")})
+            @Html.Partial("WerkbriefsPartials/_TabCompanyPartial", new WerkbriefTemp() {WerkbriefDate = DateTime.Now.ToString("dd.MM.yyyy"), WerkbriefEndDate = DateTime.Now.AddDays(14).ToString("dd.MM.yyyy")})
 
             <!-- tab to add Products-->
             <div role="tabpanel" class="tab-pane" id="profile">
