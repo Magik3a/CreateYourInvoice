@@ -54,6 +54,11 @@ textarea {
     color:#000000;
 }
 
+/*image logos under Facebook feed*/
+.image-logos{
+    width:250px;
+}
+
 @media (min-width: 768px){
   .seven-cols .col-md-1,
   .seven-cols .col-sm-1,
