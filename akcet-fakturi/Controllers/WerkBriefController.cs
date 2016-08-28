@@ -75,9 +75,9 @@ namespace akcet_fakturi.Controllers
 
 
         // Step 2
-        public ActionResult SaveWerkbriefAjax()
+        public ActionResult SaveWerkbriefAjax(WerkbriefHoursTemp Model)
         {
-            var model = new ProductInvoiceTemp();
+            var model = new WerkbriefHoursTemp();
             ViewBag.DaysOFWeek = new List<string>
             {
                 "Ma",

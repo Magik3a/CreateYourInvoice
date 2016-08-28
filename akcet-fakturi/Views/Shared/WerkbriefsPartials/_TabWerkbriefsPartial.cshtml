@@ -14,10 +14,10 @@
 {
     <div class="col-md-10">
         @****  Product   ****@
-        <div class="col-md-2">
+        <div class="col-md-1">
             <div class="form-group">
                 @Html.LabelFor(m => m.Week)
-                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control", id = "product-select", value = "Week" } })
+                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control", value = "Week" } })
                 @Html.ValidationMessageFor(model => model.Week, "", new { @class = "text-danger" })
             </div>
             <!-- /.form-group -->
@@ -64,50 +64,51 @@
             </div>
         </div>
 
-        <div class="col-md-4 no-padding">
+        <div class="col-md-5 no-padding">
             <div class="container">
                 <div class="row seven-cols">
 
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Monday)
-                            <input type="text" class="form-control day" />
+                            @Html.EditorFor(m => m.Monday, new { htmlAttributes = new { @class = "form-control" } })
+                    
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Thursday)
-                            <input type="text" class="form-control day" />
+                            @Html.LabelFor(m => m.Tuesday)
+                            @Html.EditorFor(m => m.Tuesday, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Wednesday)
-                            <input type="text" class="form-control day" />
+                            @Html.EditorFor(m => m.Wednesday, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Thursday)
-                            <input type="text" class="form-control day" />
+                            @Html.EditorFor(m => m.Thursday, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Friday)
-                            <input type="text" class="form-control day" />
+                            @Html.EditorFor(m => m.Friday, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Saturday)
-                            <input type="text" class="form-control day" />
+                            @Html.EditorFor(m => m.Saturday, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Sunday)
-                            <input type="text" class="form-control day" />
+                            @Html.EditorFor(m => m.Sunday, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
                 </div>
@@ -171,14 +172,17 @@
             beforeForm.find(".deleteProduct").removeAttr("style");
 
             var totalPriceInput = beforeForm.find(".total-price");
+            var totalHours = 0;
 
-            var quantity = beforeForm.find(".quanity").val();
-            var pricePerProduct = beforeForm.find(".price").val();
-            var dds = beforeForm.find(".dds").val();
-            console.log("p: " + pricePerProduct + "q: " + quantity + "dds: " + dds);
+            beforeForm.find(".seven-cols input").each(function (index, elem) {
+                totalHours =totalHours + parseFloat($(elem).val());
+            });
+            //var quantity = beforeForm.find(".quanity").val();
+            //var pricePerProduct = beforeForm.find(".price").val();
+            //var dds = beforeForm.find(".dds").val();
+            console.log(totalHours);
             //   var price = (quantity * pricePerProduct * (dds / 100)) + (quantity * pricePerProduct);
-            var price = quantity * pricePerProduct;
-            totalPriceInput.val(price);
+            totalPriceInput.val(totalHours);
             //   $("#form-product").removeAttr("id");
             var arr = deleteButton.split('/');
             beforeForm.attr("id", arr[3]);
