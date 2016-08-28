@@ -254,6 +254,9 @@
     <Compile Include="Areas\InvoiceTemplates\Controllers\InvoiceTemplateController.cs" />
     <Compile Include="Areas\InvoiceTemplates\InvoiceTemplatesAreaRegistration.cs" />
     <Compile Include="Areas\InvoiceTemplates\Models\InvoiceTemplateModels.cs" />
+    <Compile Include="Areas\WerkbriefTemplates\Controllers\WerkbriefTemplateController.cs" />
+    <Compile Include="Areas\WerkbriefTemplates\Models\WerkbriefTemplateViewModel.cs" />
+    <Compile Include="Areas\WerkbriefTemplates\WerkbriefTemplatesAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddInvoiceController.cs" />
     <Compile Include="Controllers\AllCompaniesController.cs" />
@@ -405,6 +408,8 @@
     <Content Include="Areas\InvoiceTemplates\Views\InvoiceTemplate\Index.cshtml" />
     <Content Include="Areas\EmailTemplates\Views\Template\InvoiceEmailTemplate.cshtml" />
     <Content Include="fonts\ARIALUNI.TTF" />
+    <Content Include="Areas\WerkbriefTemplates\Views\web.config" />
+    <Content Include="Areas\WerkbriefTemplates\Views\WerkbriefTemplate\Index.cshtml" />
     <None Include="Properties\PublishProfiles\svetlin.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datepicker-bg.js" />
@@ -562,11 +567,14 @@
     <Content Include="Views\AllWerkbriefs\Index.cshtml" />
     <Content Include="Views\Shared\WerkbriefsPartials\_TabWerkbriefsPartial.cshtml" />
     <Content Include="Views\Shared\WerkbriefsPartials\_TabCompanyPartial.cshtml" />
+    <Content Include="Views\Shared\WerkbriefsPartials\_TabReviewPartial.cshtml" />
+    <Content Include="Views\Shared\WerkbriefsPartials\_TabSavePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
     <Folder Include="Areas\InvoiceTemplates\Views\Shared\" />
+    <Folder Include="Areas\WerkbriefTemplates\Views\Shared\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

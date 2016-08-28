@@ -40,6 +40,17 @@ namespace Data
         public System.Data.Entity.DbSet<akcetDB.ProductInvoiceTemp> ProductInvoicesTemp { get; set; }
 
 
+        public System.Data.Entity.DbSet<akcetDB.Werkbrief> Werkbriefs { get; set; }
+
+        public System.Data.Entity.DbSet<akcetDB.WerkbriefTemp> WerkbriefTemps { get; set; }
+
+        public System.Data.Entity.DbSet<akcetDB.WerkbriefHours> WerkbriefHours { get; set; }
+
+
+        public System.Data.Entity.DbSet<akcetDB.WerkbriefHoursTemp> WerkbriefHoursTemps { get; set; }
+
+
+
 
     }
 }

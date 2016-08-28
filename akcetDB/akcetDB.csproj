@@ -72,6 +72,8 @@
     <Compile Include="ProductInvoiceTemp.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Werkbrief.cs" />
+    <Compile Include="WerkbriefHours.cs" />
     <Compile Include="WerkbriefHoursTemp.cs" />
     <Compile Include="WerkbriefTemp.cs" />
   </ItemGroup>

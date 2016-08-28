@@ -1,0 +1,189 @@
+﻿<html>
+<head>
+    @using System.Web.UI.WebControls.Expressions
+    @using akcetDB
+    @using Kendo.Mvc.UI
+    @model akcet_fakturi.Areas.WerkbriefTemplates.Models.WerkbriefTemplateViewModel
+    @{
+        ViewBag.Title = "Werkbrief";
+        Layout = null;
+        ViewBag.Werkbrief = "active";
+    }
+    <link href="~/Content/invoicePrint.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="user-company">
+            <h1>@Model.UserCompanyName</h1><br />
+            <span>@Model.UserAddress</span>
+            <br /><br />
+            <span>Telefoon: @Model.UserPhone</span><br />
+            <span>Bankrekening: @Model.UserBankAccount</span><br />
+            <span>KvK-nummer: @Model.UserBulstat</span><br />
+            <span>BTW-nummer: @Model.UserDDsNumber</span>
+        </div>
+
+        <div id="company-data">
+            <span>@Model.CompanyName</span><br />
+            <span> @Model.CompanyAddress</span><br />
+
+        </div>
+
+        <div id="clear"></div>
+
+        <h1>Werkbrief</h1>
+
+        <div id="invoice-info">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 15%"></td>
+                    <td width="45%"></td>
+                    <td rowspan="5" style="text-align: right">
+                        <table style="border: 1px solid black;     display: inline-block;">
+                            <tr>
+                                <td class="pinki">Um BTW-nummer</td>
+                            </tr>
+                            <tr>
+                                <td class="pink">@Model.CompanyDDSNumber</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        Periode:
+                    </td>
+                    <td>
+                        @Model.Period
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+
+        </div>
+
+        <div id="clear"></div>
+
+        <table id="invoice-body">
+            <tr class="th">
+                <td>week nr.</td>
+                <td>Omschrijving</td>
+                <td>Project</td>
+
+                <td>Ma</td>
+                <td>Di</td>
+                <td>Wo</td>
+                <td>Do</td>
+                <td>Vr</td>
+                <td>Za</td>
+                <td>Zo</td>
+                <td>Totaal</td>
+
+
+            </tr>
+            @{
+                var total = Decimal.Zero;
+            }
+
+            @foreach (var hoursTemp in Model.WerkbriefHoursTemps)
+            {
+                total += Decimal.Parse(GetValueFromString(hoursTemp.TotalHours));
+                <tr>
+                    <td>
+                      Week  @hoursTemp.Week
+                    </td>
+                    <td>@ProductName(hoursTemp.ProductID)</td>
+                    <td>@ProjectName(hoursTemp.ProjectID)</td>
+                    <td>
+                        @GetValueFromString(hoursTemp.Monday)
+                    </td>
+                    <td>
+                        @GetValueFromString(hoursTemp.Tuesday)
+                    </td>
+                    <td>
+                        @GetValueFromString(hoursTemp.Wednesday)
+                    </td>
+                    <td>
+                        @GetValueFromString(hoursTemp.Thursday)
+                    </td>
+                    <td>
+                        @GetValueFromString(hoursTemp.Friday)
+                    </td>
+                    <td>
+                        @GetValueFromString(hoursTemp.Saturday)
+                    </td>
+                    <td>
+                        @GetValueFromString(hoursTemp.Sunday)
+                    </td>
+                    <td>
+                        @GetValueFromString(hoursTemp.TotalHours)
+                    </td>
+
+                </tr>
+            }
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td colspan="3">
+                    Totaal
+                </td>
+                <td>
+                    @total
+                </td>
+
+            </tr>
+        </table>
+
+
+
+    </div>
+</body>
+</html>
+@functions{
+    private AkcetModel db = new AkcetModel();
+    public string ProductName(int productId)
+    {
+        var productName = db.Products.FirstOrDefault(p => p.ProductID == productId).ProductName;
+
+        return productName;
+    }
+
+    public string ProjectName(int projectId)
+    {
+        var productName = db.Projects.FirstOrDefault(p => p.ProjectID == projectId).ProjectName;
+
+        return productName;
+    }
+
+    public string GetValueFromString(string value)
+    {
+        var temp = decimal.Zero;
+
+        if (value != null && value.Contains('.'))
+            value = value.Replace('.', ',');
+        decimal.TryParse(value, out temp);
+
+        return temp.ToString();
+    }
+}

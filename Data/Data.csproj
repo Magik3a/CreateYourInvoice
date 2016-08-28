@@ -58,6 +58,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
+    <Compile Include="Migrations\201608281139005_Created-Werkbrief.cs" />
+    <Compile Include="Migrations\201608281139005_Created-Werkbrief.Designer.cs">
+      <DependentUpon>201608281139005_Created-Werkbrief.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608281259074_HtmlToWerkbrief.cs" />
+    <Compile Include="Migrations\201608281259074_HtmlToWerkbrief.Designer.cs">
+      <DependentUpon>201608281259074_HtmlToWerkbrief.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608281330118_ChangedTOtalHours.cs" />
+    <Compile Include="Migrations\201608281330118_ChangedTOtalHours.Designer.cs">
+      <DependentUpon>201608281330118_ChangedTOtalHours.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +82,17 @@
       <Project>{21CB195B-19EE-4006-84C5-FE92EB88D29A}</Project>
       <Name>akcetDB</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201608281139005_Created-Werkbrief.resx">
+      <DependentUpon>201608281139005_Created-Werkbrief.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608281259074_HtmlToWerkbrief.resx">
+      <DependentUpon>201608281259074_HtmlToWerkbrief.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608281330118_ChangedTOtalHours.resx">
+      <DependentUpon>201608281330118_ChangedTOtalHours.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,89 @@
+﻿
+
+<div role="tabpanel" class="tab-pane" id="settings">
+    <div class="alert alert-success alert-dismissable" id="alert-box-sendEmail">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4>	<i class="icon fa fa-check"></i> Моля изчакайте!</h4>
+       Werkbrief се изпраща на въведения имейл.
+    </div>
+    <div class="row text-center">
+        <div class="col-md-3">
+            <a href="@Url.Action("DownloadWerkbrief", "WerkBrief")" class="btn btn-success btn-lg" target="_blank">Свали в .pdf</a>
+            @*<button class="btn btn-success btn-lg" id="pdf-button">Свали в .pdf</button>*@
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-success btn-lg" id="print-button">Принтирай</button>
+        </div>
+        <div class="col-md-6">
+            @using (Ajax.BeginForm("SendWerkbriefToEmail", "WerkBrief", new AjaxOptions()
+            {
+                OnBegin = "BeginSendingEmail",
+                OnSuccess = "SuccessSendingEmail"
+            }, new { id = "formEmail" }))
+            {
+                <div class="col-md-6">
+                    <div class="pull-right">
+                        <input style="height: 3.2em;" type="text" class="form-control" id="EmailReciever" name="EmailReciever" placeholder="Изпрати до имейл">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" value="Изпрати" class="btn btn-success btn-lg pull-left"/>
+                </div>
+
+
+            }
+
+        </div>
+    </div>
+
+    <div id="saved-faktura">
+
+    </div>
+</div>
+<script src="~/Scripts/jquery.browser.min.js"></script>
+<script src="~/Scripts/jquery.printElement.min.js"></script>
+<script src="~/Scripts/jspdf.min.js"></script>
+
+<script>
+    //TODO: Print using Jquery or pluging (recomend plugin)
+    var doc = new jsPDF();
+    $(document).ready(function () {
+        $("#alert-box-sendEmail").hide();
+    });
+    function SuccessSendingEmail() {
+        $("#formEmail").hide(500);
+    };
+
+    function BeginSendingEmail() {
+        $('html, body').animate({ scrollTop: 0 }, 500);
+        $("#alert-box-sendEmail").alert();
+        $("#alert-box-sendEmail")
+            .fadeTo(2000, 500)
+            .slideUp(500,
+                function () {
+                    $("#alert-box-invoice").alert('close');
+                });
+
+    };
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };
+
+    $('#print-button')
+        .click(function() {
+            $("#saved-faktura").printElement({ printMode: 'popup' });
+        });
+
+    $('#pdf-button').click(function () {
+        var html = $("#saved-faktura").html();
+        doc.fromHTML(html, 15, 15, {
+            'width': 170,
+            'elementHandlers': specialElementHandlers
+        });
+        doc.save('sample-file.pdf');
+    });
+</script>
+
+

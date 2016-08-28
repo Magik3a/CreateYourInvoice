@@ -42,10 +42,10 @@
 
 
             <!-- tab to Review result-->
-            @Html.Partial("InvoicesPartials/_TabReviewPartial")
+            @Html.Partial("WerkbriefsPartials/_TabReviewPartial")
 
             <!-- tab to save result-->
-            @Html.Partial("InvoicesPartials/_TabSavePartial")
+            @Html.Partial("WerkbriefsPartials/_TabSavePartial")
         </div>
 
     </div>
@@ -121,7 +121,7 @@
 
     function ClickReviewNext() {
         //  $("#form-invoice").find(".form-control").prop('disabled', true);
-        $("#reviewInvoice").append("    <iframe style='width: 100%; height: 1200px' src='@Url.Action("Index", "InvoiceTemplate", new {Area = "InvoiceTemplates" })'></iframe>");
+        $("#reviewInvoice").append("    <iframe style='width: 100%; height: 1200px' src='@Url.Action("Index", "WerkbriefTemplate", new {Area = "WerkbriefTemplates" })'></iframe>");
         $('.nav-tabs > .active').addClass('disabled');
         $('.nav-tabs > .active').next('li').find('a').trigger('click');
         $('.nav-tabs > .active').removeAttr("style");

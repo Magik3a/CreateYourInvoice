@@ -17,6 +17,7 @@ using iTextSharp.text.pdf;
 using Microsoft.AspNet.Identity;
 using Tools;
 using Data;
+using akcet_fakturi.Areas.WerkbriefTemplates.Models;
 
 namespace akcet_fakturi.Controllers
 {
@@ -153,6 +154,36 @@ namespace akcet_fakturi.Controllers
             return model;
         }
 
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 2 * 60)]
+        public WerkbriefTemplateViewModel GetWerkbriefTempModel(string userId)
+        {
+            var model = new WerkbriefTemplateViewModel();
+            var werkbriefTemps = dbUser.WerkbriefTemps.Where(s => s.UserId == userId).OrderByDescending(x => x.DateCreated).FirstOrDefault();
+
+
+            model.WerkbriefHoursTemps = dbUser.WerkbriefHoursTemps.Where(p => p.WerkbriefIDTemp == werkbriefTemps.WerkbriefIDTemp).ToList();
+
+
+            var user = dbUser.Users.FirstOrDefault(m => m.UserName == User.Identity.Name);
+            model.UserAddress = String.Format("{0}, {1}, {2}", user.Address, user.ZipCode, user.City);
+            model.UserBankAccount = user.BankAcount;
+            model.UserBulstat = user.KwkNumber;
+            model.UserCompanyName = user.CompanyName;
+            model.UserPhone = user.PhoneNumber;
+            model.UserDDsNumber = user.DdsNumber;
+
+            var company = db.Companies.FirstOrDefault(c => c.CompanyID == werkbriefTemps.CompanyID);
+            model.CompanyID = werkbriefTemps.CompanyID ?? 0;
+            model.CompanyName = company.CompanyName;
+            model.CompanyAddress = String.Format("{0}, {1}, {2}", company.Address.StreetName, company.Address.ZipCode, company.Address.City);
+            model.CompanyDDSNumber = company.DdsNumber;
+
+            model.Period = werkbriefTemps.Period;
+           
+            return model;
+        }
 
         private decimal GetValueDDS(int? ddsId)
         {

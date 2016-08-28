@@ -6,13 +6,13 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("WerkbriefHoursTemp")]
-    public partial class WerkbriefHoursTemp
+    [Table("WerkbriefHours")]
+    public partial class WerkbriefHours
     {
         [Key]
-        public int WerkbriefHoursIDTemp { get; set; }
+        public int WerkbriefHoursID { get; set; }
 
-        public int WerkbriefIDTemp { get; set; }
+        public int WerkbriefID { get; set; }
 
         [Required]
         [Display(Name = "Week")]

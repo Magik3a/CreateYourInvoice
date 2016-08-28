@@ -28,7 +28,7 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="product-select">Описание</label>
-                @Html.DropDownList("Products", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
+                @Html.DropDownList("Products", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%", name="productId" })
             </div>
             <!-- /.form-group -->
         </div>
@@ -37,7 +37,7 @@
         <div class="col-md-1 ">
             <div class="newProductName">
                 <label for="product-new">Нов</label>
-                <button type="button" class="btn btn-info btn-sg" id="product-new" data-toggle="modal" data-target="#product-modal">
+                <button type="button" class="btn btn-info btn-sm" id="product-new" data-toggle="modal" data-target="#product-modal">
                     <span class="glyphicon glyphicon-plus"> </span>
                 </button>
             </div>
@@ -58,7 +58,7 @@
         <div class="col-md-1 ">
             <div class="newProductName">
                 <label for="project-new">Нов</label>
-                <button type="button" class="btn btn-info btn-sg" id="project-new" data-toggle="modal" data-target="#project-modal">
+                <button type="button" class="btn btn-info btn-sm" id="project-new" data-toggle="modal" data-target="#project-modal">
                     <span class="glyphicon glyphicon-plus"> </span>
                 </button>
             </div>
@@ -121,7 +121,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="quantity">Общо</label>
-                <input type="text" class="form-control total-price" disabled>
+                <input type="text" class="form-control total-price" style="padding: 0" disabled>
             </div>
         </div>
         <div class="col-md-4 col-md-offset-1">
@@ -137,7 +137,7 @@
             <div class="form-group deleteProduct" style="display: none">
 
                 <label for='delete'>Изтрий</label>
-                @Ajax.ActionLink(" ", "DeleteProductInvoiceTemp", "WerkBrief", new { id = Model.WerkbriefHoursIDTemp }, new AjaxOptions { OnSuccess = "DeleteRowProduct" }, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
+                @Ajax.ActionLink(" ", "DeleteWerkbriefHoursTempTemp", "WerkBrief", new { id = Model.WerkbriefHoursIDTemp }, new AjaxOptions { OnSuccess = "DeleteRowProduct" }, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
 
             </div>
         </div>
@@ -175,7 +175,9 @@
             var totalHours = 0;
 
             beforeForm.find(".seven-cols input").each(function (index, elem) {
-                totalHours =totalHours + parseFloat($(elem).val());
+                if ($(elem).val() > 0) {
+                    totalHours = totalHours + parseFloat($(elem).val());
+                }
             });
             //var quantity = beforeForm.find(".quanity").val();
             //var pricePerProduct = beforeForm.find(".price").val();
