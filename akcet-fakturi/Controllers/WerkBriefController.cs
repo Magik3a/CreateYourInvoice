@@ -99,5 +99,24 @@ namespace akcet_fakturi.Controllers
             //  model.ProductInvoiceID = Int32.Parse(Products);
             return PartialView("~/Views/Shared/WerkbriefsPartials/_TabWerkbriefsPartial.cshtml", model);
         }
+
+
+
+
+
+
+
+        public ActionResult DeleteWerkbriefHoursTempTemp(int id)
+        {
+            //var userId = User.Identity.GetUserId();
+            //var invoiceId = db.FakturiTemps.Where(s => s.UserId == userId).OrderByDescending(x => x.DateCreated).FirstOrDefault().InvoiceIDTemp;
+
+            //var product = db.WerkbriefHoursTemps.Find(id);
+
+            //db.WerkbriefHoursTemps.Remove(product);
+            //db.SaveChanges();
+
+            return Json(id, JsonRequestBehavior.AllowGet);
+        }
     }
 }

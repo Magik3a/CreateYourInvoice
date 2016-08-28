@@ -13,26 +13,36 @@
 
         public int WerkbriefIDTemp { get; set; }
 
+        [Required]
+        [Display(Name = "Week")]
         public string Week { get; set; }
 
 
         public int ProjectID { get; set; }
 
-        public int Monday { get; set; }
+        [Display(Name = "Ma")]
+        public string Monday { get; set; }
 
-        public int Tuesday { get; set; }
+        [Display(Name = "Di")]
+        public string Tuesday { get; set; }
 
-        public int Wednesday { get; set; }
+        [Display(Name = "Wo")]
+        public string Wednesday { get; set; }
 
-        public int Thursday { get; set; }
+        [Display(Name = "Do")]
+        public string Thursday { get; set; }
 
-        public int Friday { get; set; }
+        [Display(Name = "Fr")]
+        public string Friday { get; set; }
 
-        public int Saturday { get; set; }
+        [Display(Name = "Za")]
+        public string Saturday { get; set; }
 
-        public int Sunday { get; set; }
+        [Display(Name = "Zo")]
+        public string Sunday { get; set; }
 
-        public int TotalHours { get; set; }
+        [Display(Name = "Total")]
+        public string TotalHours { get; set; }
         public virtual Project Project { get; set; }
 
     }
