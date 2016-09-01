@@ -1,9 +1,81 @@
-﻿
+﻿@using Kendo.Mvc.UI
+@model IEnumerable<akcetDB.Werkbrief>
+
 @{
     ViewBag.Title = "AllUserWerkbriefs";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
     ViewBag.AllUserWerkbriefs = "active";
 }
 
-<h2>AllUserWerkbriefs</h2>
+<h2>Създадени werkrbriefs</h2>
+<p>
+    @Html.ActionLink("Създай нов", "Index", "WerkBrief",  null, new {@class="btn btn-success btnCreateNew" })
+</p>
+@(Html.Kendo().Grid(Model.OrderByDescending(w => w.DateCreated)).Name("Werkbriefs").Sortable().Filterable().Pageable().Columns(c => {
+    c.Bound(_ => _.Company.CompanyName);
+    c.Bound(_ => _.Period);
+    c.Bound(_ => _.TotalHours);
+    c.Bound(_ => _.WerkbriefHours.Count).Title("Въведени седмици");
+    c.Bound(_ => _.DateCreated);
+    c.Template(@<text>
+        <button class="btn btn-info btn-sg btnForModal" data-toggle="modal" data-target=".bs-example-modal-lg" data-idinvoice="@item.WerkbriefID">Отвори</button>
+</text>).Title("Функции");
+}).NoRecords("Все още няма запазени werkbrief."))
 
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" style="width: 90%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel"></h4>
+
+            </div>
+            <div class="modal-body" id="modal-body-ajax">
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success btn-lg" id="print-button">Принтирай</button>
+                <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Затвори</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.browser.min.js"></script>
+<script src="~/Scripts/jquery.printElement.min.js"></script>
+
+@section Scripts {
+    <script>
+        var idStatic, idLang, idStaticText;
+
+
+
+        $('#print-button')
+            .click(function () {
+                $("#modal-body-ajax").printElement({ printMode: 'popup' });
+            });
+
+
+        $(".btnForModal").click(function () {
+            idInvoice = $(this).data("idinvoice");
+
+            $.ajax({
+                url: '/AllWerkbriefs/GetWerkbrief',
+                type: 'POST',
+                async: false,
+                dataType: 'json',
+                data: { IdWerkbrief: idInvoice },
+                success: function (data) {
+                 //   console.log(data);
+                    $("#modal-body-ajax").html(data);
+
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        });
+    </script>
+}

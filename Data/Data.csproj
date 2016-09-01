@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201608281330118_ChangedTOtalHours.Designer.cs">
       <DependentUpon>201608281330118_ChangedTOtalHours.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609011130254_AddedCompanyToWerkbrief.cs" />
+    <Compile Include="Migrations\201609011130254_AddedCompanyToWerkbrief.Designer.cs">
+      <DependentUpon>201609011130254_AddedCompanyToWerkbrief.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608281330118_ChangedTOtalHours.resx">
       <DependentUpon>201608281330118_ChangedTOtalHours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609011130254_AddedCompanyToWerkbrief.resx">
+      <DependentUpon>201609011130254_AddedCompanyToWerkbrief.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

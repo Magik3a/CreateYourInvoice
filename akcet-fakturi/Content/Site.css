@@ -25,7 +25,25 @@
 .dl-horizontal dt {
     white-space: normal;
 }
-
+ a {
+    color: #989898;
+    text-decoration: none;
+  }
+ .nav-pills > li.active > a,
+  .nav-pills > li.active > a {
+    color: #ffffff;
+  background-color:  #FF8C00 !important;
+  }
+  .nav-pills > li.active > a:hover,
+  .nav-pills > li.active > a:focus {
+    color: #ffffff;
+  background-color:  #FF8C00 !important;
+  }
+  a:hover,
+  a:focus {
+  color: #FF8C00;
+    text-decoration: underline;
+  }
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

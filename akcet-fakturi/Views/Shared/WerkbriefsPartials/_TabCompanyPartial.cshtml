@@ -32,31 +32,6 @@
                 <button type="button" class="btn btn-info btn-sg" data-toggle="modal" data-target="#myModal" id="new-company"> <span class="glyphicon glyphicon-plus"> </span></button>
             </div>
 
-            <div class="col-md-2">
-
-
-                <div class="box-body">
-                    <!-- Date range -->
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.WerkbriefDate, htmlAttributes: new { @for="dates"})
-                        <div class="input-group">
-                            <div class="input-group-addon" id="dates">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </div>
-                                @Html.EditorFor(model => model.WerkbriefDate,  new { htmlAttributes = new { @class = "form-control", id = "reservation", value="01.01.2014" } })
-                                @Html.ValidationMessageFor(model => model.WerkbriefDate, "", new { @class = "text-danger" })
-                            </div>
-                        <!-- /.input group -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.WerkbriefEndDate, htmlAttributes: new { @for = "InvoiceDate" })
-                    @Html.EditorFor(model => model.WerkbriefEndDate, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
             <!-- /.form group -->
             <div class="col-md-4">
                 <div class="form-group">

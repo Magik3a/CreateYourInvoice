@@ -41,11 +41,11 @@ namespace akcet_fakturi.Controllers
             if (Companies == "0")
                 return Json(false);
 
-            if (String.IsNullOrWhiteSpace(Werkbrief.WerkbriefDate))
-                return Json(false);
+            //if (String.IsNullOrWhiteSpace(Werkbrief.WerkbriefDate))
+            //    return Json(false);
 
-            if (String.IsNullOrWhiteSpace(Werkbrief.WerkbriefEndDate))
-                return Json(false);
+            //if (String.IsNullOrWhiteSpace(Werkbrief.WerkbriefEndDate))
+            //    return Json(false);
 
             Werkbrief.CompanyID = Int32.Parse(Companies);
 
