@@ -17,7 +17,7 @@
         <div class="col-md-1">
             <div class="form-group">
                 @Html.LabelFor(m => m.Week)
-                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control", value = "Week" } })
+                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control", value = "Week", type="number" } })
                 @Html.ValidationMessageFor(model => model.Week, "", new { @class = "text-danger" })
             </div>
             <!-- /.form-group -->
@@ -71,44 +71,44 @@
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Monday)
-                            @Html.EditorFor(m => m.Monday, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(m => m.Monday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
                     
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Tuesday)
-                            @Html.EditorFor(m => m.Tuesday, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(m => m.Tuesday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Wednesday)
-                            @Html.EditorFor(m => m.Wednesday, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(m => m.Wednesday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Thursday)
-                            @Html.EditorFor(m => m.Thursday, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(m => m.Thursday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Friday)
-                            @Html.EditorFor(m => m.Friday, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(m => m.Friday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Saturday)
-                            @Html.EditorFor(m => m.Saturday, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(m => m.Saturday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             @Html.LabelFor(m => m.Sunday)
-                            @Html.EditorFor(m => m.Sunday, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(m => m.Sunday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
                         </div>
                     </div>
                 </div>

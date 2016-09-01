@@ -20,6 +20,7 @@ using WebGrease.Css.Extensions;
 using Tools;
 using System.Text;
 using System.Configuration;
+using akcet_fakturi.Areas.EmailTemplates.Models;
 
 namespace akcet_fakturi.Controllers
 {
@@ -390,6 +391,11 @@ namespace akcet_fakturi.Controllers
                 }
                 products.ForEach(s => db.ProductInvoices.Add(s));
                 db.SaveChanges();
+
+                byte[] bytes = GeneratePDF(faktura.FakturaHtml.Replace("\r\n", string.Empty));
+                string strEmailResult = "<img src=\"www.fakturi.nl/images/logo.png\">";
+                EmailFunctions.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "New invoice from user "+ User.Identity.Name, strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
+
                 return Json(faktura.FakturaHtml, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -406,15 +412,23 @@ namespace akcet_fakturi.Controllers
         {
             try
             {
-                string strEmailResult = "<img src=\"www.fakturi.nl/images/logo.png\">";
 
-
-                var strResult = "";
+                    
                 var userId = User.Identity.GetUserId();
 
-                strResult = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault().FakturaHtml;
+                var faktura = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault();
 
-                strResult = strResult.Replace("\r\n", string.Empty);
+                var strResult = faktura.FakturaHtml.Replace("\r\n", string.Empty);
+
+                var modelForEmailBody = new InvoiceEmailBodyViewModel()
+                {
+                    Total = faktura.TotalPrice.ToString(),
+                    FakturaDate = faktura.InvoiceDate.ToString("dd.MM.yyyy"),
+                    FakturaEndDate = faktura.InvoiceEndDate.ToString("dd.MM.yyyy"),
+                    FakturaNumber = faktura.FakturaNumber
+                };
+                string strEmailResult = RenderEmailBodyView("InvoiceEmailBody", modelForEmailBody);
+
                 byte[] bytes = GeneratePDF(strResult);
 
                 EmailFunctions.SendEmail(EmailReciever, "Invoice", strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");

@@ -42,6 +42,33 @@ namespace akcet_fakturi.Controllers
             return weeks;
         }
 
+        public string RenderEmailBodyView(string templateName, object model)
+        {
+            templateName = "~/Areas/EmailTemplates/Views/Template/" + templateName + ".cshtml";
+
+            //TODO: Make enumeration for variable templateName. 
+
+            ViewData.Model = model;
+
+            try
+            {
+                using (StringWriter sw = new StringWriter())
+                {
+                    ViewEngineResult viewResult = ViewEngines.Engines.FindView(ControllerContext, templateName, null);
+                    ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                    viewResult.View.Render(viewContext, sw);
+                    viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+
+                    return sw.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                EmailFunctions.SendExceptionToAdmin(ex);
+                TempData["ResultErrors"] = "There was a problem with rendering template for email!";
+                return "Error in register form! Email with the problem was send to aministrator.";
+            }
+        }
 
         public bool CheckUserDetails(string UserId, out string Error)
         {
@@ -228,6 +255,7 @@ namespace akcet_fakturi.Controllers
 
             return bytes;
         }
+
 
         public class UnicodeFontFactory : FontFactoryImp, IUnicodeFontFactory
         {

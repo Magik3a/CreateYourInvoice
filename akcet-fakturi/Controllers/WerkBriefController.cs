@@ -9,6 +9,7 @@ using akcetDB;
 using System.IO;
 using Tools;
 using System.Globalization;
+using System.Configuration;
 
 namespace akcet_fakturi.Controllers
 {
@@ -176,6 +177,9 @@ namespace akcet_fakturi.Controllers
             werkbriefHours.ForEach(w => db.WerkbriefHours.Add(w));
             db.SaveChanges();
 
+            byte[] bytes = GeneratePDF(werkbrief.WerkbriefHTML.Replace("\r\n", string.Empty));
+            string strEmailResult = "<img src=\"www.fakturi.nl/images/logo.png\">";
+            EmailFunctions.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "New werkbrief from user " + User.Identity.Name, strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
 
             return Json(werkbrief.WerkbriefHTML, JsonRequestBehavior.AllowGet);
         }

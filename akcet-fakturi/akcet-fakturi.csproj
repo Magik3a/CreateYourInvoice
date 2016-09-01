@@ -250,6 +250,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\EmailTemplates\Controllers\TemplateController.cs" />
     <Compile Include="Areas\EmailTemplates\EmailTemplatesAreaRegistration.cs" />
+    <Compile Include="Areas\EmailTemplates\Models\InvoiceEmailBodyViewModel.cs" />
     <Compile Include="Areas\EmailTemplates\Models\TemplateModels.cs" />
     <Compile Include="Areas\InvoiceTemplates\Controllers\InvoiceTemplateController.cs" />
     <Compile Include="Areas\InvoiceTemplates\InvoiceTemplatesAreaRegistration.cs" />
@@ -410,6 +411,7 @@
     <Content Include="fonts\ARIALUNI.TTF" />
     <Content Include="Areas\WerkbriefTemplates\Views\web.config" />
     <Content Include="Areas\WerkbriefTemplates\Views\WerkbriefTemplate\Index.cshtml" />
+    <Content Include="Areas\EmailTemplates\Views\Template\InvoiceEmailBody.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\svetlin.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
