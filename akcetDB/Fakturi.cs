@@ -23,34 +23,34 @@
 
         public int CompanyID { get; set; }
 
-        [Display(Name = "Дата на издаване")]
+        [Display(Name = "Invoice date")]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime InvoiceDate { get; set; }
 
-        [Display(Name = "Крайна дата")]
+        [Display(Name = "Invoice end date")]
         public DateTime InvoiceEndDate { get; set; }
         
         [StringLength(500)]
-        [Display(Name = "Период")]
+        [Display(Name = "Period")]
         public string Period { get; set; }
 
-        [Display(Name = "Крайна цена")]
+        [Display(Name = "Total price")]
         public decimal TotalPrice { get; set; }
 
-        [Display(Name = "Дата на създаване")]
+        [Display(Name = "Date created")]
         public DateTime? DateCreated { get; set; }
 
-        [Display(Name = "Дата на промяна")]
+        [Display(Name = "Date modified")]
         public DateTime? DateModified { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Потребител")]
+        [Display(Name = "User name")]
         public string UserName { get; set; }
 
-        [Display(Name = "Номер на фактура")]
+        [Display(Name = "Invoice number")]
         public string FakturaNumber { get; set; }
 
-        [Display(Name = "Съдържание")]
+        [Display(Name = "Content")]
         public string FakturaHtml { get; set; }
 
         public virtual Company Company { get; set; }

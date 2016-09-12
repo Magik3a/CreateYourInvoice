@@ -10,6 +10,12 @@ body {
 div#wrapper {
      font-size: 0.9em;
 }
+#footer{
+    position: absolute;
+    bottom: 0;
+    left: 63%;
+    width: 32%;
+}
 div#clear {
     clear: both;
 }
@@ -30,14 +36,23 @@ div#user-company h1 {
     padding: 0px auto;
     margin: 0px auto;
 }
-
+#user-company{
+    
+    font-family: Calibri; 
+    font-size: 14px;
+}
 .totals{
     text-align: right;
     width: 100%;
     margin-top: 10px;
     margin-bottom: 30px;
+        font-size: 14px;
+    font-family: Calibri;
 }
-
+#invoice-info{
+    font-size: 14px;
+    font-family: Calibri;
+}
 /*company data*/
 div#company-data {
   text-align: right;
@@ -77,8 +92,14 @@ div#invoice-info span {
     }
 
 /*INVOICE BODY*/
+.pdf-headers{
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+}
 #invoice-body {
     width: 100%;
+    font-size: 14px;
+    font-family: Calibri;
     margin-top: 20px;
     border: 1px solid #000000;
 }
@@ -93,6 +114,7 @@ tr.spaceUnder > td {
 
 .total {
     background-color: #99CCFF;
+
 }
 
 table#total {
@@ -114,4 +136,7 @@ table#total-price {
     margin-top: 20px;
     margin-bottom: 20px;
     border: 1px solid #000000;
+    
+    font-size: 14px;
+    font-family: Calibri;
 }

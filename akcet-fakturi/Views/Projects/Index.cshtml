@@ -7,11 +7,11 @@
     ViewBag.Projects = "active";
 }
 
-<h2>Проекти</h2>
+<h2>Projects</h2>
   <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 <p>
-    @Html.ActionLink("Създай нов", "Create", null, new {@class="btn btn-success btnCreateNew" })
+    @Html.ActionLink("Create new", "Create", null, new {@class="btn btn-warning btnCreateNew" })
 </p>
 
 @(Html.Kendo().Grid(Model).Name("Projects").Sortable().Filterable().Pageable().Columns(columns =>
@@ -20,9 +20,9 @@
     columns.Bound(m => m.DateCreated);
     columns.Bound(m => m.DateModified);
     columns.Template(@<text>
-        @Html.ActionLink("Редактирай", "Edit", new { id = item.ProjectID }) |
-        @Html.ActionLink("Детайли", "Details", new { id = item.ProjectID }) |
-        @Html.ActionLink("Изтрии", "Delete", new { id = item.ProjectID })
-    </text>).Title("Функции");
+        @Html.ActionLink("Edit", "Edit", new { id = item.ProjectID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ProjectID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ProjectID })
+    </text>).Title("Functions");
 })
 )

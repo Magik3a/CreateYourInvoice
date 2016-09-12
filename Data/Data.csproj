@@ -58,21 +58,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
-    <Compile Include="Migrations\201608281139005_Created-Werkbrief.cs" />
-    <Compile Include="Migrations\201608281139005_Created-Werkbrief.Designer.cs">
-      <DependentUpon>201608281139005_Created-Werkbrief.cs</DependentUpon>
+    <Compile Include="Migrations\201609120808047_201609120807416_AutomaticMigration.cs" />
+    <Compile Include="Migrations\201609120808047_201609120807416_AutomaticMigration.Designer.cs">
+      <DependentUpon>201609120808047_201609120807416_AutomaticMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608281259074_HtmlToWerkbrief.cs" />
-    <Compile Include="Migrations\201608281259074_HtmlToWerkbrief.Designer.cs">
-      <DependentUpon>201608281259074_HtmlToWerkbrief.cs</DependentUpon>
+    <Compile Include="Migrations\201609120811355_201609120807416_Fixed.cs" />
+    <Compile Include="Migrations\201609120811355_201609120807416_Fixed.Designer.cs">
+      <DependentUpon>201609120811355_201609120807416_Fixed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608281330118_ChangedTOtalHours.cs" />
-    <Compile Include="Migrations\201608281330118_ChangedTOtalHours.Designer.cs">
-      <DependentUpon>201608281330118_ChangedTOtalHours.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609011130254_AddedCompanyToWerkbrief.cs" />
-    <Compile Include="Migrations\201609011130254_AddedCompanyToWerkbrief.Designer.cs">
-      <DependentUpon>201609011130254_AddedCompanyToWerkbrief.cs</DependentUpon>
+    <Compile Include="Migrations\201609120812431_201609120807416_Fixed2.cs" />
+    <Compile Include="Migrations\201609120812431_201609120807416_Fixed2.Designer.cs">
+      <DependentUpon>201609120812431_201609120807416_Fixed2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,17 +84,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608281139005_Created-Werkbrief.resx">
-      <DependentUpon>201608281139005_Created-Werkbrief.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609120808047_201609120807416_AutomaticMigration.resx">
+      <DependentUpon>201609120808047_201609120807416_AutomaticMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608281259074_HtmlToWerkbrief.resx">
-      <DependentUpon>201608281259074_HtmlToWerkbrief.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609120811355_201609120807416_Fixed.resx">
+      <DependentUpon>201609120811355_201609120807416_Fixed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608281330118_ChangedTOtalHours.resx">
-      <DependentUpon>201608281330118_ChangedTOtalHours.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609011130254_AddedCompanyToWerkbrief.resx">
-      <DependentUpon>201609011130254_AddedCompanyToWerkbrief.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609120812431_201609120807416_Fixed2.resx">
+      <DependentUpon>201609120812431_201609120807416_Fixed2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

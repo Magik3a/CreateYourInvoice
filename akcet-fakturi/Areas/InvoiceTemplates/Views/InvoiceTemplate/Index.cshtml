@@ -15,7 +15,7 @@
 <body>
     <div id="wrapper">
         <div id="user-company">
-            <h1>@Model.UserCompanyName</h1><br />
+            <h1 class="pdf-headers">@Model.UserCompanyName</h1><br />
             <span>@Model.UserAddress</span>
             <br /><br />
             <span>Telefoon: @Model.UserPhone</span><br />
@@ -32,19 +32,19 @@
 
         <div id="clear"></div>
 
-        <h1>FACTUUR</h1>
+        <h1 class="pdf-headers">FACTUUR</h1>
 
         <div id="invoice-info">
             <table style="width: 100%;">
                 <tr>
-                    <td style="width: 15%"> 
+                    <td style="width: 15%">
                         Factuurdatum:
                     </td>
                     <td width="45%">
                         @Model.InvoiceDate
                     </td>
-                      <td rowspan="5" style="text-align: right">
-                            <table style="border: 1px solid black;     display: inline-block;">
+                    <td rowspan="5" style="text-align: right">
+                        <table style="border: 1px solid black;     display: inline-block;">
                             <tr>
                                 <td class="pinki">Um BTW-nummer</td>
                             </tr>
@@ -52,7 +52,7 @@
                                 <td class="pink">@Model.CompanyDDSNumber</td>
                             </tr>
                         </table>
-                      </td>
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -61,7 +61,7 @@
                     <td>
                         @Model.InvoiceNumber
                     </td>
-                      <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>
@@ -79,13 +79,13 @@
                     <td>
                         @Model.Period
                     </td>
-                  
+
                 </tr>
 
             </table>
-            
-                      
-                
+
+
+
         </div>
 
         <div id="clear"></div>
@@ -153,78 +153,88 @@
                 </td>
             </tr>
         </table>
-        <table id="total-price">
-            <tr class="pinki">
-                <td>BTW Details</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+        <div>
 
-            </tr>
-
-
-            <tr class="pink">
-                <td>BTW %</td>
-                <td></td>
-                <td>Subtotaal</td>
-                <td>BTW Bedrag</td>
-                <td>Bruto Bedlag</td>
-            </tr>
-            @{
-                Model.ListDds.OrderByDescending(s => s.Value).ThenBy(c => c.DdsName);
-
-            }
-            @foreach (var dds in Model.ListDds)
-            {
-                <tr>
-                    <td>@dds.DdsName</td>
+            <table id="total-price">
+                <tr class="pinki">
+                    <td>BTW Details</td>
                     <td></td>
-                    <td>
-                        @{
-                            decimal subTotal = Decimal.Zero;
-                            decimal btwBegdrad = Decimal.Zero;
-                            decimal totalPerDiscount = Decimal.Zero;
+                    <td></td>
+                    <td></td>
+                    <td></td>
 
-                            foreach (var product in Model.ProductsListTemp)
-                            {
-                                if (product.DdsID == dds.DdsID)
+                </tr>
+
+
+                <tr class="pink">
+                    <td>BTW %</td>
+                    <td></td>
+                    <td>Subtotaal</td>
+                    <td>BTW Bedrag</td>
+                    <td>Bruto Bedlag</td>
+                </tr>
+                @{
+                    Model.ListDds.OrderByDescending(s => s.Value).ThenBy(c => c.DdsName);
+
+                }
+                @foreach (var dds in Model.ListDds)
+            {
+                    <tr>
+                        <td>@dds.DdsName</td>
+                        <td></td>
+                        <td>
+                            @{
+                                decimal subTotal = Decimal.Zero;
+                                decimal btwBegdrad = Decimal.Zero;
+                                decimal totalPerDiscount = Decimal.Zero;
+
+                                foreach (var product in Model.ProductsListTemp)
                                 {
-                                    subTotal += Decimal.Parse(String.Format("{0}", product.ProductPrice * product.Quanity));
-                                    btwBegdrad = Decimal.Parse(String.Format("{0}", subTotal * (GetValueDDS(product.DdsID)))) / 100;
-                                    totalPerDiscount = subTotal + btwBegdrad;
+                                    if (product.DdsID == dds.DdsID)
+                                    {
+                                        subTotal += Decimal.Parse(String.Format("{0}", product.ProductPrice * product.Quanity));
+                                        btwBegdrad = Decimal.Parse(String.Format("{0}", subTotal * (GetValueDDS(product.DdsID)))) / 100;
+                                        totalPerDiscount = subTotal + btwBegdrad;
+                                    }
                                 }
                             }
-                        }
-                        @if (subTotal != 0)
-                        {
-                            @($"{subTotal:F2}")
-                        }
-                    </td>
-
-                    <td>
-                        @if (btwBegdrad != 0 && !dds.IsNullValue)
-                        {
-                            @($"{btwBegdrad:F2}")
-                        }
-                    </td>
-                    <td>
-                        @if (totalPerDiscount != 0 && !dds.IsNullValue)
-                        {
-                            @($"{totalPerDiscount:F2}")
-                        }
-                        else if (totalPerDiscount != 0)
-                        {
-                            @($"{subTotal:F2}")
-                        }
-                    </td>
-                </tr>
+                            @if (subTotal != 0)
+                            {
+                                @($"{subTotal:F2}")
                             }
+                        </td>
 
-        </table>
-        <p>
-            Wij verzoeken u vriendelijk de factuur binnen 14 dagen over te maken naar ons bankrekeningnummer IBAN @Model.UserBankAccount
-        </p>
+                        <td>
+                            @if (btwBegdrad != 0 && !dds.IsNullValue)
+                            {
+                                @($"{btwBegdrad:F2}")
+                            }
+                        </td>
+                        <td>
+                            @if (totalPerDiscount != 0 && !dds.IsNullValue)
+                            {
+                                @($"{totalPerDiscount:F2}")
+                            }
+                            else if (totalPerDiscount != 0)
+                            {
+                                @($"{subTotal:F2}")
+                            }
+                        </td>
+                    </tr>
+                                }
+
+            </table>
+            <p>
+                Wij verzoeken u vriendelijk de factuur binnen 14 dagen over te maken naar ons bankrekeningnummer IBAN @Model.UserBankAccount
+            </p>
+            @{
+                 string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + 
+    Request.ApplicationPath.TrimEnd('/') + "/";
+            }
+            <p id="footer">
+                Dese factuur is verzonden via @baseUrl
+            </p>
+        </div>
     </div>
 </body>
 </html>

@@ -7,7 +7,7 @@
     ViewBag.AllCompanies = "active";
 }
 
-<h2>Създай</h2>
+<h2>Create</h2>
 <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 
@@ -16,14 +16,14 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Компания</h4>
+        <h4>Company</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(m => m.UserId, new { value = User.Identity.GetUserId() })
         <input type="hidden" value="@User.Identity.GetUserId()" id="UserId" />
 
         <div class="form-group">
-            @Html.Label("Адрес", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Address", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
 
                 @Html.DropDownList("IdAddress", null, htmlAttributes: new { @class = "form-control" })
@@ -93,14 +93,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Запази" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Обратно към създадени компании", "Index")
+    @Html.ActionLink("Back to list", "Index")
 </div>
 
 <!-- Modal to add Address-->

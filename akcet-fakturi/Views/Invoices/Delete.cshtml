@@ -6,9 +6,9 @@
     ViewBag.InvoicesAll = "active";
 }
 
-<h2>Изтрии</h2>
+<h2>Delete</h2>
 
-<h3>Сигурни ли сте че изкате да изтриете тази фактура?</h3>
+<h3>Sure you want do it?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -58,8 +58,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color" style="margin-top: 20px;">
-            <input type="submit" value="Изтрии" class="btn btn-danger btn-lg" /> |
-            @Html.ActionLink("Обратно към всички фактури", "Index", null, new {@class="btn btn-info btn-lg" })
+            <input type="submit" value="Delete" class="btn btn-danger btn-lg" /> |
+            @Html.ActionLink("Back to list", "Index", null, new {@class="btn btn-warning btn-lg" })
         </div>
     }
 </div>

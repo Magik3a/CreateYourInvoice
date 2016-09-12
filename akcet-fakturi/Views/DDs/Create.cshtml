@@ -6,7 +6,7 @@
     ViewBag.Dds = "active";
 }
 
-<h2>Създай</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -14,7 +14,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ДДС</h4>
+        <h4>Vat</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -51,7 +51,7 @@
 }
 
 <div>
-    @Html.ActionLink("Върни се към всички", "Index")
+    @Html.ActionLink("Return to all vats", "Index")
 </div>
 
 @section Scripts {

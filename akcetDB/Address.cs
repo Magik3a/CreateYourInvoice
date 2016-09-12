@@ -22,24 +22,24 @@
 
         [Required]
         [StringLength(500)]
-        [Display(Name = "Адрес")]
+        [Display(Name = "Address")]
         public string StreetName { get; set; }
 
 
-        [Display(Name = "Пощенски код")]
+        [Display(Name = "Zip code")]
         public string ZipCode { get; set; }
 
         [Required]
         [StringLength(500)]
-        [Display(Name = "Град")]
+        [Display(Name = "City")]
         public string City { get; set; }
-        [Display(Name = "Дата на създаване")]
+        [Display(Name = "Date created")]
         public DateTime? DateCreated { get; set; }
-        [Display(Name = "Дата на промяна")]
+        [Display(Name = "Date modified")]
         public DateTime? DateModified { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Потребител")]
+        [Display(Name = "User name")]
         public string UserName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

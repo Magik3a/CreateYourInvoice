@@ -20,7 +20,7 @@
     <div class="col-md-3 pull-right" style="margin-top:30px;">
 
       
-            <a href="@Url.Action("Invoices", "Home" )" class="btn btn-info btn-sm">
+            <a href="@Url.Action("Invoices", "Home" )" class="btn btn-warning btn-sm">
                 <span class="glyphicon glyphicon-user"></span>
                 Hello @User.Identity.GetUserName()!
             </a>
@@ -28,9 +28,9 @@
     </div>
 
     <div class="col-md-2 pull-right" style="margin-top:30px;">
-        <button type="button" class="btn btn-sm" style="background-color:#FF8C00; color:#ffffff;">
-            <a href="javascript:document.getElementById('logoutForm').submit()" style="color:#ffffff; text-decoration:none; padding-left:20px; padding-right:20px; font-weight:bold;">Изход</a>
-        </button>
+        <a href="javascript:document.getElementById('logoutForm').submit()" type="button" class="btn btn-sm" style="background-color:#FF8C00; color:#ffffff;">
+           Log out
+        </a>
     </div>
 </div>
 
@@ -55,9 +55,9 @@ else
 
 <div class="row" style="background-color:#ffffcc; width:100%; padding-top:5px; padding-bottom:5px; margin-top:-10px;">
     <div class="col-md-4" style="padding:0px;">
-        <label for="firstname" class="control-label col-md-2">Име</label>
+        <label for="firstname" class="control-label col-md-2">User name</label>
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Име" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "User name" })
             @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -65,7 +65,7 @@ else
 
 
     <div class="col-md-4">
-        <label for="firstname" class="col-sm-3 control-label">Парола</label>
+        <label for="firstname" class="col-sm-3 control-label">Password</label>
         <div class="col-sm-9">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -75,14 +75,14 @@ else
     <div class="col-md-2">
         <div class="checkbox">
             @Html.CheckBoxFor(m => m.RememberMe, new {@class="", id="rememberMe"})
-            <label for="rememberMe">Запомни ме</label>
+            <label for="rememberMe">Remember me</label>
         </div>
 
     </div>
 
     <div class="col-md-2">
 
-        <input type="submit" class="btn" style="background-color:#FF8C00; padding-left:35px; padding-right:35px; color:#ffffff; font-weight:bold;" value="Вход" />
+        <input type="submit" class="btn" style="background-color:#FF8C00; padding-left:35px; padding-right:35px; color:#ffffff; font-weight:bold;" value="Login" />
     </div>
 </div>
 

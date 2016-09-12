@@ -64,7 +64,7 @@ namespace Tools
             sb.AppendLine(ex.Message.ToString());
             sb.AppendLine("================================");
             sb.AppendLine("Inner exception: ");
-            sb.AppendLine(ex.InnerException.ToString());
+            sb.AppendLine(ex.InnerException?.ToString());
             sb.AppendLine("================================");
 
             SmtpClient smtpServer = new SmtpClient();

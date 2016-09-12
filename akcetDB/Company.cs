@@ -24,32 +24,32 @@
 
         [Required]
         [StringLength(500)]
-        [Display(Name = "Име на компания")]
+        [Display(Name = "Name")]
         public string CompanyName { get; set; }
         
         [StringLength(500)]
-        [Display(Name = "МОЛ")]
+        [Display(Name = "Company manager")]
         public string CompanyMol { get; set; }
         
         [StringLength(500)]
-        [Display(Name = "ДДС Номер")]
+        [Display(Name = "Vat number")]
         public string DdsNumber { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Описание")]
+        [Display(Name = "Description")]
         public string CompanyDescription { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Имейл")]
+        [Display(Name = "Email")]
         public string CompanyPhone { get; set; }
 
-        [Display(Name = "Работя в нея")]
+        [Display(Name = "Work in it")]
         public bool IsPrimary { get; set; }
 
-        [Display(Name = "Създадена на")]
+        [Display(Name = "Date created")]
         public DateTime? DateCreated { get; set; }
 
-        [Display(Name = "Редактирана на")]
+        [Display(Name = "Date modified")]
         public DateTime? DateModified { get; set; }
 
         public bool IsDeleted { get; set; }

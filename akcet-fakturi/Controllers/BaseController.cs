@@ -238,14 +238,19 @@ namespace akcet_fakturi.Controllers
                 OptionWriteEmptyNodes = true,
                 OptionAutoCloseOnEnd = true
             };
+           
             hDocument.LoadHtml(html);
+            var footer = hDocument.GetElementbyId("footer").InnerText.Trim();
+            hDocument.GetElementbyId("footer").Remove();
             var closedTags = hDocument.DocumentNode.WriteTo();
+            
             var example_html = closedTags;
             var example_css = System.IO.File.ReadAllText(Server.MapPath("~/Content/invoicePrint.css"));
             var msCss = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(example_css));
             var msHtml = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(example_html));
             string fontPath = Server.MapPath("~/fonts/arialuni.ttf");
             iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, msHtml, msCss, Encoding.UTF8, new UnicodeFontFactory(fontPath));
+            writer.PageEvent = new MyFooterEvent(footer.ToString());
             doc.Close();
             bytes = ms.ToArray();
 
@@ -256,7 +261,32 @@ namespace akcet_fakturi.Controllers
             return bytes;
         }
 
+        class MyFooterEvent : PdfPageEventHelper
+        {
+            private string footer;
+            public MyFooterEvent(string footer)
+            {
+                this.footer = footer;
+            }
+            Font FONT = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD);
 
+            public override void OnEndPage(PdfWriter writer, Document document)
+            {
+                PdfContentByte canvas = writer.DirectContent;
+                //ColumnText.ShowTextAligned(
+                //  canvas, Element.ALIGN_LEFT,
+                //  new Phrase("Header", FONT), 10, 810, 0
+                ////);
+                //ColumnText.ShowTextAligned(
+                //  canvas, Element.ALIGN_LEFT,
+                //  new Phrase(new Chunk(footer.Split(new string[] { "IBAN" }, StringSplitOptions.None)[0])), 20, 40, 0
+                //);
+                ColumnText.ShowTextAligned(
+                  canvas, Element.ALIGN_LEFT,
+                  new Phrase(new Chunk(footer)), 250, 25, 0
+                );
+            }
+        }
         public class UnicodeFontFactory : FontFactoryImp, IUnicodeFontFactory
         {
 

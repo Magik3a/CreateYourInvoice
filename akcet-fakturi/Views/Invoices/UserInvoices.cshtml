@@ -7,17 +7,17 @@
     ViewBag.InvoicesAllUser = "active";
 }
 
-<h2>Създадени фактури</h2>
+<h2>Created invoices</h2>
 
 <p>
-    @Html.ActionLink("Създай нова", "Invoices", "Home",  null, new {@class="btn btn-success btnCreateNew" })
+    @Html.ActionLink("Create new", "Invoices", "Home",  null, new {@class="btn btn-warning btnCreateNew" })
 </p>
 
 @(Html.Kendo().Grid(Model.OrderByDescending(s => s.DateCreated)).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>
 {
 columns.Bound(m => m.FakturaNumber);
 columns.Bound(m => m.Company.CompanyName);
-columns.Bound(m => m.ProductInvoices.Count).Title("Продукти");
+columns.Bound(m => m.ProductInvoices.Count).Title("Products");
 
 columns.Bound(m => m.TotalPrice);
 
@@ -28,9 +28,9 @@ columns.Template(@<text>
         @*@Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }) |
             @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID })*@
-        <button class="btn btn-info btn-sg btnForModal" data-toggle="modal" data-target=".bs-example-modal-lg" data-idinvoice="@item.InvoiceID">Отвори</button>
-</text>).Title("Функции");
-}).NoRecords("Все още няма запазени фактури.")
+        <button class="btn btn-info btn-sg btnForModal" data-toggle="modal" data-target=".bs-example-modal-lg" data-idinvoice="@item.InvoiceID">Open</button>
+</text>).Title("Functions");
+}).NoRecords("Not created invoices yet.")
 )
 
 
@@ -46,8 +46,8 @@ columns.Template(@<text>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success btn-lg" id="print-button">Принтирай</button>
-                <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Затвори</button>
+                <button class="btn btn-success btn-lg" id="print-button">Print</button>
+                <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
     </div>

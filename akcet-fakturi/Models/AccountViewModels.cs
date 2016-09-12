@@ -64,44 +64,44 @@ namespace akcet_fakturi.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Потребителско име")]
+        [Display(Name = "User name")]
         public string UserNickName { get; set; }
 
-        [Display(Name = "Имейл")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Парола")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Потвърди парола")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-        
-        [Display(Name = "Телефон")]
+
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "Име на компания")]
+        [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
 
-        [Display(Name = "Първо име")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Фамилно име")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Адрес")]
+        [Display(Name = "Address")]
         public string Address { get; set; }
 
 
-        [Display(Name = "Пощенски код")]
+        [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
         
         [StringLength(500)]
-        [Display(Name = "Град")]
+        [Display(Name = "City")]
         public string City { get; set; }
 
     }

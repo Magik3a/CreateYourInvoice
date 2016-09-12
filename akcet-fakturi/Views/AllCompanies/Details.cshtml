@@ -63,7 +63,7 @@
         </dd>
         @*user email*@
         <dt>
-            Емаил
+            Email
         </dt>
 
         <dd>
@@ -103,7 +103,7 @@
 </p>
 @functions
 {
-    private AppDbContext db = new AppDbContext();
+    private Data.AppDbContext db = new Data.AppDbContext();
     private string GetUserNameById(string UserId)
     {
         var user = db.Users.Find(UserId);

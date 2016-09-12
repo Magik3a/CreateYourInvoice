@@ -7,7 +7,7 @@
     ViewBag.ApplicationUsers = "active";
 }
 
-<h2>Потребители</h2>
+<h2>Users</h2>
 <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 @*<p>
@@ -17,7 +17,7 @@
 @(Html.Kendo().Grid(Model).Name("User").Sortable().Filterable().Pageable().Columns(columns =>
 {
 
-columns.Bound(m => m.UserName).Title("Потребителско име");
+columns.Bound(m => m.UserName).Title("User name");
 
 columns.Bound(m => m.CompanyName);
 columns.Bound(m => m.Address);
@@ -27,10 +27,10 @@ columns.Bound(m => m.DdsNumber);
 columns.Bound(m => m.DateCreated);
 
 columns.Template(@<text>
-                         @Html.ActionLink("Детайли", "Details", new { id = item.Id }) |
-                         @Html.ActionLink("Редактирай", "Edit", new {id = item.Id}) |
-                         @Html.ActionLink("Изтрий", "Delete", new {id = item.Id})
-                      </text>).Title("Функции");
+                         @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                         @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                         @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                      </text>).Title("Functions");
 })
 )
 

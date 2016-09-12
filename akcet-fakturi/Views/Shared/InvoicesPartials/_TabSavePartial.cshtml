@@ -3,16 +3,16 @@
 <div role="tabpanel" class="tab-pane" id="settings">
     <div class="alert alert-success alert-dismissable" id="alert-box-sendEmail">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4>	<i class="icon fa fa-check"></i> Моля изчакайте!</h4>
-       Фактурата се изпраща на въведения имейл.
+        <h4>	<i class="icon fa fa-check"></i> Please wait!</h4>
+       Invoice is sending to email.
     </div>
     <div class="row text-center">
         <div class="col-md-3">
-            <a href="@Url.Action("DownloadInvoice", "Home")" class="btn btn-success btn-lg" target="_blank">Свали в .pdf</a>
+            <a href="@Url.Action("DownloadInvoice", "Home")" class="btn btn-success btn-lg" target="_blank">Download in .pdf</a>
             @*<button class="btn btn-success btn-lg" id="pdf-button">Свали в .pdf</button>*@
         </div>
         <div class="col-md-3">
-            <button class="btn btn-success btn-lg" id="print-button">Принтирай</button>
+            <button class="btn btn-success btn-lg" id="print-button">Print</button>
         </div>
         <div class="col-md-6">
             @using (Ajax.BeginForm("SendIvoiceToEmail", "Home", new AjaxOptions()
@@ -23,11 +23,11 @@
             {
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <input style="height: 3.2em;" type="text" class="form-control" id="EmailReciever" name="EmailReciever" placeholder="Изпрати до имейл">
+                        <input style="height: 3.2em;" type="text" class="form-control" id="EmailReciever" name="EmailReciever" placeholder="Send to email">
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <input type="submit" value="Изпрати" class="btn btn-success btn-lg pull-left"/>
+                    <input type="submit" value="Send" class="btn btn-success btn-lg pull-left"/>
                 </div>
 
 

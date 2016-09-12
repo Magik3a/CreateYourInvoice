@@ -21,6 +21,7 @@ namespace akcetDB
         public string UserID { get; set; }
 
         [StringLength(500)]
+        [Display(Name = "Project")]
         public string ProjectName { get; set; }
 
         public DateTime? DateCreated { get; set; }

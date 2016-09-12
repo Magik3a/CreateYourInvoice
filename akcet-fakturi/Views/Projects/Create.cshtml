@@ -6,7 +6,7 @@
     ViewBag.Projects = "active";
 }
 
-<h2>Създай</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -14,7 +14,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Проект</h4>
+        <h4>Project</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
    
@@ -39,7 +39,7 @@
 }
 
 <div>
-    @Html.ActionLink("Обратно към листа", "Index")
+    @Html.ActionLink("Back to list", "Index")
 </div>
 
 @section Scripts {

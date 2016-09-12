@@ -2,7 +2,7 @@
 <div class="alert alert-danger alert-dismissable" id="alert-box">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-   <h5>Грешка при запазване. </h5>
+   <h5>Error. </h5>
 </div>
 <div role="tabpanel" class="tab-pane active" id="home">
     <div class="row">
@@ -18,7 +18,7 @@
 
             <div class="col-md-3">
                 <div class="form-group">
-                        @Html.Label("Компания", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label("Company", htmlAttributes: new { @class = "control-label col-md-2" })
                     
                             @Html.DropDownList("Companies", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%", })
                             @Html.ValidationMessageFor(model => model.CompanyID, "", new { @class = "text-danger" })
@@ -28,7 +28,7 @@
             </div>
 
             <div class="col-md-1">
-                <label for="new-company">Нова</label>
+                <label for="new-company">New</label>
                 <button type="button" class="btn btn-info btn-sg" data-toggle="modal" data-target="#myModal" id="new-company"> <span class="glyphicon glyphicon-plus"> </span></button>
             </div>
 
@@ -44,7 +44,7 @@
     </div>
 
     <div class="row text-center" style="margin-top: 50px">
-        <a class="btn btn-success btn-lg btnNext" id="submitInvoice">Продължи</a>
+        <a class="btn btn-success btn-lg btnNext" id="submitInvoice">Continue</a>
 
     </div>
 

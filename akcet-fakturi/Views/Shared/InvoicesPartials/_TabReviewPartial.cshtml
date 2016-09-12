@@ -10,14 +10,14 @@
 <div role="tabpanel" class="tab-pane" id="messages">
     <div class="alert alert-success alert-dismissable" id="alert-box-invoice">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4>	<i class="icon fa fa-check"></i> Моля изчакайте!</h4>
-        Фактурата се запазва.
+        <h4>	<i class="icon fa fa-check"></i> Please wait!</h4>
+       Invoice is saving.
     </div>
     <div id="reviewInvoice"></div>
 
     <div class="row  text-center" style="margin-top: 50px">
         @*<a class="" id="saveInvoiceConfirmed">Запази и принтирай въведената фактура</a>*@
-        @Ajax.ActionLink("Принтирай", "SaveInvoiceConfirmed", "Home", new { value = true },
+        @Ajax.ActionLink("Print", "SaveInvoiceConfirmed", "Home", new { value = true },
             new AjaxOptions()
             {
                 UpdateTargetId = "saved-faktura",

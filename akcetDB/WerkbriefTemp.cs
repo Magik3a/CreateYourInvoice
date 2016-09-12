@@ -20,13 +20,13 @@
 
         public int? CompanyID { get; set; }
 
-        [Display(Name = "Дата на издаване")]
+        [Display(Name = "Date created")]
         public string WerkbriefDate { get; set; }
 
-        [Display(Name = "Дата на падеж")]
+        [Display(Name = "Payment end day")]
         public string WerkbriefEndDate { get; set; }
 
-        [Display(Name = "Период")]
+        [Display(Name = "Period")]
         public string Period { get; set; }
 
         public int? TotalHours { get; set; }

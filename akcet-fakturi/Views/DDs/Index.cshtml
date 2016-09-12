@@ -8,11 +8,11 @@
     ViewBag.Dds = "active";
 }
 
-<h2>ДДС</h2>
+<h2>VAT</h2>
   <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 <p>
-    @Html.ActionLink("Създай ново", "Create",  null, new {@class="btn btn-success btnCreateNew" })
+    @Html.ActionLink("Create new", "Create",  null, new {@class="btn btn-warning btnCreateNew" })
 </p>
 
 
@@ -26,9 +26,9 @@
       columns.Bound(m => m.IsNullValue);
 
     columns.Template(@<text>
-        @Html.ActionLink("Редактирай", "Edit", new { id = item.DdsID }) |
-        @Html.ActionLink("Детайли", "Details", new { id = item.DdsID }) |
-        @Html.ActionLink("Изтрии", "Delete", new { id = item.DdsID })
-    </text>).Title("Функции");
+        @Html.ActionLink("Edit", "Edit", new { id = item.DdsID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.DdsID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.DdsID })
+    </text>).Title("Functions");
 })
       )

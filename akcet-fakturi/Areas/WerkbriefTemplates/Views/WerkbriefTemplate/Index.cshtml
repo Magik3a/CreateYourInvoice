@@ -154,9 +154,13 @@
 
             </tr>
         </table>
-
-
-
+                    @{
+                 string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + 
+    Request.ApplicationPath.TrimEnd('/') + "/";
+            }
+         <p id="footer">
+                Dese werkbrief is verzonden via @baseUrl
+            </p>
     </div>
 </body>
 </html>

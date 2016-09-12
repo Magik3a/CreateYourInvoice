@@ -10,36 +10,36 @@ namespace akcetDB
 {
     public class ApplicationUser : IdentityUser
     {
-        [Display(Name = "Име")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Фамилно име")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Банкова сметка")]
+        [Display(Name = "Bank Account")]
         public string BankAcount { get; set; }
 
-        [Display(Name = "КВК номер")]
+        [Display(Name = "Kwk Number")]
         public string KwkNumber { get; set; }
 
-        [Display(Name = "ДДС номер")]
+        [Display(Name = "Vat number")]
         public string DdsNumber { get; set; }
 
-        [Display(Name = "Компания")]
+        [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
 
-        [Display(Name = "Адрес")]
+        [Display(Name = "Address")]
         public string Address { get; set; }
 
-        [Display(Name = "Пощенски код")]
+        [Display(Name = "Zip code")]
         public string ZipCode { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Град")]
+        [Display(Name = "City")]
         public string City { get; set; }
 
 
-        [Display(Name = "Регистриран на")]
+        [Display(Name = "Registered on")]
         public DateTime DateCreated { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

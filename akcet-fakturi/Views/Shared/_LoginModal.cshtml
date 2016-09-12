@@ -8,9 +8,9 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        <label for="firstname" class="col-sm-3 control-label">Име</label>
+        <label for="firstname" class="col-sm-3 control-label">User name</label>
         <div class="col-sm-9">
-            @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", placeholder = "Борислав"})
+            @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", placeholder = "user name"})
             @Html.ValidationMessageFor(m => m.UserName, "", new {@class = "text-danger"})
         </div>
 
@@ -19,7 +19,7 @@
 
 
     <div class="form-group">
-        <label for="firstname" class="col-sm-3 control-label">Парола</label>
+        <label for="firstname" class="col-sm-3 control-label">Password</label>
         <div class="col-sm-9">
             @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
             @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
@@ -37,7 +37,7 @@
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-            <input type="submit" class="btn btn-default" value="Вход"/>
+            <input type="submit" class="btn btn-default" value="Log in"/>
         </div>
     </div>
 }

@@ -20,10 +20,10 @@
 
         public int? CompanyID { get; set; }
 
-        [Display(Name = "Дата на издаване")]
+        [Display(Name = "Invoice date")]
         public string InvoiceDate { get; set; }
 
-        [Display(Name = "Дата на падеж")]
+        [Display(Name = "Payment end date")]
         public string InvoiceEndDate { get; set; }
 
         public int? TotalPrice { get; set; }
@@ -35,7 +35,7 @@
         [StringLength(500)]
         public string UserName { get; set; }
 
-        [Display(Name = "Период")]
+        [Display(Name = "Period")]
         public string Period { get; set; }
 
         [StringLength(128)]

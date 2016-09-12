@@ -9,24 +9,24 @@ namespace akcet_fakturi.Models
     public class ContactFormModel
     {
         [Required]
-        [Display(Name = "Име")]
+        [Display(Name = "First name")]
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "Фамилия")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "Телефон")]
+        [Display(Name = "Phone")]
         public string Phone { get; set; }
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Емайл")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Съобщение")]
+        [Display(Name = "Message")]
         [DataType(DataType.MultilineText)]
         public string Message { get; set; }
 

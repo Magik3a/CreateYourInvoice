@@ -14,7 +14,7 @@
     <div class="col-md-10">
         <div class="col-md-2">
             <div class="form-group">
-                <label for="product-select">Описание</label>
+                <label for="product-select">Description</label>
                 @Html.DropDownList("Products", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
             </div>
             <!-- /.form-group -->
@@ -22,7 +22,7 @@
 
         <div class="col-md-1 ">
             <div class="newProductName">
-                <label for="product-new">Нов</label>
+                <label for="product-new">New</label>
                 <button type="button" class="btn btn-info btn-sg" id="product-new" data-toggle="modal" data-target="#product-modal">
                     <span class="glyphicon glyphicon-plus"> </span>
                 </button>
@@ -31,7 +31,7 @@
 
         <div class="col-md-2">
             <div class="form-group">
-                <label for="project">Проект</label>
+                <label for="project">Project</label>
                 @Html.DropDownList("Projects", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
 
             </div>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-1 ">
             <div class="newProductName">
-                <label for="project-new">Нов</label>
+                <label for="project-new">New</label>
                 <button type="button" class="btn btn-info btn-sg" id="project-new" data-toggle="modal" data-target="#project-modal">
                     <span class="glyphicon glyphicon-plus"> </span>
                 </button>
@@ -48,7 +48,7 @@
 
         <div class="col-md-1">
             <div class="form-group">
-                <label for="quantity">Количество</label>
+                <label for="quantity">Quantity</label>
                 @*<input type="text" class="form-control" id="quantity"/>*@
                 @Html.TextBoxFor(model => model.Quanity,  new { @class = "form-control quanity", placeholder= "0.00" } )
             </div>
@@ -58,7 +58,7 @@
 
         <div class="col-md-1">
             <div class="form-group">
-                <label for="quantity" class="pull-right">Цена</label>
+                <label for="quantity" class="pull-right">Prize</label>
                 @*<input type="text" class="form-control"/>*@
                 @Html.TextBoxFor(model => model.ProductPrice,  new { @class = "form-control price", placeholder = "0.00" } )
             </div>
@@ -66,7 +66,7 @@
 
         <div class="col-md-2">
             <div class="dropdown">
-                <label for="quantity">ДДС (%)</label>
+                <label for="quantity">VAT (%)</label>
 
                 @Html.DropDownList("Dds", null, htmlAttributes: new { @class = "form-control dds", style = "width: 100%" })
             </div>
@@ -74,7 +74,7 @@
 
         <div class="col-md-2">
             <div class="form-group">
-                <label for="quantity">Крайна цена</label>
+                <label for="quantity">Total prize</label>
                 <input type="text" class="form-control total-price" disabled>
             </div>
         </div>
@@ -87,7 +87,7 @@
         <div class="col-md-4 col-md-offset-1">
 
             <div class="form-group saveProduct">
-                <label for="save">Запази</label>
+                <label for="save">Save</label>
                 <button type="button" class="btn btn-success btn-sm" onclick="btnSubmitProductclick(event)"> <span class="glyphicon glyphicon-ok"></span></button>
             </div>
         </div>
@@ -96,7 +96,7 @@
 
             <div class="form-group deleteProduct" style="display: none">
             
-                    <label for='delete'>Изтрий</label>
+                    <label for='delete'>Delete</label>
                     @Ajax.ActionLink(" ", "DeleteProductInvoiceTemp", "Home",  new { id = Model.ProductInvoiceID },new AjaxOptions{ OnSuccess = "DeleteRowProduct"}, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
                 
             </div>
