@@ -431,7 +431,7 @@ namespace akcet_fakturi.Controllers
 
                 byte[] bytes = GeneratePDF(strResult);
 
-                EmailFunctions.SendEmail(EmailReciever, "Invoice", strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
+                EmailFunctions.SendEmail(EmailReciever, "Faktuur van: " + faktura.Company.CompanyName + " - Periode: " + faktura.Period, strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
                 
                 return Json(true, JsonRequestBehavior.AllowGet);
 

@@ -1,4 +1,5 @@
 ﻿@model akcet_fakturi.Models.ContactFormModel
+    @using akcet_fakturi.Models
 @{
     ViewBag.Title = "Home Page";
 
@@ -9,6 +10,12 @@
 
 <!--LAYOUT-->
 <div class="container" style="background-image:url(images/1.jpg); background-size:cover;margin-top:30px; padding-top:10px; padding-bottom:60px;">
+
+        <div class="row" style="margin-top:10px; width:100%;">
+
+            @Html.Partial("_LoginHeaderTopPartial", new LoginViewModel())
+
+        </div>
 
     <div class="row">
 
@@ -182,12 +189,12 @@
         </div>
 
 
-       
+
 
 
     </div>
 
-  
+
 
 </div>
 

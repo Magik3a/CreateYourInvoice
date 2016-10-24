@@ -187,7 +187,7 @@ namespace akcet_fakturi.Controllers
         {
             templateName = "~/Areas/WerkbriefTemplates/Views/WerkbriefTemplate/" + templateName + ".cshtml";
 
-            //TODO: Make enumeration for variable templateName. 
+            //TODO: Make enumeration for variable templateName.
 
             ViewData.Model = model;
 
@@ -237,13 +237,13 @@ namespace akcet_fakturi.Controllers
 
                 var strResult = "";
                 var userId = User.Identity.GetUserId();
-
-                strResult = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault().FakturaHtml;
+                var werkbrifef = db.Werkbriefs.OrderByDescending(o => o.DateCreated).Where(u => u.UserId == userId).FirstOrDefault();
+                strResult = werkbrifef.WerkbriefHTML;
 
                 strResult = strResult.Replace("\r\n", string.Empty);
                 byte[] bytes = GeneratePDF(strResult);
 
-                EmailFunctions.SendEmail(EmailReciever, "Werkbrief", strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
+                EmailFunctions.SendEmail(EmailReciever, "Werkbrief van AKCET - periode: " + werkbrifef.Period, strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
 
                 return Json(true, JsonRequestBehavior.AllowGet);
 

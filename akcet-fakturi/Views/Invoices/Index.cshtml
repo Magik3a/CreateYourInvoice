@@ -15,13 +15,13 @@
 
 @(Html.Kendo().Grid(Model.OrderByDescending(s => s.DateCreated)).Name("Copmanies").Sortable().Filterable().Pageable().Columns(columns =>
 {
+columns.Bound(m => m.InvoiceDate);
 columns.Bound(m => m.FakturaNumber).Title("Number");
 columns.Bound(m => m.Company.CompanyName);
-columns.Bound(m => m.ProductInvoices.Count).Title("Products");
+// columns.Bound(m => m.ProductInvoices.Count).Title("Products");
 
 columns.Bound(m => m.TotalPrice);
 
-columns.Bound(m => m.InvoiceDate);
 columns.Bound(m => m.Period);
 
 

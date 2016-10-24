@@ -13,18 +13,18 @@
 
 <div class="row">
 
-    <div class="col-md-4 pull-left" style="margin-top:10px;">
+    @*<div class="col-md-4 pull-left" style="margin-top:10px;">
         <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
-    </div>
+    </div>*@
 
     <div class="col-md-3 pull-right" style="margin-top:30px;">
 
-      
+
             <a href="@Url.Action("Invoices", "Home" )" class="btn btn-warning btn-sm">
                 <span class="glyphicon glyphicon-user"></span>
                 Hello @User.Identity.GetUserName()!
             </a>
-        
+
     </div>
 
     <div class="col-md-2 pull-right" style="margin-top:30px;">
@@ -53,7 +53,7 @@ else
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-<div class="row" style="background-color:#ffffcc; width:100%; padding-top:5px; padding-bottom:5px; margin-top:-10px;">
+<div class="row" style="background-color:#ffffcc; width:100%; padding-top:5px; padding-bottom:5px; margin-top:-10px; margin-left: 1%">
     <div class="col-md-4" style="padding:0px;">
         <label for="firstname" class="control-label col-md-2">User name</label>
         <div class="col-md-10">
@@ -87,9 +87,9 @@ else
 </div>
 
 
-<div class="row" style="margin-top:20px;">
+@*<div class="row" style="margin-top:20px;">
     <div class="col-md-4  "><img src="../../images/logo.png" class="img-responsive" /></div>
-</div>
+</div>*@
     }
 
 

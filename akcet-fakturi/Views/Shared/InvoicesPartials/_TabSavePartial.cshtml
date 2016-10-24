@@ -8,11 +8,11 @@
     </div>
     <div class="row text-center">
         <div class="col-md-3">
-            <a href="@Url.Action("DownloadInvoice", "Home")" class="btn btn-success btn-lg" target="_blank">Download in .pdf</a>
+            <a href="@Url.Action("DownloadInvoice", "Home")" class="btn btn-warning btn-lg" target="_blank">Download in .pdf</a>
             @*<button class="btn btn-success btn-lg" id="pdf-button">Свали в .pdf</button>*@
         </div>
         <div class="col-md-3">
-            <button class="btn btn-success btn-lg" id="print-button">Print</button>
+            @*<button class="btn btn-warning btn-lg" id="print-button">Print</button>*@
         </div>
         <div class="col-md-6">
             @using (Ajax.BeginForm("SendIvoiceToEmail", "Home", new AjaxOptions()
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <input type="submit" value="Send" class="btn btn-success btn-lg pull-left"/>
+                    <input type="submit" value="Send" class="btn btn-warning btn-lg pull-left"/>
                 </div>
 
 

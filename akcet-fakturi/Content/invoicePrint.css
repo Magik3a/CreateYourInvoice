@@ -13,8 +13,7 @@ div#wrapper {
 #footer{
     position: absolute;
     bottom: 0;
-    left: 63%;
-    width: 32%;
+    left: 0;
 }
 div#clear {
     clear: both;
@@ -37,8 +36,8 @@ div#user-company h1 {
     margin: 0px auto;
 }
 #user-company{
-    
-    font-family: Calibri; 
+
+    font-family: Calibri;
     font-size: 14px;
 }
 .totals{
@@ -66,12 +65,17 @@ div#invoice-info span {
 
 .pinki {
     background-color: #FFCC66;
-    padding: 10px 50px;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    width: 200px;
 }
 
 .pink {
     background-color: #FF9966;
-    padding: 10px 50px;
+    text-align: center;
+    padding: 10px 0 ;
+    font-size: 14px;
 }
 
 #first {
@@ -103,7 +107,9 @@ div#invoice-info span {
     margin-top: 20px;
     border: 1px solid #000000;
 }
-
+#invoice-body tr td {
+    padding: 5px
+}
 .th {
     background-color: #FF9966;
 }
@@ -136,7 +142,4 @@ table#total-price {
     margin-top: 20px;
     margin-bottom: 20px;
     border: 1px solid #000000;
-    
-    font-size: 14px;
-    font-family: Calibri;
 }

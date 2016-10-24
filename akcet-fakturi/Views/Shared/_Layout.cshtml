@@ -5,17 +5,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>АКСЕТ - Online invoices</title>
+    <title>Netfactuur.nl - Online invoices</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
     <div class="container">
-        <div class="row" style="margin-top:10px; width:100%;">
 
-            @Html.Partial("_LoginHeaderTopPartial", new LoginViewModel())
-
+        <div class="col-md-4 pull-left" style="margin-top:10px;">
+            <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
         </div>
     </div>
     <div class="container body-content">

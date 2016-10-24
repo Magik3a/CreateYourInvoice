@@ -18,7 +18,7 @@
 
     <div class="row  text-center" style="margin-top: 50px">
         @*<a class="" id="saveInvoiceConfirmed">Запази и принтирай въведената фактура</a>*@
-        @Ajax.ActionLink("Print", "SaveWerkbriefConfirmed", "Werkbrief", new { value = true },
+        @Ajax.ActionLink("Save", "SaveWerkbriefConfirmed", "Werkbrief", new { value = true },
             new AjaxOptions()
             {
                 UpdateTargetId = "saved-faktura",
@@ -26,7 +26,7 @@
                 OnSuccess = "SuccessInsertingInvoice",
                 OnBegin = "BeginInsertingInvoice"
             }
-            , new { @class = "btn btn-success btn-lg btnNext" })
+            , new { @class = "btn btn-warning btn-lg btnNext" })
     </div>
 </div>
 <script>
