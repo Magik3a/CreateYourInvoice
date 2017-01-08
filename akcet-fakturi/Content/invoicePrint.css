@@ -53,10 +53,12 @@ div#user-company h1 {
     font-family: Calibri;
 }
 /*company data*/
-div#company-data {
-  text-align: right;
+#company-data  {
+       font-size: 14px;
 }
-
+#company-data  tr td:first-child {
+    width: 87.6%;
+}
 /*invoice info*/
 div#invoice-info span {
     display: inline-block;

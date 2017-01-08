@@ -24,11 +24,15 @@
             <span>BTW-nummer: @Model.UserDDsNumber</span>
         </div>
 
-        <div id="company-data">
-            <span>@Model.CompanyName</span><br />
-            <span> @Model.CompanyAddress</span><br />
+        <table id="company-data">
 
-        </div>
+            <tr>
+                <td style="width: 900px"></td>
+                <td>
+                    @Model.CompanyName<br />@Model.CompanyAddress
+                </td>
+            </tr>
+        </table>
 
         <div id="clear"></div>
 
@@ -46,7 +50,7 @@
                     <td rowspan="5" style="text-align: right">
                         <table style="border: 1px solid black;     display: inline-block;">
                             <tr>
-                                <td class="pinki">Um BTW-nummer</td>
+                                <td class="pinki">Uw BTW-nummer</td>
                             </tr>
                             <tr>
                                 <td class="pink">@Model.CompanyDDSNumber</td>
@@ -228,7 +232,7 @@
                 Wij verzoeken u vriendelijk de factuur binnen 14 dagen over te maken naar ons bankrekeningnummer IBAN @Model.UserBankAccount
             </p>
             @{
-                 string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + 
+                string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
     Request.ApplicationPath.TrimEnd('/') + "/";
             }
             <p id="footer">

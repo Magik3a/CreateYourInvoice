@@ -12,9 +12,16 @@
 </head>
 <body>
     <div class="container">
+        <div class="row">
+            <div class="col-md-4 pull-left" style="margin-top:10px;">
+                <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
+            </div>
+            <div class="col-md-6">
 
-        <div class="col-md-4 pull-left" style="margin-top:10px;">
-            <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
+
+                @Html.Partial("_LoginHeaderTopPartial", new LoginViewModel())
+
+            </div>
         </div>
     </div>
     <div class="container body-content">
@@ -35,6 +42,8 @@
                                 <br />
                                 Programmed by
                                 <a href="http://s2kdesign.com" title="www.s2kdesign.com" target="_blank">Svetlin Krastanov</a>
+                                <br />
+                                Current version: @typeof(MvcApplication).Assembly.GetName().Version <br />
                             </p>
                         </li>
                         <li role="presentation" class="@ViewBag.HowItsMade">
