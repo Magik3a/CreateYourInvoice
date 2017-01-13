@@ -222,11 +222,18 @@ namespace akcet_fakturi.Controllers
 
         public ActionResult SaveProductAjax(string Products, string Dds, string Projects, string ProductPrice, string Quanity)
         {
+            decimal productPrice;
+            decimal quantity;
+
             if (String.IsNullOrWhiteSpace(Products))
                 return Json(false);
-            if (String.IsNullOrWhiteSpace(ProductPrice))
+            if (String.IsNullOrWhiteSpace(Dds))
                 return Json(false);
-            if (String.IsNullOrWhiteSpace(Quanity))
+            if (String.IsNullOrWhiteSpace(Projects))
+                return Json(false);
+            if (String.IsNullOrWhiteSpace(ProductPrice) && !decimal.TryParse(ProductPrice, out productPrice))
+                return Json(false);
+            if (String.IsNullOrWhiteSpace(Quanity) && !decimal.TryParse(Quanity, out quantity))
                 return Json(false);
 
             //TODO: If ProductPrice has ',' do something
@@ -316,7 +323,7 @@ namespace akcet_fakturi.Controllers
         {
             templateName = "~/Areas/InvoiceTemplates/Views/InvoiceTemplate/" + templateName + ".cshtml";
 
-            //TODO: Make enumeration for variable templateName. 
+            //TODO: Make enumeration for variable templateName.
 
             ViewData.Model = model;
 
@@ -347,7 +354,7 @@ namespace akcet_fakturi.Controllers
                 var userId = User.Identity.GetUserId();
                 var model = GetInvoiceTempModel(userId);
 
-                // TODO: Set Counter for each user for every year 
+                // TODO: Set Counter for each user for every year
 
                 var tempCounter =
                     db.Counters.Where(c => c.UserID == userId && c.Year == DateTime.Now.Year.ToString())
@@ -358,7 +365,7 @@ namespace akcet_fakturi.Controllers
                 //var counter = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
                 //counter.CounterValue++;
                 //db.Counters.Add(counter);
-                // TODO: Set Counter for each user for every year 
+                // TODO: Set Counter for each user for every year
 
 
                 var faktura = new Fakturi();
@@ -413,7 +420,7 @@ namespace akcet_fakturi.Controllers
             try
             {
 
-                    
+
                 var userId = User.Identity.GetUserId();
 
                 var faktura = db.Fakturis.OrderByDescending(o => o.DateCreated).Where(u => u.UserID == userId).FirstOrDefault();
@@ -432,7 +439,7 @@ namespace akcet_fakturi.Controllers
                 byte[] bytes = GeneratePDF(strResult);
 
                 EmailFunctions.SendEmail(EmailReciever, "Faktuur van: " + faktura.Company.CompanyName + " - Periode: " + faktura.Period, strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
-                
+
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             }

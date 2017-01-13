@@ -95,10 +95,10 @@
         <div class="col-md-4 col-md-offset-1">
 
             <div class="form-group deleteProduct" style="display: none">
-            
+
                     <label for='delete'>Delete</label>
                     @Ajax.ActionLink(" ", "DeleteProductInvoiceTemp", "Home",  new { id = Model.ProductInvoiceID },new AjaxOptions{ OnSuccess = "DeleteRowProduct"}, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
-                
+
             </div>
         </div>
     </div>
@@ -115,18 +115,20 @@
     };
 
     function removeSaveProductButton() {
-        $(".newProductName").remove();
-        $(".saveProduct").remove();
+
+        $(".newProductName").hide();
+        $(".saveProduct").hide();
 
     }
     function getresultProduct(data) {
+
+        var beforeForm = $("#form-product");
         if (data) {
             $(".select2").select2();
-            var beforeForm = $("#form-product");
             beforeForm.find(".form-control").prop('disabled', true);
 
             var deleteButton = $(data).find(".deleteProduct a").attr("href");
-            console.log(deleteButton);
+            //console.log(deleteButton);
 
             beforeForm.find(".deleteProduct a").attr("href", deleteButton);
             beforeForm.find(".deleteProduct").removeAttr("style");
@@ -136,13 +138,15 @@
             var quantity = beforeForm.find(".quanity").val();
             var pricePerProduct = beforeForm.find(".price").val();
             var dds = beforeForm.find(".dds").val();
-            console.log("p: " + pricePerProduct + "q: " + quantity + "dds: " +dds);
+            //console.log("p: " + pricePerProduct + "q: " + quantity + "dds: " +dds);
          //   var price = (quantity * pricePerProduct * (dds / 100)) + (quantity * pricePerProduct);
             var price = quantity * pricePerProduct;
             totalPriceInput.val(price);
             //   $("#form-product").removeAttr("id");
-            var arr = deleteButton.split('/'); 
+            var arr = deleteButton.split('/');
             beforeForm.attr("id", arr[3]);
+
+
 
         } else {
             $("#alert-box").alert();
@@ -152,6 +156,9 @@
                     function () {
                         $("#alert-box").alert('close');
                     });
+
+            beforeForm.find(".newProductName").show();
+            beforeForm.find(".saveProduct").show();
         }
     };
 
