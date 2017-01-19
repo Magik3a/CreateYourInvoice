@@ -1,23 +1,25 @@
 ﻿
+@using akcet_fakturi.Helpers
 @model akcetDB.WerkbriefHoursTemp
 
 
 @using (Ajax.BeginForm("SaveWerkbriefAjax", "WerkBrief", null,
-                                                new AjaxOptions
-                                                {
-                                                    OnBegin = "removeSaveProductButton",
-                                                    UpdateTargetId = "rowProducts",
-                                                    OnSuccess = "getresultProduct",
-                                                    InsertionMode = InsertionMode.InsertAfter,
-                                                    HttpMethod = "POST"
-                                                }, new { @class = "form-horizontal", id = "form-product" }))
+                                                                        new AjaxOptions
+                                                                        {
+                                                                            OnBegin = "removeSaveProductButton",
+                                                                            UpdateTargetId = "rowProducts",
+                                                                            OnSuccess = "getresultProduct",
+                                                                            InsertionMode = InsertionMode.InsertAfter,
+                                                                            HttpMethod = "POST"
+                                                                        }, new { @class = "form-horizontal", id = "form-product" }))
 {
     <div class="col-md-10">
         @****  Product   ****@
         <div class="col-md-1">
             <div class="form-group">
-                @Html.LabelFor(m => m.Week)
-                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control", value = "Week", type="number" } })
+                @*Week nr.*@
+                <label>@Html.MultiLanguage(1030)</label>
+                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control", value = "Week", type = "number" } })
                 @Html.ValidationMessageFor(model => model.Week, "", new { @class = "text-danger" })
             </div>
             <!-- /.form-group -->
@@ -27,8 +29,8 @@
         @****  Product   ****@
         <div class="col-md-2">
             <div class="form-group">
-                <label for="product-select">Desctipion</label>
-                @Html.DropDownList("Products", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%", name="productId" })
+                <label for="product-select">@Html.MultiLanguage(1008)</label>
+                @Html.DropDownList("Products", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%", name = "productId" })
             </div>
             <!-- /.form-group -->
         </div>
@@ -36,8 +38,11 @@
         @**** Button Product New  ****@
         <div class="col-md-1 ">
             <div class="newProductName">
-                <label for="product-new">New</label>
-                <button type="button" class="btn btn-info btn-sm" id="product-new" data-toggle="modal" data-target="#product-modal">
+                <label for="product-new">
+                    @*new*@
+                    @Html.MultiLanguage(1004)
+                </label>
+                <button type="button" class="btn btn-warning btn-sm" id="product-new" data-toggle="modal" data-target="#product-modal">
                     <span class="glyphicon glyphicon-plus"> </span>
                 </button>
             </div>
@@ -47,7 +52,10 @@
         @**** Project ****@
         <div class="col-md-2">
             <div class="form-group">
-                <label for="project">Project</label>
+                <label for="project">
+                    @*Project*@
+                    @Html.MultiLanguage(1009)
+                </label>
                 @Html.DropDownList("Projects", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
 
             </div>
@@ -57,8 +65,11 @@
         @**** Button Project New  ****@
         <div class="col-md-1 ">
             <div class="newProductName">
-                <label for="project-new">New</label>
-                <button type="button" class="btn btn-info btn-sm" id="project-new" data-toggle="modal" data-target="#project-modal">
+                <label for="project-new">
+                    @*New*@
+                    @Html.MultiLanguage(1004)
+                </label>
+                <button type="button" class="btn btn-warning btn-sm" id="project-new" data-toggle="modal" data-target="#project-modal">
                     <span class="glyphicon glyphicon-plus"> </span>
                 </button>
             </div>
@@ -70,45 +81,45 @@
 
                     <div class="col-md-1">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Monday)
-                            @Html.EditorFor(m => m.Monday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
-                    
+                            <label>@Html.MultiLanguage(1031)</label>
+                            @Html.EditorFor(m => m.Monday, new {htmlAttributes = new {@class = "form-control no-padding", type = "number"}})
+
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Tuesday)
-                            @Html.EditorFor(m => m.Tuesday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
+                            <label>@Html.MultiLanguage(1032)</label>
+                            @Html.EditorFor(m => m.Tuesday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Wednesday)
-                            @Html.EditorFor(m => m.Wednesday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
+                            <label>@Html.MultiLanguage(1033)</label>
+                            @Html.EditorFor(m => m.Wednesday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Thursday)
-                            @Html.EditorFor(m => m.Thursday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
+                            <label>@Html.MultiLanguage(1034)</label>
+                            @Html.EditorFor(m => m.Thursday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Friday)
-                            @Html.EditorFor(m => m.Friday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
+                            <label>@Html.MultiLanguage(1035)</label>
+                            @Html.EditorFor(m => m.Friday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Saturday)
-                            @Html.EditorFor(m => m.Saturday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
+                            <label>@Html.MultiLanguage(1036)</label>
+                            @Html.EditorFor(m => m.Saturday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Sunday)
-                            @Html.EditorFor(m => m.Sunday, new { htmlAttributes = new { @class = "form-control no-padding", type="number" } })
+                            <label>@Html.MultiLanguage(1037)</label>
+                            @Html.EditorFor(m => m.Sunday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
                         </div>
                     </div>
                 </div>
@@ -120,14 +131,20 @@
     <div class="col-md-2">
         <div class="col-md-3">
             <div class="form-group">
-                <label for="quantity">Total</label>
+                <label for="quantity">
+                    @*Total*@
+                    @Html.MultiLanguage(1038)
+                </label>
                 <input type="text" class="form-control total-price" style="padding: 0" disabled>
             </div>
         </div>
         <div class="col-md-4 col-md-offset-1">
 
             <div class="form-group saveProduct">
-                <label for="save">Save</label>
+                <label for="save">
+                    @*Save*@
+                    @Html.MultiLanguage(1014)
+                </label>
                 <button type="button" class="btn btn-warning btn-sm" onclick="btnSubmitProductclick(event)"> <span class="glyphicon glyphicon-ok"></span></button>
             </div>
         </div>
@@ -136,7 +153,10 @@
 
             <div class="form-group deleteProduct" style="display: none">
 
-                <label for='delete'>Delete</label>
+                <label for='delete'>
+                    @*Delete*@
+                    @Html.MultiLanguage(1015)
+                </label>
                 @Ajax.ActionLink(" ", "DeleteWerkbriefHoursTempTemp", "WerkBrief", new { id = Model.WerkbriefHoursIDTemp }, new AjaxOptions { OnSuccess = "DeleteRowProduct" }, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
 
             </div>

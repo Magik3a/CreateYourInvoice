@@ -1,4 +1,5 @@
 ﻿@using System.Web.Mvc.Html
+@using akcet_fakturi.Helpers
 @using akcet_fakturi.Models
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 pull-left" style="margin-top:10px;">
-                <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
+                <a href="~/"><img src="@Html.MultiLanguage(1084)" class="img-responsive" /></a>
             </div>
         </div>
     </div>
@@ -32,22 +33,32 @@
                     <ul class="nav nav-pills nav-justified">
                         <li role="presentation">
                             <p>
-                                Designed by <a href="http://acceler8design.com" title="Petya Petkova">Petya Petkova</a>
+                                @*Designed by*@
+                                @Html.MultiLanguage(42)
+                                <a href="#" title="Petya Petkova">Petya Petkova</a>
                                 <br />
-                                Programmed by
+                                @*Programmed by*@
+                                @Html.MultiLanguage(43)
                                 <a href="http://s2kdesign.com" title="www.s2kdesign.com" target="_blank">Svetlin Krastanov</a>
-                                <br />
-                                Current version: @typeof(MvcApplication).Assembly.GetName().Version <br />
                             </p>
                         </li>
                         <li role="presentation" class="@ViewBag.HowItsMade">
-                            <a href="#">How it works?</a>
+                            <a href="#">
+                                @*How its working?*@
+                                @Html.MultiLanguage(44)
+                            </a>
                         </li>
                         <li role="presentation" class="@ViewBag.ForUs">
-                            <a href="#">About us</a>
+                            <a href="#">
+                                @*About us*@
+                                @Html.MultiLanguage(45)
+                            </a>
                         </li>
                         <li role="presentation" class="@ViewBag.Contacts">
-                            <a href="#">Contacts</a>
+                            <a href="#">
+                                @*Contacts*@
+                                @Html.MultiLanguage(46)
+                            </a>
                         </li>
                     </ul>
                 </div>

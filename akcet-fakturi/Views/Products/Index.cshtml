@@ -1,4 +1,5 @@
-﻿@using Kendo.Mvc.UI
+﻿@using akcet_fakturi.Helpers
+@using Kendo.Mvc.UI
 @model IEnumerable<akcetDB.Product>
 
 @{
@@ -7,22 +8,24 @@
     ViewBag.Products = "active";
 }
 
-<h2>Products</h2>
+<h2>
+    @Html.MultiLanguage(1025)
+</h2>
   <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 <p>
-    @Html.ActionLink("Create new", "Create",  null, new {@class="btn btn-warning btnCreateNew" })
+    @Html.ActionLink(Html.MultiLanguage(1075), "Create",  null, new {@class="btn btn-warning btnCreateNew" })
 </p>
 
 @(Html.Kendo().Grid(Model).Name("Products").Sortable().Filterable().Pageable().Columns(columns =>
 {
-    columns.Bound(m => m.ProductName);
-    columns.Bound(m => m.DateCreated);
-    columns.Bound(m => m.DateModified);
-    columns.Template(@<text>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
-    </text>).Title("Functions");
+columns.Bound(m => m.ProductName);
+columns.Bound(m => m.DateCreated);
+columns.Bound(m => m.DateModified);
+columns.Template(@<text>
+        @Html.ActionLink(Html.MultiLanguage(1086), "Edit", new { id = item.ProductID }) |
+        @Html.ActionLink(Html.MultiLanguage(1085), "Details", new { id = item.ProductID }) |
+        @Html.ActionLink(Html.MultiLanguage(1015), "Delete", new { id = item.ProductID })
+</text>).Title(Html.MultiLanguage(1064));
 })
 )

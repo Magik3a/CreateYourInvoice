@@ -1,4 +1,6 @@
-﻿namespace akcetDB
+﻿using Tools.Attributes;
+
+namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -24,32 +26,32 @@
 
         [Required]
         [StringLength(500)]
-        [Display(Name = "Name")]
+        [MultiLanguageDisplayName("1044")]
         public string CompanyName { get; set; }
-        
+
         [StringLength(500)]
-        [Display(Name = "Company manager")]
+        [MultiLanguageDisplayName("1045")]
         public string CompanyMol { get; set; }
-        
+
         [StringLength(500)]
-        [Display(Name = "Vat number")]
+        [MultiLanguageDisplayName("1046")]
         public string DdsNumber { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Description")]
+        [MultiLanguageDisplayName("1008")]
         public string CompanyDescription { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Email")]
+        [MultiLanguageDisplayName("22")]
         public string CompanyPhone { get; set; }
 
-        [Display(Name = "Work in it")]
+        [MultiLanguageDisplayName("1047")]
         public bool IsPrimary { get; set; }
 
-        [Display(Name = "Date created")]
+        [MultiLanguageDisplayName("1061")]
         public DateTime? DateCreated { get; set; }
 
-        [Display(Name = "Date modified")]
+        [MultiLanguageDisplayName("1062")]
         public DateTime? DateModified { get; set; }
 
         public bool IsDeleted { get; set; }

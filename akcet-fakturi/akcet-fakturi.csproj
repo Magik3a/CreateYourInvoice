@@ -17,7 +17,7 @@
     <AssemblyName>akcet-fakturi</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -278,6 +278,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactFormModel.cs" />
     <Compile Include="Models\InvoicesViewModel.cs" />
@@ -377,7 +378,8 @@
     <Content Include="images\feed-background.jpg" />
     <Content Include="images\health.jpg" />
     <Content Include="images\lebara-gray.jpeg" />
-    <Content Include="images\logo.png" />
+    <Content Include="images\logo-bg.png" />
+    <Content Include="images\logo-en.png" />
     <Content Include="images\telfort-gray.jpg" />
     <Content Include="images\western-gray.jpg" />
     <Content Include="images\wizz-gray.jpeg" />
@@ -412,8 +414,9 @@
     <Content Include="Areas\WerkbriefTemplates\Views\web.config" />
     <Content Include="Areas\WerkbriefTemplates\Views\WerkbriefTemplate\Index.cshtml" />
     <Content Include="Areas\EmailTemplates\Views\Template\InvoiceEmailBody.cshtml" />
-    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
-    <None Include="Properties\PublishProfiles\svetlin.pubxml" />
+    <None Include="Properties\PublishProfiles\develop.pubxml" />
+    <None Include="Properties\PublishProfiles\netfactuur.pubxml" />
+    <None Include="Properties\PublishProfiles\fakturi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datepicker-bg.js" />
     <Content Include="Scripts\daterangepicker.js" />
@@ -580,7 +583,6 @@
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
     <Folder Include="Areas\InvoiceTemplates\Views\Shared\" />
     <Folder Include="Areas\WerkbriefTemplates\Views\Shared\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -623,7 +625,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>11192</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:11192/</IISUrl>
+          <IISUrl>http://localhost/akcet-fakturi</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

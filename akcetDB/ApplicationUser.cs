@@ -5,41 +5,42 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Tools.Attributes;
 
 namespace akcetDB
 {
     public class ApplicationUser : IdentityUser
     {
-        [Display(Name = "First Name")]
+        [MultiLanguageDisplayName("19")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last Name")]
+        [MultiLanguageDisplayName("20")]
         public string LastName { get; set; }
 
-        [Display(Name = "Bank Account")]
+        [MultiLanguageDisplayName("1067")]
         public string BankAcount { get; set; }
 
-        [Display(Name = "Kwk Number")]
+        [MultiLanguageDisplayName("1068")]
         public string KwkNumber { get; set; }
 
-        [Display(Name = "Vat number")]
+        [MultiLanguageDisplayName("1046")]
         public string DdsNumber { get; set; }
 
-        [Display(Name = "Company Name")]
+        [MultiLanguageDisplayName("1069")]
         public string CompanyName { get; set; }
 
-        [Display(Name = "Address")]
+        [MultiLanguageDisplayName("1026")]
         public string Address { get; set; }
 
-        [Display(Name = "Zip code")]
+        [MultiLanguageDisplayName("1048")]
         public string ZipCode { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "City")]
+        [MultiLanguageDisplayName("1049")]
         public string City { get; set; }
 
 
-        [Display(Name = "Registered on")]
+        [MultiLanguageDisplayName("1070")]
         public DateTime DateCreated { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

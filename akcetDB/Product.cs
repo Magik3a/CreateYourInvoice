@@ -1,4 +1,6 @@
-﻿namespace akcetDB
+﻿using Tools.Attributes;
+
+namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -21,15 +23,15 @@
         public string UserId { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Product name")]
+        [MultiLanguageDisplayName("1044")]
         public string ProductName { get; set; }
 
-        [Display(Name = "Date created")]
+        [MultiLanguageDisplayName("1061")]
         public DateTime? DateCreated { get; set; }
 
         public bool IsDeleted { get; set; }
 
-        [Display(Name = "Date modified")]
+        [MultiLanguageDisplayName("1062")]
         public DateTime DateModified { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

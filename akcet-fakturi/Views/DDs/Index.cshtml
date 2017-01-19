@@ -1,4 +1,5 @@
 ﻿@using akcet_fakturi
+@using akcet_fakturi.Helpers
 @using Kendo.Mvc.UI
 @model IEnumerable<akcetDB.DD>
 
@@ -12,23 +13,23 @@
   <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 <p>
-    @Html.ActionLink("Create new", "Create",  null, new {@class="btn btn-warning btnCreateNew" })
+    @Html.ActionLink(Html.MultiLanguage(1075), "Create",  null, new {@class="btn btn-warning btnCreateNew" })
 </p>
 
 
 @(Html.Kendo().Grid(Model).Name("DDs").Sortable().Filterable().Pageable().Columns(columns =>
-  {
-      columns.Bound(m => m.DdsName);
-    columns.Bound(m => m.Value);
-    columns.Bound(m => m.DateCreated);
-    columns.Bound(m => m.DateModified);
-    columns.Bound(m => m.UserName);
-      columns.Bound(m => m.IsNullValue);
+{
+columns.Bound(m => m.DdsName);
+columns.Bound(m => m.Value);
+columns.Bound(m => m.DateCreated);
+columns.Bound(m => m.DateModified);
+columns.Bound(m => m.UserName);
+columns.Bound(m => m.IsNullValue);
 
-    columns.Template(@<text>
-        @Html.ActionLink("Edit", "Edit", new { id = item.DdsID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.DdsID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.DdsID })
-    </text>).Title("Functions");
+columns.Template(@<text>
+        @Html.ActionLink(Html.MultiLanguage(1086), "Edit", new { id = item.DdsID }) |
+        @Html.ActionLink(Html.MultiLanguage(1085), "Details", new { id = item.DdsID }) |
+        @Html.ActionLink(Html.MultiLanguage(1015), "Delete", new { id = item.DdsID })
+</text>).Title(Html.MultiLanguage(1064));
 })
-      )
+)

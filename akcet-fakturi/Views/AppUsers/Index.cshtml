@@ -1,4 +1,5 @@
-﻿@using Kendo.Mvc.UI
+﻿@using akcet_fakturi.Helpers
+@using Kendo.Mvc.UI
 @model IEnumerable<akcetDB.ApplicationUser>
 
 @{
@@ -27,10 +28,9 @@ columns.Bound(m => m.DdsNumber);
 columns.Bound(m => m.DateCreated);
 
 columns.Template(@<text>
-                         @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                         @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                         @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-                      </text>).Title("Functions");
+        @Html.ActionLink(Html.MultiLanguage(1086), "Edit", new { id = item.Id }) |
+        @Html.ActionLink(Html.MultiLanguage(1085), "Details", new { id = item.Id }) |
+        @Html.ActionLink(Html.MultiLanguage(1015), "Delete", new { id = item.Id })
+</text>).Title(Html.MultiLanguage(1064));
 })
 )
-

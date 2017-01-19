@@ -1,4 +1,6 @@
-﻿namespace akcetDB
+﻿using Tools.Attributes;
+
+namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -23,34 +25,34 @@
 
         public int CompanyID { get; set; }
 
-        [Display(Name = "Invoice date")]
+        [MultiLanguageDisplayName("1005")]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime InvoiceDate { get; set; }
 
-        [Display(Name = "Invoice end date")]
+        [MultiLanguageDisplayName("1006")]
         public DateTime InvoiceEndDate { get; set; }
-        
+
         [StringLength(500)]
-        [Display(Name = "Period")]
+        [MultiLanguageDisplayName("1007")]
         public string Period { get; set; }
 
-        [Display(Name = "Total price")]
+        [MultiLanguageDisplayName("1013")]
         public decimal TotalPrice { get; set; }
 
-        [Display(Name = "Date created")]
+        [MultiLanguageDisplayName("1061")]
         public DateTime? DateCreated { get; set; }
 
-        [Display(Name = "Date modified")]
+        [MultiLanguageDisplayName("1062")]
         public DateTime? DateModified { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "User name")]
+        [MultiLanguageDisplayName("1")]
         public string UserName { get; set; }
 
-        [Display(Name = "Invoice number")]
+        [MultiLanguageDisplayName("1060")]
         public string FakturaNumber { get; set; }
 
-        [Display(Name = "Content")]
+        [MultiLanguageDisplayName("1019")]
         public string FakturaHtml { get; set; }
 
         public virtual Company Company { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace akcetDB
+﻿using Tools.Attributes;
+
+namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +17,7 @@
         public int WerkbriefID { get; set; }
 
         [Required]
-        [Display(Name = "Week")]
+        [MultiLanguageDisplayName("1030")]
         public string Week { get; set; }
 
         public int ProductID { get; set; }
@@ -23,28 +25,28 @@
         public int ProjectID { get; set; }
 
 
-        [Display(Name = "Ma")]
+        [MultiLanguageDisplayName("1031")]
         public string Monday { get; set; }
 
-        [Display(Name = "Di")]
+        [MultiLanguageDisplayName("1032")]
         public string Tuesday { get; set; }
 
-        [Display(Name = "Wo")]
+        [MultiLanguageDisplayName("1033")]
         public string Wednesday { get; set; }
 
-        [Display(Name = "Do")]
+        [MultiLanguageDisplayName("1034")]
         public string Thursday { get; set; }
 
-        [Display(Name = "Fr")]
+        [MultiLanguageDisplayName("1035")]
         public string Friday { get; set; }
 
-        [Display(Name = "Za")]
+        [MultiLanguageDisplayName("1036")]
         public string Saturday { get; set; }
 
-        [Display(Name = "Zo")]
+        [MultiLanguageDisplayName("1037")]
         public string Sunday { get; set; }
 
-        [Display(Name = "Total")]
+        [MultiLanguageDisplayName("1038")]
         public string TotalHours { get; set; }
         public virtual Project Project { get; set; }
 

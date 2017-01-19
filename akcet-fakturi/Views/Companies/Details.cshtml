@@ -1,4 +1,5 @@
-﻿@model akcetDB.Company
+﻿@using akcet_fakturi.Helpers
+@model akcetDB.Company
 
 @{
     ViewBag.Title = "Details";
@@ -9,7 +10,10 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Company</h4>
+    <h4>
+        @*Company*@
+        @Html.MultiLanguage(1028)
+    </h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,7 +24,7 @@
             @Html.DisplayFor(model => model.Address.StreetName)
         </dd>
 
-      
+
         <dt>
             @Html.DisplayNameFor(model => model.CompanyName)
         </dt>
@@ -89,5 +93,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Html.MultiLanguage(1076), "Index")
 </p>

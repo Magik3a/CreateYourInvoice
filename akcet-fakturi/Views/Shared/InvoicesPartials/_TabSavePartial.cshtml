@@ -1,14 +1,23 @@
-﻿
+﻿@using akcet_fakturi.Helpers
+
 
 <div role="tabpanel" class="tab-pane" id="settings">
     <div class="alert alert-success alert-dismissable" id="alert-box-sendEmail">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4>	<i class="icon fa fa-check"></i> Please wait!</h4>
-       Invoice is sending to email.
+        <h4>
+            <i class="icon fa fa-check"></i>
+            @*Please wait!*@
+            @Html.MultiLanguage(1039)
+        </h4>
+        @*Invoice is sending to email.*@
+        @Html.MultiLanguage(1057)
     </div>
     <div class="row text-center">
         <div class="col-md-3">
-            <a href="@Url.Action("DownloadInvoice", "Home")" class="btn btn-warning btn-lg" target="_blank">Download in .pdf</a>
+            <a href="@Url.Action("DownloadInvoice", "Home")" class="btn btn-warning btn-lg" target="_blank">
+                @*Download in .pdf*@
+                @Html.MultiLanguage(1041)
+            </a>
             @*<button class="btn btn-success btn-lg" id="pdf-button">Свали в .pdf</button>*@
         </div>
         <div class="col-md-3">
@@ -23,11 +32,11 @@
             {
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <input style="height: 3.2em;" type="text" class="form-control" id="EmailReciever" name="EmailReciever" placeholder="Send to email">
+                        <input style="height: 3.2em;" type="text" class="form-control" id="EmailReciever" name="EmailReciever" placeholder="@Html.MultiLanguage(1042)">
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <input type="submit" value="Send" class="btn btn-warning btn-lg pull-left"/>
+                    <input type="submit" value="@Html.MultiLanguage(1027)" class="btn btn-warning btn-lg pull-left" />
                 </div>
 
 
@@ -72,7 +81,7 @@
     };
 
     $('#print-button')
-        .click(function() {
+        .click(function () {
             $("#saved-faktura").printElement({ printMode: 'popup' });
         });
 

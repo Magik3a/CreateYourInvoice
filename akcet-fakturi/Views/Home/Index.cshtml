@@ -1,12 +1,12 @@
 ﻿@model akcet_fakturi.Models.ContactFormModel
-    @using akcet_fakturi.Models
+@using akcet_fakturi.Helpers    @using akcet_fakturi.Models
 @{
     ViewBag.Title = "Home Page";
 
 }
-   @{
-                 string baseUrl = Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') ;
-            }
+@{
+    string baseUrl = Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+}
 
 <!--LAYOUT-->
 <div class="container" style="background-image:url(images/1.jpg); background-size:cover;margin-top:30px; padding-top:10px; padding-bottom:60px;">
@@ -21,62 +21,108 @@
     <div class="row">
 
         <div class="col-md-6" style="margin-top:50px; color:#404040;">
-            <h2>Creating your invoice was never easier!</h2>
+            <h2>
+                @*Creating your invoice was never easier!*@
+                @Html.MultiLanguage(5)
+            </h2>
 
             <div class="row">
-                <div class="col-md-12" style="padding-bottom:30px; padding-top:30px;"><h4>
-    <span class="glyphicon glyphicon-ok"> &nbsp; </span>24 hours, 7 days in week, 365 days in year - access to your invoices data base!
-</h4></div>
+                <div class="col-md-12" style="padding-bottom:30px; padding-top:30px;">
+                    <h4>
+                        <span class="glyphicon glyphicon-ok"> &nbsp; </span>
+                        @*24 hours, 7 days in week, 365 days in year - access to your invoices data base!*@
+                        @Html.MultiLanguage(7)
+                    </h4>
+                </div>
 
             </div>
 
             <div class="row">
-                <div class="col-md-12" style="padding-bottom:30px;"><h4> <span class="glyphicon glyphicon-ok">  &nbsp; </span>Create your invoices online and save time</h4></div>
+                <div class="col-md-12" style="padding-bottom:30px;">
+                    <h4>
+                        <span class="glyphicon glyphicon-ok">  &nbsp; </span>
+                        @*Create your invoices online and save time*@
+                        @Html.MultiLanguage(8)
+                    </h4>
+                </div>
             </div>
 
             <div class="row">
-                <div class="col-md-12" style="padding-bottom:30px;"><h4> <span class="glyphicon glyphicon-ok">  &nbsp; </span>Send your invoices directly to your employer!</h4></div>
+                <div class="col-md-12" style="padding-bottom:30px;">
+                    <h4>
+                        <span class="glyphicon glyphicon-ok">  &nbsp; </span>
+                        @*Send your invoices directly to your employer!*@
+                        @Html.MultiLanguage(9)
+                    </h4>
+                </div>
             </div>
         </div>
 
         <!--Links to AKCET.NL-->
         <div class="col-md-6" style="position:relative; top:45px;">
-<h2 style="text-align:center; margin-bottom:35px;">Useful links</h2>
+            <h2 style="text-align: center; margin-bottom: 35px;">
+                @*Useful links*@
+                @Html.MultiLanguage(6)
+            </h2>
 
             <div class="row">
                 <div class="col-md-6">
-                    <img src="../../images/Accounting.jpg" class="img-responsive image-link"/>
+                    <img src="~/images/Accounting.jpg" class="img-responsive image-link" />
                     <button type="button" class="btn links-button" style="background-color:#FF8C00;">
-                        <a href="http://akcet.nl/accounting-form-bg.html" target="_blank" style="color:#ffffff; font-weight:bold; text-decoration:none;"> Make request</a>
+                        <a href="http://akcet.nl/accounting-form-bg.html" target="_blank" style="color: #ffffff; font-weight: bold; text-decoration: none;">
+                            @*Make request*@
+                            @Html.MultiLanguage(14)
+                        </a>
                     </button>
-                    <p class="text-links">Accounting services</p>
+                    <p class="text-links">
+                        @*Accounting services*@
+                        @Html.MultiLanguage(10)
+                    </p>
                 </div>
 
                 <div class="col-md-6">
-                    <img src="../../images/car.jpg" class="img-responsive image-link" />
+                    <img src="~/images/car.jpg" class="img-responsive image-link" />
                     <button type="button" class="btn links-button" style="background-color:#FF8C00;">
-                        <a href="http://akcet.nl/car-insurance-bg.html" target="_blank" style="color:#ffffff; font-weight:bold; text-decoration:none;"> Make request</a>
+                        <a href="http://akcet.nl/car-insurance-bg.html" target="_blank" style="color: #ffffff; font-weight: bold; text-decoration: none;">
+                            @*Make request*@
+                            @Html.MultiLanguage(14)
+                        </a>
                     </button>
-                    <p class="text-links">Automotive insurance</p>
+                    <p class="text-links">
+                        @*Automotive insurance*@
+                        @Html.MultiLanguage(11)
+                    </p>
                 </div>
             </div>
 
 
             <div class="row">
                 <div class="col-md-6">
-                    <img src="../../images/health.jpg" class="img-responsive image-link" />
+                    <img src="~/images/health.jpg" class="img-responsive image-link" />
                     <button type="button" class="btn links-button" style="background-color:#FF8C00;">
-                        <a href="http://akcet.nl/health-insurance-form-bg.html" target="_blank" style="color:#ffffff; font-weight:bold; text-decoration:none;"> Make request</a>
+                        <a href="http://akcet.nl/health-insurance-form-bg.html" target="_blank" style="color: #ffffff; font-weight: bold; text-decoration: none;">
+                            @*Make request*@
+                            @Html.MultiLanguage(14)
+                        </a>
                     </button>
-                    <p class="text-links">Health Insurance</p>
+                    <p class="text-links">
+                        @*Health Insurance*@
+                        @Html.MultiLanguage(12)
+                    </p>
                 </div>
 
                 <div class="col-md-6">
-                    <img src="../../images/Airlines.jpg" class="img-responsive image-link" />
+                    <img src="~/images/Airlines.jpg" class="img-responsive image-link" />
                     <button type="button" class="btn links-button" style="background-color:#FF8C00;">
-                        <a href="http://akcet.nl/tickets-bg.html" target="_blank" style="color:#ffffff; font-weight:bold; text-decoration:none;"> Make request</a>
+                        <a href="http://akcet.nl/tickets-bg.html" target="_blank" style="color: #ffffff; font-weight: bold; text-decoration: none;">
+                            @*Make request*@
+                            @Html.MultiLanguage(14)
+                        </a>
                     </button>
-                    <p class="text-links">Airplane tickets</p>
+                    <p class="text-links">
+                        @*Airplane tickets*@
+                        @Html.MultiLanguage(13)
+                    </p>
                 </div>
             </div>
         </div>
@@ -87,8 +133,16 @@
 
 
 <!--SOme description about the company/website-->
-<h3 style="text-align:center;">@baseUrl - create your invoivces online!</h3>
-<p style="text-align:center;">@baseUrl is an online platform, which allows you to create your invoices easy and quickly! Just create your account, add your company data, add the company for which you want to create invoice, add the products and their coast and... that's it! Once you have your invoice created you can directly print it in your browser, save it or send it via email!</p>
+<h3 style="text-align:center;">
+    @baseUrl -
+    @*create your invoivces online!*@
+    @Html.MultiLanguage(15)
+</h3>
+<p style="text-align:center;">
+    @baseUrl
+    @*is an online platform, which allows you to create your invoices easy and quickly! Just create your account, add your company data, add the company for which you want to create invoice, add the products and their coast and... that's it! Once you have your invoice created you can directly print it in your browser, save it or send it via email!*@
+    @Html.MultiLanguage(16)
+</p>
 
 
 
@@ -99,7 +153,10 @@
 
 
         <div class="col-sm-6">
-<p style="font-size:18px;">Latest news</p>
+            <p style="font-size: 18px;">
+                @*Latest news*@
+                @Html.MultiLanguage(17)
+            </p>
             <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fakcet.nl&amp;width=620&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=true&amp;header=true&amp;height=435" scrolling="yes" frameborder="0" style="border:none; overflow:hidden; width:600px; height:460px; background:#ffffcc;  " allowTransparency="true"></iframe>
         </div>
 
@@ -110,81 +167,115 @@
         <div class="col-sm-6">
             <div id="row">
                 <div class="col-md-12">
-                    <h3 style="text-align:center;">Make a request</h3>
+                    <h3 style="text-align: center;">
+                        @*Make a request*@
+                        @Html.MultiLanguage(14)
+                    </h3>
                 </div>
             </div>
             @if (TempData["MessageIsSent"] == null)
             {
 
-            <div class="row">
-                @using (Html.BeginForm("Index", "Home", null, FormMethod.Post, new {@class = "form-horizontal", style = "margin-top:50px;"}))
-                {
-                @Html.AntiForgeryToken()
+                <div class="row">
+                    @using (Html.BeginForm("Index", "Home", null, FormMethod.Post, new { @class = "form-horizontal", style = "margin-top:50px;" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.FirstName, new {@class = "col-sm-4 control-label", @for = "firstname"})
-                    <div class="col-sm-8">
-                        @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control", id = "firstname", placeholder = "First name"}})
-                        @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
-                    </div>
-                </div>
-
-
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.LastName, new {@class = "col-sm-4 control-label", @for = "lastName"})
-                    <div class="col-sm-8">
-                        @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {@class = "form-control", id = "lastName", placeholder = "Last name"}})
-                        @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Phone, new {@class = "col-sm-4 control-label", @for = "phone"})
-                    <div class="col-sm-8">
-                        @Html.EditorFor(model => model.Phone, new {htmlAttributes = new {@class = "form-control", id = "phone", placeholder = "Telephone number"}})
-                        @Html.ValidationMessageFor(model => model.Phone, "", new {@class = "text-danger"})
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new {@class = "col-sm-4 control-label", @for = "email"})
-                    <div class="col-sm-8">
-                        @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control", id = "email", placeholder = "Valid email address"}})
-                        @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Message, new {@class = "col-sm-4 control-label", @for = "message"})
-                    <div class="col-sm-8">
-                        @Html.EditorFor(model => model.Message, new {htmlAttributes = new {@class = "form-control", id = "message", placeholder = "Your message", rows = 5}})
-                        @Html.ValidationMessageFor(model => model.Message, "", new {@class = "text-danger"})
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <button type="submit" class="btn" style="background-color:#FF8C00; padding-left:25px; padding-right:25px; color:#ffffff;">Send</button>
+                        <div class="form-group">
+                            @Html.Label(Html.MultiLanguage(19), new { @class = "col-sm-4 control-label", @for = "firstname" })
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.FirstName, new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @class = "form-control",
+                                   id = "firstname",
+                                   placeholder = Html.MultiLanguage(19)
+                               }
+                           })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                }
-            </div>
+
+
+                        <div class="form-group">
+                            @Html.Label(Html.MultiLanguage(20), new { @class = "col-sm-4 control-label", @for = "lastName" })
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.LastName,
+                               new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control",
+                                       id = "lastName",
+                                       placeholder = Html.MultiLanguage(20)
+                                   }
+                               })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label(Html.MultiLanguage(21), new { @class = "col-sm-4 control-label", @for = "phone" })
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.Phone, new
+                           {
+                               htmlAttributes =
+                               new { @class = "form-control", id = "phone", placeholder = Html.MultiLanguage(24) }
+                           })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label(Html.MultiLanguage(22), new { @class = "col-sm-4 control-label", @for = "email" })
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.Email, new
+                           {
+                               htmlAttributes = new
+                               { @class = "form-control", id = "email", placeholder = Html.MultiLanguage(25) }
+                           })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label(Html.MultiLanguage(23), new { @class = "col-sm-4 control-label", @for = "message" })
+                            <div class="col-sm-8">
+                                @Html.EditorFor(model => model.Message, new
+                           {
+                               htmlAttributes = new
+                               { @class = "form-control", id = "message", placeholder = Html.MultiLanguage(26), rows = 5 }
+                           })
+                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="submit" class="btn" style="background-color: #FF8C00; padding-left: 25px; padding-right: 25px; color: #ffffff;">
+                                        @Html.MultiLanguage(1027)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
 
             }
             else
             {
-            <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4>	<i class="icon fa fa-check"></i> Succes!</h4>
-                @TempData["MessageIsSent"].ToString()
-            </div>
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4>	<i class="icon fa fa-check"></i> Succes!</h4>
+                    @TempData["MessageIsSent"].ToString()
+                </div>
             }
 
         </div>
@@ -200,7 +291,10 @@
 </div>
 
 <div class="row">
-    <h3 style="text-align:center; margin-bottom:30px;">Partners</h3>
-    <div class="col-md-3 col-md-offset-3"><img src="../../images/acket.png" class="img-responsive image-logos" /></div>
-    <div class="col-md-6"><img src="../../images/cosara.png" class="img-responsive image-logos" /></div>
+    <h3 style="text-align:center; margin-bottom:30px;">
+        @*Partners*@
+        @Html.MultiLanguage(18)
+    </h3>
+    <div class="col-md-3 col-md-offset-3"><img src="~/images/acket.png" class="img-responsive image-logos" /></div>
+    <div class="col-md-6"><img src="~/images/cosara.png" class="img-responsive image-logos" /></div>
 </div>

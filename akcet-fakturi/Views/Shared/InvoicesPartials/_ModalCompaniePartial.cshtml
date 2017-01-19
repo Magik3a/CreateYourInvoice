@@ -1,4 +1,5 @@
-﻿@model akcetDB.Company
+﻿@using akcet_fakturi.Helpers
+@model akcetDB.Company
 
 <!-- Modal to add Company-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -6,15 +7,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add new company</h4>
+                <h4 class="modal-title" id="myModalLabel">
+                    @*Add new company*@
+                    @Html.MultiLanguage(1050)
+                </h4>
             </div>
             <div class="modal-body">
                 @using (Ajax.BeginForm("CreateCompanyAjax", "Home", null,
-                        new AjaxOptions
-                        {
-                            OnSuccess = "getresultCompany",
-                            HttpMethod = "POST"
-                        }, new { @class = "form-horizontal", id = "form-company"}))
+    new AjaxOptions
+    {
+        OnSuccess = "getresultCompany",
+        HttpMethod = "POST"
+    }, new { @class = "form-horizontal", id = "form-company" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -23,7 +27,9 @@
 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">
+                                @Html.MultiLanguage(1044)
+                            </label>
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
@@ -32,7 +38,9 @@
 
 
                         <div class="form-group">
-                            @Html.Label("Address", new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">
+                                @Html.MultiLanguage(1026)
+                            </label>
                             <div class="col-md-7">
                                 @Html.DropDownList("IdAddress", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 90%" })
                                 @Html.ValidationMessageFor(model => model.IdAddress, "", new { @class = "text-danger" })
@@ -44,7 +52,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.CompanyMol, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">
+                                @Html.MultiLanguage(1045)
+                            </label>
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.CompanyMol, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.CompanyMol, "", new { @class = "text-danger" })
@@ -52,7 +62,9 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.DdsNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">
+                                @Html.MultiLanguage(1046)
+                            </label>
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.DdsNumber, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.DdsNumber, "", new { @class = "text-danger" })
@@ -61,7 +73,9 @@
 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.CompanyPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">
+                                @Html.MultiLanguage(22)
+                            </label>
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.CompanyPhone, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.CompanyPhone, "", new { @class = "text-danger" })
@@ -69,7 +83,9 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.IsPrimary, htmlAttributes: new { @class = "control-label col-md-2" })
+                           <label class="control-label col-md-2">
+                                @Html.MultiLanguage(1047)
+                            </label>
                             <div class="col-md-10">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.IsPrimary)
@@ -81,8 +97,15 @@
                 }
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="submitCompany" data-dismiss="modal">Save</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    @*Close*@
+                    @Html.MultiLanguage(1052)
+                </button>
+                <button type="button" class="btn btn-primary" id="submitCompany" data-dismiss="modal">
+                    @Html.MultiLanguage(1014)
+                    @*Save*@
+                </button>
             </div>
         </div>
     </div>

@@ -1,4 +1,6 @@
-﻿namespace akcetDB
+﻿using Tools.Attributes;
+
+namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -22,20 +24,22 @@
 
         [Required]
         [StringLength(500)]
-        [Display(Name = "Address")]
+        [MultiLanguageDisplayName("1026")]
         public string StreetName { get; set; }
 
 
-        [Display(Name = "Zip code")]
+        [MultiLanguageDisplayName("1048")]
         public string ZipCode { get; set; }
 
         [Required]
         [StringLength(500)]
-        [Display(Name = "City")]
+        [MultiLanguageDisplayName("1049")]
         public string City { get; set; }
-        [Display(Name = "Date created")]
+
+        [MultiLanguageDisplayName("1061")]
         public DateTime? DateCreated { get; set; }
-        [Display(Name = "Date modified")]
+
+        [MultiLanguageDisplayName("1062")]
         public DateTime? DateModified { get; set; }
 
         [StringLength(500)]

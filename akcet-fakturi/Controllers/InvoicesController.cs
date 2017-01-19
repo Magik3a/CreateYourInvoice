@@ -56,7 +56,7 @@ namespace akcet_fakturi.Controllers
         }
 
         // POST: Invoices/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -90,7 +90,7 @@ namespace akcet_fakturi.Controllers
         }
 
         // POST: Invoices/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -142,10 +142,17 @@ namespace akcet_fakturi.Controllers
 
         public JsonResult GetInvoice(int IdInvoice)
         {
-            
-            var html = db.Fakturis.Find(IdInvoice).FakturaHtml;
-            
-            return Json(html);
+            var fakturi = db.Fakturis.Find(IdInvoice);
+            if (fakturi != null)
+            {
+                var html = fakturi.FakturaHtml;
+
+                return Json(html);
+            }
+            else
+            {
+                return Json("Not found");
+            }
         }
 
         protected override void Dispose(bool disposing)

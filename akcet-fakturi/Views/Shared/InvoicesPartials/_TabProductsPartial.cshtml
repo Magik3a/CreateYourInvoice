@@ -1,20 +1,26 @@
-﻿@model akcetDB.ProductInvoiceTemp
+﻿@using akcet_fakturi.Helpers
+@model akcetDB.ProductInvoiceTemp
 
 
 @using (Ajax.BeginForm("SaveProductAjax", "Home", null,
-                                                new AjaxOptions
-                                                {
-                                                    OnBegin = "removeSaveProductButton",
-                                                    UpdateTargetId = "rowProducts",
-                                                    OnSuccess = "getresultProduct",
-                                                    InsertionMode = InsertionMode.InsertAfter,
-                                                    HttpMethod = "POST"
-                                                }, new { @class = "form-horizontal", id = "form-product" }))
+                                                                        new AjaxOptions
+                                                                        {
+                                                                            OnBegin = "removeSaveProductButton",
+                                                                            UpdateTargetId = "rowProducts",
+                                                                            OnSuccess = "getresultProduct",
+                                                                            InsertionMode = InsertionMode.InsertAfter,
+                                                                            HttpMethod = "POST"
+                                                                        }, new { @class = "form-horizontal", id = "form-product" }))
 {
     <div class="col-md-10">
         <div class="col-md-2">
             <div class="form-group">
-                <label for="product-select">Description</label>
+                <label for="product-select">
+                    @*Description*@
+                    @Html.MultiLanguage(1008)
+
+
+                </label>
                 @Html.DropDownList("Products", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
             </div>
             <!-- /.form-group -->
@@ -22,7 +28,12 @@
 
         <div class="col-md-1 ">
             <div class="newProductName">
-                <label for="product-new">New</label>
+                <label for="product-new">
+                    @*New*@
+                    @Html.MultiLanguage(1004)
+
+
+                </label>
                 <button type="button" class="btn btn-warning btn-sg" id="product-new" data-toggle="modal" data-target="#product-modal">
                     <span class="glyphicon glyphicon-plus"> </span>
                 </button>
@@ -31,7 +42,10 @@
 
         <div class="col-md-2">
             <div class="form-group">
-                <label for="project">Project</label>
+                <label for="project">
+                    @*Project*@
+                    @Html.MultiLanguage(1009)
+                </label>
                 @Html.DropDownList("Projects", null, htmlAttributes: new { @class = "form-control  select2", style = "width: 100%" })
 
             </div>
@@ -39,7 +53,10 @@
         </div>
         <div class="col-md-1 ">
             <div class="newProductName">
-                <label for="project-new">New</label>
+                <label for="project-new">
+                    @*New*@
+                    @Html.MultiLanguage(1004)
+                </label>
                 <button type="button" class="btn btn-warning btn-sg" id="project-new" data-toggle="modal" data-target="#project-modal">
                     <span class="glyphicon glyphicon-plus"> </span>
                 </button>
@@ -48,9 +65,13 @@
 
         <div class="col-md-1">
             <div class="form-group">
-                <label for="quantity">Quantity</label>
+                <label for="quantity">
+                    @*Quantity*@
+
+                    @Html.MultiLanguage(1010)
+                </label>
                 @*<input type="text" class="form-control" id="quantity"/>*@
-                @Html.TextBoxFor(model => model.Quanity,  new { @class = "form-control quanity", placeholder= "0.00" } )
+                @Html.TextBoxFor(model => model.Quanity, new { @class = "form-control quanity", placeholder = "0.00" })
             </div>
         </div>
 
@@ -58,15 +79,23 @@
 
         <div class="col-md-1">
             <div class="form-group">
-                <label for="quantity" class="pull-right">Prize</label>
+                <label for="prize" class="pull-right">
+                    @*Prize*@
+                    @Html.MultiLanguage(1011)
+
+                </label>
                 @*<input type="text" class="form-control"/>*@
-                @Html.TextBoxFor(model => model.ProductPrice,  new { @class = "form-control price", placeholder = "0.00" } )
+                @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control price", placeholder = "0.00" })
             </div>
         </div>
 
         <div class="col-md-2">
             <div class="dropdown">
-                <label for="quantity">VAT (%)</label>
+                <label for="dds">
+                    @*VAT (%)*@
+
+                    @Html.MultiLanguage(1012)
+                </label>
 
                 @Html.DropDownList("Dds", null, htmlAttributes: new { @class = "form-control dds", style = "width: 100%" })
             </div>
@@ -74,7 +103,10 @@
 
         <div class="col-md-2">
             <div class="form-group">
-                <label for="quantity">Total prize</label>
+                <label for="totalprize">
+                    @*Total prize*@
+                    @Html.MultiLanguage(1013)
+                </label>
                 <input type="text" class="form-control total-price" disabled>
             </div>
         </div>
@@ -87,7 +119,10 @@
         <div class="col-md-4 col-md-offset-1">
 
             <div class="form-group saveProduct">
-                <label for="save">Save</label>
+                <label for="save">
+                    @*Save*@
+                    @Html.MultiLanguage(1014)
+                </label>
                 <button type="button" class="btn btn-warning btn-sm" onclick="btnSubmitProductclick(event)"> <span class="glyphicon glyphicon-ok"></span></button>
             </div>
         </div>
@@ -96,8 +131,12 @@
 
             <div class="form-group deleteProduct" style="display: none">
 
-                    <label for='delete'>Delete</label>
-                    @Ajax.ActionLink(" ", "DeleteProductInvoiceTemp", "Home",  new { id = Model.ProductInvoiceID },new AjaxOptions{ OnSuccess = "DeleteRowProduct"}, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
+                <label for='delete'>
+                    @*Delete*@
+
+                    @Html.MultiLanguage(1015)
+                </label>
+                @Ajax.ActionLink(" ", "DeleteProductInvoiceTemp", "Home", new { id = Model.ProductInvoiceID }, new AjaxOptions { OnSuccess = "DeleteRowProduct" }, new { @class = "btn btn-danger btn-sm btnDelete glyphicon glyphicon-remove" })
 
             </div>
         </div>
@@ -139,7 +178,7 @@
             var pricePerProduct = beforeForm.find(".price").val();
             var dds = beforeForm.find(".dds").val();
             //console.log("p: " + pricePerProduct + "q: " + quantity + "dds: " +dds);
-         //   var price = (quantity * pricePerProduct * (dds / 100)) + (quantity * pricePerProduct);
+            //   var price = (quantity * pricePerProduct * (dds / 100)) + (quantity * pricePerProduct);
             var price = quantity * pricePerProduct;
             totalPriceInput.val(price);
             //   $("#form-product").removeAttr("id");

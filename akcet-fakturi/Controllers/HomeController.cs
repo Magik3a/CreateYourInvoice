@@ -357,9 +357,9 @@ namespace akcet_fakturi.Controllers
                 // TODO: Set Counter for each user for every year
 
                 var tempCounter =
-                    db.Counters.Where(c => c.UserID == userId && c.Year == DateTime.Now.Year.ToString())
-                        .FirstOrDefault();
-                tempCounter.CounterValue++;
+                    db.Counters
+                        .FirstOrDefault(c => c.UserID == userId && c.Year == DateTime.Now.Year.ToString());
+                if (tempCounter != null) tempCounter.CounterValue++;
 
 
                 //var counter = db.Counters.OrderByDescending(s => s.CounterValue).FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString());
@@ -400,7 +400,7 @@ namespace akcet_fakturi.Controllers
                 db.SaveChanges();
 
                 byte[] bytes = GeneratePDF(faktura.FakturaHtml.Replace("\r\n", string.Empty));
-                string strEmailResult = "<img src=\"www.fakturi.nl/images/logo.png\">";
+                string strEmailResult = "<img src=\"" + ConfigurationManager.AppSettings["SocialLogoPath"] + "\">";
                 EmailFunctions.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "New invoice from user "+ User.Identity.Name, strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
 
                 return Json(faktura.FakturaHtml, JsonRequestBehavior.AllowGet);

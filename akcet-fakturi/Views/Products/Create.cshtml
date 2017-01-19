@@ -1,4 +1,5 @@
-﻿@model akcetDB.Product
+﻿@using akcet_fakturi.Helpers
+@model akcetDB.Product
 
 @{
     ViewBag.Title = "Create";
@@ -9,12 +10,12 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Product</h4>
+        <h4>@Html.MultiLanguage(1025)</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -35,7 +36,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Html.MultiLanguage(1076), "Index")
 </div>
 
 @section Scripts {

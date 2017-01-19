@@ -1,4 +1,5 @@
-﻿@model akcetDB.Project
+﻿@using akcet_fakturi.Helpers
+@model akcetDB.Project
 
 @{
     ViewBag.Title = "Details";
@@ -9,7 +10,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Project</h4>
+    <h4>@Html.MultiLanguage(1009)</h4>
     <hr />
     <dl class="dl-horizontal">
   
@@ -43,5 +44,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Html.MultiLanguage(1076), "Index")
 </p>

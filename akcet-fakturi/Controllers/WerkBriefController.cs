@@ -178,7 +178,7 @@ namespace akcet_fakturi.Controllers
             db.SaveChanges();
 
             byte[] bytes = GeneratePDF(werkbrief.WerkbriefHTML.Replace("\r\n", string.Empty));
-            string strEmailResult = "<img src=\"www.fakturi.nl/images/logo.png\">";
+            string strEmailResult = "<img src=\"" + ConfigurationManager.AppSettings["SocialLogoPath"] + "\">";
             EmailFunctions.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "New werkbrief from user " + User.Identity.Name, strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
 
             return Json(werkbrief.WerkbriefHTML, JsonRequestBehavior.AllowGet);
@@ -232,7 +232,7 @@ namespace akcet_fakturi.Controllers
         {
             try
             {
-                string strEmailResult = "<img src=\"www.fakturi.nl/images/logo.png\">";
+                string strEmailResult = "<img src=\""+ ConfigurationManager.AppSettings["SocialLogoPath"] +"\">";
 
 
                 var strResult = "";

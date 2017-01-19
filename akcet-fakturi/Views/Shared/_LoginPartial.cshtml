@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using akcet_fakturi.Helpers
+@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -6,33 +7,40 @@
         @Html.AntiForgeryToken()
 
         <div class="col-md-2">
-            <a href="../../"><img src="../../images/logo.png" class="img-responsive" /></a>
+            <a href="~/">
+                <img src="@Html.MultiLanguage(1084)" class="img-responsive" />
+            </a>
         </div>
 
         <div class="col-md-3 pull-right">
-       
+
             <a href="@Url.Action("Invoices", "Home")" class="btn btn-warning btn-sm">
-                <span class="glyphicon glyphicon-user"></span>  
-                Hello @User.Identity.GetUserName()!
+                <span class="glyphicon glyphicon-user"></span>
+                @*Hello*@
+                @Html.MultiLanguage(1023)
+                @User.Identity.GetUserName()!
             </a>
         </div>
         <div class="col-md-1 pull-right">
-            <a  href="javascript:document.getElementById('logoutForm').submit()" type="button" class="btn btn-default btn-sm">
-Log out
+            <a href="javascript:document.getElementById('logoutForm').submit()" type="button" class="btn btn-default btn-sm">
+                @*Log out*@
+                @Html.MultiLanguage(1022)
             </a>
         </div>
     }
 }
 else
 {
-    <div class="col-md-2"><img src="../../images/logo.png" class="img-responsive" /></div>
+    <div class="col-md-2">
+        <img src="@Html.MultiLanguage(1084)" class="img-responsive"/>
+    </div>
     <div class="col-md-9"></div>
 
     <div class="col-md-1">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
             <span class="glyphicon glyphicon-user"></span>
-            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+            @Html.ActionLink(Html.MultiLanguage(4), "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
         </button>
     </div>
 

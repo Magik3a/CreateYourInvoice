@@ -1,37 +1,45 @@
-﻿@model akcet_fakturi.Models.IndexViewModel
+﻿@using akcet_fakturi.Helpers
+@model akcet_fakturi.Models.IndexViewModel
 @{
     ViewBag.Title = "Manage";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
     ViewBag.Manage = "active";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@Html.MultiLanguage(1079)</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h4>
+        @*Change your account settings*@
+        @Html.MultiLanguage(1078)
+    </h4>
     <hr />
 
     <table class="table table-hover table-striped">
         <tr>
             <td>
-                User Name:
+                @*User Name:*@
+                @Html.MultiLanguage(1)
             </td>
             <td>@Model.UserName</td>
             <td>
-                [ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]
+                [ @Html.ActionLink(Html.MultiLanguage(1080), "ChangeOtherInfo", "Manage") ]
             </td>
         </tr>
         <tr>
             <td>
-                Password:
+                @*Password:*@
+                @Html.MultiLanguage(2)
+
+
             </td>
             <td></td>
             <td>
                 [
                 @if (Model.HasPassword)
             {
-                @Html.ActionLink("Change your password", "ChangePassword")
+                @Html.ActionLink(Html.MultiLanguage(1082), "ChangePassword")
                 }
                 else
                 {
@@ -42,80 +50,103 @@
         </tr>
         <tr>
             <td>
-                Full Name:
+                @*Full Name:*@
+                @Html.MultiLanguage(1002)
+
+
             </td>
             <td>@Model.FullName</td>
             <td>
-                [ @Html.ActionLink("Change name", "ChangeNames", "Manage") ]
+                [ @Html.ActionLink(Html.MultiLanguage(1081), "ChangeNames", "Manage") ]
             </td>
         </tr>
 
         <tr>
             <td>
-                Company:
+                @*Company:*@
+                @Html.MultiLanguage(1028)
+
+
             </td>
             <td>@Model.Company</td>
-            <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
+            <td>[ @Html.ActionLink(Html.MultiLanguage(1080), "ChangeOtherInfo", "Manage") ]</td>
         </tr>
         <tr>
             <td>
-                Address:
+                @*Address:*@
+                @Html.MultiLanguage(1026)
+
+
             </td>
             <td>@Model.Address</td>
             <td>
-                [ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]
+                [ @Html.ActionLink(Html.MultiLanguage(1080), "ChangeOtherInfo", "Manage") ]
             </td>
         </tr>
 
         <tr>
             <td>
-                Zip Code:
+                @*Zip Code:*@
+                @Html.MultiLanguage(1048)
+
+
             </td>
             <td>@Model.ZipCode</td>
             <td>
-                [ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]
+                [ @Html.ActionLink(Html.MultiLanguage(1080), "ChangeOtherInfo", "Manage") ]
             </td>
         </tr>
 
         <tr>
             <td>
-                City:
+                @*City:*@
+                @Html.MultiLanguage(1049)
+
+
             </td>
             <td>@Model.City</td>
             <td>
-                [ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]
+                [ @Html.ActionLink(Html.MultiLanguage(1080), "ChangeOtherInfo", "Manage") ]
             </td>
         </tr>
 
         <tr>
             <td>
-                Phone Number:
+                @Html.MultiLanguage(24)
+                @*Phone Number:*@
             </td>
             <td>@Model.PhoneNumber</td>
-            <td>[ @Html.ActionLink("Change phone number", "AddPhoneNumber", "Manage") ]</td>
+            <td>[ @Html.ActionLink(Html.MultiLanguage(1083), "AddPhoneNumber", "Manage") ]</td>
         </tr>
 
         <tr>
             <td>
-                Bank Account:
+                @*Bank Account:*@
+                @Html.MultiLanguage(1067)
+
+
             </td>
             <td>@Model.BankAccount</td>
-            <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
+            <td>[ @Html.ActionLink(Html.MultiLanguage(1080), "ChangeOtherInfo", "Manage") ]</td>
         </tr>
 
         <tr>
             <td>
-                KWK:
+                @Html.MultiLanguage(1068)
+                @*KWK:*@
             </td>
             <td>@Model.Kwk</td>
-            <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
+            <td>[ @Html.ActionLink(Html.MultiLanguage(1080), "ChangeOtherInfo", "Manage") ]</td>
         </tr>
         <tr>
             <td>
-                DDS:
+                @*DDS:*@
+                @Html.MultiLanguage(1046)
+
+
             </td>
             <td>@Model.Dds</td>
-            <td>[ @Html.ActionLink("Change other info", "ChangeOtherInfo", "Manage") ]</td>
+            <td>[ @Html.ActionLink(Html.MultiLanguage(1080), "ChangeOtherInfo", "Manage") ]</td>
         </tr>
     </table>
 

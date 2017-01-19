@@ -1,3 +1,5 @@
+using Tools.Attributes;
+
 namespace akcetDB
 {
     using System;
@@ -21,11 +23,13 @@ namespace akcetDB
         public string UserID { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Project")]
+        [MultiLanguageDisplayName("1009")]
         public string ProjectName { get; set; }
 
+        [MultiLanguageDisplayName("1061")]
         public DateTime? DateCreated { get; set; }
 
+        [MultiLanguageDisplayName("1062")]
         public DateTime? DateModified { get; set; }
 
         public bool IsDeleted { get; set; }

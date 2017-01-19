@@ -1,4 +1,5 @@
 ﻿@using akcetDB
+@using akcet_fakturi.Helpers
 @model akcetDB.Company
 
 @{
@@ -13,9 +14,12 @@
 @using (Html.BeginForm("Edit", "Companies"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Company</h4>
+        <h4>
+            @*Company*@
+            @Html.MultiLanguage(1028)
+        </h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -94,7 +98,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Html.MultiLanguage(1076), "Index")
 </div>
 <!-- Modal to add Address-->
 @Html.Partial("InvoicesPartials/_ModalAddressPartial", new Address())

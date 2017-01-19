@@ -69,7 +69,7 @@ columns.Template(@<text>
                 $("#modal-body-ajax").printElement({ printMode: 'popup' });
             });
         $(".btnForModal").click(function () {
-            idInvoice = $(this).data("idinvoice");
+            var idInvoice = $(this).data("idinvoice");
 
             $.ajax({
                 url: '/Invoices/GetInvoice',
@@ -81,8 +81,8 @@ columns.Template(@<text>
                     $("#modal-body-ajax").html(data);
 
                 },
-                error: function () {
-                    alert('error');
+                error: function (data) {
+                    console.log(data);
                 }
             });
         });

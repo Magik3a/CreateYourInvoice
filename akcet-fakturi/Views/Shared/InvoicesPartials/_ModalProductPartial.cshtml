@@ -1,31 +1,39 @@
-﻿@model akcetDB.Product
+﻿@using akcet_fakturi.Helpers
+@model akcetDB.Product
 
 <div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Enter new product</h4>
+                <h4 class="modal-title" id="myModalLabel">
+                    @*Enter new product*@
+                    @Html.MultiLanguage(1059)
+
+
+                </h4>
             </div>
             <div class="modal-body">
 
 
-              @using (Ajax.BeginForm("CreateProductAjax", "Home", null,
-                                  new AjaxOptions
-                                  {
-                                      OnSuccess = "getresultProductName",
-                                      HttpMethod = "POST"
-                                  }, new { @class = "form-horizontal", id = "form-productName" }))
-              {
+                @using (Ajax.BeginForm("CreateProductAjax", "Home", null,
+                              new AjaxOptions
+                              {
+                                  OnSuccess = "getresultProductName",
+                                  HttpMethod = "POST"
+                              }, new { @class = "form-horizontal", id = "form-productName" }))
+                {
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
-                      
+
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                  
+
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+                           <label class="control-label col-md-2">
+                                @Html.MultiLanguage(1044)
+                            </label>
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
@@ -35,8 +43,14 @@
                 }
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="submitProduct" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    @*Close*@
+                    @Html.MultiLanguage(1052)
+                </button>
+                <button type="button" class="btn btn-primary" id="submitProduct" data-dismiss="modal">
+                    @Html.MultiLanguage(1014)
+                    @*Save*@
+                </button>
             </div>
         </div>
     </div>
@@ -44,7 +58,7 @@
 
 <script>
     $("#submitProduct")
-        .click(function(event) {
+        .click(function (event) {
             event.preventDefault();
             $("#form-productName").submit();
         });

@@ -1,4 +1,6 @@
-﻿namespace akcetDB
+﻿using Tools.Attributes;
+
+namespace akcetDB
 {
     using System;
     using System.Collections.Generic;
@@ -20,13 +22,14 @@
 
         public int? CompanyID { get; set; }
 
-        [Display(Name = "Date created")]
+        [MultiLanguageDisplayName("1061")]
+
         public string WerkbriefDate { get; set; }
 
-        [Display(Name = "Payment end date")]
+        [MultiLanguageDisplayName("1006")]
         public string WerkbriefEndDate { get; set; }
 
-        [Display(Name = "Period")]
+        [MultiLanguageDisplayName("1007")]
         public string Period { get; set; }
 
         public string TotalHours { get; set; }

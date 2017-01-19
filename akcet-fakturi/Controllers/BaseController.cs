@@ -46,7 +46,7 @@ namespace akcet_fakturi.Controllers
         {
             templateName = "~/Areas/EmailTemplates/Views/Template/" + templateName + ".cshtml";
 
-            //TODO: Make enumeration for variable templateName. 
+            //TODO: Make enumeration for variable templateName.
 
             ViewData.Model = model;
 
@@ -113,13 +113,12 @@ namespace akcet_fakturi.Controllers
                 model.InvoiceEndDate = tblFakturiTemps.InvoiceEndDate;
                 model.InvoiceDate = tblFakturiTemps.InvoiceDate;
             }
+            var counter = db.Counters.OrderByDescending(s => s.CounterValue)
+                .FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString() && c.UserID == userId);
 
-            if (db.Counters.Any(c => c.Year == DateTime.Now.Year.ToString()) && db.Counters.Any(c => c.UserID == userId))
+            if (counter != null)
             {
-                var firstOrDefault = db.Counters.OrderByDescending(s => s.CounterValue)
-                    .FirstOrDefault(c => c.Year == DateTime.Now.Year.ToString() && c.UserID == userId);
-                model.InvoiceNumber = String.Format("{0}-{1:D3}", DateTime.Now.Year, firstOrDefault.CounterValue);
-
+                model.InvoiceNumber = $"{DateTime.Now.Year}-{counter?.CounterValue:D3}";
             }
             else
             {
@@ -129,7 +128,7 @@ namespace akcet_fakturi.Controllers
                 tempCounter.Year = DateTime.Now.Year.ToString();
                 db.Counters.Add(tempCounter);
                 db.SaveChanges();
-                model.InvoiceNumber = String.Format("{0}-{1:D3}", DateTime.Now.Year, 1);
+                model.InvoiceNumber = $"{DateTime.Now.Year}-{1:D3}";
             }
 
 
@@ -208,7 +207,7 @@ namespace akcet_fakturi.Controllers
             model.CompanyDDSNumber = company.DdsNumber;
 
             model.Period = werkbriefTemps.Period;
-           
+
             return model;
         }
 
@@ -221,8 +220,8 @@ namespace akcet_fakturi.Controllers
                 return Decimal.Parse(dds.Value);
         }
 
-       
-       
+
+
         public byte[] GeneratePDF(string html)
         {
             #region Generate PDF
@@ -238,12 +237,12 @@ namespace akcet_fakturi.Controllers
                 OptionWriteEmptyNodes = true,
                 OptionAutoCloseOnEnd = true
             };
-           
+
             hDocument.LoadHtml(html);
             var footer = hDocument.GetElementbyId("footer").InnerText.Trim();
             hDocument.GetElementbyId("footer").Remove();
             var closedTags = hDocument.DocumentNode.WriteTo();
-            
+
             var example_html = closedTags;
             var example_css = System.IO.File.ReadAllText(Server.MapPath("~/Content/invoicePrint.css"));
             var msCss = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(example_css));

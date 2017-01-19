@@ -1,45 +1,58 @@
-﻿@model akcetDB.Address
+﻿@using akcet_fakturi.Helpers
+@model akcetDB.Address
 <!-- Modal to add Product-->
 <div class="modal fade" id="address-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add new address</h4>
+                <h4 class="modal-title" id="myModalLabel">
+                    @*Add new address*@
+                    @Html.MultiLanguage(1051)
+                </h4>
             </div>
             <div class="modal-body">
 
 
                 @using (Ajax.BeginForm("CreateAddressAjax", "Home", null,
-                                    new AjaxOptions
-                                    {
-                                        OnSuccess = "getresult",
-                                        HttpMethod = "POST"
-                                    }, new { @class = "form-horizontal", id = "form-address" }))
+                                new AjaxOptions
+                                {
+                                    OnSuccess = "getresult",
+                                    HttpMethod = "POST"
+                                }, new { @class = "form-horizontal", id = "form-address" }))
                 {
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            @Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @*Address*@
+                            <label class="control-label col-md-2">
+                                @Html.MultiLanguage(1026)
+                            </label>
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.StreetName, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.StreetName, new {htmlAttributes = new {@class = "form-control"}})
+                                @Html.ValidationMessageFor(model => model.StreetName, "", new {@class = "text-danger"})
                             </div>
                         </div>
 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @*zip code*@
+                            <label class="control-label col-md-2">
+                                @Html.MultiLanguage(1048)
+                            </label>
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.ZipCode, new {htmlAttributes = new {@class = "form-control"}})
+                                @Html.ValidationMessageFor(model => model.ZipCode, "", new {@class = "text-danger"})
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @*City*@
+                            <label class="control-label col-md-2">
+                                @Html.MultiLanguage(1049)
+                            </label>
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
@@ -47,14 +60,20 @@
                         </div>
 
 
-                        </div>
+                    </div>
                 }
 
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="submitAddress" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    @*Close*@
+                    @Html.MultiLanguage(1052)
+                </button>
+                <button type="button" class="btn btn-primary" id="submitAddress" data-dismiss="modal">
+                    @Html.MultiLanguage(1014)
+                    @*Save*@
+                </button>
             </div>
         </div>
     </div>

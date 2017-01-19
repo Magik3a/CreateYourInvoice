@@ -1,4 +1,5 @@
-﻿@model akcetDB.Address
+﻿@using akcet_fakturi.Helpers
+@model akcetDB.Address
 
 @{
     ViewBag.Title = "Create";
@@ -9,12 +10,12 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Create", "Addresses")) 
+@using (Html.BeginForm(Html.MultiLanguage(1075), "Addresses"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Address</h4>
+        <h4>@Html.MultiLanguage(1026)</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -25,7 +26,7 @@
             </div>
         </div>
 
-     
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -43,7 +44,7 @@
             </div>
         </div>
 
-    
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -54,7 +55,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Html.MultiLanguage(1076), "Index")
 </div>
 
 @section Scripts {

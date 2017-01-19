@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using akcet_fakturi.Helpers
+<!DOCTYPE html>
 <html>
 <head>
-    <title>АКСЕТ - Online invoices</title>
+    <title>@Html.MultiLanguage(1024)</title>
     <meta charset="utf-8">
 
     <!--[if lt IE 9]>
@@ -46,33 +47,62 @@
         <div class="row" style="margin-top:40px; background-color:#F8F8F8; border-radius:5px; padding-top:10px; padding-bottom: 10px;">
             <ul class="nav nav-pills nav-justified">
                 @*<li role="presentation">
-                        <a href="@Url.Action("Index", "Home")">Начало</a>
-                    </li>*@
+                <a href="@Url.Action("Index", "Home")">Начало</a>
+            </li>*@
                 <li role="presentation" class="@ViewBag.Invoices">
-                    @Html.ActionLink("Create Invoice", "Invoices", "Home")
+                    <a href="@Url.Action("Invoices", "Home")">
+                        @*Create Invoice*@
+                        @Html.MultiLanguage(27)
+                    </a>
                 </li>
                 <li role="presentation" class="@ViewBag.Werkbrief">
-                    @Html.ActionLink("Create Werkbrief", "Index", "WerkBrief")
+                    <a href="@Url.Action("Index", "WerkBrief")">
+                        @*Create Werkbrief*@
+                        @Html.MultiLanguage(28)
+                    </a>
                 </li>
                 <li role="presentation" class="@ViewBag.InvoicesAllUser">
-                    @Html.ActionLink("All invoices", "UserInvoices", "Invoices")
+                    <a href="@Url.Action("UserInvoices", "Invoices")">
+                        @*All invoices*@
+                        @Html.MultiLanguage(29)
+                    </a>
                 </li>
                 <li role="presentation" class="@ViewBag.AllUserWerkbriefs">
-                    <a href="@Url.Action("AllUserWerkbriefs", "AllWerkbriefs")">All Werkbriefs</a>
+                    <a href="@Url.Action("AllUserWerkbriefs", "AllWerkbriefs")">
+                        @*All Werkbriefs*@
+                        @Html.MultiLanguage(30)
+                    </a>
                 </li>
                 <li role="presentation" class="@ViewBag.Companies">
-                    <a href="@Url.Action("Index", "Companies")">Companies</a>
+                    <a href="@Url.Action("Index", "Companies")">
+                        @*Companies*@
+                        @Html.MultiLanguage(31)
+                    </a>
                 </li>
                 <li role="presentation" class="@ViewBag.Projects">
-                    <a href="@Url.Action("Index", "Projects")">Projects</a>
+                    <a href="@Url.Action("Index", "Projects")">
+                        @*Projects*@
+                        @Html.MultiLanguage(32)
+                    </a>
                 </li>
                 <li role="presentation" class="@ViewBag.Products">
-                    <a href="@Url.Action("Index", "Products")">Products</a>
+                    <a href="@Url.Action("Index", "Products")">
+                        @*Products*@
+                        @Html.MultiLanguage(1025)
+                    </a>
                 </li>
                 <li role="presentation" class="@ViewBag.Addresses">
-                    <a href="@Url.Action("Index", "Addresses")">Addresses</a>
+                    <a href="@Url.Action("Index", "Addresses")">
+                        @*Addresses*@
+                        @Html.MultiLanguage(34)
+                    </a>
                 </li>
-                <li role="presentation" class="@ViewBag.Manage"><a href="@Url.Action("Index", "Manage")">My profile</a></li>
+                <li role="presentation" class="@ViewBag.Manage">
+                    <a href="@Url.Action("Index", "Manage")">
+                        @*My profile*@
+                        @Html.MultiLanguage(35)
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -87,25 +117,46 @@
             <div class="row" style=" border-radius:5px; padding-top:10px; padding-bottom: 10px;">
                 <ul class="nav nav-pills nav-justified">
                     <li role="presentation" class="@ViewBag.InvoicesAll">
-                        <a href="@Url.Action("Index", "Invoices")">All created invoices</a>
+                        <a href="@Url.Action("Index", "Invoices")">
+                            @*All created invoices*@
+                            @Html.MultiLanguage(36)
+                        </a>
                     </li>
                     <li role="presentation" class="@ViewBag.AllWerkbriefs">
-                        <a href="@Url.Action("AllWerkbriefs", "AllWerkbriefs")">All created werkbriefs</a>
+                        <a href="@Url.Action("AllWerkbriefs", "AllWerkbriefs")">
+                            @*All created werkbriefs*@
+                            @Html.MultiLanguage(37)
+                        </a>
                     </li>
                     <li role="presentation" class="@ViewBag.Dds">
-                        <a href="@Url.Action("Index", "DDs")">All vats</a>
+                        <a href="@Url.Action("Index", "DDs")">
+                            @*All vats*@
+                            @Html.MultiLanguage(38)
+                        </a>
                     </li>
                     <li role="presentation" class="@ViewBag.AllCompanies">
-                        <a href="@Url.Action("Index", "AllCompanies")">Companies</a>
+                        <a href="@Url.Action("Index", "AllCompanies")">
+                            @*Companies*@
+                            @Html.MultiLanguage(31)
+                        </a>
                     </li>
                     <li role="presentation" class="@ViewBag.Register">
-                        <a href="@Url.Action("Register", "Account")">Registration</a>
+                        <a href="@Url.Action("Register", "Account")">
+                            @*Registration*@
+                            @Html.MultiLanguage(39)
+                        </a>
                     </li>
                     <li role="presentation" class="@ViewBag.ApplicationUsers">
-                        <a href="@Url.Action("Index", "AppUsers")">Users</a>
+                        <a href="@Url.Action("Index", "AppUsers")">
+                            @*Users*@
+                            @Html.MultiLanguage(40)
+                        </a>
                     </li>
                     <li role="presentation" class="@ViewBag.Roles">
-                        <a href="@Url.Action("ViewAllRoles", "Roles")">Roles</a>
+                        <a href="@Url.Action("ViewAllRoles", "Roles")">
+                            @*Roles*@
+                            @Html.MultiLanguage(41)
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -135,20 +186,32 @@
                 <ul class="nav nav-pills nav-justified">
                     <li role="presentation">
                         <p>
-                            Designed by <a href="#" title="Petya Petkova">Petya Petkova</a>
+                            @*Designed by*@
+                            @Html.MultiLanguage(42)
+                            <a href="#" title="Petya Petkova">Petya Petkova</a>
                             <br />
-                            Programmed by
+                            @*Programmed by*@
+                            @Html.MultiLanguage(43)
                             <a href="http://s2kdesign.com" title="www.s2kdesign.com" target="_blank">Svetlin Krastanov</a>
                         </p>
                     </li>
                     <li role="presentation" class="@ViewBag.HowItsMade">
-                        <a href="#">How its working?</a>
+                        <a href="#">
+                            @*How its working?*@
+                            @Html.MultiLanguage(44)
+                        </a>
                     </li>
                     <li role="presentation" class="@ViewBag.ForUs">
-                        <a href="#">About us</a>
+                        <a href="#">
+                            @*About us*@
+                            @Html.MultiLanguage(45)
+                        </a>
                     </li>
                     <li role="presentation" class="@ViewBag.Contacts">
-                        <a href="#">Contacts</a>
+                        <a href="#">
+                            @*Contacts*@
+                            @Html.MultiLanguage(46)
+                        </a>
                     </li>
                 </ul>
             </div>
