@@ -1,4 +1,5 @@
-﻿@using akcet_fakturi.Helpers
+﻿@using System.Reflection
+@using akcet_fakturi.Helpers
 
 
 <footer class="footer">
@@ -8,11 +9,11 @@
 
         <div class="row" style="margin-top:40px; background-color:#F8F8F8; border-radius:5px; padding-top:10px;">
             <ul class="nav nav-pills nav-justified">
-                <li role="presentation">
+                <li role="presentation" style="width: 2%">
                     <p>
                         @*Designed by*@
                         @Html.MultiLanguage(42)
-                        <a href="#" title="Petya Petkova">Petya Petkova</a>
+                        <a href="http://acceler8design.com/" title="Petya Petkova" target="_blank">Petya Petkova</a>
                         <br />
                         @*Programmed by*@
                         @Html.MultiLanguage(43)
@@ -35,6 +36,11 @@
                     <a href="#">
                         @*Contacts*@
                         @Html.MultiLanguage(46)
+                    </a>
+                </li>
+                <li role="presentation" class="@ViewBag.Contacts">
+                    <a href="#" style="font-size: 0.8em; padding: 0;">
+                            @Html.MultiLanguage(1087): @typeof(akcet_fakturi.MvcApplication).Assembly.GetName().Version
                     </a>
                 </li>
             </ul>
