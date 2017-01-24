@@ -8,11 +8,11 @@
     ViewBag.Projects = "active";
 }
 
-<h2>@Html.MultiLanguage(1032)</h2>
+<h2>@Html.MultiLanguage(32)</h2>
   <!-- Helper for info boxes after manipulating data -->
 @ResultHelper.ResultFromTempData(TempData)
 <p>
-    @Html.ActionLink("Create new", "Create", null, new {@class="btn btn-warning btnCreateNew" })
+    @Html.ActionLink(Html.MultiLanguage(1075), "Create", null, new {@class="btn btn-warning btnCreateNew" })
 </p>
 
 @(Html.Kendo().Grid(Model).Name("Projects").Sortable().Filterable().Pageable().Columns(columns =>

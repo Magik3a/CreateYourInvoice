@@ -17,7 +17,7 @@
     <AssemblyName>akcet-fakturi</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -577,6 +577,7 @@
     <Content Include="Views\Shared\WerkbriefsPartials\_TabSavePartial.cshtml" />
     <Content Include="Views\AllWerkbriefs\AllUserWerkbriefs.cshtml" />
     <Content Include="Views\AllWerkbriefs\Delete.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -625,7 +626,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>11192</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/akcet-fakturi</IISUrl>
+          <IISUrl>http://localhost:11192/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

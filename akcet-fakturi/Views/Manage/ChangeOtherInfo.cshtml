@@ -1,16 +1,16 @@
-﻿@model akcet_fakturi.Models.ChangeOtherInfoViewModel
+﻿@using akcet_fakturi.Helpers
+@model akcet_fakturi.Models.ChangeOtherInfoViewModel
 @{
     ViewBag.Title = "ChangeOtherInfo";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>Change Other Info</h2>
+<h2>@Html.MultiLanguage(1080)</h2>
 
 
 @using (Html.BeginForm("ChangeOtherInfo", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Other Info</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 

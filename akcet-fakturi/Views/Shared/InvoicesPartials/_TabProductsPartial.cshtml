@@ -71,7 +71,7 @@
                     @Html.MultiLanguage(1010)
                 </label>
                 @*<input type="text" class="form-control" id="quantity"/>*@
-                @Html.TextBoxFor(model => model.Quanity, new { @class = "form-control quanity", placeholder = "0.00" })
+                @Html.TextBoxFor(model => model.Quanity, new { @class = "form-control quanity", type = "number", min = "0", placeholder = "0.00", pattern = @"\d+(\.\d{2})?" })
             </div>
         </div>
 
@@ -85,7 +85,7 @@
 
                 </label>
                 @*<input type="text" class="form-control"/>*@
-                @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control price", placeholder = "0.00" })
+                @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control price", type = "number", min = "0", placeholder = "0.00", pattern= @"\d+(\.\d{2})?" })
             </div>
         </div>
 

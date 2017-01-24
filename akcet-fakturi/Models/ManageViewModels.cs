@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Tools.Attributes;
 
 namespace akcet_fakturi.Models
 {
@@ -78,37 +79,37 @@ namespace akcet_fakturi.Models
     public class ChangeNames
     {
         [Required]
-        [Display(Name = "First Name")]
+        [MultiLanguageDisplayName("19")]
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "Last Name")]
+        [MultiLanguageDisplayName("20")]
         public string LastName { get; set; }
     }
 
     public class ChangeOtherInfoViewModel
     {
-        [Display(Name = "Address")]
+        [MultiLanguageDisplayName("1026")]
         public string Address { get; set; }
-        
-        [Display(Name = "Пощенски код")]
+
+        [MultiLanguageDisplayName("1048")]
         public string ZipCode { get; set; }
-        
-        [Display(Name = "Град")]
+
+        [MultiLanguageDisplayName("1049")]
         public string City { get; set; }
 
-        [Display(Name = "Company Name")]
+        [MultiLanguageDisplayName("1069")]
         public string CompanyName { get; set; }
-        
-        [Display(Name = "Bank Account")]
+
+        [MultiLanguageDisplayName("1067")]
         public string BankAccount { get; set; }
 
-        [Display(Name = "KWK Number")]
+        [MultiLanguageDisplayName("1068")]
         public string KwkNumber { get; set; }
 
-        [Display(Name = "DDS Number")]
+        [MultiLanguageDisplayName("1046")]
         public string DdsNumber { get; set; }
-        
+
     }
 
     public class VerifyPhoneNumberViewModel

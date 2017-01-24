@@ -58,18 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
-    <Compile Include="Migrations\201609120808047_201609120807416_AutomaticMigration.cs" />
-    <Compile Include="Migrations\201609120808047_201609120807416_AutomaticMigration.Designer.cs">
-      <DependentUpon>201609120808047_201609120807416_AutomaticMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609120811355_201609120807416_Fixed.cs" />
-    <Compile Include="Migrations\201609120811355_201609120807416_Fixed.Designer.cs">
-      <DependentUpon>201609120811355_201609120807416_Fixed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609120812431_201609120807416_Fixed2.cs" />
-    <Compile Include="Migrations\201609120812431_201609120807416_Fixed2.Designer.cs">
-      <DependentUpon>201609120812431_201609120807416_Fixed2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -82,17 +70,6 @@
       <Project>{21CB195B-19EE-4006-84C5-FE92EB88D29A}</Project>
       <Name>akcetDB</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609120808047_201609120807416_AutomaticMigration.resx">
-      <DependentUpon>201609120808047_201609120807416_AutomaticMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609120811355_201609120807416_Fixed.resx">
-      <DependentUpon>201609120811355_201609120807416_Fixed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609120812431_201609120807416_Fixed2.resx">
-      <DependentUpon>201609120812431_201609120807416_Fixed2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

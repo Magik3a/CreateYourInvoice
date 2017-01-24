@@ -173,50 +173,12 @@
 
 
 
+
     </div>
+
     <!--FOOTER-->
+    @Html.Partial("_FooterPartial")
 
-
-    <footer class="footer">
-        <div class="container">
-
-
-
-            <div class="row" style="margin-top:40px; background-color:#F8F8F8; border-radius:5px; padding-top:10px;">
-                <ul class="nav nav-pills nav-justified">
-                    <li role="presentation">
-                        <p>
-                            @*Designed by*@
-                            @Html.MultiLanguage(42)
-                            <a href="#" title="Petya Petkova">Petya Petkova</a>
-                            <br />
-                            @*Programmed by*@
-                            @Html.MultiLanguage(43)
-                            <a href="http://s2kdesign.com" title="www.s2kdesign.com" target="_blank">Svetlin Krastanov</a>
-                        </p>
-                    </li>
-                    <li role="presentation" class="@ViewBag.HowItsMade">
-                        <a href="#">
-                            @*How its working?*@
-                            @Html.MultiLanguage(44)
-                        </a>
-                    </li>
-                    <li role="presentation" class="@ViewBag.ForUs">
-                        <a href="#">
-                            @*About us*@
-                            @Html.MultiLanguage(45)
-                        </a>
-                    </li>
-                    <li role="presentation" class="@ViewBag.Contacts">
-                        <a href="#">
-                            @*Contacts*@
-                            @Html.MultiLanguage(46)
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
     @Scripts.Render("~/bundles/bootstrap")

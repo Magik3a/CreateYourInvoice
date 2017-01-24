@@ -1,16 +1,19 @@
-﻿@model akcet_fakturi.Models.ChangeNames
+﻿@using akcet_fakturi.Helpers
+@model akcet_fakturi.Models.ChangeNames
 @{
     ViewBag.Title = "ChangeNames";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>Change Names</h2>
+<h2>
+    @*Change Names*@
+    @Html.MultiLanguage(1081)
+</h2>
 
 
 @using (Html.BeginForm("ChangeNames", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Add Name</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">

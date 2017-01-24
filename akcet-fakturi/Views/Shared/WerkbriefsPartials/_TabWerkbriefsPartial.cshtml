@@ -19,7 +19,7 @@
             <div class="form-group">
                 @*Week nr.*@
                 <label>@Html.MultiLanguage(1030)</label>
-                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control", value = "Week", type = "number" } })
+                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control", value = "Week", type = "number", min = "0", pattern = @"\d+(\.\d{2})?" } })
                 @Html.ValidationMessageFor(model => model.Week, "", new { @class = "text-danger" })
             </div>
             <!-- /.form-group -->
@@ -82,44 +82,44 @@
                     <div class="col-md-1">
                         <div class="form-group">
                             <label>@Html.MultiLanguage(1031)</label>
-                            @Html.EditorFor(m => m.Monday, new {htmlAttributes = new {@class = "form-control no-padding", type = "number"}})
+                            @Html.EditorFor(m => m.Monday, new {htmlAttributes = new {@class = "form-control no-padding", type = "number", min = "0", pattern = @"\d+(\.\d{2})?" } })
 
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             <label>@Html.MultiLanguage(1032)</label>
-                            @Html.EditorFor(m => m.Tuesday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
+                            @Html.EditorFor(m => m.Tuesday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number", min = "0", pattern = @"\d+(\.\d{2})?" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             <label>@Html.MultiLanguage(1033)</label>
-                            @Html.EditorFor(m => m.Wednesday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
+                            @Html.EditorFor(m => m.Wednesday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number", min = "0", pattern = @"\d+(\.\d{2})?" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             <label>@Html.MultiLanguage(1034)</label>
-                            @Html.EditorFor(m => m.Thursday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
+                            @Html.EditorFor(m => m.Thursday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number", min = "0", pattern = @"\d+(\.\d{2})?" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             <label>@Html.MultiLanguage(1035)</label>
-                            @Html.EditorFor(m => m.Friday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
+                            @Html.EditorFor(m => m.Friday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number", min = "0", pattern = @"\d+(\.\d{2})?" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             <label>@Html.MultiLanguage(1036)</label>
-                            @Html.EditorFor(m => m.Saturday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
+                            @Html.EditorFor(m => m.Saturday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number", min = "0", pattern = @"\d+(\.\d{2})?" } })
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
                             <label>@Html.MultiLanguage(1037)</label>
-                            @Html.EditorFor(m => m.Sunday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number" } })
+                            @Html.EditorFor(m => m.Sunday, new { htmlAttributes = new { @class = "form-control no-padding", type = "number", min = "0", pattern = @"\d+(\.\d{2})?" } })
                         </div>
                     </div>
                 </div>
