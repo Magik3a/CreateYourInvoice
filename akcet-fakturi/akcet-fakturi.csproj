@@ -414,6 +414,9 @@
     <Content Include="Areas\WerkbriefTemplates\Views\web.config" />
     <Content Include="Areas\WerkbriefTemplates\Views\WerkbriefTemplate\Index.cshtml" />
     <Content Include="Areas\EmailTemplates\Views\Template\InvoiceEmailBody.cshtml" />
+    <None Include="Properties\PublishProfiles\develop.pubxml" />
+    <None Include="Properties\PublishProfiles\fakturi.pubxml" />
+    <None Include="Properties\PublishProfiles\netfactuur.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datepicker-bg.js" />
     <Content Include="Scripts\daterangepicker.js" />
@@ -581,7 +584,6 @@
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
     <Folder Include="Areas\InvoiceTemplates\Views\Shared\" />
     <Folder Include="Areas\WerkbriefTemplates\Views\Shared\" />
-    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
