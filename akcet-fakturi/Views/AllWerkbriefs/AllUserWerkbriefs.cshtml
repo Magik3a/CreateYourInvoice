@@ -13,7 +13,7 @@
     @Html.MultiLanguage(1072)
 </h2>
 <p>
-    @Html.ActionLink(Html.MultiLanguage(1074), "Index", "WerkBrief",  null, new {@class="btn btn-warning btnCreateNew" })
+    @Html.ActionLink(Html.MultiLanguageString(1074), "Index", "WerkBrief",  null, new {@class="btn btn-warning btnCreateNew" })
 </p>
 @(Html.Kendo().Grid(Model.OrderByDescending(w => w.DateCreated)).Name("Werkbriefs").Sortable().Filterable().Pageable().Columns(c => {
     c.Bound(_ => _.Company.CompanyName);
@@ -26,8 +26,8 @@
                        @*Open*@
                        @Html.MultiLanguage(1063)
                    </button>
-</text>).Title(Html.MultiLanguage(1064));
-}).NoRecords(Html.MultiLanguage(1065))
+</text>).Title(Html.MultiLanguageString(1064));
+}).NoRecords(Html.MultiLanguageString(1065))
 )
 
 

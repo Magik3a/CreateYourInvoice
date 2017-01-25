@@ -58,6 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
+    <Compile Include="Migrations\201701241442325_201701241439217_AutomaticMigration.cs" />
+    <Compile Include="Migrations\201701241442325_201701241439217_AutomaticMigration.Designer.cs">
+      <DependentUpon>201701241442325_201701241439217_AutomaticMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +74,11 @@
       <Project>{21CB195B-19EE-4006-84C5-FE92EB88D29A}</Project>
       <Name>akcetDB</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701241442325_201701241439217_AutomaticMigration.resx">
+      <DependentUpon>201701241442325_201701241439217_AutomaticMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

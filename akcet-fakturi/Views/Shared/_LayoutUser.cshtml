@@ -1,8 +1,9 @@
-﻿@using akcet_fakturi.Helpers
-<!DOCTYPE html>
+﻿@using System.Configuration
+@using akcet_fakturi.Helpers
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//@ConfigurationManager.AppSettings["AppLanguage"]" "http://www.w3.org/TR/html4/strict.dtd" >
 <html>
 <head>
-    <title>@Html.MultiLanguage(1024)</title>
+    <title>@Html.MultiLanguageString(1024)</title>
     <meta charset="utf-8">
 
     <!--[if lt IE 9]>
@@ -22,7 +23,21 @@
 
     @Styles.Render("~/Content/Css/kendo/kendoCss")
     <link href="~/Content/formValidation.min.css" rel="stylesheet" />
+    <script>
+        function InitTranslations() {
+            $.each($(".multilanguage-phrase"),
+          function(i, item) {
+              var phraseNumber = $(item).attr("data-multilanguage");
 
+              var url = "@ConfigurationManager.AppSettings["MultiLanguageApiUrl"]";
+              var language = "@ConfigurationManager.AppSettings["AppLanguage"]";
+
+              $.get(url + '/Initials/' + language + '/Phrase/' + phraseNumber, function (data) {
+                  $(item).text(data);
+              });
+          });
+        }
+    </script>
 </head>
 <body>
 
@@ -186,6 +201,11 @@
     @RenderSection("scripts", required: false)
 
 
+    <script>
+  $(function() {
+        InitTranslations();
+    });
 
+    </script>
 </body>
 </html>

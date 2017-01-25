@@ -8,7 +8,7 @@
 
         <div class="col-md-2">
             <a href="~/">
-                <img src="@Html.MultiLanguage(1084)" class="img-responsive" />
+                <img src="@Html.MultiLanguageString(1084)" class="img-responsive" />
             </a>
         </div>
 
@@ -40,7 +40,7 @@ else
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
             <span class="glyphicon glyphicon-user"></span>
-            @Html.ActionLink(Html.MultiLanguage(4), "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+            @Html.ActionLink(Html.MultiLanguageString(4), "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
         </button>
     </div>
 

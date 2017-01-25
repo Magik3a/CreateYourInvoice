@@ -1,21 +1,36 @@
-﻿@using System.Web.Mvc.Html
+﻿@using System.Configuration
+@using System.Web.Mvc.Html
 @using akcet_fakturi.Helpers
 @using akcet_fakturi.Models
 <!DOCTYPE html>
-<html>
+<html lang="@ConfigurationManager.AppSettings["AppLanguage"]">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netfactuur.nl - Online invoices</title>
+    <title>@Html.MultiLanguageString(1024)</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script>
+        function InitTranslations() {
+            $.each($(".multilanguage-phrase"),
+          function(i, item) {
+              var phraseNumber = $(item).attr("data-multilanguage");
 
+              var url = "@ConfigurationManager.AppSettings["MultiLanguageApiUrl"]";
+              var language = "@ConfigurationManager.AppSettings["AppLanguage"]";
+
+              $.get(url + '/Initials/' + language + '/Phrase/' + phraseNumber, function (data) {
+                  $(item).text(data);
+              });
+          });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-4 pull-left" style="margin-top:10px;">
-                <a href="~/"><img src="@Html.MultiLanguage(1084)" class="img-responsive" /></a>
+                <a href="~/"><img src="@Html.MultiLanguageString(1084)" class="img-responsive" /></a>
             </div>
         </div>
     </div>
@@ -48,5 +63,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+<script>
+    $(function() {
+        InitTranslations();
+    });
+
+</script>
 </body>
 </html>

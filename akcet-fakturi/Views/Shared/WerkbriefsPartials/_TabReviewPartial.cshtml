@@ -20,7 +20,7 @@
 
     <div class="row  text-center" style="margin-top: 50px">
         @*<a class="" id="saveInvoiceConfirmed">Запази и принтирай въведената фактура</a>*@
-        @Ajax.ActionLink(Html.MultiLanguage(1014), "SaveWerkbriefConfirmed", "Werkbrief", new { value = true },
+        @Ajax.ActionLink(Html.MultiLanguageString(1014), "SaveWerkbriefConfirmed", "Werkbrief", new { value = true },
             new AjaxOptions()
             {
                 UpdateTargetId = "saved-faktura",

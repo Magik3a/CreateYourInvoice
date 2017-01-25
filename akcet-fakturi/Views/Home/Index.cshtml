@@ -182,75 +182,77 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-group">
-                            @Html.Label(Html.MultiLanguage(19), new { @class = "col-sm-4 control-label", @for = "firstname" })
+
+                            <label class="col-sm-4 control-label" for="firstname">@Html.MultiLanguage(19)</label>
                             <div class="col-sm-8">
                                 @Html.EditorFor(model => model.FirstName, new
-                           {
-                               htmlAttributes = new
-                               {
-                                   @class = "form-control",
-                                   id = "firstname",
-                                   placeholder = Html.MultiLanguage(19)
-                               }
-                           })
-                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        id = "firstname",
+                                        placeholder = Html.MultiLanguageString(19)
+                                    }
+                                })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
                             </div>
                         </div>
 
 
 
                         <div class="form-group">
-                            @Html.Label(Html.MultiLanguage(20), new { @class = "col-sm-4 control-label", @for = "lastName" })
+                            <label class="col-sm-4 control-label" for="lastName">@Html.MultiLanguage(20)</label>
+
                             <div class="col-sm-8">
                                 @Html.EditorFor(model => model.LastName,
-                               new
-                               {
-                                   htmlAttributes = new
-                                   {
-                                       @class = "form-control",
-                                       id = "lastName",
-                                       placeholder = Html.MultiLanguage(20)
-                                   }
-                               })
-                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            id = "lastName",
+                                            placeholder = Html.MultiLanguageString(20)
+                                        }
+                                    })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.Label(Html.MultiLanguage(21), new { @class = "col-sm-4 control-label", @for = "phone" })
+                            <label class="col-sm-4 control-label" for="phone">@Html.MultiLanguage(22)</label>
                             <div class="col-sm-8">
                                 @Html.EditorFor(model => model.Phone, new
-                           {
-                               htmlAttributes =
-                               new { @class = "form-control", id = "phone", placeholder = Html.MultiLanguage(24) }
-                           })
-                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                {
+                                    htmlAttributes =
+                                        new {@class = "form-control", id = "phone", placeholder = Html.MultiLanguageString(24)}
+                                })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new {@class = "text-danger"})
 
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.Label(Html.MultiLanguage(22), new { @class = "col-sm-4 control-label", @for = "email" })
+                            <label class="col-sm-4 control-label" for="email">@Html.MultiLanguage(22)</label>
                             <div class="col-sm-8">
                                 @Html.EditorFor(model => model.Email, new
-                           {
-                               htmlAttributes = new
-                               { @class = "form-control", id = "email", placeholder = Html.MultiLanguage(25) }
-                           })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                {
+                                    htmlAttributes = new
+                                    {@class = "form-control", id = "email", placeholder = Html.MultiLanguageString(25)}
+                                })
+                                @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
 
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.Label(Html.MultiLanguage(23), new { @class = "col-sm-4 control-label", @for = "message" })
+                            <label class="col-sm-4 control-label" for="message">@Html.MultiLanguage(23)</label>
                             <div class="col-sm-8">
                                 @Html.EditorFor(model => model.Message, new
-                           {
-                               htmlAttributes = new
-                               { @class = "form-control", id = "message", placeholder = Html.MultiLanguage(26), rows = 5 }
-                           })
-                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                {
+                                    htmlAttributes = new
+                                    {@class = "form-control", id = "message", placeholder = Html.MultiLanguageString(26), rows = 5}
+                                })
+                                @Html.ValidationMessageFor(model => model.Message, "", new {@class = "text-danger"})
 
                             </div>
                         </div>
