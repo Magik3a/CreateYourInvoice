@@ -10,6 +10,7 @@ using System.IO;
 using Tools;
 using System.Globalization;
 using System.Configuration;
+using akcet_fakturi.Areas.EmailTemplates.Models;
 
 namespace akcet_fakturi.Controllers
 {
@@ -232,18 +233,21 @@ namespace akcet_fakturi.Controllers
         {
             try
             {
-                string strEmailResult = "<img src=\""+ ConfigurationManager.AppSettings["SocialLogoPath"] +"\">";
 
 
                 var strResult = "";
                 var userId = User.Identity.GetUserId();
-                var werkbrifef = db.Werkbriefs.OrderByDescending(o => o.DateCreated).Where(u => u.UserId == userId).FirstOrDefault();
-                strResult = werkbrifef.WerkbriefHTML;
+                var werkbrifef = db.Werkbriefs.OrderByDescending(o => o.DateCreated).FirstOrDefault(u => u.UserId == userId);
+                strResult = werkbrifef?.WerkbriefHTML;
 
-                strResult = strResult.Replace("\r\n", string.Empty);
+                strResult = strResult?.Replace("\r\n", string.Empty);
                 byte[] bytes = GeneratePDF(strResult);
 
-                EmailFunctions.SendEmail(EmailReciever, "Werkbrief van AKCET - periode: " + werkbrifef.Period, strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
+                var modelForEmailBody = new WerkbriefEmailBodyViewModel();
+                modelForEmailBody.CompanyName = werkbrifef.Company.CompanyName;
+                string strEmailResult = RenderEmailBodyView("WerkbriefEmailBody", modelForEmailBody); ;
+
+                EmailFunctions.SendEmail(EmailReciever, $"Werkbrief van {werkbrifef?.Company.CompanyName} - periode: { werkbrifef?.Period}", strEmailResult, bytes, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf");
 
                 return Json(true, JsonRequestBehavior.AllowGet);
 
@@ -260,22 +264,29 @@ namespace akcet_fakturi.Controllers
             {
                 var userId = User.Identity.GetUserId();
 
-                var strResult = db.Werkbriefs.OrderByDescending(o => o.DateCreated).Where(u => u.UserId == userId).FirstOrDefault().WerkbriefHTML;
+                var firstOrDefault = db.Werkbriefs.OrderByDescending(o => o.DateCreated).FirstOrDefault(u => u.UserId == userId);
+                if (firstOrDefault != null)
+                {
+                    var strResult = firstOrDefault.WerkbriefHTML;
 
-                byte[] bytes = GeneratePDF(strResult);
+                    byte[] bytes = GeneratePDF(strResult);
 
-                Response.Buffer = false;
-                Response.Clear();
-                Response.ClearContent();
-                Response.ClearHeaders();
-                //Set the appropriate ContentType.
-                Response.ContentType = "Application/pdf";
-                //Write the file content directly to the HTTP content output stream.
-                Response.BinaryWrite(bytes);
-                Response.Flush();
-                Response.End();
-                return File(bytes, "application/pdf", DateTime.Now.ToString(CultureInfo.InvariantCulture));
-
+                    Response.Buffer = false;
+                    Response.Clear();
+                    Response.ClearContent();
+                    Response.ClearHeaders();
+                    //Set the appropriate ContentType.
+                    Response.ContentType = "Application/pdf";
+                    //Write the file content directly to the HTTP content output stream.
+                    Response.BinaryWrite(bytes);
+                    Response.Flush();
+                    Response.End();
+                    return File(bytes, "application/pdf", DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
             }
             catch (Exception ex)
             {

@@ -15,7 +15,7 @@
 <body>
     <div id="wrapper">
         <div id="user-company">
-            <h1>@Model.UserCompanyName</h1><br />
+            <h1 class="pdf-headers">@Model.UserCompanyName</h1><br />
             <span>@Model.UserAddress</span>
             <br /><br />
             <span>Telefoon: @Model.UserPhone</span><br />
@@ -24,15 +24,21 @@
             <span>BTW-nummer: @Model.UserDDsNumber</span>
         </div>
 
-        <div id="company-data">
-            <span>@Model.CompanyName</span><br />
-            <span> @Model.CompanyAddress</span><br />
+        <table id="company-data" style="width: 100%">
 
-        </div>
+            <tr>
+                <td style="width: 75%"></td>
+                <td>
+                    <span style="text-align: left">
+                        @Model.CompanyName<br />@Model.CompanyAddress
+                    </span>
+                </td>
+            </tr>
+        </table>
 
         <div id="clear"></div>
 
-        <h1>Werkbrief</h1>
+        <h1 class="pdf-headers">Werkbrief</h1>
 
         <div id="invoice-info">
             <table style="width: 100%;">
@@ -40,14 +46,7 @@
                     <td style="width: 15%"></td>
                     <td width="45%"></td>
                     <td rowspan="5" style="text-align: right">
-                        <table style="border: 1px solid black;     display: inline-block;">
-                            <tr>
-                                <td class="pinki">Um BTW-nummer</td>
-                            </tr>
-                            <tr>
-                                <td class="pink">@Model.CompanyDDSNumber</td>
-                            </tr>
-                        </table>
+
                     </td>
                 </tr>
                 <tr>
@@ -155,7 +154,7 @@
             </tr>
         </table>
                     @{
-                 string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + 
+                 string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
     Request.ApplicationPath.TrimEnd('/') + "/";
             }
          <p id="footer">

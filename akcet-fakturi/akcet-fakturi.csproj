@@ -273,6 +273,7 @@
     <Compile Include="Areas\EmailTemplates\EmailTemplatesAreaRegistration.cs" />
     <Compile Include="Areas\EmailTemplates\Models\InvoiceEmailBodyViewModel.cs" />
     <Compile Include="Areas\EmailTemplates\Models\TemplateModels.cs" />
+    <Compile Include="Areas\EmailTemplates\Models\WerkbriefEmailBodyViewModel.cs" />
     <Compile Include="Areas\InvoiceTemplates\Controllers\InvoiceTemplateController.cs" />
     <Compile Include="Areas\InvoiceTemplates\InvoiceTemplatesAreaRegistration.cs" />
     <Compile Include="Areas\InvoiceTemplates\Models\InvoiceTemplateModels.cs" />
@@ -603,6 +604,7 @@
     <Content Include="Areas\WerkbriefTemplates\Views\web.config" />
     <Content Include="Areas\WerkbriefTemplates\Views\WerkbriefTemplate\Index.cshtml" />
     <Content Include="Areas\EmailTemplates\Views\Template\InvoiceEmailBody.cshtml" />
+    <Content Include="Areas\EmailTemplates\Views\Template\WerkbriefEmailBody.cshtml" />
     <None Include="Properties\PublishProfiles\develop.pubxml" />
     <None Include="Properties\PublishProfiles\fakturi.pubxml" />
     <None Include="Properties\PublishProfiles\netfactuur.pubxml" />
