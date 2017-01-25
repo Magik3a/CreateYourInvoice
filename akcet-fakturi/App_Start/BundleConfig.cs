@@ -21,7 +21,8 @@ namespace akcet_fakturi
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/pace.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -29,7 +30,7 @@ namespace akcet_fakturi
 
             // Bundle for Kendo UI script
             bundles.Add(new ScriptBundle("~/Scripts/kendoJS").Include(
-           
+
                 "~/Scripts/kendo/kendo.all.js",
                 "~/Scripts/kendo/kendo.aspnetmvc.js",
                       "~/Scripts/kendo/cultures/kendo.culture.bg-BG.min.js"));
@@ -37,7 +38,8 @@ namespace akcet_fakturi
             // Bundle for Kendo UI css
             bundles.Add(new StyleBundle("~/Content/Css/kendo/kendoCss").Include(
                 "~/Content/kendo/kendo.common-bootstrap.css",
-                       "~/Content/kendo/kendo.silver.min.css"
+                       "~/Content/kendo/kendo.silver.min.css",
+                       "~/Content/pace/themes/orange/pace-theme-flash.css"
                 ));
         }
     }

@@ -13,16 +13,18 @@
     <script>
         function InitTranslations() {
             $.each($(".multilanguage-phrase"),
-          function(i, item) {
-              var phraseNumber = $(item).attr("data-multilanguage");
+                function(i, item) {
+                    var phraseNumber = $(item).attr("data-multilanguage");
 
-              var url = "@ConfigurationManager.AppSettings["MultiLanguageApiUrl"]";
-              var language = "@ConfigurationManager.AppSettings["AppLanguage"]";
+                    var url = "@ConfigurationManager.AppSettings["MultiLanguageApiUrl"]";
+                    var language = "@ConfigurationManager.AppSettings["AppLanguage"]";
 
-              $.get(url + '/Initials/' + language + '/Phrase/' + phraseNumber, function (data) {
-                  $(item).text(data);
-              });
-          });
+                    $.get(url + '/Initials/' + language + '/Phrase/' + phraseNumber, function (data) {
+                        $(item).text(data);
+                    });
+                });
+
+            Pace.stop();
         }
     </script>
 </head>
@@ -65,6 +67,12 @@
     @RenderSection("scripts", required: false)
 
 <script>
+    $(document).ajaxStart(function () {
+        Pace.restart();
+    });
+    $(document).ready(function() {
+        Pace.stop();
+    });
     $(function() {
         InitTranslations();
     });
